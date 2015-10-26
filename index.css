@@ -1,11 +1,64 @@
+body {
+	background-color: #000016;
+}
 svg {
 	font-family: Verdana;
 	font-size: 7pt;
 	pointer-events: all;
 }
-svg.dragging {
-	cursor: move;
+svg.map {
+	height: 100%;
+	width: 100%;
 }
-svg g:hover {
+svg.dragging {
+	cursor: move !important;
+}
+svg rect {
+	shape-rendering: crispEdges;
+}
+svg g {
+	transition: opacity 1s;
+}
+svg text.planet-name {
+	fill: white;
+	transition: opacity 1s;
+	pointer-events: none !important;
+}
+svg g.planet > * {
+	transition: opacity 1s;
+}
+svg g.planet circle {
+	cursor: pointer;
+	opacity: 0.7;
+}
+svg text.planet-name {
+	opacity: 0;
+}
+svg text.planet-name.hidden {
+	opacity: 0 !important;
+}
+svg.zoomed-in text.planet-name {
+	opacity: 1;
+}
+svg g.planet:hover circle {
 	fill: red;
+	opacity: 1;
+}
+svg g.planet:hover text {
+	opacity: 1;
+}
+svg g.hidden {
+	cursor: default;
+	opacity: 0;
+}
+svg rect.scale-axis-background {
+	stroke: black;
+	stroke-width: 1;
+	fill: white;
+}
+svg g.scale-axis path,
+svg g.scale-axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
