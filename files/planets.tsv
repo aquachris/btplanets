@@ -1,4 +1,4 @@
-SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION	
+SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION	REMARKS
 /wiki/A_Place	A Place	-123.76:272.18	5	Lyran Commonwealth	
 /wiki/Aalzorg	Aalzorg	583.88:256.93	5	No Record	
 /wiki/Abadan	Abadan	-70.32:-95.95	5	Free Worlds League	
@@ -55,7 +55,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Albaracht	Albaracht	492.56:-458.27	5	No record	
 /wiki/Albert_Falls	Albert Falls	-259.83:-132.29	5	Free Worlds League	
 /wiki/Albiero	Albiero	150.45:356.78	5	Draconis Combine	
-/wiki/Albion_(Clan)	Albion (Clan)	-50.20: 1,790.73	5	Clan Burrock	
+/wiki/Albion_(Clan)	Albion (Clan)	-50.20:1790.73	5	Clan Burrock	
 /wiki/Albion_(LC)	Albion (LC)	-284.43:143.52	5	No record	
 /wiki/Alchiba	Alchiba	-67.73:1.77	5	Lyran Commonwealth	
 /wiki/Alcor	Alcor	-74.71:28.90	5	Lyran Commonwealth	
@@ -177,7 +177,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Arcadia_(Clan)	Arcadia (Clan)	-115.56:1607.54	5	Clan Ghost Bear / Clan Star Adder / Clan Steel Viper	
 /wiki/Arcadia_(FS)	Arcadia (FS)	253.74:-88.60	5	No record	
 /wiki/Arcadia_(LC)	Arcadia (LC)	-186.34:-8.06	5	Lyran Commonwealth	
-/wiki/Arcturus	Arcturus	-780.07:174.44	5	Lyran Commonwealth	
+/wiki/Arcturus	Arcturus	-78.01:174.44	5	Lyran Commonwealth	
 /wiki/Ardoz	Ardoz	46.26:245.78	5	Draconis Combine	
 /wiki/Ares_(planet)	Ares (planet)	95.38:-173.99	5	Capellan Confederation	
 /wiki/Arganda	Arganda	-154.82:36.14	5	Lyran Commonwealth	
@@ -213,7 +213,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Athna	Athna	-27.06:-354.27	5	No record	
 /wiki/Atlas_(planet)	Atlas (planet)	157.42:-244.07	5	Federated Suns	
 /wiki/Atocongo	Atocongo	-170.88:245.26	5	Lyran Commonwealth	
-/wiki/Atreus_(Clan_planet)	Atreus (Clan planet)	71.78:1,732.83	5	Clan Smoke Jaguar /	
+/wiki/Atreus_(Clan_planet)	Atreus (Clan planet)	71.78:1732.83	5	Clan Smoke Jaguar / Clan Fire Mandrill / Clan Ice Hellion	
 /wiki/Atreus_(FWL)	Atreus (FWL)	-191.07:-163.78	5	Free Worlds League	
 /wiki/Atreus_Prime	Atreus Prime	227.71:-373.56	5	Taurian Concordat	
 /wiki/Atria	Atria	-16.03:51.65	5	Draconis Combine	
@@ -274,7 +274,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Barada	Barada	?	?	?	Apocryphal
 /wiki/Barahona	Barahona	684.66:284.05	5	No record	
 /wiki/Baranda	Baranda	449.45:-259.03	5	Federated Suns	
-/wiki/Barcella	Barcella	-23.73:1,894.96	5	Clan Nova Cat /	
+/wiki/Barcella	Barcella	-23.73:1894.96	5	Clan Nova Cat / Clan Ice Hellion / Clan Jade Falcon	
 /wiki/Barcelona	Barcelona	-204.78:411.47	5	Lyran Commonwealth	
 /wiki/Barlaston	Barlaston	-123.60:-266.57	5	Free Worlds League	
 /wiki/Barlow%27s_End	Barlow's End	304.50:63.03	5	Federated Suns	
@@ -300,7 +300,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Bayindir	Bayindir	-242.75:-296.30	5	Free Worlds League	
 /wiki/Bayis_II	Bayis II	-254.16:166.53	5	No record	
 /wiki/Bazaar	Bazaar	23.56:754.29	5	?	
-/wiki/Bearclaw	Bearclaw	149.36:1,722.12	5	?	
+/wiki/Bearclaw	Bearclaw	149.36:1722.12	5	Clans	
 /wiki/Beaumont	Beaumont	583.94:39.76	5	Federated Suns	
 /wiki/Beauvais	Beauvais	-500.21:204.07	5	?	
 /wiki/Beckars	Beckars	-510.10:128.99	5	?	
@@ -421,7 +421,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Breukelen	Breukelen	-88.15:141.35	5	Lyran Commonwealth	
 /wiki/Brighton	Brighton	79.09:-200.36	5	Capellan Confederation	
 /wiki/Brihuega	Brihuega	354.90:391.08	5	Draconis Combine	
-/wiki/Brim	Brim	-25.55:1,767.15	5	?	
+/wiki/Brim	Brim	-25.55:1767.15	5	Clans	
 /wiki/Bringdam	Bringdam	101.46:-409.11	5	No record	
 /wiki/Brinton	Brinton	134.64:-411.52	5	No record	
 /wiki/Brisbane	Brisbane	154.95:-398.78	5	Taurian Concordat	
@@ -492,7 +492,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Cammal	Cammal	111.40:-164.98	5	Federated Suns	
 /wiki/Campbelton	Campbelton	-168.44:-112.09	5	Free Worlds League	
 /wiki/Campertown	Campertown	-5.44:-159.33	5	Capellan Confederation	
-/wiki/Campoleone	Campoleone	-299.83:291.84	5	Free Worlds League	
+/wiki/Campoleone	Campoleone	-299.83:-291.84	5	Free Worlds League	
 /wiki/Canal	Canal	-377.63:307.30	5	Lyran Commonwealth	
 /wiki/Candiear	Candiear	-203.78:-419.34	5	Magistracy of Canopus	
 /wiki/Canonbie	Canonbie	-122.02:67.16	5	Lyran Commonwealth	
@@ -604,7 +604,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Cilvituk	Cilvituk	-493.40:225.67	5	?	
 /wiki/Cimeron	Cimeron	362.65:83.97	5	Federated Suns	
 /wiki/Ciotat	Ciotat	-154.63:74.40	5	Lyran Commonwealth	
-/wiki/Circe	Circe	-122.48:1,613.57	5	?	
+/wiki/Circe	Circe	-122.48:1613.57	5	Clans	
 /wiki/Circinus	Circinus	-388.56:-66.82	5	?	
 /wiki/Cirebon	Cirebon	-147.09:-263.20	5	Free Worlds League	
 /wiki/Claxton	Claxton	15.50:-264.19	5	Capellan Confederation	
@@ -626,7 +626,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Colfax	Colfax	-232.93:-49.16	5	Free Worlds League	
 /wiki/Colia	Colia	357.49:66.91	5	Federated Suns	
 /wiki/Colinas	Colinas	-157.39:108.00	5	Lyran Commonwealth	
-/wiki/Colleen	Colleen	-146.60:1,836.40	5	?	
+/wiki/Colleen	Colleen	-146.60:1836.40	5	Clans	
 /wiki/Colmar	Colmar	-66.18:299.29	5	Lyran Commonwealth	
 /wiki/Coloma	Coloma	283.38:-87.36	5	Federated Suns	
 /wiki/Colorado	Colorado	344.57:-199.07	5	Federated Suns	
@@ -651,7 +651,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Corfu	Corfu	63.57:322.26	5	?	
 /wiki/Coriscana	Coriscana	-187.93:-109.17	5	Free Worlds League	
 /wiki/Cork	Cork	525.58:66.45	5	No record	
-/wiki/Corodiz	Corodiz	-135.70:-374.90	5	Capellan Confederation	
+/wiki/Corodiz	Corodiz	135.70:-374.90	5	Capellan Confederation	
 /wiki/Coromodir	Coromodir	92.16:-466.51	5	No record	
 /wiki/Corridan	Corridan	-38.01:121.45	5	Lyran Commonwealth	
 /wiki/Corsica_Nueva	Corsica Nueva	194.12:227.17	5	Draconis Combine	
@@ -682,7 +682,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Cryfder	Cryfder	-153.29:493.89	5	?	
 /wiki/Csesztreg	Csesztreg	-69.29:391.31	5	Draconis Combine	
 /wiki/Csomad	Csomad	427.28:-292.14	5	Federated Suns	
-/wiki/Ctesiphon	Ctesiphon	321.43:1,044.12	5	?	
+/wiki/Ctesiphon	Ctesiphon	321.43:1044.12	5	?	Deep Periphery
 /wiki/Culmia	Culmia	544.08:240.76	5	No record	
 /wiki/Cumberland	Cumberland	207.04:-264.98	5	Federated Suns	
 /wiki/Cumbres	Cumbres	-154.03:201.83	5	Lyran Commonwealth	
@@ -696,7 +696,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Cyrton	Cyrton	364.13:-343.27	5	Taurian Concordat	
 /wiki/Czarvowo	Czarvowo	-317.48:61.48	5	Lyran Commonwealth	
 /wiki/Dabih	Dabih	59.97:83.50	5	Draconis Combine	
-/wiki/Dagda_(Clan)	Dagda (Clan)	-132.17:1,602.6	5	?	
+/wiki/Dagda_(Clan)	Dagda (Clan)	-132.17:1602.6	5	Clans	
 /wiki/Dagda_(LC)	Dagda (LC)	-225.94:101.60	5	No record	
 /wiki/Dahar	Dahar	279.42:20.11	5	Federated Suns	
 /wiki/Dainmar_Majoris	Dainmar Majoris	-62.20:-484.20	5	Magistracy of Canopus	
@@ -737,7 +737,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Delacruz	Delacruz	372.48:113.17	5	Draconis Combine	
 /wiki/Delagoa	Delagoa	-431.53:360.36	5	No record	
 /wiki/Delavan	Delavan	269.86:-95.17	5	Federated Suns	
-/wiki/Delios	Delios	-16.79:1,803.51	5	?	
+/wiki/Delios	Delios	-16.79:1803.51	5	Clans	
 /wiki/Delitzsch	Delitzsch	326.46:146.80	5	Draconis Combine	
 /wiki/Dell	Dell	-61.28:330.82	3	Lyran Commonwealth	
 /wiki/Delos	Delos	613.41:59.93	5	Federated Suns	
@@ -756,7 +756,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Desolate_Plains	Desolate Plains	207.01:-361.32	3	No record	
 /wiki/Detroit	Detroit	19.15:-452.55	3	Independent world	
 /wiki/Devil%27s_Breath	Devil's Breath	509.76:226.30	3	No record	
-/wiki/Devil%27s_Rock	Devil's Rock	36.19:-15.30	3	Free Worlds League	
+/wiki/Devil%27s_Rock	Devil's Rock	-36.19:-15.30	3	Free Worlds League	
 /wiki/Devin	Devin	-110.63:333.92	3	Lyran Commonwealth	
 /wiki/Deweidewd	Deweidewd	-107.19:285.25	0	No record	
 /wiki/DeWitt	DeWitt	260.02:-21.91	0	Federated Suns	
@@ -925,7 +925,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Farnsworth	Farnsworth	561.02:31.72	0	Federated Suns	
 /wiki/Farstar	Farstar	412.74:446.66	0	Periphery	
 /wiki/Farwell	Farwell	140.52:-80.23	0	Federated Suns	
-/wiki/Fasa_(system)	Fasa (system)	:	0	?	
+/wiki/Fasa_(system)	Fasa (system)	?	0	?	Deep periphery (23 light years anti-spinward of Circe)
 /wiki/Fathepur	Fathepur	246.61:-261.61	0	No record	
 /wiki/Fatima	Fatima	-31.29:175.73	2	Lyran Commonwealth	
 /wiki/Fefferfer	Fefferfer	17.14:204.65	0	No record	
@@ -1021,11 +1021,11 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Ganshoren	Ganshoren	-43.40:159.28	0	Lyran Commonwealth	
 /wiki/Gant	Gant	311.05:-463.73	0	No record	
 /wiki/Gardnaus	Gardnaus	118.30:-326.56	0	No record	
-/wiki/Garotte	Garotte	?	0	No record	does not appear on maps
+/wiki/Garotte	Garotte	?	0	No record	uncharted
 /wiki/Garrison	Garrison	-103.10:181.68	0	Lyran Commonwealth	
 /wiki/Garstedt	Garstedt	126.04:384.73	0	Draconis Combine	
-/wiki/Gatchina	Gatchina	-270.69:297.31	0	Free Worlds League	
-/wiki/Gatekeeper	Gatekeeper	-23.64:1,765.08	0	Clan Nova Cat / Clan Jade Falcon	
+/wiki/Gatchina	Gatchina	-270.69:-297.31	0	Free Worlds League	
+/wiki/Gatekeeper	Gatekeeper	-23.64:1765.08	0	Clan Nova Cat / Clan Jade Falcon	
 /wiki/Gateway	Gateway	-712.64:637.12	0	?	
 /wiki/Gatineau	Gatineau	-242.26:299.08	0	Lyran Commonwealth	
 /wiki/Gaul	Gaul	513.69:-490.97	0	No record	
@@ -1035,7 +1035,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Genoa	Genoa	38.99:-60.17	0	Capellan Confederation	
 /wiki/Gettorf	Gettorf	-213.60:-539.94	0	No record	
 /wiki/Ghaziabad	Ghaziabad	-307.43:-239.31	0	Free Worlds League	
-/wiki/Ghent	Ghent	208.85:1,155.74	0	?	
+/wiki/Ghent	Ghent	208.85:1155.74	0	?	Deep periphery
 /wiki/Ghorepani	Ghorepani	10.07:-409.38	0	No record	
 /wiki/Giausar	Giausar	-207.69:-26.59	0	Lyran Commonwealth	
 /wiki/Gibbs	Gibbs	-200.96:159.02	0	Lyran Commonwealth	
@@ -1059,7 +1059,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Glentworth	Glentworth	125.79:-319.98	0	Federated Suns	
 /wiki/Glevakha	Glevakha	-206.61:-305.90	0	Free Worlds League	
 /wiki/Glitnir	Glitnir	600.61:236.67	0	No record	
-/wiki/Glory_(planet)	Glory (planet)	62:11:00	0	Clan Jade Falcon	
+/wiki/Glory_(planet)	Glory (planet)	98.08:1821.19	0	Clan Jade Falcon	
 /wiki/Gniezno	Gniezno	-127.44:-22.18	0	No record	
 /wiki/Goat_Path	Goat Path	-154.21:356.09	0	Lyran Commonwealth	
 /wiki/Goderich	Goderich	144.39:-49.76	0	Federated Suns	
@@ -1086,7 +1086,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Grand_Base	Grand Base	45.97:-301.00	0	Capellan Confederation	
 /wiki/Granera	Granera	-98.16:-332.75	0	Free Worlds League	
 /wiki/Grankum	Grankum	577.21:276.44	0	No record	
-/wiki/Grants_Station	Grants Station	-67.81:1,820.99	0	?	
+/wiki/Grants_Station	Grants Station	-67.81:1820.99	0	Clans	
 /wiki/Graus	Graus	-100.54:299.34	0	Lyran Commonwealth	
 /wiki/Gravenhage	Gravenhage	304.53:428.99	0	Draconis Combine	
 /wiki/Gravensteen	Gravensteen	219.45:-134.90	0	No record	
@@ -1117,7 +1117,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Gurnet	Gurnet	93.41:-232.74	0	Federated Suns	
 /wiki/Gurrnazovo	Gurrnazovo	423.40:-240.69	0	Federated Suns	
 /wiki/Gustrell	Gustrell	-66.56:469.98	0	Oberon Confederation	
-/wiki/Gwithian	Gwithian	-462.82:1,058.26	0	?	
+/wiki/Gwithian	Gwithian	-462.82:1058.26	0	?	Deep periphery
 /wiki/Gwynedd	Gwynedd	-276.16:462.77	0	No record	
 /wiki/Gypsum	Gypsum	-281.28:26.25	?	Lyran Commonwealth	
 /wiki/Haappajarvi	Haappajarvi	137.14:-242.41	0	Federated Suns	
@@ -1218,7 +1218,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Hiratsuka	Hiratsuka	-258.30:-255.19	0	Free Worlds League	
 /wiki/Hirtshals	Hirtshals	-328.81:511.42	0	?	
 /wiki/Hivrannee	Hivrannee	625.59:-6.03	0	Federated Suns	
-/wiki/Hoard	Hoard	38.24:1,865.31	0	Clan	
+/wiki/Hoard	Hoard	38.24:1865.31	0	Clans	
 /wiki/Hobbs	Hobbs	255.19:-245.80	0	Federated Suns	
 /wiki/Hobson	Hobson	214.04:-286.00	0	Federated Suns	
 /wiki/Hoensbroek	Hoensbroek	484.92:-131.90	0	No record	
@@ -1384,7 +1384,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Junior	Junior	399.32:1.00	0	Federated Suns	
 /wiki/J%C3%A1pminboddu	Jápminboddu	-220.08:513.69	0	?	
 /wiki/J%C3%A1szber%C3%A9ny	Jászberény	-105.47:-143.41	0	No record	
-/wiki/KA-418	KA-418	?:?	?	?	
+/wiki/KA-418	KA-418	?	?	?	Deep periphery
 /wiki/Kabah	Kabah	206.89:372.24	0	Draconis Combine	
 /wiki/Kaesong	Kaesong	59.69:296.71	2	Draconis Combine	
 /wiki/Kaetet%C3%B4%C3%A3	Kaetetôã	?	0	?	uncharted
@@ -1537,7 +1537,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Krimari	Krimari	-162.10:-442.48	0	Magistracy of Canopus	
 /wiki/Krin	Krin	-7.75:-222.84	0	Capellan Confederation	
 /wiki/Kristiandsund	Kristiandsund	-9.2:-84.16	0	No record	
-/wiki/Krung_Thep	Krung Thep	-369.34:-237.12	0	Lyran Commonwealth	
+/wiki/Krung_Thep	Krung Thep	-369.34:237.12	0	Lyran Commonwealth	
 /wiki/Kublenz	Kublenz	505.21:-32.49	0	No record	
 /wiki/Kufstein	Kufstein	-11.125:341.426	2	Draconis Combine	
 /wiki/Kujari	Kujari	-25.83:-266.96	0	Free Worlds League	
@@ -1565,7 +1565,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Labrea	Labrea	138.70:327.72	0	Draconis Combine	
 /wiki/Lacadon	Lacadon	133.56:-136.52	0	No record	
 /wiki/Lackhove	Lackhove	-166.10:447.39	0	Morgraine's Valkyrate	
-/wiki/Lackland	Lackland	-546.07:-175.03	0	Federated Suns	
+/wiki/Lackland	Lackland	546.07:-175.03	0	Federated Suns	
 /wiki/Laconis	Laconis	151.95:-395.	0	Taurian Concordat	
 /wiki/Lahti	Lahti	-392.11:-224.75	0	Free Worlds League	
 /wiki/Laiaka	Laiaka	-100.54:54.63	0	Lyran Commonwealth	
@@ -1596,7 +1596,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Le_Blanc	Le Blanc	206.89:18.44	0	Federated Suns	
 /wiki/Leamington	Leamington	353.35:-91.68	0	Federated Suns	
 /wiki/Lee	Lee	116.75:-149.18	0	Federated Suns	
-/wiki/Lee_Shore	Lee Shore	unknown:unknown	0	?	
+/wiki/Lee_Shore	Lee Shore	?	0	?	Deep periphery
 /wiki/Leganes	Leganes	-77.76:161.37	0	Lyran Commonwealth	
 /wiki/Leh	Leh	441.19:-378.70	0	No record	
 /wiki/Leipsic	Leipsic	307.62:-104.65	0	Federated Suns	
@@ -1668,7 +1668,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Ludwig	Ludwig	161.94:77.54	0	Draconis Combine	
 /wiki/Ludwigshafen	Ludwigshafen	-242.56:283.99	0	Lyran Commonwealth	
 /wiki/Lukla	Lukla	-53.58:-227.17	0	No record	
-/wiki/Lum	Lum	-33:16:00	0	Clan Snow Raven /	
+/wiki/Lum	Lum	4.73:1743.65	0	Clan Snow Raven / Clan Diamond Shark	
 /wiki/Lummatii	Lummatii	-486.83:-206.43	0	Lothian League	
 /wiki/Lungdo	Lungdo	-82.67:-122.62	0	Free Worlds League	
 /wiki/Lurgatan	Lurgatan	-20.15:-333.25	0	Free Worlds League	
@@ -1759,7 +1759,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Marlowe%27s_Rift	Marlowe's Rift	234.53:88.47	0	Draconis Combine	
 /wiki/Marodzi	Marodzi	291.87:-276.54	0	Federated Suns	
 /wiki/Marsalle	Marsalle	-333.68:25.38	0	No record	
-/wiki/Marshall	Marshall	27:29:00	0	Clan Steel Viper / Clan Goliath Scorpion / Clan Jade Falcon / Clan Star Adder / Clan Fire Mandrill / Clan Ice Hellion	
+/wiki/Marshall	Marshall	58.7:1777.83	0	Clan Steel Viper / Clan Goliath Scorpion / Clan Jade Falcon / Clan Star Adder / Clan Fire Mandrill / Clan Ice Hellion	
 /wiki/Marshdale	Marshdale	163.25:332.41	0	Draconis Combine	
 /wiki/Mas	Mas	227.07:-428.53	0	No record	
 /wiki/Masterson	Masterson	2.76:-187.09	0	Capellan Confederation	
@@ -1772,7 +1772,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Mattisskogen	Mattisskogen	-58.61:-363.94	0	No record	
 /wiki/Mauckport	Mauckport	426.70:-53.67	0	Federated Suns	
 /wiki/Maule	Maule	31.79 245.26:245.26	2	Draconis Combine	
-/wiki/Mauna_Loa	Mauna Loa	1,025.68:-119.06	0	?	
+/wiki/Mauna_Loa	Mauna Loa	1025.68:-119.06	0	?	Deep periphery
 /wiki/Mauripur	Mauripur	-167.21:-281.83	0	Free Worlds League	
 /wiki/Mavegh	Mavegh	320.61:-337.92	0	No record	
 /wiki/Maxie%27s_Planet	Maxie's Planet	-96.36:392.29	0	Lyran Commonwealth	
@@ -1827,7 +1827,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Merak	Merak	-119.36:-62.78	0	Free Worlds League	
 /wiki/Mercedes	Mercedes	-392.41:112.95	0	Lyran Commonwealth	
 /wiki/Merdal	Merdal	91.87:-393.5	0	No record	
-/wiki/Meribah	Meribah	unknown:unknown	0	?	
+/wiki/Meribah	Meribah	?	0	?	Deep periphery (just over four months travel from the border of the Outworlds Alliance)
 /wiki/Merlin_(Planet)	Merlin (Planet)	280.06:-367.10	0	No record	
 /wiki/Merlynpede	Merlynpede	-475.50:96.70	0	No record	
 /wiki/Mermentau	Mermentau	520.98:-39.61	0	Federated Suns	
@@ -1994,7 +1994,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/New_Hope	New Hope	-113.11:-33.11	0	Free Worlds League	
 /wiki/New_India	New India	-457.98:47.87	0	Lyran Commonwealth	
 /wiki/New_Ivaarsen	New Ivaarsen	226.78:34.85	0	Federated Suns	
-/wiki/New_Kent	New Kent	119.57:-1,770.14	0	Clan Steel Viper	
+/wiki/New_Kent	New Kent	119.57:1770.14	0	Clan Steel Viper	
 /wiki/New_Kyoto	New Kyoto	-125.64:11.90	0	Lyran Commonwealth	
 /wiki/New_Macao	New Macao	77.48:-123.22	0	Capellan Confederation	
 /wiki/New_Mendham	New Mendham	178.98:59.83	0	Draconis Combine	
@@ -2012,7 +2012,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Newtown_Square	Newtown Square	-228.10:395.93	0	Lyran Commonwealth	
 /wiki/New_St._Andrews	New St. Andrews	-513.02:-107.94	0	Periphery	
 /wiki/New_Start	New Start	365.91:303.65	0	No record	
-/wiki/New_Stevens	New Stevens	22.35.81:-6.09	0	No record	
+/wiki/New_Stevens	New Stevens	22.35:-6.09	0	No record	vanished from maps during the 2nd Succession War
 /wiki/New_Sumatra	New Sumatra	?	0	No record	vanished from maps during the 3rd Succession War
 /wiki/New_Syrtis	New Syrtis	230.91:-298.95	0	Federated Suns	
 /wiki/New_Troy	New Troy	-51.06:-261.76	0	No record	
@@ -2033,7 +2033,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Nihal	Nihal	43.90:-312.99	0	Capellan Confederation	
 /wiki/Niihau	Niihau	-237.41:-80.49	0	Free Worlds League	
 /wiki/Niles_(DC)	Niles (DC)	398.29:120.76	0	Federated Suns	
-/wiki/Niles_(Clan)	Niles (Clan)	117.76:1.692.63	0	Clan	
+/wiki/Niles_(Clan)	Niles (Clan)	117.76:1692.63	0	Clan	
 /wiki/Ningpo	Ningpo	54.28:-66.74	0	Capellan Confederation	
 /wiki/Ningxia	Ningxia	314.65:315.55	0	Draconis Combine	
 /wiki/Niomede	Niomede	-0.26:-352.01	0	Capellan Confederation	
@@ -2136,7 +2136,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Oyevaina	Oyevaina	37.66:265.97	0	No record	
 /wiki/Ozawa	Ozawa	84.72:2.82	0	Federated Suns	
 /wiki/P3	P3	-111.42:879.74	0	?	
-/wiki/P9	P9	-114.46:1,030.19	0	?	
+/wiki/P9	P9	-114.46:1030.19	0	?	Deep Periphery
 /wiki/Paches	Paches	154.37:-143.79	0	No record	
 /wiki/Paf	Paf	188.47:-439.21	0	No record	
 /wiki/Pain	Pain	-408.54:349.54	0	No record	
@@ -2248,7 +2248,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Principia	Principia	0:-360.40	0	Capellan Confederation	
 /wiki/Princton	Princton	413.01:26.51	?	Federated Suns	
 /wiki/Prinis_Prime	Prinis Prime	472.85:235.00	0	Outworlds Alliance	
-/wiki/Priori	Priori	2.67:1,793.57	0	Clans	
+/wiki/Priori	Priori	2.67:1793.57	0	Clans	
 /wiki/Prix	Prix	38.22:-330.66	0	Capellan Confederation	
 /wiki/Procyon	Procyon	-5.04:-11.06	0	Free Worlds League	
 /wiki/Promised_Land	Promised Land	-304.07:-72.93	0	Free Worlds League	
@@ -2343,7 +2343,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Roadside	Roadside	-184.91:371.46	0	Lyran Commonwealth	
 /wiki/Robinson	Robinson	232.73:-6.49	0	Federated Suns	
 /wiki/Robsart	Robsart	170.74:-342.63	0	Federated Suns	
-/wiki/Roche	Roche	66.70:1,855.53	0	Clan	
+/wiki/Roche	Roche	66.70:1855.53	0	Clans	
 /wiki/Rochelle	Rochelle	-113.70:-15.92	0	Free Worlds League	
 /wiki/Rochers	Rochers	-278.22:-16.07	0	No record	
 /wiki/Rochester	Rochester	226.95:3.05	0	Federated Suns	
@@ -2396,7 +2396,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Safe_Port	Safe Port	134.32:-289.03	0	Federated Suns	
 /wiki/Saffel	Saffel	25.58:11.84	0	Federated Suns	
 /wiki/Saginaw	Saginaw	299.37:-96.37	0	Federated Suns	
-/wiki/Saiph	Saiph	4.64:207.45	0	Capellan Confederation	
+/wiki/Saiph	Saiph	4.64:-68.6	0	Capellan Confederation	Coordinates approximated
 /wiki/Sakai	Sakai	109.26:207.45	0	Draconis Combine	
 /wiki/Sakhalin_(CC)	Sakhalin (CC)	61.73:-142.68	0	Capellan Confederation	
 /wiki/Sakhalin_(LC)	Sakhalin (LC)	-24.03:152.78	0	Lyran Commonwealth	
@@ -2478,7 +2478,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Seuta_Bimyeong	Seuta Bimyeong	266.08:359.16	0	?	
 /wiki/Sevon	Sevon	465.19:133.78	0	Outworlds Alliance	
 /wiki/Sevren	Sevren	-44.47:313.25	2	Lyran Commonwealth	
-/wiki/Shadow	Shadow	-3.10:-1,735.69	0	Clan Fire Mandrill	
+/wiki/Shadow	Shadow	-3.10:-1735.69	0	Clan Fire Mandrill	
 /wiki/Shady_Palms	Shady Palms	801.66:-161.82	0	?	
 /wiki/Shahr_Kord	Shahr Kord	-431.13:-11.37	0	Lyran Commonwealth	
 /wiki/Shalaine	Shalaine	-528.91:130.12	0	?	
@@ -2496,7 +2496,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Shenwan	Shenwan	-96.10:-223.45	0	Free Worlds League	
 /wiki/Sheratan	Sheratan	40.84:-21.50	0	Capellan Confederation	
 /wiki/Sheridan	Sheridan	-178.78:-57.32	0	Free Worlds League	
-/wiki/Sheridan_(Clan_planet)	Sheridan (Clan planet)	124.70:1,779.92	0	?	
+/wiki/Sheridan_(Clan_planet)	Sheridan (Clan planet)	124.70:1779.92	0	Clans	
 /wiki/Sherwood	Sherwood	563.34:-119.53	0	Federated Suns	
 /wiki/Shiba	Shiba	0.26:-333.55	0	Capellan Confederation	
 /wiki/Shibukawa	Shibukawa	116.49:184.54	0	Draconis Combine	
@@ -2619,10 +2619,10 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Storfors	Storfors	-312.09:202.50	0	Lyran Commonwealth	
 /wiki/Stotzing	Stotzing	-348.24:-202.88	0	Free Worlds League	
 /wiki/Stralsund	Stralsund	-643.64:729.83	0	?	
-/wiki/Strana_Mechty	Strana Mechty	31.17:1,754.07	0	?	
+/wiki/Strana_Mechty	Strana Mechty	31.17:1754.07	0	?	
 /wiki/Strandfontein	Strandfontein	-334.77:305.08	0	Lyran Commonwealth	
 /wiki/Stratford	Stratford	525.89:39.26	0	Federated Suns	
-/wiki/Strato_Domingo	Strato Domingo	9.70:1,866.24	0	Clan	
+/wiki/Strato_Domingo	Strato Domingo	9.70:1866.24	0	Clans	
 /wiki/Strawn	Strawn	235.82:-91.16	0	Federated Suns	
 /wiki/Streator	Streator	253.90:-76.31	0	Federated Suns	
 /wiki/Sturganos	Sturganos	370.49:-46.10	0	No record	
@@ -2662,7 +2662,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Symington	Symington	-38.49:148.87	0	Lyran Commonwealth	
 /wiki/Symsonia	Symsonia	486.19:-96.37	0	Federated Suns	
 /wiki/Synsstad	Synsstad	-446.91:252.01	0	No record	
-/wiki/Syrma	Syrma	-57.88:580.49	0	Lyran Commonwealth	
+/wiki/Syrma	Syrma	-57.88:40.66	0	Lyran Commonwealth	Coordinates approximated
 /wiki/Syrstart	Syrstart	-185.22:576.37	0	?	
 /wiki/Szepes	Szepes	-232.11:-63.52	0	No record	
 /wiki/Szombathely	Szombathely	-182.16:-84.62	0	No record	
@@ -2679,7 +2679,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Tallmadge	Tallmadge	275.86:42.13	0	Federated Suns	
 /wiki/Tamar	Tamar	-15.39:314.86	2	Lyran Commonwealth	
 /wiki/Tamarind	Tamarind	-271.23:-83.98	0	Free Worlds League	
-/wiki/Tamaron	Tamaron	-3.08:1,842.61	0	?	
+/wiki/Tamaron	Tamaron	-3.08:1842.61	0	Clan Coyote	
 /wiki/Tamsalu	Tamsalu	167.37:165.69	0	Draconis Combine	
 /wiki/Tancredi	Tancredi	429.29:94.20	0	Federated Suns	
 /wiki/Mayadi	Mayadi	?	0	ComStar	uncharted
@@ -2701,7 +2701,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Tarkio	Tarkio	317.18:-0.04	0	Federated Suns	
 /wiki/Tarnby	Tarnby	266.56:432.11	0	Draconis Combine	
 /wiki/Tarol_IV	Tarol IV	-229.33:-402.17	0	Magistracy of Canopus	
-/wiki/Tathis	Tathis	84.42:1,797.58	0	?	
+/wiki/Tathis	Tathis	84.42:1797.58	0	Clans	
 /wiki/Tatlawiksuk	Tatlawiksuk	371.17:-191.70	0	Federated Suns	
 /wiki/Tatopani	Tatopani	475.16:-7.04	0	No record	
 /wiki/Tatsuno	Tatsuno	204.30:156.16	0	Draconis Combine	
@@ -2780,7 +2780,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Togwotee	Togwotee	-196.31:-49.25	0	Free Worlds League	
 /wiki/Tohelet	Tohelet	-292.67:-265.88	0	Free Worlds League	
 /wiki/Tok_Do	Tok Do	94.75:180.27	0	Draconis Combine	
-/wiki/Tokasha	Tokasha	106.88:1,714.19	0	Clan Ghost Bear /  Clan Goliath Scorpion / Clan Jade Falcon	
+/wiki/Tokasha	Tokasha	106.88:1714.19	0	Clan Ghost Bear /  Clan Goliath Scorpion / Clan Jade Falcon	
 /wiki/Toland	Toland	-115.77:431.38	0	Lyran Commonwealth	
 /wiki/Tomalov	Tomalov	-656.63:774.11	0	?	
 /wiki/Tomans	Tomans	-50.89:223.85	0	Lyran Commonwealth	
@@ -2795,14 +2795,14 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Tottori	Tottori	?	0	No record	uncharted
 /wiki/Tovetin	Tovetin	?	0	No record	appears to have died during the Third Succession War
 /wiki/Towne	Towne	69.21:8.02	0	Federated Suns	
-/wiki/Tranquil	Tranquil	123.55:1,743.62	0	Clan	
+/wiki/Tranquil	Tranquil	123.55:1743.62	0	Clans	
 /wiki/Trasjkis	Trasjkis	-434.02:-193.26	0	Illyrian Palatinate	
 /wiki/Traussin	Traussin	358.03:-321.10	0	No record	
 /wiki/Trell	Trell	-113.90:389.68	0	Lyran Commonwealth	
 /wiki/Trelleborg	Trelleborg	107.88:914.38	0	?	
 /wiki/Trellisane	Trellisane	-251.08:-55.49	0	Free Worlds League	
 /wiki/Trent	Trent	-131.73:58.54	0	Lyran Commonwealth	
-/wiki/Trentham	Trentham	-310.50:-345.42	0	Lyran Commonwealth	
+/wiki/Trentham	Trentham	-310.50:345.42	0	Lyran Commonwealth	
 /wiki/Tresspass	Tresspass	524.62:268.29	0	No record	
 /wiki/Triesting	Triesting	-350.22:190.80	0	Lyran Commonwealth	
 /wiki/Trimaldix	Trimaldix	571.72:131.73	0	Outworlds Alliance	
@@ -2900,7 +2900,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Velhas	Velhas	69.25:-278.65	5	Federated Suns	
 /wiki/Venaria	Venaria	-396.07:83.96	5	Lyran Commonwealth	
 /wiki/Vendrell	Vendrell	-315.89:125.84	5	Lyran Commonwealth	
-/wiki/Ventabren	Ventabren	3.35-123:34.61	5	Free Worlds League	
+/wiki/Ventabren	Ventabren	3.35:-98.45	5	Free Worlds League	
 /wiki/Verde	Verde	349.99:12.61	5	Federated Suns	
 /wiki/Verdigreis	Verdigreis	372.73:-330.69	5	Federated Suns	
 /wiki/Verdinge	Verdinge	517.11:-6.37	5	No record	
@@ -2923,7 +2923,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Viluisk	Viluisk	-437.33:345.10	5	?	
 /wiki/Vindemiatrix	Vindemiatrix	-100.41:26.38	5	Lyran Commonwealth	
 /wiki/Vinstra	Vinstra	516.13:186.16	5	No record	
-/wiki/Vinton	Vinton	7.6:1,910.75	5	?	
+/wiki/Vinton	Vinton	7.6:1910.75	5	Clans	
 /wiki/Vintru	Vintru	116.31:-159.50	5	No record	
 /wiki/Vipaava	Vipaava	61.25:370.63	5	Draconis Combine	
 /wiki/Virentofta	Virentofta	-351.88:-38.22	5	Draconis Combine	
@@ -2983,7 +2983,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	SARNA.NET OVERHAUL PHASE	3025 AFFILIATION
 /wiki/Werfer	Werfer	237.26:-344.03	5	No record	
 /wiki/Wernke	Wernke	248.40:-230.88	5	Federated Suns	
 /wiki/Westerhand	Westerhand	-5.43:-276.08	5	Capellan Confederation	
-/wiki/Westerstede	Westerstede	73.94:-417.24	5	Lyran Commonwealth	
+/wiki/Westerstede	Westerstede	-208:173.94	5	Lyran Commonwealth	Coordinates approximated
 /wiki/Westfield	Westfield	235.56:107.66	5	No record	
 /wiki/Weistheimer	Weistheimer	-244.90:-519.15	5	No record	
 /wiki/Westover	Westover	-304.48:-210.46	5	Free Worlds League	

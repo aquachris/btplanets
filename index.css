@@ -1,7 +1,11 @@
 svg {
 	font-family: Verdana;
-	font-size: 3pt;
+	font-size: 7pt;
+	pointer-events: all;
 }
-svg text {
-	font-size: 100%;
+svg.dragging {
+	cursor: move;
+}
+svg g:hover {
+	fill: red;
 }
