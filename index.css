@@ -1,6 +1,16 @@
 body {
-	background-color: #000016;
+	background-color: #000024;
 }
+
+/* MAP CONTAINER DIV */
+div.map-ct {
+	position: absolute; 
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 100%;
+}
+/* GENERAL SVG MAP STYLES */
 svg {
 	font-family: Verdana;
 	font-size: 7pt;
@@ -13,52 +23,101 @@ svg.map {
 svg.dragging {
 	cursor: move !important;
 }
-svg rect {
-	shape-rendering: crispEdges;
-}
-svg g {
-	transition: opacity 1s;
-}
-svg text.planet-name {
-	fill: white;
-	transition: opacity 1s;
-	pointer-events: none !important;
-}
-svg g.planet > * {
-	transition: opacity 1s;
-}
-svg g.planet circle {
+
+/* PLANET CIRCLES STYLING */
+svg g.planet-circles circle {
 	cursor: pointer;
-	opacity: 0.7;
+	transition: stroke .5s;
+	stroke-width: 3px;
+	stroke: transparent;
 }
-svg text.planet-name {
-	opacity: 0;
+svg g.planet-circles circle:hover {
+	stroke: #fff;
+	opacity: 1;
 }
-svg text.planet-name.hidden {
+svg g.planet-circles circle.uncharted {
+	cursor: default !important;
 	opacity: 0 !important;
 }
-svg.zoomed-in text.planet-name {
-	opacity: 1;
+svg g.planet-circles circle.draconis-combine {
+	fill: #a00;
+	fill: #a8281b;
 }
-svg g.planet:hover circle {
-	fill: red;
-	opacity: 1;
+svg g.planet-circles circle.federated-suns {
+	fill: #aa0;
+	fill: #9c6127;
 }
-svg g.planet:hover text {
-	opacity: 1;
+svg g.planet-circles circle.capellan-confederation {
+	fill: #0a0;
+	fill: #426e33;
 }
-svg g.hidden {
-	cursor: default;
+svg g.planet-circles circle.free-worlds-league {
+	fill: #a0a;
+	fill: #64508d;
+}
+svg g.planet-circles circle.lyran-commonwealth {
+	fill: #00c;
+	fill: #3f7aaa;
+}
+svg g.planet-circles circle.comstar {
+	fill: #fff;
+}
+svg g.planet-circles circle.taurian-concordat {
+	fill: #a24920;
+}
+svg g.planet-circles circle.magistracy-of-canopus {
+	fill: #2d9889;
+}
+svg g.planet-circles circle.marian-hegemony {
+	fill: #e68a4b;
+}
+svg g.planet-circles circle.outworlds-alliance {
+	fill: #969179;
+}
+svg g.planet-circles circle.independent-world,
+svg g.planet-circles circle.circinus-federation,
+svg g.planet-circles circle.illyrian-palatinate,
+svg g.planet-circles circle.lothian-league,
+svg g.planet-circles circle.tortuga-dominions,
+svg g.planet-circles circle.morgraines-valkyrate,
+svg g.planet-circles circle.elysian-fields,
+svg g.planet-circles circle.oberon-confederation,
+svg g.planet-circles circle.fiefdom-of-randis,
+svg g.planet-circles circle.barony-of-strang,
+svg g.planet-circles circle.periphery,
+svg g.planet-circles circle.unknown-planet {
+	fill: #dcdcdc;
+}
+svg g.planet-circles circle {
+	fill: #f00;
+}
+
+/* PLANET NAMES STYLING */
+svg g.planet-names text {
+	fill: #fff;
 	opacity: 0;
+	pointer-events: none !important;
+	transition: opacity .7s;
 }
-svg rect.scale-axis-background {
-	stroke: black;
+svg.zoomed-in g.planet-names text {
+	opacity: 1;
+}
+svg g.planet-names text.uncharted {
+	opacity: 0 !important;
+}
+
+/* LEGEND STYLES */
+svg g.legend rect.scale-axis-background {
+	fill: #000024;
+	stroke: #fff;
 	stroke-width: 1;
-	fill: white;
 }
-svg g.scale-axis path,
-svg g.scale-axis line {
+svg g.legend text {
+	fill: #fff;
+}
+svg g.legend g.scale-axis path,
+svg g.legend g.scale-axis line {
 	fill: none;
-	stroke: #000;
+	stroke: #fff;
 	shape-rendering: crispEdges;
 }
