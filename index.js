@@ -23,6 +23,8 @@ var borders = [{
 	d : [[2.095,-2.221],[13.80807,-12.36045],[6.45861,5.90183],[12.58316,-7.34945],[18.26229,6.34726],[3.56337,-6.23591],[20.04393,3.34067],[55.6777,-20.4894],[5.5678,6.68133],[5.3451,-3.56338],[-0.4455,-16.70331],[-19.1531,0],[-1.0022,-7.12674],[25.055,-10.46741],[7.1267,9.68792],[21.2689,-6.2359],[5.2337,5.2337],[8.3517,-2.33846],[3.5633,7.2381],[52.5598,-27.17072],[7.7949,2.44982],[2.1157,-8.35165],[17.2601,-8.01759],[28.7297,28.06156],[16.1465,-3.11795],[20.2667,11.02418],[58.907,-2.89524],[23.1619,14.81027],[8.5744,46.10113],[-1.4476,15.14434],[-14.2535,13.36265],[0.8908,15.70111],[-26.6139,24.05276],[-5.1223,28.95241],[-11.0242,21.82565],[-13.8081,35.63373],[-34.5202,41.53557],[-42.4264,12.69451],[-23.7187,8.79708],[-7.1267,7.2381],[-27.1707,-1.22491],[-48.4396,18.81906],[-20.044,-3.67473],[-17.5942,4.12015],[-31.4022,13.36265],[-14.2535,-28.06156],[-12.6945,-3.67473],[1.3363,-13.91942],[10.1333,1.55897],[-0.1113,-5.01099],[-14.5876,-0.22271],[-26.83665,-7.79488],[-9.46521,-18.48499],[3.56337,-11.58097],[12.02638,5.12235],[14.36485,5.56777],[1.67033,7.34946],[13.80803,-2.67253],[1.6704,-17.59415],[-30.17734,-13.13994],[-8.90843,-3.67473],[4.89963,-10.02199],[24.72094,5.45642],[-0.2227,-17.59415],[-8.01764,-13.02859],[-0.66813,-31.62493],[11.69227,-17.4828],[17.8169,-2.44981],[-1.7817,-8.46302],[-23.71867,5.23371],[-3.56338,-6.2359],[-26.50258,6.01319],[-1.89304,-4.78828],[3.78608,-7.90624],[-26.39123,-0.33406],[1.44762,-9.79928],[12.91723,7.12675],[23.38463,2.00439],[7.46081,-15.70111],[12.13773,-4.67692],[-4.78827,-7.12675],[-12.91723,6.79268],[-4.2315,-2.89524],[4.56557,-6.01319],[11.58096,-16.03518],[-3.0066,-7.90623],[-6.34725,2.22711],[-6.56997,15.4784],[-6.34726,2.44981],[-1.11355,7.68353],[-12.36045,2.67253],[-3.11795,-6.79268],[2.89524,-4.0088],[4.45421,-6.45861],[1.33627,-8.57437],[-8.68572,0.22271],[-8.2403,6.0132],[-18.485,-4.45422]]
 }];
 
+var jumpRoutes = [];
+
 var setScales = function () {
 	var bbox = svg.node().getBoundingClientRect();
 	var diff = bbox.width - bbox.height;
@@ -68,7 +70,7 @@ var repaintLegend = function () {
 			.attr('transform', 'translate(10,'+(bbox.height-54)+')');
 		legendBackground
 			.attr('height', 32)
-			.attr('width', 390);
+			.attr('width', 410);
 		legendUnitText
 			.attr('x', 326)
 			.attr('y', 20);
@@ -93,36 +95,17 @@ var transformBorder = function (d, i) {
 	return str + 'Z';
 };
 
+var transformJumpRoute = function (d, i) {
+	return d.d;
+	//return 'M'+x(d.fromX)+','+y(d.fromY)+'L'+x(d.toX)+','+y(d.toY)+'Z';
+};
+
 var transform = function (d, i) {
 	return 'translate('+x(d.x) + ',' + y(d.y) + ')';
 };
 
 var transformText = function (d, i) {
-	return 'translate('+(x(d.x) + 5) + ',' + (y(d.y)+(PLANET_RADIUS*0.5-1)) + ')';
-};
-
-var faction = function(d) {
-	switch(d.affiliation) {
-		case 'Lyran Commonwealth':
-			return 'blue';
-		case 'Federated Suns':
-			return 'orange';
-		case 'Draconis Combine':
-			return 'red';
-		case 'Free Worlds League':
-			return 'purple';
-		case 'Capellan Confederation':
-			return 'green';
-		case 'ComStar':
-			return 'silver';
-	}
-	if(d.affiliation.indexOf('Clan') >= 0) {
-		return 'brown';
-	}
-	if(d.affiliation !== 'No record' && d.affiliation !== '?') {
-		return 'grey';
-	}
-	return 'lightblue';
+	return 'translate('+(x(d.x) + PLANET_RADIUS*2) + ',' + (y(d.y)+(PLANET_RADIUS*0.5+1)) + ')';
 };
 
 var scheduleRepaint = function () {
@@ -134,9 +117,13 @@ var scheduleRepaint = function () {
  * Repaint
  */
 var setViewport = function () {
-	console.log(y(0) - y(1), pxPerLy);
-	svg.selectAll('path.border')
-		.attr('d', transformBorder);
+	//console.log(y(0) - y(1), pxPerLy);
+	//svg.selectAll('path.border')
+		//.attr('d', transformBorder);
+	svg.select('circle.jump-range')
+		.classed('visible', false)
+	svg.selectAll('path.jump-route')
+		.attr('d', transformJumpRoute);
 	svg.selectAll('circle.planet')
 		.attr('transform', transform);
 	svg.selectAll('text.planet-name')
@@ -176,15 +163,20 @@ var createVisualization = function () {
 	//		.attr('d', transformBorder);
 	//	attr('transform', 'translate'
 		
+	var jumpGroup = svg.select('g.jump-routes');
+	var routes = jumpGroup.selectAll('path')
+			.data(jumpRoutes)
+		.enter().append('path')
+			.classed('jump-route', true)
+			.attr('d', transformJumpRoute);
 	
 	var circleGroup = svg.select('g.planet-circles');
 	var circles = circleGroup.selectAll('circle')
 			.data(planets)
 		.enter().append('circle')
 			.attr('r', PLANET_RADIUS)
-			.attr('cx', -PLANET_RADIUS*0.5)
-			.attr('cy', -PLANET_RADIUS*0.5)
-			//.attr('fill', faction)
+			.attr('cx', 0)
+			.attr('cy', 0)
 			.attr('class', function (d) {
 				if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
 					return 'uncharted';
@@ -192,13 +184,18 @@ var createVisualization = function () {
 				return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
 			})
 			.classed('planet', true)
-			//.classed('hidden', function (d) {
-			//	if(d.affiliation === '?' || d.affiliation === 'No Record') {
-				//	return true;
-//				}
-	//			return false;
-		//	})
-			.attr('transform', transform);
+			.attr('transform', transform)
+			.on('mouseover', function (planet) {
+				svg.select('circle.jump-range')
+					.classed('visible', true)
+					.attr('r', x(30) - x(0))
+					.attr('cx', x(planet.x))
+					.attr('cy', y(planet.y));
+			})
+			.on('mouseleave', function () {
+				svg.select('circle.jump-range')
+					.classed('visible', false);
+			});
 	
 	var namesGroup = svg.select('g.planet-names');
 	var names = namesGroup.selectAll('text')
@@ -307,10 +304,32 @@ var main = function () {
 	legendScale = d3.scale.linear();
 	zoom = d3.behavior.zoom();
 	d3.json('./files/planets.json', function (error, json) {
+		var cur, nb;
 		if(error) { 
 			return console.warn(error); 
 		}
-		planets = json;
+		planets = json;/*
+		for(var i = 0, len = planets.length; i < len; i++) {
+			cur = planets[i];
+			if(cur.affiliation === '?' || cur.affiliation.toLowerCase() === 'no record') {
+				continue;
+			}
+			for(var j = 0, jlen = cur.neighbors.length; j < jlen; j++) {
+				nb = planets[cur.neighbors[j]];
+				if(cur.neighbors[j] < i) { 
+					continue;
+				}
+				if(nb.affiliation === '?' || nb.affiliation.toLowerCase() === 'no record') {
+					continue;
+				}
+				jumpRoutes.push({
+					fromX : cur.x,
+					fromY : cur.y,
+					toX : nb.x,
+					toY : nb.y
+				});
+			}
+		}*/
 		setScales();
 		createVisualization();
 		window.addEventListener('resize', function () {

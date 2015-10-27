@@ -13,7 +13,7 @@ div.map-ct {
 /* GENERAL SVG MAP STYLES */
 svg {
 	font-family: Verdana;
-	font-size: 7pt;
+	font-size: 9pt;
 	pointer-events: all;
 }
 svg.map {
@@ -38,6 +38,7 @@ svg g.planet-circles circle:hover {
 svg g.planet-circles circle.uncharted {
 	cursor: default !important;
 	opacity: 0 !important;
+	pointer-events: none !important;
 }
 svg g.planet-circles circle.draconis-combine {
 	fill: #a00;
@@ -92,18 +93,39 @@ svg g.planet-circles circle {
 	fill: #f00;
 }
 
+path {
+	stroke-width: 2 !important;
+	stroke: #fff !important;
+}
+
 /* PLANET NAMES STYLING */
 svg g.planet-names text {
 	fill: #fff;
 	opacity: 0;
 	pointer-events: none !important;
-	transition: opacity .7s;
+	transition: opacity 1s;
 }
 svg.zoomed-in g.planet-names text {
 	opacity: 1;
 }
 svg g.planet-names text.uncharted {
 	opacity: 0 !important;
+}
+
+/* JUMP RANGE INDICATOR STYLES */
+ svg circle.jump-range {
+	fill: transparent;
+	fill: url(#circles-1);
+	fill: rgba(255, 255, 255, 0.1);
+	opacity: 0;
+	pointer-events: none;
+	stroke: rgba(255, 255, 255, 0.5);
+	stroke-dasharray: 10,10;
+	stroke-width: 2px;
+	transition: opacity .5s;
+}
+svg.zoomed-in circle.jump-range.visible {
+	opacity: 1;
 }
 
 /* LEGEND STYLES */
