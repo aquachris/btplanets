@@ -1,21 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 body {
-	background-color: #000024;
-	font-family: 'Open Sans', Verdana, sans-serif;
-	font-size: 9pt;
-}
-
-/* HEADER */
-h1 {
-	color: #fff;
-	left: .75em;
-	pointer-events: none;
-	position: absolute;
-	text-align: center;
-	/*text-shadow: 0px 0px 4px #aaa;*/
-	top: .75em;
-	z-index: 1;
+	background-color: #fff;
 }
 
 /* MAP CONTAINER DIV */
@@ -24,11 +8,12 @@ div.map-ct {
 	top: 0;
 	left: 0;
 	width: 100%; 
-	height: 99%;
-	z-index: 0;
+	height: 100%;
 }
 /* GENERAL SVG MAP STYLES */
 svg {
+	font-family: Verdana;
+	font-size: 9pt;
 	pointer-events: all;
 }
 svg.map {
@@ -39,7 +24,7 @@ svg.dragging {
 	cursor: move !important;
 }
 
-/* PLANET CIRCLES STYLING */
+/*
 svg g.planet-circles circle {
 	cursor: pointer;
 	transition: stroke .5s;
@@ -113,7 +98,6 @@ path {
 	stroke: #fff !important;
 }
 
-/* PLANET NAMES STYLING */
 svg g.planet-names text {
 	fill: #fff;
 	opacity: 0;
@@ -125,37 +109,4 @@ svg.zoomed-in g.planet-names text {
 }
 svg g.planet-names text.uncharted {
 	opacity: 0 !important;
-}
-
-/* JUMP RANGE INDICATOR STYLES */
- svg circle.jump-range {
-	fill: transparent;
-	fill: url(#circles-1);
-	fill: rgba(255, 255, 255, 0.1);
-	opacity: 0;
-	pointer-events: none;
-	stroke: rgba(255, 255, 255, 0.5);
-	stroke-dasharray: 10,10;
-	stroke-width: 2px;
-	transition: opacity .5s;
-}
-svg.zoomed-in circle.jump-range.visible {
-	opacity: 1;
-}
-
-/* LEGEND STYLES */
-svg g.legend rect.scale-axis-background {
-	fill: #000024;
-	shape-rendering: crispEdges;
-	stroke: #fff;
-	stroke-width: 1;
-}
-svg g.legend text {
-	fill: #fff;
-}
-svg g.legend g.scale-axis path,
-svg g.legend g.scale-axis line {
-	fill: none;
-	stroke: #fff;
-	shape-rendering: crispEdges;
-}
+}*/

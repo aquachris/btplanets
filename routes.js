@@ -13,11 +13,13 @@ var planRoute =  function (fromIdx, toIdx, includeUninhabited) {
 	var route = [];
 	var routeFound = false;
 	
-	sourcePlanet.cameFrom = true;
-	targetPlanet.cameFrom = null;
-	openList[fromIdx] = true;
-	var i = 0;
+	openList[fromIdx] = {
+		jumps : 0,
+		cameFrom : true
+	};
+	var iterations = 0;
 	while(Object.keys(openList).length > 0) {
+		iterations++;
 		//  find planet that is closest to target
 		closest = null;
 		closestDist = Infinity;
@@ -26,7 +28,9 @@ var planRoute =  function (fromIdx, toIdx, includeUninhabited) {
 				continue;
 			}
 			curPlanet = planets[key];
-			if(curPlanet.affiliation === '?' || curPlanet.affiliation.toLowerCase() === 'no record') {
+			if(!includeUninhabited && (curPlanet.affiliation === '?' || curPlanet.affiliation.toLowerCase() === 'no record')) {
+				closedList[key] = openList[key];
+				delete(openList[key]);
 				continue;
 			}
 			curDist = findDistance(curPlanet, targetPlanet);
@@ -36,12 +40,14 @@ var planRoute =  function (fromIdx, toIdx, includeUninhabited) {
 				closestDist = curDist;
 			}
 		}
-		console.log(closestDist, closest);
 		if(!closest) {
-			throw 'Closest neighbor cannot be found for ' + Object.keys(openList).length;
+			return 'Closest neighbor cannot be found ('+ iterations + ' systems searched)';
 		}
 		if(closest === targetPlanet) {
 			console.log('target found, breaking');
+			closedList[curIdx] = openList[curIdx];
+			console.log(openList[curIdx]);
+			delete openList[curIdx];
 			break;
 		}
 		
@@ -50,21 +56,24 @@ var planRoute =  function (fromIdx, toIdx, includeUninhabited) {
 			if(closedList.hasOwnProperty(closest.neighbors[i])) {
 				continue;
 			}
-			openList[closest.neighbors[i]] = curIdx;
-			planets[closest.neighbors[i]].cameFrom = Number(curIdx);
+			if(!openList.hasOwnProperty(closest.neighbors[i])
+				|| openList[closest.neighbors[i]].jumps > openList[curIdx].jumps+1) {
+				openList[closest.neighbors[i]] = {
+					cameFrom : curIdx,
+					jumps : openList[curIdx].jumps+1
+				};
+			}
 		}
 		
+		closedList[curIdx] = openList[curIdx];
 		delete openList[curIdx];
-		closedList[curIdx] = true;
-		i++;
-		if(i > 3000) {
-			console.log('more than 3000 iterations, breaking');
-			break;
+		
+		if(iterations > 4000) {
+			return 'more than 4000 iterations, breaking off path search';
 		}
 	}
-	if(targetPlanet.cameFrom === null) {
-		throw 'No route';
-		return false;
+	if(closedList[toIdx].cameFrom === null) {
+		return 'No route';
 	}
 	
 	// assemble final route
@@ -73,9 +82,8 @@ var planRoute =  function (fromIdx, toIdx, includeUninhabited) {
 	
 	do {
 		route.push(curIdx);
-		curIdx = curPlanet.cameFrom;
-		curPlanet = planets[curIdx];
-	} while(curPlanet.cameFrom !== true);
+		curIdx = closedList[curIdx].cameFrom;
+	} while(closedList[curIdx].jumps > 0);
 	route.push(fromIdx);
 	return route.reverse();
 };
@@ -89,13 +97,24 @@ var plotRoute = function(fromIdx, toIdx)  {
 	var planet2 = null;
 	var group = d3.select('g.jump-routes');
 	
+	if(typeof route === 'string') {
+		console.log(route);
+		return;
+	}
+	
 	for(var i = 0, len = route.length; i < len; i++) {
 		if(i >= len - 1) { 
 			continue;
 		}
 		planet = planets[route[i]];
 		planet2 = planets[route[i+1]];
-		routeComponents.push({d:'M'+x(planet.x)+','+y(planet.y) + 'L'+x(planet2.x)+','+y(planet2.y)+'Z'});
+		routeComponents.push({
+			x1 : planet.x,
+			y1 : planet.y,
+			x2 : planet2.x,
+			y2 : planet2.y
+		});
+		//{d:'M'+x(planet.x)+','+y(planet.y) + 'L'+x(planet2.x)+','+y(planet2.y)+'Z'});
 	}
 	group.selectAll('*').remove();
 	group.selectAll('path')
