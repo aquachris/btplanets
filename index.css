@@ -18,6 +18,30 @@ h1 {
 	z-index: 1;
 }
 
+/*  */
+div.controls {
+	/*background-color: #f00;*/
+	background: url('./img/metal-three-mod2.png');
+	border: 3px solid black;
+	border-right: none;
+	border-radius: 1em;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	box-shadow: inset 0px 0px 10px #000;
+	color: #fff;
+	height: 90%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	right: 0;
+	top: 5%;
+	width: 300px;
+	z-index: 2;
+}
+div.controls * {
+	margin: 1em;
+}
+
 /* MAP CONTAINER DIV */
 div.map-ct {
 	position: absolute; 
@@ -108,10 +132,10 @@ svg g.planet-circles circle {
 	fill: #f00;
 }
 
-path {
+/*path {
 	stroke-width: 2 !important;
 	stroke: #fff !important;
-}
+}*/
 
 /* PLANET NAMES STYLING */
 svg g.planet-names text {
@@ -141,6 +165,12 @@ svg g.planet-names text.uncharted {
 }
 svg.zoomed-in circle.jump-range.visible {
 	opacity: 1;
+}
+
+/* JUMP PATH STYLES */
+svg g.jump-routes path {
+	stroke: #eee;
+	stroke-width: 2px;
 }
 
 /* LEGEND STYLES */

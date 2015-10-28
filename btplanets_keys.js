@@ -4,6 +4,10 @@ if(!window.BTPLANETS) {
 	throw 'BTPLANETS is not defined';
 }
 
+BTPLANETS.initKeyListeners = function () {
+	d3.select('body').on('keydown', BTPLANETS.handleKey);
+};
+
 BTPLANETS.handleKey = function () {
 	var me = BTPLANETS;
 	var key = d3.event.keyCode;
@@ -34,8 +38,4 @@ BTPLANETS.handleKey = function () {
 	} else if(key === 82) { // R
 		me.resetView();
 	}
-};
-
-BTPLANETS.initKeyListeners = function () {
-	d3.select('body').on('keydown', BTPLANETS.handleKey);
 };

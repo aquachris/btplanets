@@ -1,3 +1,5 @@
+'use strict';
+
 window.BTPLANETS = {
 	// constants
 	PLANET_RADIUS : 4,
@@ -76,7 +78,7 @@ window.BTPLANETS = {
 			.scale(me.legendScale)
 			.orient('top');
 		
-		var jumpGroup = me.svg.select('g.jump-routes');
+		/*var jumpGroup = me.svg.select('g.jump-routes');*/
 		/*var routes = jumpGroup.selectAll('path')
 				.data(jumpRoutes)
 			.enter().append('path')
@@ -190,6 +192,7 @@ window.BTPLANETS = {
 		me.svg.selectAll('text.planet-name')
 			.attr('transform', me.transformers.planetText);
 		me.svg.classed('zoomed-in', me.zoom.scale() > me.getDetailThreshold());
+		me.fireEvent('repaint');
 		
 		me.repositionLegend();
 	},
@@ -273,6 +276,44 @@ window.BTPLANETS = {
 			var ret = 'translate('+(BTPLANETS.xScale(d.x) + BTPLANETS.PLANET_RADIUS*2) + ',' ;
 			ret += (BTPLANETS.yScale(d.y)+(BTPLANETS.PLANET_RADIUS*0.5+1)) + ')';
 			return ret;
+		}
+	},
+	
+	/**
+	 * Very simple pub/sub event system
+	 */
+	listeners : {},
+	on : function (eventName, scope, fn) {
+		var me = BTPLANETS;
+		if(!me.listeners.hasOwnProperty(eventName)) {
+			me.listeners[eventName] = [];
+		}
+		me.listeners[eventName].push({
+			scope : scope,
+			fn : fn
+		});
+		console.log(eventName + ' listener registered');
+	},
+	off : function (eventName, scope, fn) {
+		var me = BTPLANETS;
+		if(!me.listeners.hasOwnProperty(eventName)) {
+			return;
+		}
+		for(var i = 0, len = me.listeners[eventName].length; i < len; i++) {
+			if(me.listeners[eventName][i].fn === fn || me.listeners[eventName][i].scope === scope) {
+				me.listeners[eventName].splice(i, 1);
+				console.log(eventName + ' listener unregistered');
+				return;
+			}
+		}
+	},
+	fireEvent : function(eventName) {
+		var me = BTPLANETS;
+		if(!me.listeners.hasOwnProperty(eventName)) {
+			return;
+		}
+		for(var i = 0, len = me.listeners[eventName].length; i < len; i++) {
+			me.listeners[eventName][i].fn.call(me.listeners[eventName][i].scope);
 		}
 	}
 };
