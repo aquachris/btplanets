@@ -8,6 +8,7 @@ window.BTPLANETS = {
 	
 	// data array handles 
 	planets : null,
+	selectedPlanets : null,
 	
 	// DOM  / SVG object handles
 	svg : null,
@@ -36,16 +37,13 @@ window.BTPLANETS = {
 				return console.warn(error); 
 			}
 			BTPLANETS.planets = json;
+			BTPLANETS.selectedPlanets = [];
 			BTPLANETS.instantiateComponents();
 			BTPLANETS.onResize();
 			window.addEventListener('resize', function () {
 				BTPLANETS.onResize();
-				//setScales();
-				//repaintLegend();
-				//setViewport();
 			});
-			//d3.select('body')
-				//.on('keydown', handleKeys);
+			BTPLANETS.fireEvent('initialized');
 		});
 	},
 	
@@ -78,17 +76,11 @@ window.BTPLANETS = {
 			.scale(me.legendScale)
 			.orient('top');
 		
-		/*var jumpGroup = me.svg.select('g.jump-routes');*/
-		/*var routes = jumpGroup.selectAll('path')
-				.data(jumpRoutes)
-			.enter().append('path')
-				.classed('jump-route', true)
-				.attr('d', transformJumpRoute);*/
-		
 		var circleGroup =me.svg.select('g.planet-circles');
 		var circles = circleGroup.selectAll('circle')
 				.data(me.planets)
 			.enter().append('circle')
+				.attr('name', function(d) { return d.name; })
 				.attr('r', me.PLANET_RADIUS)
 				.attr('cx', 0)
 				.attr('cy', 0)
@@ -101,16 +93,19 @@ window.BTPLANETS = {
 				.classed('planet', true)
 				.attr('transform', me.transformers.planetCircle)
 				.on('mouseover', function (planet) {
-					me.svg.select('circle.jump-range')
+					BTPLANETS.svg.select('circle.jump-range')
 						.classed('visible', true)
 						.attr('r', BTPLANETS.xScale(30) - BTPLANETS.xScale(0))
 						.attr('cx', BTPLANETS.xScale(planet.x))
 						.attr('cy', BTPLANETS.yScale(planet.y));
-				}.bind(me))
+				})
 				.on('mouseleave', function () {
-					me.svg.select('circle.jump-range')
+					BTPLANETS.svg.select('circle.jump-range')
 						.classed('visible', false);
-				}.bind(me));
+				})
+				.on('click', function (planet) {
+					BTPLANETS.togglePlanetSelection(planet);
+				});
 		
 		var namesGroup = me.svg.select('g.planet-names');
 		var names = namesGroup.selectAll('text')
@@ -266,6 +261,53 @@ window.BTPLANETS = {
 	},
 	
 	/**
+	 * Select or deselect a planet by its name
+	 */
+	togglePlanetSelection : function (planet) {
+		var planetName, circle;
+		
+		if(typeof planet === 'string') {
+			planetName = planet;
+			planet = null;
+			for(var i = 0, len = BTPLANETS.planets.length; i< len; i++) {
+				if(BTPLANETS.planets[i].name.toLowerCase() === planetName.toLowerCase()) {
+					planet = BTPLANETS.planets[i];
+					break;
+				}
+			}
+			if(!planet) {
+				throw 'Cannot select/deselect planet: Planet cannot be found';
+			}
+		}
+		planetName = planet.name;
+
+		circle = BTPLANETS.svg.select('circle[name="'+planetName+'"]');	
+		for(var i = 0, len = BTPLANETS.selectedPlanets.length; i < len; i++) {
+			if(BTPLANETS.selectedPlanets[i] === planet) {
+				// deselect planet
+				BTPLANETS.selectedPlanets.splice(i, 1);
+				circle.classed('selected', false);
+				BTPLANETS.fireEvent('selectionremoved', planet);
+				BTPLANETS.fireEvent('selectionchanged', BTPLANETS.selectedPlanets);
+				return;
+			}
+		}
+		// select planet
+		BTPLANETS.selectedPlanets.push(planet);
+		BTPLANETS.selectedPlanets.sort(function (a,b) {
+			if(a.name < b.name) {
+				return -1;
+			} else if(a.name > b.name) {
+				return 1;
+			}
+			return 0;
+		});
+		circle.classed('selected', true);
+		BTPLANETS.fireEvent('selectionadded', planet);
+		BTPLANETS.fireEvent('selectionchanged', BTPLANETS.selectedPlanets);
+	},
+	
+	/**
 	 * Component transformation functions
 	 */
 	transformers : {
@@ -278,7 +320,7 @@ window.BTPLANETS = {
 			return ret;
 		}
 	},
-	
+
 	/**
 	 * Very simple pub/sub event system
 	 */
@@ -309,11 +351,15 @@ window.BTPLANETS = {
 	},
 	fireEvent : function(eventName) {
 		var me = BTPLANETS;
+		var args = [];
+		for(var i = 1, len = arguments.length; i < len; i++) {
+			args.push(arguments[i]);
+		}
 		if(!me.listeners.hasOwnProperty(eventName)) {
 			return;
 		}
 		for(var i = 0, len = me.listeners[eventName].length; i < len; i++) {
-			me.listeners[eventName][i].fn.call(me.listeners[eventName][i].scope);
+			me.listeners[eventName][i].fn.apply(me.listeners[eventName][i].scope, args);
 		}
 	}
 };

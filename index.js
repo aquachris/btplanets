@@ -2,8 +2,9 @@
 
 var main = function () {
 	BTPLANETS.init();
-	BTPLANETS.initKeyListeners();
-	BTPLANETS.initRoutePlanner();
+	BTPLANETS.KEYS.init();
+	BTPLANETS.ROUTES.init();
+	BTPLANETS.UI.init();
 };
 
 main();
