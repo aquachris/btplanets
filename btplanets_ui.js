@@ -21,12 +21,15 @@ BTPLANETS.UI = {
 	onTabTitleClick : function () {
 		var tabTitle = d3.select(this);
 		var tabs = d3.selectAll('div.controls-tab-title');
+		var controlsBg = d3.select('div.controls-background');
 		var controls = d3.select('div.controls');
 		var type = '';
-
+		
+		// if active tab title is clicked, hide the whole thing
 		if(tabTitle.classed('active')) {
-			tabs.classed('active', false);
+			tabTitle.classed('active', false);
 			tabs.classed('expanded', false);
+			controlsBg.classed('expanded', false);
 			controls.classed('expanded', false);
 		} else {
 			if(tabTitle.classed('settings')) {
@@ -36,9 +39,11 @@ BTPLANETS.UI = {
 			} else if(tabTitle.classed('route')) {
 				type = 'route';
 			}
+			controlsBg.classed('expanded', true);
 			controls.selectAll('div').classed('active', false);
 			if(type) {
-				controls.select('div.'+type).classed('active', true);
+				controls.select('div.'+type)
+					.classed('active', true);
 			}
 			
 			tabs.classed('active', false);
