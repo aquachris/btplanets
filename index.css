@@ -13,6 +13,14 @@ a {
 a:hover {
 	color: #fff;
 }
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /* HEADER */
 h1 {
@@ -27,44 +35,56 @@ h1 {
 }
 
 /* CONTROL PANEL STYLES */
-div.controls-expander {
-	background-image: url('./img/expander.png');
+div.controls-tab-title {
+	background-image: url('./img/tab-title.png');
 	cursor: pointer;
-	height: 100px;
-	right: 10px;
+	font-size: 1.1em;
+	font-weight: bold;
+	height: 120px;
 	position: fixed;
-	top: calc( 50% - 40px );
+	right: 10px;
+	/*transform: rotate(-90deg);*/
 	transition: right 1s cubic-bezier(1.000, -0.0, 0.5, 1.35);
 	width: 30px;
 	z-index: 1;
 }
-div.controls-expander.expanded {
+div.controls-tab-title.settings {
+	top: calc(5% + 10px);
+}
+div.controls-tab-title.selection {
+	top: calc(5% + 140px);
+}
+div.controls-tab-title.route {
+	top: calc(5% + 270px);
+}
+div.controls-tab-title > span {
+	display: inline-block;
+	left: -114px;
+	position: absolute;
+	top: -18px;
+	transform: rotate(-90deg);
+	transform-origin: right top;
+	-webkit-user-select: none;
+	user-select: none;
+	width: 120px;
+}
+div.controls-tab-title.expanded {
 	right: 300px;
 }
-div.controls-expander:before,
-div.controls-expander:after {
+div.controls-tab-title:before {
+	/*background-color: #900; */
+	background-color: #090;
+	box-shadow: inset 0 0 8px #000;
 	border-radius: 50%;
 	content: '';
 	display: block;
 	height: 10px;
 	position: absolute;
-	left: 12px;
+	left: 11px;
+	top: 14px;
 	width: 10px;
 }
-div.controls-expander:before {
-	background-color: #f00;
-	box-shadow: 0 0 10px #f00, 0 0 15px #f00;
-	top: 30px;
-}
-div.controls-expander:after {
-	background-color: #090;
-	top: 60px;
-}
-div.controls-expander.expanded:before {
-	background-color: #900;
-	box-shadow: none;
-}
-div.controls-expander.expanded:after {
+div.controls-tab-title.active:before {
 	background-color: #0f0;
 	box-shadow: 0 0 10px #0f0, 0 0 15px #0f0;
 }
@@ -76,6 +96,7 @@ div.controls {
 	box-shadow: inset 0px 0px 10px #666;
 	font-size: 1.2em;
 	height: 90%;
+	min-height: 400px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 0 15px;
@@ -89,11 +110,22 @@ div.controls {
 div.controls.expanded {
 	right: 0px;
 }
+div.controls > div {
+	display: none;
+	padding: 1em 0;
+}
+div.controls > div.active {
+	display: block;
+}
 div.controls h2 {
-	margin: 1em 0;
+	/*margin: 1em 0;*/
+	border: 1px solid black;
+	display: inline-block;
+	font-size: 1em;
+	padding: 0 .2em;
 }
 div.controls h3 {
-	margin: 1em 0 0.4em 0;
+	margin: .4em 0 ;
 }
 div.controls p {
 	margin: 0.4em 0;
@@ -126,7 +158,15 @@ div.controls div.planet-info.comstar {
 	background-image: url("./img/comstar_64.png");
 }
 div.controls div.planet-info span.neighbor.uninhabited {
-	color: #999;
+	color: #a00;
+	font-style: italic;
+}
+div.controls button {
+	background: none;
+	border: 1px solid #fff !important;
+	border-radius: none;
+	color: #fff;
+	padding: .5em;
 }
 
 /* MAP CONTAINER DIV */

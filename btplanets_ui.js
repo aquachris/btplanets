@@ -9,35 +9,56 @@ BTPLANETS.UI = {
 	 * Initialize module
 	 */
 	init : function () {
-		var expander = d3.select('div.controls-expander');
-		expander.on('click', BTPLANETS.UI.onExpanderClick);
+		d3.selectAll('div.controls-tab-title').on('click', BTPLANETS.UI.onTabTitleClick);
 		
 		BTPLANETS.on('selectionchanged', this, this.onSelectionChanged);
 		BTPLANETS.on('selectionadded', this, this.onSelectionAdded);
 	},
 	
 	/**
-	 * React to the expander being clicked
+	 * React to tab title being clicked
 	 */
-	onExpanderClick : function () {
-		var expander = d3.select('div.controls-expander');
+	onTabTitleClick : function () {
+		var tabTitle = d3.select(this);
+		var tabs = d3.selectAll('div.controls-tab-title');
 		var controls = d3.select('div.controls');
-		var expanded = expander.classed('expanded');
-		expander.classed('expanded', !expanded);
-		controls.classed('expanded', !expanded);
+		var type = '';
+
+		if(tabTitle.classed('active')) {
+			tabs.classed('active', false);
+			tabs.classed('expanded', false);
+			controls.classed('expanded', false);
+		} else {
+			if(tabTitle.classed('settings')) {
+				type = 'settings';
+			} else if(tabTitle.classed('selection')) {
+				type = 'selection';
+			} else if(tabTitle.classed('route')) {
+				type = 'route';
+			}
+			controls.selectAll('div').classed('active', false);
+			if(type) {
+				controls.select('div.'+type).classed('active', true);
+			}
+			
+			tabs.classed('active', false);
+			tabs.classed('expanded', true);
+			controls.classed('expanded', true);
+			tabTitle.classed('active', true);
+		}
 	},
 	
 	onSelectionAdded : function () {
-		if(!d3.select('div.controls-expander').classed('expanded')) {
+		/*if(!d3.select('div.controls-expander').classed('expanded')) {
 			this.onExpanderClick();
-		}
+		}*/
 	},
 	
 	/** 
 	 * React to the selection changing by re-assembling the selection panel
 	 */
 	onSelectionChanged : function(selection) {
-		var panel = d3.select('div.selection-panel').html('');
+		var panel = d3.select('div.controls').select('div.selection').html('');
 		
 		panel.selectAll('div')
 				.data(selection)
@@ -93,12 +114,18 @@ BTPLANETS.UI = {
 				html += '<p><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
 				html += '<p>Coord.: '+d.x+', '+d.y+'</p>';
 				html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
+				html += '<button><span class="fa fa-remove"></span></button>';
 				html += '</div>';
 				return html;
 			});
-
+			
 		if(panel.html() === '') {
 			panel.html('<p>no planets selected</p>');
 		}
+		
+		panel.selectAll('button')
+			.on('click', function () {
+				console.log(this, arguments);
+			});
 	}
 };
