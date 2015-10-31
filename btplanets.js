@@ -307,6 +307,19 @@ window.BTPLANETS = {
 		BTPLANETS.fireEvent('selectionchanged', BTPLANETS.selectedPlanets);
 	},
 	
+	/** 
+	 * Find planet id by name
+	 */
+	findPlanetId : function (name) {
+		name = name.toLowerCase();
+		for(var i = 0, len = this.planets.length; i < len; i++) {
+			if(this.planets[i].name.toLowerCase() === name) {
+				return i;
+			}
+		}
+		return -1;
+	},
+	
 	/**
 	 * Component transformation functions
 	 */

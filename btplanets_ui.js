@@ -9,7 +9,10 @@ BTPLANETS.UI = {
 	 * Initialize module
 	 */
 	init : function () {
+		// register listeners
+		d3.select('div.controls').on('keydown', function () { d3.event.stopPropagation(); });
 		d3.selectAll('div.controls-tab-title').on('click', BTPLANETS.UI.onTabTitleClick);
+		d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 		
 		BTPLANETS.on('selectionchanged', this, this.onSelectionChanged);
 		BTPLANETS.on('selectionadded', this, this.onSelectionAdded);
@@ -118,6 +121,7 @@ BTPLANETS.UI = {
 				html += '<h3>'+d.name+'</h3>';
 				html += '<p><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
 				html += '<p>Coord.: '+d.x+', '+d.y+'</p>';
+				html += '<p>Political affiliation: '+d.affiliation+'</p>';
 				html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
 				html += '<button><span class="fa fa-remove"></span></button>';
 				html += '</div>';
@@ -132,5 +136,27 @@ BTPLANETS.UI = {
 			.on('click', function () {
 				console.log(this, arguments);
 			});
+	},
+	
+	/**
+	 * React to the route submit button being pressed
+	 */
+	onRouteSubmit : function () {
+		var from = d3.select('div.controls').select('.route')
+				.select('input[name="fromSystem"]').property('value');
+		var to = d3.select('div.controls').select('.route')
+				.select('input[name="toSystem"]').property('value');
+		var fromIdx = BTPLANETS.findPlanetId(from);
+		var toIdx = BTPLANETS.findPlanetId(to);
+		console.log(from, to);
+		
+		try {
+			BTPLANETS.ROUTES.plotRoute({
+				fromIdx : fromIdx,
+				toIdx : toIdx
+			});
+		} catch(e) {
+			console.log('catch', e);
+		}
 	}
 };

@@ -159,7 +159,7 @@ BTPLANETS.ROUTES = {
 		group.selectAll('path.jump-path').remove();
 	
 		if(typeof route === 'string') {
-			console.log(route);
+			throw route;//console.log(route);
 			return;
 		}
 	
