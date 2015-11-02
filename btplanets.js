@@ -317,7 +317,7 @@ window.BTPLANETS = {
 				return i;
 			}
 		}
-		return -1;
+		throw 'Planet "' + name + '" could not be found';
 	},
 	
 	/**

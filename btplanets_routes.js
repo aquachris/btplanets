@@ -95,7 +95,7 @@ BTPLANETS.ROUTES = {
 				}
 			}
 			if(!curPlanet) {
-				return 'Closest neighbor cannot be found ('+ iterations + ' systems searched)';
+				throw 'Closest neighbor cannot be found ('+ iterations + ' systems searched)';
 			}
 			if(curPlanet === targetPlanet) {
 				closedList[curIdx] = openList[curIdx];
@@ -125,12 +125,12 @@ BTPLANETS.ROUTES = {
 			delete openList[curIdx];
 			
 			if(iterations > 4000) {
-				return 'more than 4000 iterations, breaking off path search';
+				throw 'more than 4000 iterations, breaking off path search';
 			}
 		}
 		
 		if(!closedList[options.toIdx]) {
-			return 'Target cannot be reached';
+			throw 'Target cannot be reached';
 		}
 		
 		// Assemble final route: Go from the target planet backwards using the "cameFrom" property and 

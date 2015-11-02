@@ -11,24 +11,31 @@
 
 <body>
 	<h1>The Inner Sphere (3025)</h1>
-	<div class="controls-tab-title noselect route expanded"><span>Jump route</span></div>
-	<div class="controls-tab-title noselect selection expanded active"><span>Selection</span></div>
+	<div class="controls-tab-title noselect route expanded active"><span>Jump route</span></div>
+	<div class="controls-tab-title noselect selection expanded"><span>Selection</span></div>
 	<div class="controls-tab-title noselect settings expanded"><span>Settings</span></div>
 	<div class="controls-background expanded"></div>
 	<div class="controls expanded">
 		<div class="settings">
 			<p>settings</p>
 		</div>
-		<div class="selection active">
+		<div class="selection">
 			<p>no planets selected</p>
 		</div>
-		<div class="route">
+		<div class="route active">
 			<h2>Plot jump route</h2>
+			<p class="error">Could not find system</p>
 			<p>From:</p>
 			<input name="fromSystem" value="" style="width: 100%" type="text" />
 			<p>To:</p>
 			<input name="toSystem" value="" style="width: 100%" type="text" />
 			<button class="submit"><span class="fa fa-search"></span> find shortest route</button>
+			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more</p>
+			<div class="more">
+				<p>Via:</p>
+				<input name="viaSystem" value="" type="text" />
+				<p>Allow systems:</p>
+			</div>
 		</div>
 	</div>
 	

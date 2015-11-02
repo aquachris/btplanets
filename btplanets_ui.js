@@ -146,17 +146,26 @@ BTPLANETS.UI = {
 				.select('input[name="fromSystem"]').property('value');
 		var to = d3.select('div.controls').select('.route')
 				.select('input[name="toSystem"]').property('value');
-		var fromIdx = BTPLANETS.findPlanetId(from);
-		var toIdx = BTPLANETS.findPlanetId(to);
-		console.log(from, to);
+		var fromIdx, toIdx;
+		var errP = d3.select('div.controls').select('div.route').select('p.error');
 		
 		try {
+			if(!from.trim()) {
+				throw 'No starting system specified';
+			}
+			if(!to.trim()) {
+				throw 'No target system specified';
+			}
+			fromIdx = BTPLANETS.findPlanetId(from);
+			toIdx = BTPLANETS.findPlanetId(to);
+			errP.classed('visible', false);
 			BTPLANETS.ROUTES.plotRoute({
 				fromIdx : fromIdx,
 				toIdx : toIdx
 			});
 		} catch(e) {
-			console.log('catch', e);
+			console.log(e, d3.select('div.controls').select('div.route'));
+			errP.classed('visible', true).html(e);
 		}
 	}
 };
