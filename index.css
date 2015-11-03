@@ -73,18 +73,19 @@ div.controls-tab-title.expanded {
 	right: 420px;
 }
 div.controls-tab-title:before {
-	/*background-color: #900; */
 	background-color: #090;
-	box-shadow: inset 0 0 8px #000;
 	border-radius: 50%;
+	box-shadow: inset 0 0 8px #000;
 	content: '';
 	display: block;
 	height: 10px;
-	position: absolute;
 	left: 11px;
+	position: absolute;
 	top: 14px;
 	width: 10px;
+	z-index: 0;
 }
+
 div.controls-tab-title.active:before {
 	background-color: #0f0;
 	box-shadow: 0 0 10px #0f0, 0 0 15px #0f0;
