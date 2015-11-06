@@ -88,6 +88,9 @@ window.BTPLANETS = {
 					if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
 						return 'uncharted';
 					}
+					if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
+						return 'clan';
+					}
 					return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
 				})
 				.classed('planet', true)
@@ -114,6 +117,12 @@ window.BTPLANETS = {
 				.classed('planet-name', true)
 				.classed('uncharted', function(d) {
 					if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
+						return true;
+					}
+					return false;
+				})
+				.classed('clan', function(d) {
+					if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
 						return true;
 					}
 					return false;

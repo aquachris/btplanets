@@ -17,10 +17,13 @@
 	<div class="controls-background expanded"></div>
 	<div class="controls expanded">
 		<div class="settings">
-			<p>settings</p>
+			<h2>Settings</h2>
+			<p><input type="checkbox" id="settings_borders" disabled="true" /><label for="settings_borders">Show borders (not implemented)</label></p>
+			<p><input type="checkbox" id="settings_clan_systems" /><label for="settings_clan_systems">Show clan systems</label></p>
+			<p><input type="checkbox" id="settings_uninhabited_systems" /><label for="settings_uninhabited_systems">Show uninhabited systems</label></p>
 		</div>
 		<div class="selection">
-			<p>no planets selected</p>
+			<h2>No planets selected</h2>
 		</div>
 		<div class="route active">
 			<h2>Plot jump route</h2>
@@ -30,11 +33,18 @@
 			<p>To:</p>
 			<input name="toSystem" value="" style="width: 100%" type="text" />
 			<button class="submit"><span class="fa fa-search"></span> find shortest route</button>
-			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more</p>
+			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more options</p>
 			<div class="more">
 				<p>Via:</p>
 				<input name="viaSystem" value="" type="text" />
-				<p>Allow systems:</p>
+				<p>Allow systems in route:</p>
+				<p><input type="checkbox" id="route_allow_cc" checked="true" /><label for="route_allow_cc">Capellan Confederation</label></p>
+				<p><input type="checkbox" id="route_allow_dc" checked="true" /><label for="route_allow_dc">Draconis Combine</label></p>
+				<p><input type="checkbox" id="route_allow_fs" checked="true" /><label for="route_allow_fs">Federated Suns</label></p>
+				<p><input type="checkbox" id="route_allow_fwl" checked="true" /><label for="route_allow_fwl">Free Worlds League</label></p>
+				<p><input type="checkbox" id="route_allow_lc" checked="true" /><label for="route_allow_lc">Lyran Commonwealth</label></p>
+				<p><input type="checkbox" id="route_allow_per" checked="true" /><label for="route_allow_per">Major Periphery States</label></p>
+				<p><input type="checkbox" id="route_allow_other" checked="true" /><label for="route_allow_other">Others</label></p>
 			</div>
 		</div>
 	</div>

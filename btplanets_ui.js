@@ -12,6 +12,10 @@ BTPLANETS.UI = {
 		// register listeners
 		d3.select('div.controls').on('keydown', function () { d3.event.stopPropagation(); });
 		d3.selectAll('div.controls-tab-title').on('click', BTPLANETS.UI.onTabTitleClick);
+		// settings panel listeners
+		//console.log(d3.select('div.settings').select('input[type=checkbox]'));
+		d3.select('div.controls').select('.settings').selectAll('input[type=checkbox]').on('click', this.onSettingOptionToggle);
+		// route panel listeners
 		d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 		
 		BTPLANETS.on('selectionchanged', this, this.onSelectionChanged);
@@ -60,6 +64,25 @@ BTPLANETS.UI = {
 		/*if(!d3.select('div.controls-expander').classed('expanded')) {
 			this.onExpanderClick();
 		}*/
+	},
+	
+	/** 
+	 * React to a settings option being changed
+	 */
+	onSettingOptionToggle : function () {
+		var curVisibility;
+		switch(this.id) {
+			case 'settings_clan_systems':
+				curVisibility = d3.select('.planet.clan').classed('visible');
+				d3.selectAll('.planet.clan').classed('visible', !curVisibility);
+				d3.selectAll('.planet-name.clan').classed('visible', !curVisibility);
+				break;
+			case 'settings_uninhabited_systems':
+				curVisibility = d3.select('.planet.uncharted').classed('visible');
+				d3.selectAll('.planet.uncharted').classed('visible', !curVisibility);
+				d3.selectAll('.planet-name.uncharted').classed('visible', !curVisibility);
+				break;
+		}
 	},
 	
 	/** 
@@ -129,7 +152,7 @@ BTPLANETS.UI = {
 			});
 			
 		if(panel.html() === '') {
-			panel.html('<p>no planets selected</p>');
+			panel.html('<h2>No planets selected</h2>');
 		}
 		
 		panel.selectAll('button')

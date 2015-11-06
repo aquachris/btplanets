@@ -226,6 +226,7 @@ div.controls button {
 	border: 1px solid #fff !important;
 	border-radius: none;
 	color: #fff;
+	cursor: pointer;
 	margin: 1em 0;
 	padding: .5em;
 }
@@ -240,7 +241,7 @@ div.controls p.error.visible {
 }
 div.controls p.more-button {
 	cursor: pointer;
-	font-size: .75em;
+	/*font-size: .75em;*/
 }
 div.controls div.more {
 }
@@ -278,10 +279,18 @@ svg g.planet-circles circle:hover {
 svg g.planet-circles circle.selected {
 	stroke: #fff;
 }
+svg g.planet-circles circle.clan,
 svg g.planet-circles circle.uncharted {
 	cursor: default !important;
 	opacity: 0 !important;
 	pointer-events: none !important;
+	transition: opacity .5s;
+}
+svg g.planet-circles circle.clan.visible,
+svg g.planet-circles circle.uncharted.visible {
+	cursor: pointer !important;
+	opacity: 1 !important;
+	pointer-events: auto !important;
 }
 svg g.planet-circles circle.draconis-combine {
 	fill: #a00;
@@ -351,8 +360,13 @@ svg g.planet-names text {
 svg.zoomed-in g.planet-names text {
 	opacity: 1;
 }
+svg g.planet-names text.clan,
 svg g.planet-names text.uncharted {
 	opacity: 0 !important;
+}
+svg.zoomed-in g.planet-names text.clan.visible,
+svg.zoomed-in g.planet-names text.uncharted.visible {
+	opacity: 1 !important;
 }
 
 /* JUMP RANGE INDICATOR STYLES */
