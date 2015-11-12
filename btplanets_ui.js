@@ -13,10 +13,10 @@ BTPLANETS.UI = {
 		d3.select('div.controls').on('keydown', function () { d3.event.stopPropagation(); });
 		d3.selectAll('div.controls-tab-title').on('click', BTPLANETS.UI.onTabTitleClick);
 		// settings panel listeners
-		//console.log(d3.select('div.settings').select('input[type=checkbox]'));
 		d3.select('div.controls').select('.settings').selectAll('input[type=checkbox]').on('click', this.onSettingOptionToggle);
 		// route panel listeners
 		d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
+		//d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle);
 		
 		BTPLANETS.on('selectionchanged', this, this.onSelectionChanged);
 		BTPLANETS.on('selectionadded', this, this.onSelectionAdded);
@@ -171,7 +171,17 @@ BTPLANETS.UI = {
 				.select('input[name="toSystem"]').property('value');
 		var fromIdx, toIdx;
 		var errP = d3.select('div.controls').select('div.route').select('p.error');
+		var exAff = {};
 		
+		var routeSettings = d3.select('div.controls').select('div.route');
+		exAff.cc = !routeSettings.select('#route_allow_cc').property('checked');
+		exAff.dc = !routeSettings.select('#route_allow_dc').property('checked');
+		exAff.fs = !routeSettings.select('#route_allow_fs').property('checked');
+		exAff.fwl = !routeSettings.select('#route_allow_fwl').property('checked');
+		exAff.lc = !routeSettings.select('#route_allow_lc').property('checked');
+		exAff.p = !routeSettings.select('#route_allow_per').property('checked');
+		exAff.o = !routeSettings.select('#route_allow_other').property('checked');
+			
 		try {
 			if(!from.trim()) {
 				throw 'No starting system specified';
@@ -184,7 +194,8 @@ BTPLANETS.UI = {
 			errP.classed('visible', false);
 			BTPLANETS.ROUTES.plotRoute({
 				fromIdx : fromIdx,
-				toIdx : toIdx
+				toIdx : toIdx,
+				excludeAffiliations : exAff
 			});
 		} catch(e) {
 			console.log(e, d3.select('div.controls').select('div.route'));

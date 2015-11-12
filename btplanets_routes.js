@@ -39,6 +39,30 @@ BTPLANETS.ROUTES = {
 			throw 'route planner options object does not contain a target planet';
 			return;
 		}
+		if(options.excludeAffiliations === undefined) {
+			options.excludeAffiliations = {};
+		}
+		if(options.excludeAffiliations.cc !== true) {
+			options.excludeAffiliations.cc = false;
+		}
+		if(options.excludeAffiliations.dc !== true) {
+			options.excludeAffiliations.dc = false;
+		}
+		if(options.excludeAffiliations.fs !== true) {
+			options.excludeAffiliations.fs = false;
+		}
+		if(options.excludeAffiliations.fwl !== true) {
+			options.excludeAffiliations.fwl = false;
+		}
+		if(options.excludeAffiliations.lc !== true) {
+			options.excludeAffiliations.lc = false;
+		}
+		if(options.excludeAffiliations.p !== true) {
+			options.excludeAffiliations.p = false;
+		}
+		if(options.excludeAffiliations.o !== true) {
+			options.excludeAffiliations.o = false;
+		}
 	
 		// Source and target planet objects
 		var sourcePlanet = BTPLANETS.planets[options.fromIdx];
@@ -67,6 +91,7 @@ BTPLANETS.ROUTES = {
 		
 		// Loop variables
 		var curIdx, curPlanet;
+		var curAff = '', affCat = '';
 		var closestDist;
 		var testDist, testPlanet;
 		
@@ -82,7 +107,43 @@ BTPLANETS.ROUTES = {
 					continue;
 				}
 				testPlanet = BTPLANETS.planets[testKey];
-				if(!options.includeUninhabited && (testPlanet.affiliation === '?' || testPlanet.affiliation.toLowerCase() === 'no record')) {
+				curAff = testPlanet.affiliation.toLowerCase();
+				switch(curAff) {
+					case 'capellan confederation':
+						affCat = 'cc';
+						break;
+					case 'draconis combine':
+						affCat = 'dc';
+						break;
+					case 'federated suns':
+						affCat = 'fs';
+						break;
+					case 'free worlds league':
+						affCat = 'fwl';
+						break;
+					case 'lyran commonwealth':
+						affCat = 'lc';
+						break;
+					case 'magistracy of canopus':
+					case 'taurian concordat':
+					case 'outworlds alliance':
+					case 'marian hegemony':
+					case 'illyrian palatinate':
+					case 'circinus federation':
+					case 'oberon confederation':
+					case "morgraine's valkyrate":
+						affCat = 'p';
+						break;
+					default: 
+						affCat = 'o';
+						break;
+				}
+				if(!options.includeUninhabited && (curAff === '?' || curAff === 'no record')) {
+					closedList[testKey] = openList[testKey];
+					delete(openList[testKey]);
+					continue;
+				}
+				if(options.excludeAffiliations[affCat] === true) {
 					closedList[testKey] = openList[testKey];
 					delete(openList[testKey]);
 					continue;
