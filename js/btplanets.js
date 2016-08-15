@@ -125,9 +125,18 @@ define(['js/lib/d3.min'], function(d3) {
 						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
 							return 'clan';
 						}
-						return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
+						return 'inhabited ' + d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
 					})
 					.classed('planet', true)
+					.classed('capital', function (d) {
+						var name = d.name.toLowerCase();
+						return name === 'sian' ||
+							name === 'terra' ||
+							name === 'luthien' ||
+							name === 'new avalon' ||
+							name === 'atreus' ||
+							name === 'tharkad';
+					})
 					.attr('transform', me.transformers.planetCircle.bind(me))
 					.on('mouseover', function (planet) {
 						me.svg.select('circle.jump-range')
@@ -152,16 +161,22 @@ define(['js/lib/d3.min'], function(d3) {
 				.enter().append('text')
 					.classed('planet-name', true)
 					.classed('uncharted', function(d) {
-						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
-							return true;
-						}
-						return false;
+						return d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record';
+					})
+					.classed('inhabited', function(d) {
+						return d.affiliation !== '?' && d.affiliation.toLowerCase() !== 'no record';
 					})
 					.classed('clan', function(d) {
-						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
-							return true;
-						}
-						return false;
+						return d.affiliation.toLowerCase().indexOf('clan') !== -1;
+					})
+					.classed('capital', function (d) {
+						var name = d.name.toLowerCase();
+						return name === 'sian' ||
+							name === 'terra' ||
+							name === 'luthien' ||
+							name === 'new avalon' ||
+							name === 'atreus' ||
+							name === 'tharkad';
 					})
 					.text(function(d) {
 						return d.name;

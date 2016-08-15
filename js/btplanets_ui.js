@@ -13,6 +13,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			d3.selectAll('div.controls-tab-title').on('click', this.onTabTitleClick);
 			// settings panel listeners
 			d3.select('div.controls').select('.settings').selectAll('input[type=checkbox]').on('click', this.onSettingOptionToggle);
+			d3.select('div.controls').select('.settings').selectAll('input[type=radio]').on('click', this.onSettingOptionToggle);
 			// route panel listeners
 			d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			//d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle);
@@ -70,19 +71,38 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 		 */
 		onSettingOptionToggle : function () {
 			var curVisibility;
+			var svg = d3.select('svg');
 			switch(this.id) {
 				case 'settings_borders':
-					curVisibility = d3.select('path.border').classed('visible');
-					d3.selectAll('path.border').classed('visible', !curVisibility);
-				case 'settings_clan_systems':
-					curVisibility = d3.select('.planet.clan').classed('visible');
-					d3.selectAll('.planet.clan').classed('visible', !curVisibility);
-					d3.selectAll('.planet-name.clan').classed('visible', !curVisibility);
+					svg.classed('borders-show', d3.select(this).property('checked'));
+					svg.classed('border-hidden', !d3.select(this).property('checked'));
 					break;
-				case 'settings_uninhabited_systems':
-					curVisibility = d3.select('.planet.uncharted').classed('visible');
-					d3.selectAll('.planet.uncharted').classed('visible', !curVisibility);
-					d3.selectAll('.planet-name.uncharted').classed('visible', !curVisibility);
+				case 'settings_planets_none':
+					svg.classed('planets-hidden', true);
+					svg.classed('planets-capitals', false);
+					svg.classed('planets-inhabited', false);
+					svg.classed('planets-all', false);
+					break;
+				case 'settings_planets_capitals':
+					svg.classed('planets-hidden', false);
+					svg.classed('planets-capitals', true);
+					svg.classed('planets-inhabited', false);
+					svg.classed('planets-all', false);
+					break;
+				case 'settings_planets_inhabited':
+					svg.classed('planets-hidden', false);
+					svg.classed('planets-capitals', false);
+					svg.classed('planets-inhabited', true);
+					svg.classed('planets-all', false);
+					break;
+				case 'settings_planets_all':
+					svg.classed('planets-hidden', false);
+					svg.classed('planets-capitals', false);
+					svg.classed('planets-inhabited', false);
+					svg.classed('planets-all', true);
+					break;
+				case 'settings_clan_systems':
+					svg.classed('planets-clans', d3.select(this).property('checked'));
 					break;
 			}
 		},
