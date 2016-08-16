@@ -14,7 +14,8 @@ An interactive map of the Inner Sphere in the year 3025.
 btplanets is a non-profit open source fan project for the BattleTech universe. It uses data from the public 
 fan Wiki at www.sarna.net, as well as several art assets from the community forums of the upcoming computer 
 game [BATTLETECH](https://community.battletechgame.com/forums) by [Harebrained Schemes](http://harebrained-schemes.com/), 
-most notably the BATTLETECH game logo and the house and faction sigils. 
+most notably the BATTLETECH game logo and the house and faction sigils. The author understands these assets 
+to be promotional and free to use in an appropriate context.
 
 The author intends no copyright or trademark infringement. 
 
