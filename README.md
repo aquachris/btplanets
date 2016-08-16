@@ -1,13 +1,15 @@
 # btplanets
 An interactive map of the Inner Sphere in the year 3025.
 
+_SCREENSHOT(S)_
+
 ## Content
 - Disclaimer
 - What is this?
 - Features
 - TODOs / Known issues
 - Coming "soon" (currently planned features)
-- Future possibilities (not currently planned features)
+- Future possibilities (cool features that are not currently planned)
 - Credits
 
 ## Disclaimer
@@ -58,7 +60,7 @@ http://www.sarna.net/wiki/BattleMech
 
 ### An interactive map
 I've always wanted to be able to explore the BattleTech universe visually from a top-down perspective, starting with an 
-overview of the Inner Sphere and having the option of zooming in to interesting points.
+overview of the Inner Sphere and having the option to zoom in to interesting points.
 
 Since browsers and the d3 library make it pretty easy to achieve an interactive 2D map nowadays, this is what I've done here.
 
@@ -72,13 +74,14 @@ _VIDEO_
 - Add link to upcoming game
 - Add credits
 
-## Coming "soon"
+## Coming "soon" (currently planned features)
 - SVG export
 
-## Future possibilities (not currently planned)
-- Other timelines / eras
+## Future possibilities (cool features that are not currently planned)
+- Other eras
 - 3D-ish effect (parallax)
 
 ## Credits
 All planet names and coordinates are from www.sarna.net, with some corrections applied.
+
 Programming by Christoph Wassermann.
