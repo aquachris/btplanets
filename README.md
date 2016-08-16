@@ -32,6 +32,7 @@ the Inner Sphere as essentially 2D (accompanied by the fluff explanation that al
 of 3D space).
 
 See also: 
+
 http://www.sarna.net/wiki/Inner_Sphere
 
 ### The year 3025
@@ -52,6 +53,7 @@ mobile and well armed. If controlled by a skilled pilot, a BattleMech is the equ
 machines or infantry.
 
 See also:
+
 http://www.sarna.net/wiki/Succession_Wars_(History)
 http://www.sarna.net/wiki/Successor_States
 http://www.sarna.net/wiki/BattleMech
