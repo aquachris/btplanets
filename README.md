@@ -38,7 +38,7 @@ http://www.sarna.net/wiki/Inner_Sphere
 
 ### The year 3025
 The BattleTech universe is rich in history, and there are many interesting eras to explore. However, the quintessential 
-era (at least to table top players from the 80s and 90s like yours truly), is the time of the late
+era (at least to table top players from the 80s and 90s like yours truly) is the time of the late
 Succession Wars, marked by technological decline ("LosTech") and the Macchiavellian politics of the five Successor 
 States and their lords.
 
@@ -48,10 +48,12 @@ for the domination of single planets, not to forget the ongoing struggles with b
 The Successor States, burned out as they are, are trying to conserve their military assets and oftentimes employ 
 mercenary companies to fight their battles.
 
-In contrast to previous wars that were fought with giant armies and countless anonymous soldiers, combat in this era is 
-much more up close and personal. This is due to BattleMechs ruling the battlefield - 30-foot-tall armored robots, highly 
-mobile and well armed. If controlled by a skilled pilot, a BattleMech is the equivalent of an entire company of lesser 
-machines or infantry.
+In contrast to previous wars which were fought with giant armies and countless anonymous soldiers, combat in this era is 
+much more up close and personal. This is due to BattleMechs ruling the battlefield - 30-foot-tall robots, highly 
+mobile, heavily armored and armed to the teeth. If controlled by a skilled pilot, a BattleMech is the equivalent of an 
+entire company of lesser machines or infantry. Convential wisdom says that the best way to combat a BattleMech is another 
+BattleMech, which means that most battles consist of a limited number of Mechs fighting each other to decide the 
+outcome of the entire conflict.
 
 See also:  
 http://www.sarna.net/wiki/Succession_Wars_(History)  
@@ -60,9 +62,11 @@ http://www.sarna.net/wiki/BattleMech
 
 ### An interactive map
 I've always wanted to be able to explore the BattleTech universe visually from a top-down perspective, starting with an 
-overview of the Inner Sphere and having the option to zoom in to interesting points.
+overview of the entire Inner Sphere and having the option to zoom in to interesting points. Another interesting use case 
+is plotting jump routes and estimating the travel time between two systems.
 
-Since browsers and the d3 library make it pretty easy to achieve an interactive 2D map nowadays, this is what I've done here.
+I was inspired by the upcoming game [BATTLETECH](http://battletechgame.com/) and hope that the map will help newcomers to 
+familiarize themselves with the universe quickly and enjoyably.
 
 ## Features
 _VIDEO_
