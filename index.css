@@ -268,7 +268,7 @@ svg.dragging {
 /* AREA / BORDER STYLING */
 svg path.border {
 	stroke: #fff;
-	stroke-width: 1px;
+	stroke-width: 2px;
 	opacity: 0;
 	transition: opacity 1s;
 }
@@ -306,6 +306,11 @@ svg g.planet-circles circle {
 	stroke-width: 3px;
 	stroke: transparent;
 }
+svg g.planet-circles path.capital {
+	opacity: 0;
+	transition: opacity .5s;
+	stroke: none;
+}
 svg.planets-all g.planet-circles circle.inhabited,
 svg.planets-all g.planet-circles circle.uncharted,
 svg.planets-inhabited g.planet-circles circle.inhabited,
@@ -314,6 +319,11 @@ svg.planets-clans g.planet-circles circle.clan {
 	cursor: pointer;
 	opacity: 1;
 	pointer-events: all;
+}
+svg.planets-all g.planet-circles path.capital,
+svg.planets-inhabited g.planet-circles path.capital,
+svg.planets-capitals g.planet-circles path.capital {
+	opacity: 1;
 }
 svg.planets-all g.planet-circles circle.inhabited:hover,
 svg.planets-all g.planet-circles circle.uncharted:hover,
@@ -345,44 +355,45 @@ svg g.planet-circles circle.uncharted.visible {
 	opacity: 1 !important;
 	pointer-events: auto !important;
 }*/
-svg g.planet-circles circle.capital {
-	stroke: #aaa;
+svg g.planet-circles path.capital {
+	fill: rgba(255,255,255,.6);
+	pointer-events: none;
 }
 svg g.planet-circles circle.draconis-combine {
 	fill: #a8281b;
 }
-svg g.planet-circles circle.draconis-combine.capital {
-	stroke: rgba(245,60,43,1);
+svg g.planet-circles path.draconis-combine.capital {
+	fill: rgba(245,60,43,1);
 }
 svg g.planet-circles circle.federated-suns {
 	fill: #9c6127;
 }
-svg g.planet-circles circle.federated-suns.capital {
-	stroke: rgba(210, 150, 55, 1);
+svg g.planet-circles path.federated-suns.capital {
+	fill: rgba(210,150,55,1);
 }
 svg g.planet-circles circle.capellan-confederation {
 	fill: #426e33;
 }
-svg g.planet-circles circle.capellan-confederation.capital {
-	stroke: rgba(90, 170, 80, 1);
+svg g.planet-circles path.capellan-confederation.capital {
+	fill: rgba(90,170,80,1);
 }
 svg g.planet-circles circle.free-worlds-league {
 	fill: #64508d;
 }
-svg g.planet-circles circle.free-worlds-league.capital {
-	stroke: rgba(150,105,205, 1);
+svg g.planet-circles path.free-worlds-league.capital {
+	fill: rgba(150,105,205,1);
 }
 svg g.planet-circles circle.lyran-commonwealth {
 	fill: #3f7aaa;
 }
-svg g.planet-circles circle.lyran-commonwealth.capital {
-	stroke: rgba(90,180,240,1);
+svg g.planet-circles path.lyran-commonwealth.capital {
+	fill: rgba(90,180,240,1);
 }
 svg g.planet-circles circle.comstar {
 	fill: #ff0;
 }
-svg g.planet-circles circle.comstar.capital {
-	stroke: rgba(190, 170, 0, 1);
+svg g.planet-circles path.comstar.capital {
+	fill: rgba(230, 230, 0, 1);
 }
 svg g.planet-circles circle.taurian-concordat {
 	fill: #a24920;

@@ -10,6 +10,7 @@ define(['js/lib/d3.min'], function(d3) {
 		// data array handles
 		borders : null,
 		planets : null,
+		capitals : null,
 		selectedPlanets : null,
 
 		// DOM  / SVG object handles
@@ -45,6 +46,15 @@ define(['js/lib/d3.min'], function(d3) {
 						return console.warn(error);
 					}
 					this.planets = json;
+					this.capitals = [];
+					for(var i = 0, len = this.planets.length; i < len; i++) {
+						cur = this.planets[i].name.toLowerCase();
+						if(	cur === 'sian' || cur === 'luthien'
+							|| cur === 'new avalon' || cur === 'atreus'
+							|| cur === 'tharkad' || cur === 'terra') {
+							this.capitals.push(this.planets[i]);
+						}
+					}
 					this.selectedPlanets = [];
 					this.instantiateComponents();
 					this.onResize();
@@ -111,6 +121,27 @@ define(['js/lib/d3.min'], function(d3) {
 					.attr('fill', function (d) { return 'url(#hatch-'+d.name+')'; })
 					.attr('class', function (d) { return 'border ' + d.name; });
 			var circleGroup = me.svg.select('g.planet-circles');
+
+			var capitals = circleGroup.selectAll('path.capital')
+					.data(me.capitals)
+				.enter().append('path')
+					.attr('name', function(d) { return d.name; })
+					//.attr('d', 'M0,-10 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,10 C1,1 1,1 10,0 C1,-1 1,-1 0,-10')
+					//.attr('d', 'M0,-15 C-2,-2 -2,-2 -15,0 C-2,2 -2,2 0,15 C2,2 2,2 15,0 C2,-2 2,-2 0,-15')
+					//.attr('d', 'M0,-12 C-2,-2 -2,-2 -12,0 C-2,2 -2,2 0,12 C2,2 2,2 12,0 C2,-2 2,-2 0,-12')
+					.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13')
+					.attr('class', function (d) {
+						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
+							return 'uncharted';
+						}
+						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
+							return 'clan';
+						}
+						return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
+					})
+					.classed('capital', true)
+					.attr('transform', me.transformers.planetCircle.bind(me));
+
 			var circles = circleGroup.selectAll('circle')
 					.data(me.planets)
 				.enter().append('circle')
@@ -154,6 +185,7 @@ define(['js/lib/d3.min'], function(d3) {
 							me.togglePlanetSelection(planet);
 						}
 					});
+
 
 			var namesGroup = me.svg.select('g.planet-names');
 			var names = namesGroup.selectAll('text')
@@ -245,6 +277,8 @@ define(['js/lib/d3.min'], function(d3) {
 			//this.svg.selectAll('path.jump-route')
 			//	.attr('d', this.transformers.transformJumpRoute);
 			me.svg.selectAll('circle.planet')
+				.attr('transform', me.transformers.planetCircle.bind(me));
+			me.svg.selectAll('path.capital')
 				.attr('transform', me.transformers.planetCircle.bind(me));
 			me.svg.selectAll('text.planet-name')
 				.attr('transform', me.transformers.planetText.bind(me));
@@ -394,7 +428,7 @@ define(['js/lib/d3.min'], function(d3) {
 			},
 			planetText : function (d, i) {
 				var ret = 'translate('+(this.xScale(d.x) + this.PLANET_RADIUS*2) + ',' ;
-				ret += (this.yScale(d.y)+(this.PLANET_RADIUS*0.5+1)) + ')';
+				ret += (this.yScale(d.y)+(this.PLANET_RADIUS*0.5+2)) + ')';
 				return ret;
 			}
 		},
