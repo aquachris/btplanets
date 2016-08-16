@@ -31,8 +31,7 @@ Since all available depictions show a two-dimensional starmap despite the "spher
 the Inner Sphere as essentially 2D (accompanied by the fluff explanation that all maps are simply 2D projections 
 of 3D space).
 
-See also: 
-
+See also:  
 http://www.sarna.net/wiki/Inner_Sphere
 
 ### The year 3025
@@ -52,10 +51,9 @@ much more up close and personal. This is due to BattleMechs ruling the battlefie
 mobile and well armed. If controlled by a skilled pilot, a BattleMech is the equivalent of an entire company of lesser 
 machines or infantry.
 
-See also:
-
-http://www.sarna.net/wiki/Succession_Wars_(History)
-http://www.sarna.net/wiki/Successor_States
+See also:  
+http://www.sarna.net/wiki/Succession_Wars_(History)  
+http://www.sarna.net/wiki/Successor_States  
 http://www.sarna.net/wiki/BattleMech
 
 ### An interactive map
