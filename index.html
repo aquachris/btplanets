@@ -21,7 +21,13 @@
 	<div class="controls expanded">
 		<div class="settings active">
 			<h2>Settings</h2>
-			<p><input type="checkbox" id="settings_borders" checked="checked" /><label for="settings_borders">Show state borders</label></p>
+			<h3>State borders / areas:</h3>
+			<p><input type="checkbox" id="settings_borders" /><label for="settings_borders">Show state borders</label></p>
+			<p><input type="radio" name="rg_borders_fill" id="settings_borders_hatch" checked="checked" /><label for="settings_borders_hatch">Fill out state areas (hatch pattern)</label></p>
+			<p><input type="radio" name="rg_borders_fill" id="settings_borders_fill" /><label for="settings_borders_fill">Fill out state areas (flat color)</label></p>
+			<p><input type="radio" name="rg_borders_fill" id="settings_borders_nofill" /><label for="settings_borders_nofill">Do not fill out state areas</label></p>
+			<hr />
+			<h3>System visibility:</h3>
 			<p><input type="radio" name="rg_planets" id="settings_planets_all" /><label for="settings_planets_all">Show all systems</label></p>
 			<p><input type="radio" name="rg_planets" id="settings_planets_inhabited" /><label for="settings_planets_inhabited">Show inhabited systems</label></p>
 			<p><input type="radio" name="rg_planets" id="settings_planets_capitals" checked="checked" /><label for="settings_planets_capitals">Show capital systems only</label></p>
@@ -56,22 +62,25 @@
 	</div>
 
 	<div class="map-ct">
-		<svg class="map planets-capitals borders-show">
+		<svg class="map planets-capitals borders-lines borders-hatch">
 			<defs>
 				<pattern id="hatch-capellan-confederation" patternUnits="userSpaceOnUse" width="40" height="40">
-				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(66,110,51,.4)" stroke-width="10" />
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(66,110,51,.4)" stroke-width="16" />
+				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(90,170,80,1)" stroke-width="10" /-->
 			  	</pattern>
 				<pattern id="hatch-draconis-combine" patternUnits="userSpaceOnUse" width="40" height="40">
-				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(168,40,27,.4)" stroke-width="10" />
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(168,40,27,.4)" stroke-width="16" />
+				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(245,60,43,.8)" stroke-width="10" /-->
 				</pattern>
 				<pattern id="hatch-federated-suns" patternUnits="userSpaceOnUse" width="40" height="40">
-				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(156,97,39,.4)" stroke-width="10" />
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(156,97,39,.4)" stroke-width="16" />
+				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(210,150,55,1)" stroke-width="10" /-->
 				</pattern>
 				<pattern id="hatch-free-worlds-league" patternUnits="userSpaceOnUse" width="40" height="40">
-				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(100,80,141,.4)" stroke-width="10" />
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(100,80,141,.4)" stroke-width="16" />
 				</pattern>
 				<pattern id="hatch-lyran-commonwealth" patternUnits="userSpaceOnUse" width="40" height="40">
-				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(63,122,170,.4)" stroke-width="10" />
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(63,122,170,.4)" stroke-width="16" />
 			  	</pattern>
 			</defs>
 			<g class="borders">

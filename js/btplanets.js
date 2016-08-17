@@ -118,29 +118,9 @@ define(['js/lib/d3.min'], function(d3) {
 				.enter().append('path')
 					//.classed('border', true)
 					.attr('d', function (d) { return d.path })
-					.attr('fill', function (d) { return 'url(#hatch-'+d.name+')'; })
+					//.attr('fill', function (d) { return 'url(#hatch-'+d.name+')'; })
 					.attr('class', function (d) { return 'border ' + d.name; });
 			var circleGroup = me.svg.select('g.planet-circles');
-
-			var capitals = circleGroup.selectAll('path.capital')
-					.data(me.capitals)
-				.enter().append('path')
-					.attr('name', function(d) { return d.name; })
-					//.attr('d', 'M0,-10 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,10 C1,1 1,1 10,0 C1,-1 1,-1 0,-10')
-					//.attr('d', 'M0,-15 C-2,-2 -2,-2 -15,0 C-2,2 -2,2 0,15 C2,2 2,2 15,0 C2,-2 2,-2 0,-15')
-					//.attr('d', 'M0,-12 C-2,-2 -2,-2 -12,0 C-2,2 -2,2 0,12 C2,2 2,2 12,0 C2,-2 2,-2 0,-12')
-					.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13')
-					.attr('class', function (d) {
-						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
-							return 'uncharted';
-						}
-						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
-							return 'clan';
-						}
-						return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
-					})
-					.classed('capital', true)
-					.attr('transform', me.transformers.planetCircle.bind(me));
 
 			var circles = circleGroup.selectAll('circle')
 					.data(me.planets)
@@ -185,6 +165,29 @@ define(['js/lib/d3.min'], function(d3) {
 							me.togglePlanetSelection(planet);
 						}
 					});
+
+			var capitals = circleGroup.selectAll('path.capital')
+					.data(me.capitals)
+				.enter().append('path')
+					.attr('name', function(d) { return d.name; })
+					//.attr('d', 'M0,-10 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,10 C1,1 1,1 10,0 C1,-1 1,-1 0,-10')
+					//.attr('d', 'M0,-15 C-2,-2 -2,-2 -15,0 C-2,2 -2,2 0,15 C2,2 2,2 15,0 C2,-2 2,-2 0,-15')
+					//.attr('d', 'M0,-12 C-2,-2 -2,-2 -12,0 C-2,2 -2,2 0,12 C2,2 2,2 12,0 C2,-2 2,-2 0,-12')
+					//.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13')
+					//.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13 M0,-4 C-4,-4 -4,4 0,4 C4,4 4,-4 0,-4z')
+					//.attr('d', 'M0,-14 C-1,-1 -1,-1 -10,0 L-4,0 C-6,0 0,-6 0,-4 M0,-14 C1,1 1,1 10,0 L4,0 C6,0 0,-6 0,-4')
+					.attr('d', 'M-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0')
+					.attr('class', function (d) {
+						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
+							return 'uncharted';
+						}
+						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
+							return 'clan';
+						}
+						return d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
+					})
+					.classed('capital', true)
+					.attr('transform', me.transformers.planetCircle.bind(me));
 
 
 			var namesGroup = me.svg.select('g.planet-names');
@@ -420,6 +423,9 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Component transformation functions
 		 */
 		transformers : {
+			planetGroup : function (d, i) {
+				return 'translate('+this.xScale(0)+','+this.yScale(0)+') scale('+this.zoom.scale()*this.pxPerLy+')';
+			},
 			borderPath : function (d, i) {
 				return 'translate('+this.xScale(d.x)+','+this.yScale(d.y) + ') scale('+this.zoom.scale()*this.pxPerLy+')';
 			},

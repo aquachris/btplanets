@@ -181,11 +181,14 @@ div.controls h2 {
 	/*margin: 1em 0;*/
 	/*border: 1px solid black;*/
 	display: inline-block;
-	font-size: 1em;
+	font-size: 1.2em;
+	margin: .3em 0;
 	padding: 0;
 }
 div.controls h3 {
-	margin: .4em 0 ;
+	margin: .4em 0;
+	font-size: 1em;
+	padding: 0;
 }
 div.controls p {
 	margin: 0.4em 0;
@@ -230,6 +233,37 @@ div.controls button {
 	margin: 1em 0;
 	padding: .5em;
 }
+div.controls input[type="checkbox"],
+div.controls input[type="radio"] {
+	display: none;
+}
+div.controls input[type="checkbox"] + label,
+div.controls input[type="radio"] + label {
+	display: inline-block;
+	/*width: 20px;*/
+	height: 1em;
+	padding-left: 1em;
+	position: relative;
+	vertical-align: top;
+}
+div.controls input[type="checkbox"] + label:before,
+div.controls input[type="radio"] + label:before {
+	background-color: rgba(255, 0, 0, .8);
+	border-radius: .2em;
+	box-shadow: inset 0 0 8px #000;
+	/*box-shadow: 0 0 10px #f00, 0 0 15px #f00;*/
+	content: '';
+	display: inline-block;
+	height: .4em;
+	left: 0;
+	position: absolute;
+	top: .5em;
+	width: .4em;
+}
+div.controls input[type="checkbox"]:checked + label:before,
+div.controls input[type="radio"]:checked + label:before {
+	box-shadow: 0 0 8px #f00, 0 0 12px #f00;
+}
 div.controls p.error {
 	color: #c00;
 	display: none;
@@ -267,17 +301,19 @@ svg.dragging {
 }
 /* AREA / BORDER STYLING */
 svg path.border {
-	stroke: #fff;
-	stroke-width: 2px;
-	opacity: 0;
-	transition: opacity 1s;
+	fill: transparent;
+	stroke: transparent;
+	stroke-width: 0;
+	opacity: 1;
+	transition: opacity 1s, stroke-width 1s, fill 1s;
+}
+svg.borders-lines path.border {
+	stroke-width: 2;
 }
 svg.borders-hide path.border {
 	opacity: 0;
 }
-svg.borders-show path.border {
-	opacity: 1;
-}
+/* Border line colors */
 svg path.border.capellan-confederation {
 	stroke: #426e33;
 }
@@ -293,9 +329,38 @@ svg path.border.free-worlds-league {
 svg path.border.lyran-commonwealth {
 	stroke: #3f7aaa;
 }
-svg path.border.visible {
-	opacity: 1;
+/* Border fill colors / patterns */
+svg.borders-hatch path.border.capellan-confederation {
+	fill: url(#hatch-capellan-confederation);
 }
+svg.borders-fill path.border.capellan-confederation {
+	fill: rgba(90,170,80,.85);
+}
+svg.borders-hatch path.border.draconis-combine {
+	fill: url(#hatch-draconis-combine);
+}
+svg.borders-fill path.border.draconis-combine {
+	fill: rgba(245,60,43,.85);
+}
+svg.borders-hatch path.border.federated-suns {
+	fill: url(#hatch-federated-suns);
+}
+svg.borders-fill path.border.federated-suns {
+	fill: rgba(210,150,55,.85);
+}
+svg.borders-hatch path.border.free-worlds-league {
+	fill: url(#hatch-free-worlds-league);
+}
+svg.borders-fill path.border.free-worlds-league {
+	fill: rgba(150,105,205,.85);
+}
+svg.borders-hatch path.border.lyran-commonwealth {
+	fill: url(#hatch-lyran-commonwealth);
+}
+svg.borders-fill path.border.lyran-commonwealth {
+	fill: rgba(90,180,240,.85);
+}
+
 
 /* PLANET CIRCLES STYLING */
 svg g.planet-circles circle {
@@ -307,9 +372,11 @@ svg g.planet-circles circle {
 	stroke: transparent;
 }
 svg g.planet-circles path.capital {
+	fill: none;
 	opacity: 0;
 	transition: opacity .5s;
-	stroke: none;
+	stroke: #fff;
+	stroke-width: 2;
 }
 svg.planets-all g.planet-circles circle.inhabited,
 svg.planets-all g.planet-circles circle.uncharted,
@@ -330,7 +397,7 @@ svg.planets-all g.planet-circles circle.uncharted:hover,
 svg.planets-inhabited g.planet-circles circle.inhabited:hover,
 svg.planets-capitals g.planet-circles circle.capital:hover,
 svg.planets-clans g.planet-circles circle.clan:hover {
-	stroke: #aaa;
+	stroke: #ccc;
 }
 svg.planets-all g.planet-circles circle.inhabited.selected,
 svg.planets-all g.planet-circles circle.uncharted.selected,
@@ -356,44 +423,50 @@ svg g.planet-circles circle.uncharted.visible {
 	pointer-events: auto !important;
 }*/
 svg g.planet-circles path.capital {
-	fill: rgba(255,255,255,.6);
+	/*fill: rgba(255,255,255,.6);*/
 	pointer-events: none;
 }
 svg g.planet-circles circle.draconis-combine {
 	fill: #a8281b;
 }
 svg g.planet-circles path.draconis-combine.capital {
-	fill: rgba(245,60,43,1);
+	stroke: #a8281b;
+	/*fill: rgba(245,60,43,1);*/
 }
 svg g.planet-circles circle.federated-suns {
 	fill: #9c6127;
 }
 svg g.planet-circles path.federated-suns.capital {
-	fill: rgba(210,150,55,1);
+	stroke: #9c6127;
+	/*fill: rgba(210,150,55,1);*/
 }
 svg g.planet-circles circle.capellan-confederation {
 	fill: #426e33;
 }
 svg g.planet-circles path.capellan-confederation.capital {
-	fill: rgba(90,170,80,1);
+	stroke: #426e33;
+	/*fill: rgba(90,170,80,1);*/
 }
 svg g.planet-circles circle.free-worlds-league {
 	fill: #64508d;
 }
 svg g.planet-circles path.free-worlds-league.capital {
-	fill: rgba(150,105,205,1);
+	stroke: #64508d;
+	/*fill: rgba(150,105,205,1);*/
 }
 svg g.planet-circles circle.lyran-commonwealth {
 	fill: #3f7aaa;
 }
 svg g.planet-circles path.lyran-commonwealth.capital {
-	fill: rgba(90,180,240,1);
+	stroke: #3f7aaa;
+	/*fill: rgba(90,180,240,1);*/
 }
 svg g.planet-circles circle.comstar {
 	fill: #ff0;
 }
 svg g.planet-circles path.comstar.capital {
-	fill: rgba(230, 230, 0, 1);
+	stroke: #ff0;
+	/*fill: rgba(230, 230, 0, 1);*/
 }
 svg g.planet-circles circle.taurian-concordat {
 	fill: #a24920;
@@ -428,7 +501,7 @@ svg g.planet-circles circle.clan {
 	fill: #f00;
 }
 svg g.planet-circles circle {
-	fill: rgba(110,110,110,.5);
+	fill: rgba(75,75,75,.6);
 }
 
 /*path {

@@ -74,8 +74,19 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			var svg = d3.select('svg');
 			switch(this.id) {
 				case 'settings_borders':
-					svg.classed('borders-show', d3.select(this).property('checked'));
-					svg.classed('border-hidden', !d3.select(this).property('checked'));
+					svg.classed('borders-lines', d3.select(this).property('checked'));
+					break;
+				case 'settings_borders_hatch':
+					svg.classed('borders-hatch', true);
+					svg.classed('borders-fill', false);
+					break;
+				case 'settings_borders_fill':
+					svg.classed('borders-hatch', false);
+					svg.classed('borders-fill', true);
+					break;
+				case 'settings_borders_nofill':
+					svg.classed('borders-hatch', false);
+					svg.classed('borders-fill', false);
 					break;
 				case 'settings_planets_none':
 					svg.classed('planets-hidden', true);
