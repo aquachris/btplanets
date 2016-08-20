@@ -52,6 +52,7 @@ define(['js/lib/d3.min'], function(d3) {
 						if(	cur === 'sian' || cur === 'luthien'
 							|| cur === 'new avalon' || cur === 'atreus'
 							|| cur === 'tharkad' || cur === 'terra') {
+							this.planets[i].isCapital = true;
 							this.capitals.push(this.planets[i]);
 						}
 					}
@@ -433,7 +434,9 @@ define(['js/lib/d3.min'], function(d3) {
 				return 'translate('+this.xScale(d.x) + ',' + this.yScale(d.y) + ')';
 			},
 			planetText : function (d, i) {
-				var ret = 'translate('+(this.xScale(d.x) + this.PLANET_RADIUS*2) + ',' ;
+				var ret = 'translate(';
+				ret += (this.xScale(d.x) + this.PLANET_RADIUS*2 + (d.isCapital ? this.PLANET_RADIUS * .75 : 0))
+				ret += ',' ;
 				ret += (this.yScale(d.y)+(this.PLANET_RADIUS*0.5+2)) + ')';
 				return ret;
 			}

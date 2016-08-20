@@ -60,10 +60,51 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			}
 		},
 
+		/**
+		 * @param selection {Array}
+		 * @param autoClose {boolean}
+		 */
+		adjustToSelectionChange : function (selection, autoClose) {
+			var tabs = d3.selectAll('div.controls-tab-title');
+			var selTab = d3.select('div.controls-tab-title.selection');
+			var controlsBg = d3.select('div.controls-background');
+			var controls = d3.select('div.controls');
+
+			if(!selection) {
+				return;
+			}
+			if(selection.length === 0 && autoClose) {
+				controlsBg.classed('expanded', false);
+				controls.classed('expanded', false);
+				tabs.classed('expanded', false);
+				tabs.classed('active', false)
+			} else if(selection.length > 0) {
+				controlsBg.classed('expanded', true);
+				controls.classed('expanded', true);
+				controls.selectAll('div').classed('active', false);
+				controls.select('div.selection').classed('active', true);
+				tabs.classed('expanded', true);
+				tabs.classed('active', false);
+				selTab.classed('active', true);
+			}
+		},
+
+		/**
+		 *
+		 */
 		onSelectionAdded : function () {
 			/*if(!d3.select('div.controls-expander').classed('expanded')) {
 				this.onExpanderClick();
 			}*/
+		},
+
+		/**
+		 * React to the remove button for a selected system (in the selection panel)
+		 * being clicked.
+		 */
+		onSelectionRemoveBtn : function () {
+			var name = this.parentNode.firstChild.textContent;
+			btplanets.togglePlanetSelection(name);
 		},
 
 		/**
@@ -175,11 +216,11 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					}
 					html += '<div class="planet-info '+affiliationClass+'">';
 					html += '<h3>'+d.name+'</h3>';
+					html += '<button class="remove"><span class="fa fa-remove"></span></button>';
 					html += '<p><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
 					html += '<p>Coord.: '+d.x+', '+d.y+'</p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
-					html += '<button><span class="fa fa-remove"></span></button>';
 					html += '</div>';
 					return html;
 				});
@@ -188,10 +229,9 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				panel.html('<h2>No planets selected</h2>');
 			}
 
-			panel.selectAll('button')
-				.on('click', function () {
-					console.log(this, arguments);
-				});
+			this.adjustToSelectionChange(selection, true);
+
+			panel.selectAll('button').on('click', this.onSelectionRemoveBtn);
 		},
 
 		/**

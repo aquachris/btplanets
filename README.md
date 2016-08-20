@@ -27,7 +27,7 @@ The author intends no copyright or trademark infringement.
 ### The Inner Sphere
 The Inner Sphere is the human-inhabited part of space in the science fiction universe of BattleTech. It is
 described to be a spherical region centered on the Sol system and extending roughly 500 light years outwards in all
-directions, containing roughly 2000 - 3000 star systems (depending on whether formerly inhabited and
+directions, containing somewhere between 2000 - 3000 star systems (depending on whether formerly inhabited and
 periphery worlds are included).
 
 Since all available depictions show a two-dimensional starmap despite the "sphere" moniker, the consensus is to regard
@@ -74,6 +74,7 @@ _VIDEO_
 
 ## TODOs / Known issues
 - UI work needed: Define use cases, implement interface
+- Add periphery state borders
 - Pretty up the side bar
 - Add BT logo / graphics
 - Add link to upcoming game
