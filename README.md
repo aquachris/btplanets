@@ -44,7 +44,7 @@ Succession Wars, marked by technological decline ("LosTech") and the Macchiavell
 States and their lords.
 
 The year 3025 marks the end of the Third Succession War and sees the five major powers locked in a stalemate, exhausted
-from centuries of war. Despite the uneasy cease-fire between the combatants, there are plenty of localized conflicts
+after centuries of war. Despite the uneasy cease-fire between the combatants, there are plenty of localized conflicts
 for the domination of single planets, not to forget the ongoing struggles with bandits and minor states in the periphery.
 The Successor States, burned out as they are, are trying to conserve their military assets and oftentimes employ
 mercenary companies to fight their battles.

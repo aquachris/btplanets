@@ -44,21 +44,42 @@
 			</div>
 		</div>
 		<div class="selection">
-			<h2>No planets selected</h2>
+			<h2>Selection</h2>
+			<p class="find-ct">
+				<label for="find-system-field">Find system:</label>
+				<input id="find-system-field" name="findSystem" value="" type="text" class="find-field" />
+				<button id="find-system-btn" class="find-btn"><span class="fa fa-search"></span> find</button>
+			</p>
+			<p class="error"></p>
+			<hr />
+			<div id="selection-ct" class="selection-ct">
+				<em>No planets selected</em>
+			</div>
 		</div>
 		<div class="route">
 			<h2>Plot jump route</h2>
-			<p class="error">Could not find system</p>
+			<p class="route-ct">
+				<label for="route-system">Add new stop:</label>
+				<input id="route-system" name="routeSystem" value="" type="text" class="route-field" />
+				<button id="route-system-btn" class="route-btn"><span class="fa fa-search"></span> find</button>
+			</p>
+			<p class="error"></p>
+			<hr />
+			<!--
 			<p>From:</p>
 			<input name="fromSystem" value="" style="width: 100%" type="text" />
 			<p>To:</p>
-			<input name="toSystem" value="" style="width: 100%" type="text" />
-			<button class="submit"><span class="fa fa-search"></span> find shortest route</button>
-			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more options</p>
-			<div class="more">
-				<p>Via:</p>
-				<input name="viaSystem" value="" type="text" />
-				<p>Allow systems in route:</p>
+			<input name="toSystem" value="" style="width: 100%" type="text" />-->
+			<div id="stops-ct" class="stops-ct">
+				<em>No stops entered</em>
+			</div>
+			<!--button class="submit"><span class="fa fa-space-shuttle"></span> find shortest route</button>
+			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more options</p-->
+			<hr />
+			<div class="route-ct">
+				<h3>Options</h3>
+				<p><input type="checkbox" id="route_display" checked="true" /><label for="route_display">Display planned jump route</label></p>
+				<p>Allow / disallow systems in route:</p>
 				<p><input type="checkbox" id="route_allow_cc" checked="true" /><label for="route_allow_cc">Capellan Confederation</label></p>
 				<p><input type="checkbox" id="route_allow_dc" checked="true" /><label for="route_allow_dc">Draconis Combine</label></p>
 				<p><input type="checkbox" id="route_allow_fs" checked="true" /><label for="route_allow_fs">Federated Suns</label></p>

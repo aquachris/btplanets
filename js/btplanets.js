@@ -214,9 +214,8 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'atreus' ||
 							name === 'tharkad';
 					})
-					.text(function(d) {
-						return d.name;
-					})
+					.attr('name', function(d) { return d.name; })
+					.text(function(d) {	return d.name; })
 					.attr('transform', me.transformers.planetText.bind(me));
 
 			var legendGroup = me.svg.select('g.legend');
@@ -341,10 +340,16 @@ define(['js/lib/d3.min'], function(d3) {
 		/**
 		 * Center the map on any set of universe coordinates
 		 */
-		centerOnCoordinates : function (cx, cy) {
+		centerOnCoordinates : function (cx, cy, zoomScale) {
 			var me = this;
 			var bbox = me.svg.node().getBoundingClientRect();
-			var scale = me.zoom.scale();
+			var scale;
+			if(zoomScale !== undefined) {
+				me.zoom.scale(zoomScale);
+				scale = zoomScale;
+			} else {
+				scale = me.zoom.scale();
+			}
 			var xTranslate = -((bbox.width * 0.5 + cx * me.pxPerLy) * scale - bbox.width * 0.5);
 			var yTranslate = -((bbox.height * 0.5 - cy * me.pxPerLy) * scale - bbox.height * 0.5);
 			me.zoom.translate([xTranslate, yTranslate]);
@@ -364,7 +369,7 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Select or deselect a planet by its name
 		 */
 		togglePlanetSelection : function (planet) {
-			var planetName, circle;
+			var planetName, circle, text;
 
 			if(typeof planet === 'string') {
 				planetName = planet;
@@ -382,11 +387,13 @@ define(['js/lib/d3.min'], function(d3) {
 			planetName = planet.name;
 
 			circle = this.svg.select('circle[name="'+planetName+'"]');
+			text = this.svg.select('text[name="'+planetName+'"]');
 			for(var i = 0, len = this.selectedPlanets.length; i < len; i++) {
 				if(this.selectedPlanets[i] === planet) {
 					// deselect planet
 					this.selectedPlanets.splice(i, 1);
 					circle.classed('selected', false);
+					text.classed('selected', false);
 					this.fireEvent('selectionremoved', planet);
 					this.fireEvent('selectionchanged', this.selectedPlanets);
 					return;
@@ -403,6 +410,7 @@ define(['js/lib/d3.min'], function(d3) {
 				return 0;
 			});*/
 			circle.classed('selected', true);
+			text.classed('selected', true);
 			this.fireEvent('selectionadded', planet);
 			this.fireEvent('selectionchanged', this.selectedPlanets);
 		},
@@ -411,9 +419,25 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Find planet id by name
 		 */
 		findPlanetId : function (name) {
-			name = name.toLowerCase();
+			name = name.trim().toLowerCase();
+			if(!name) {
+				throw 'No planet name given';
+			}
+			// Pass 1: look for exact matches
 			for(var i = 0, len = this.planets.length; i < len; i++) {
 				if(this.planets[i].name.toLowerCase() === name) {
+					return i;
+				}
+			}
+			// Pass 2: look for substring matches at the start
+			for(var i = 0, len = this.planets.length; i < len; i++) {
+				if(this.planets[i].name.toLowerCase().indexOf(name) === 0) {
+					return i;
+				}
+			}
+			// Pass 3: look for substring matches
+			for(var i = 0, len = this.planets.length; i < len; i++) {
+				if(this.planets[i].name.toLowerCase().indexOf(name) !== -1) {
 					return i;
 				}
 			}

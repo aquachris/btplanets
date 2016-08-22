@@ -14,6 +14,9 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			// settings panel listeners
 			d3.select('div.controls').select('.settings').selectAll('input[type=checkbox]').on('click', this.onSettingOptionToggle);
 			d3.select('div.controls').select('.settings').selectAll('input[type=radio]').on('click', this.onSettingOptionToggle);
+			// find panel listeners
+			d3.select('#find-system-field').on('keypress', this.onFindKeyPress.bind(this));
+			d3.select('#find-system-btn').on('click', this.onFindSystemBtn.bind(this));
 			// route panel listeners
 			d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			//d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle);
@@ -41,6 +44,8 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			} else {
 				if(tabTitle.classed('settings')) {
 					type = 'settings';
+				} else if(tabTitle.classed('find')) {
+					type = 'find';
 				} else if(tabTitle.classed('selection')) {
 					type = 'selection';
 				} else if(tabTitle.classed('route')) {
@@ -57,6 +62,38 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				tabs.classed('expanded', true);
 				controls.classed('expanded', true);
 				tabTitle.classed('active', true);
+			}
+		},
+
+		onFindKeyPress : function () {
+			var key = d3.event.keyCode;
+			if(key === 10 || key === 13) {
+				this.onFindSystemBtn();
+			}
+		},
+
+		onFindSystemBtn : function () {
+			var field = d3.select('#find-system-field');
+			var name = field.property('value').trim();
+			var i, planet, circle;
+			var err = d3.select('div.controls div.selection p.error');
+			if(name === '') {
+				err.classed('visible', false);
+				return;
+			}
+			try {
+				i = btplanets.findPlanetId(name);
+				planet = btplanets.planets[i];
+				btplanets.centerOnCoordinates(planet.x, planet.y);
+				circle = d3.select('circle[name="'+planet.name+'"]');
+				if(!circle.classed('selected')) {
+					btplanets.togglePlanetSelection(planet.name);
+				}
+				err.classed('visible', false);
+			} catch(e) {
+				i = -1;
+				err.text(e)
+					.classed('visible', true);
 			}
 		},
 
@@ -105,6 +142,17 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 		onSelectionRemoveBtn : function () {
 			var name = this.parentNode.firstChild.textContent;
 			btplanets.togglePlanetSelection(name);
+		},
+
+		/**
+		 * React to the center button for a selected system (in the selection panel)
+		 * being clicked.
+		 */
+		onSelectionCenterBtn : function () {
+			var coordinates = this.parentNode.firstChild.textContent;
+			var coords = coordinates.substring(8).split(',');
+			console.log(coords);
+			btplanets.centerOnCoordinates(parseFloat(coords[0]), parseFloat(coords[1]));
 		},
 
 		/**
@@ -163,9 +211,9 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 		 * React to the selection changing by re-assembling the selection panel
 		 */
 		onSelectionChanged : function(selection) {
-			var panel = d3.select('div.controls').select('div.selection').html('');
+			var ct = d3.select('div.controls').select('#selection-ct').html('');
 
-			panel.selectAll('div')
+			ct.selectAll('div')
 					.data(selection)
 				.enter()
 				.append('div')
@@ -218,20 +266,22 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					html += '<h3>'+d.name+'</h3>';
 					html += '<button class="remove"><span class="fa fa-remove"></span></button>';
 					html += '<p><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
-					html += '<p>Coord.: '+d.x+', '+d.y+'</p>';
+					html += '<p><span>Coord.: '+d.x+', '+d.y+'</span>';
+					html += '<button class="center" title="center map on these coordinates"><span class="fa fa-dot-circle-o"></span></button></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
 					html += '</div>';
 					return html;
 				});
 
-			if(panel.html() === '') {
-				panel.html('<h2>No planets selected</h2>');
+			if(ct.html() === '') {
+				ct.html('<em>No planets selected</em>');
 			}
 
-			this.adjustToSelectionChange(selection, true);
+			this.adjustToSelectionChange(selection);
 
-			panel.selectAll('button').on('click', this.onSelectionRemoveBtn);
+			ct.selectAll('button.remove').on('click', this.onSelectionRemoveBtn);
+			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
 		},
 
 		/**

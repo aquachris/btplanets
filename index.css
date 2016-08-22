@@ -206,6 +206,7 @@ div.controls hr {
 	border-width: 2px;
 	border-color: #555;
 	clear: both;
+	margin: 1em 0;
 }
 div.controls div.control-group {
 	margin: 0 0 1em 0;
@@ -240,7 +241,13 @@ div.controls div.planet-info span.neighbor.uninhabited {
 	color: #a00;
 	font-style: italic;
 }
-div.controls div.planet-info button.remove {
+div.controls input[type="text"] {
+	background-color: transparent;
+	border: inset 2px #eee;
+	color: #fff;
+	padding: .25em;
+}
+div.controls button {
 	background: none;
 	/* border: 1px solid #fff !important; */
 	border: 2px outset #aaa;
@@ -248,13 +255,51 @@ div.controls div.planet-info button.remove {
 	color: #fff;
 	cursor: pointer;
 	margin: 0;
-	padding: .25em;
+	padding: .25em .5em;
+}
+div.controls p.find-ct {
+	position: relative;
+}
+div.controls input.find-field {
+	margin: 0 0 0 .5em;
+	width: 14em;
+}
+div.controls button.find-btn {
+	margin: 0 0 0 .5em;
 	position: absolute;
+	right: 0;
+	top: 0;
+}
+div.controls div.selection-ct {
+	padding: .5em 0;
+}
+div.controls div.planet-info button.center {
+	margin: 0 0 0 .5em;
+	padding: 0 .25em;
+}
+div.controls div.planet-info button.remove {
+	position: absolute;
+	padding: .25em;
 	top: 0;
 	right: 0;
 }
 div.controls div.planet-info button.remove:active {
 	border: 2px inset #aaa;
+}
+div.controls p.route-ct {
+	position: relative;
+}
+div.controls input.route-field {
+	margin: 0 0 0 .5em;
+	width: 13em;
+}
+div.controls button.route-btn {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+div.controls div.stops-ct {
+	padding: .5em 0;
 }
 div.controls input[type="checkbox"],
 div.controls input[type="radio"] {
@@ -441,7 +486,8 @@ svg.planets-all g.planet-circles circle.inhabited,
 svg.planets-all g.planet-circles circle.uncharted,
 svg.planets-inhabited g.planet-circles circle.inhabited,
 svg.planets-capitals g.planet-circles circle.capital,
-svg.planets-clans g.planet-circles circle.clan {
+svg.planets-clans g.planet-circles circle.clan,
+svg g.planet-circles circle.selected {
 	cursor: pointer;
 	opacity: 1;
 	pointer-events: all;
@@ -455,14 +501,16 @@ svg.planets-all g.planet-circles circle.inhabited:hover,
 svg.planets-all g.planet-circles circle.uncharted:hover,
 svg.planets-inhabited g.planet-circles circle.inhabited:hover,
 svg.planets-capitals g.planet-circles circle.capital:hover,
-svg.planets-clans g.planet-circles circle.clan:hover {
+svg.planets-clans g.planet-circles circle.clan:hover,
+svg g.planet-circles circle.selected:hover {
 	stroke: #ccc;
 }
 svg.planets-all g.planet-circles circle.inhabited.selected,
 svg.planets-all g.planet-circles circle.uncharted.selected,
 svg.planets-inhabited g.planet-circles circle.inhabited.selected,
 svg.planets-capitals g.planet-circles circle.capital.selected,
-svg.planets-clans g.planet-circles circle.clan.selected {
+svg.planets-clans g.planet-circles circle.clan.selected,
+svg g.planet-circles circle.selected {
 	stroke: #fff;
 }
 
@@ -581,7 +629,8 @@ svg.planets-inhabited.zoomed-in g.planet-names text.inhabited,
 svg.planets-clans.zoomed-in g.planet-names text.clan,
 svg.planets-all g.planet-names text.capital,
 svg.planets-inhabited g.planet-names text.capital,
-svg.planets-capitals g.planet-names text.capital {
+svg.planets-capitals g.planet-names text.capital,
+svg g.planet-names text.selected {
 	opacity: 1;
 }
 /*svg.zoomed-in g.planet-names text.clan.visible,

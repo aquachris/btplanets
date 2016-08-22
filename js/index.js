@@ -8,4 +8,3 @@ require(['js/btplanets', 'js/btplanets_keys', 'js/btplanets_routes', 'js/btplane
 		ui.init();
 	});
 });
-		// BTPLANETS.UI.init();
