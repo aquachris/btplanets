@@ -2,6 +2,7 @@
 An interactive map of the Inner Sphere in the year 3025.
 
 _SCREENSHOT(S)_
+
 <img src="img/screenshots/01.png" />
 
 ## Content
