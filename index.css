@@ -219,28 +219,62 @@ div.controls div.planet-info {
 	background-position: 90% 0%;
 	position: relative;
 }
-div.controls div.planet-info.liao {
+div.controls div.stop-info {
+	background-repeat: no-repeat;
+	background-position: 80% 0;
+	background-size: 0; /*32px 32px;*/
+	margin: 3em 0 0 0;
+	position: relative;
+}
+div.controls div.stop-info:before {
+	content: '\f175';
+	font-family: 'FontAwesome';
+	font-size: 1.4em;
+	height: 1em;
+	left: 1em;
+	position: absolute;
+	text-align: left;
+	top: -1.5em;
+	width: 100%;
+}
+div.controls div.stop-info[data-idx="0"] {
+	margin: 0;
+}
+div.controls div.stop-info[data-idx="0"]:before {
+	display: none;
+}
+div.controls div.planet-info.liao,
+div.controls div.stop-info.capellan-confederation {
 	background-image: url("./img/liao_64.png");
 }
-div.controls div.planet-info.kurita {
+div.controls div.planet-info.kurita,
+div.controls div.stop-info.draconis-combine {
 	background-image: url("./img/kurita_64.png");
 }
-div.controls div.planet-info.davion {
+div.controls div.planet-info.davion,
+div.controls div.stop-info.federated-suns {
 	background-image: url("./img/davion_64.png");
 }
-div.controls div.planet-info.marik {
+div.controls div.planet-info.marik,
+div.controls div.stop-info.free-worlds-league {
 	background-image: url("./img/marik_64.png");
 }
-div.controls div.planet-info.steiner {
+div.controls div.planet-info.steiner,
+div.controls div.stop-info.lyran-commonwealth {
 	background-image: url("./img/steiner_64.png");
 }
-div.controls div.planet-info.comstar {
+div.controls div.planet-info.comstar,
+div.controls div.stop-info.comstar {
 	background-image: url("./img/comstar_64.png");
+}
+div.controls div.stop-info {
+	background-image: none;
 }
 div.controls div.planet-info span.neighbor.uninhabited {
 	color: #a00;
 	font-style: italic;
 }
+
 div.controls input[type="text"] {
 	background-color: transparent;
 	border: inset 2px #eee;
@@ -256,6 +290,9 @@ div.controls button {
 	cursor: pointer;
 	margin: 0;
 	padding: .25em .5em;
+}
+div.controls button:active {
+	border: 2px inset #aaa;
 }
 div.controls p.find-ct {
 	position: relative;
@@ -273,18 +310,28 @@ div.controls button.find-btn {
 div.controls div.selection-ct {
 	padding: .5em 0;
 }
-div.controls div.planet-info button.center {
+div.controls div.planet-info button.center,
+div.controls div.stop-info button.center {
 	margin: 0 0 0 .5em;
 	padding: 0 .25em;
 }
-div.controls div.planet-info button.remove {
+div.controls div.planet-info button.remove,
+div.controls div.stop-info button.remove,
+div.controls div.stop-info button.up,
+div.controls div.stop-info button.down {
 	position: absolute;
-	padding: .25em;
+	padding: 0 .25em;
 	top: 0;
 	right: 0;
 }
-div.controls div.planet-info button.remove:active {
-	border: 2px inset #aaa;
+div.controls div.stop-info button.up {
+	right: 2em;
+}
+div.controls div.stop-info button.down {
+	right: 3.75em;
+}
+div.controls div.stop-info span.coordinates {
+	font-size: .8em;
 }
 div.controls p.route-ct {
 	position: relative;

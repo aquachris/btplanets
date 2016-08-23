@@ -2,6 +2,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 	'use strict';
 
 	return {
+		stops : null,
+
 		/**
 		 * Initialize module
 		 */
@@ -10,7 +12,30 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			svg.insert("g",":first-child")
 				.attr('class', 'jump-routes');
 			console.log('initialising route planner');
+			this.stops = [];
 			btplanets.on('repaint', this, this.repaintRoute.bind(this));
+		},
+
+		addStop : function (planet) {
+			this.stops.push(planet);
+		},
+
+		moveStop : function (iBefore, iAfter) {
+			if(iBefore >= this.stops.length) {
+				throw 'Index of planet to move is out of bounds';
+			}
+			if(iAfter < 0) {
+				throw 'Cannot move planet to index < 0';
+			}
+			var planet = this.stops.splice(iBefore, 1);
+			if(iBefore < iAfter) {
+				iAfter--;
+			}
+			this.stops.splice(iAfter, 0, planet);
+		},
+
+		removeStop : function (i) {
+			this.stops.splice(i, 1);
 		},
 
 		/**

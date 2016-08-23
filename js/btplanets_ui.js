@@ -18,7 +18,9 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			d3.select('#find-system-field').on('keypress', this.onFindKeyPress.bind(this));
 			d3.select('#find-system-btn').on('click', this.onFindSystemBtn.bind(this));
 			// route panel listeners
-			d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
+			d3.select('#route-system').on('keypress', this.onRouteFindKeyPress.bind(this));
+			d3.select('#route-system-btn').on('click', this.onRouteFindBtn.bind(this));
+			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			//d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle);
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
@@ -95,6 +97,74 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				err.text(e)
 					.classed('visible', true);
 			}
+		},
+
+		onRouteFindKeyPress : function () {
+				var key = d3.event.keyCode;
+				if(key === 10 || key === 13) {
+					this.onRouteFindBtn();
+				}
+		},
+
+		onRouteFindBtn : function () {
+			var field = d3.select('#route-system');
+			var name = field.property('value').trim();
+			var i, planet, circle;
+			var err = d3.select('div.controls div.route p.error');
+			if(name === '') {
+				err.classed('visible', false);
+				return;
+			}
+			try {
+				i = btplanets.findPlanetId(name);
+				planet = btplanets.planets[i];
+				err.classed('visible', false);
+				console.log('add planet to route: ' + planet.name);
+				routes.addStop(planet);
+				this.addRoutePlanet();
+			} catch(e) {
+				i = -1;
+				err.text(e)
+					.classed('visible', true);
+			}
+		},
+
+		addRoutePlanet : function (planet) {
+			var ct = d3.select('#stops-ct');
+			if(ct.classed('empty')) {
+				ct.html('');
+				ct.classed('empty', false);
+			}
+			ct.selectAll('div.stop-info')
+				.data(routes.stops)
+				.enter()
+					.append('div')
+					.attr('class', function (d) {
+						return 'stop-info ' + d.affiliation.toLowerCase().replace(/\s/g, '-');
+					})
+					.attr('data-idx', function(d, i) {
+						var stopCt = d3.select(this);
+						stopCt.append('h3').text(d.name);
+						stopCt.append('button')
+							.classed('up', true)
+							.html('<span class="fa fa-caret-up"></span>');
+						stopCt.append('button')
+							.classed('down', true)
+							.html('<span class="fa fa-caret-down"></span>');
+						stopCt.append('button')
+							.classed('remove', true)
+							.html('<span class="fa fa-remove"></span>');
+						stopCt.append('span')
+							.classed('coordinates', true)
+							.html('Coord.: ' + d.x + ',' + d.y);
+						stopCt.append('button')
+							.classed('center', true)
+							.html('<span class="fa fa-dot-circle-o"></span>');
+						/*stopCt.append('p')
+							.classed('affilitation', true)
+							.text('Political affiliation: ' + d.affiliation);*/
+						return i;
+					});
 		},
 
 		/**
