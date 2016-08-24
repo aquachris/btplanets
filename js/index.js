@@ -1,10 +1,19 @@
 require(['js/btplanets', 'js/btplanets_keys', 'js/btplanets_routes', 'js/btplanets_ui'], function (main, keys, routes, ui) {
 	'use strict';
 
-	window.addEventListener('load', function () {
+	var initialized = false;
+
+	var init = function () {
 		main.init();
 		keys.init();
 		routes.init();
 		ui.init();
+		initialized = true;
+	};
+
+	window.addEventListener('load', function () {
+		!initialized &&	init();
 	});
+
+	init();
 });

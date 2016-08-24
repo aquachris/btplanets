@@ -8,9 +8,6 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		 * Initialize module
 		 */
 		init : function () {
-			var svg = d3.select('svg');
-			svg.insert("g",":first-child")
-				.attr('class', 'jump-routes');
 			console.log('initialising route planner');
 			this.stops = [];
 			btplanets.on('repaint', this, this.repaintRoute.bind(this));
@@ -27,9 +24,12 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			if(iAfter < 0) {
 				throw 'Cannot move planet to index < 0';
 			}
-			var planet = this.stops.splice(iBefore, 1);
+			if(iAfter >= this.stops.length) {
+				throw 'Index to move to is out of bounds';
+			}
+			var planet = this.stops.splice(iBefore, 1)[0];
 			if(iBefore < iAfter) {
-				iAfter--;
+				//iAfter--;
 			}
 			this.stops.splice(iAfter, 0, planet);
 		},
@@ -55,11 +55,9 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 			if(options.fromIdx === undefined || options.fromIdx === null || options.fromIdx < 0) {
 				throw 'route planner options object does not contain a start planet';
-				return;
 			}
 			if(options.toIdx === undefined || options.toIdx === null || options.toIdx < 0) {
 				throw 'route planner options object does not contain a target planet';
-				return;
 			}
 			if(options.excludeAffiliations === undefined) {
 				options.excludeAffiliations = {};
@@ -86,8 +84,6 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				options.excludeAffiliations.o = false;
 			}
 
-			// Source and target planet objects
-			var sourcePlanet = btplanets.planets[options.fromIdx];
 			var targetPlanet = btplanets.planets[options.toIdx];
 
 			// The open list is a key/value map containing all planets that can be reached from the
@@ -234,7 +230,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		 * @options Object The route planning configuration object
 		 */
 		plotRoute : function (options) {
-			var route = this.findRoute(options);
+			var route = [];
+			var curStretch;
 			var routeComponents = [];
 			var group = d3.select('svg').select('g.jump-routes');
 
@@ -244,6 +241,20 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			if(typeof route === 'string') {
 				throw route;//console.log(route);
 				return;
+			}
+
+			if(!this.stops || this.stops.length < 2) {
+				return;
+			}
+
+			for(var i = 0, len = this.stops.length - 1; i < len; i++) {
+				options.fromIdx = this.stops[i].index;
+				options.toIdx = this.stops[i+1].index;
+				curStretch = this.findRoute(options);
+				if(route.length > 0 && curStretch.length > 0) {
+					curStretch.shift();
+				}
+				route = route.concat(curStretch);
 			}
 
 			// assemble the different route components

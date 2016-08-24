@@ -119,32 +119,38 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				i = btplanets.findPlanetId(name);
 				planet = btplanets.planets[i];
 				err.classed('visible', false);
-				console.log('add planet to route: ' + planet.name);
+				if(routes.stops.length > 0 && routes.stops[routes.stops.length - 1].name === planet.name) {
+					return;
+				}
 				routes.addStop(planet);
-				this.addRoutePlanet();
+				this.updateRouteMapDisplay();
 			} catch(e) {
 				i = -1;
 				err.text(e)
 					.classed('visible', true);
 			}
+			this.updateRouteUi();
 		},
 
-		addRoutePlanet : function (planet) {
+		updateRouteUi : function () {
 			var ct = d3.select('#stops-ct');
 			if(ct.classed('empty')) {
 				ct.html('');
 				ct.classed('empty', false);
 			}
-			ct.selectAll('div.stop-info')
-				.data(routes.stops)
-				.enter()
-					.append('div')
-					.attr('class', function (d) {
+			var stopCts = ct.selectAll('div.stop-info')
+				.data(routes.stops);
+			stopCts.exit().remove();
+			stopCts.enter().append('div');
+			stopCts.attr('class', function (d) {
 						return 'stop-info ' + d.affiliation.toLowerCase().replace(/\s/g, '-');
 					})
-					.attr('data-idx', function(d, i) {
+					.attr('data-stop-idx', function(d, i) {
 						var stopCt = d3.select(this);
-						stopCt.append('h3').text(d.name);
+						stopCt.selectAll('*').remove();
+						stopCt.append('h3')
+							.text(d.name)
+							.attr('data-system-idx', d.index);
 						stopCt.append('button')
 							.classed('up', true)
 							.html('<span class="fa fa-caret-up"></span>');
@@ -165,6 +171,76 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 							.text('Political affiliation: ' + d.affiliation);*/
 						return i;
 					});
+			ct.selectAll('button.center').on('click', this.onRouteSystemCenterBtn);
+			ct.selectAll('button.remove').on('click', this.onRouteRemoveBtn.bind(this));
+			ct.selectAll('button.up').on('click', this.onRouteUpBtn.bind(this));
+			ct.selectAll('button.down').on('click', this.onRouteDownBtn.bind(this));
+		},
+
+		updateRouteMapDisplay : function () {
+			var err = d3.select('div.controls div.route p.error');
+			try {
+				routes.plotRoute({
+					excludeAffiliations: {
+						cc: !d3.select('#route_allow_cc').property('checked'),
+						dc: !d3.select('#route_allow_dc').property('checked'),
+						fs: !d3.select('#route_allow_fs').property('checked'),
+						fwl: !d3.select('#route_allow_fwl').property('checked'),
+						lc: !d3.select('#route_allow_lc').property('checked'),
+						p: !d3.select('#route_allow_per').property('checked'),
+						o: !d3.select('#route_allow_other').property('checked')
+					}
+				});
+			} catch(e) {
+				err.text(e).classed('visible', true);
+			}
+		},
+
+		onRouteSystemCenterBtn : function () {
+			var coordinates = this.previousSibling.textContent;
+			var coords = coordinates.substring(8).split(',');
+			btplanets.centerOnCoordinates(parseFloat(coords[0]), parseFloat(coords[1]));
+		},
+
+		onRouteRemoveBtn : function () {
+			var target = d3.event.target;
+			while(target.tagName.toLowerCase() !== 'div') {
+				target = target.parentNode;
+			}
+			var index = parseInt(target.getAttribute('data-stop-idx'), 10);
+			routes.removeStop(index);
+			this.updateRouteMapDisplay();
+			this.updateRouteUi();
+		},
+
+		onRouteUpBtn : function () {
+			var target = d3.event.target;
+			while(target.tagName.toLowerCase() !== 'div') {
+				target = target.parentNode;
+			}
+			var index = parseInt(target.getAttribute('data-stop-idx'), 10);
+			try {
+				routes.moveStop(index, index - 1);
+			} catch(e) {
+				console.warn(e);
+			}
+			this.updateRouteMapDisplay();
+			this.updateRouteUi();
+		},
+
+		onRouteDownBtn : function () {
+			var target = d3.event.target;
+			while(target.tagName.toLowerCase() !== 'div') {
+				target = target.parentNode;
+			}
+			var index = parseInt(target.getAttribute('data-stop-idx'), 10);
+			try {
+				routes.moveStop(index, index + 1);
+			} catch(e) {
+				console.warn(e);
+			}
+			this.updateRouteMapDisplay();
+			this.updateRouteUi();
 		},
 
 		/**
@@ -221,7 +297,6 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 		onSelectionCenterBtn : function () {
 			var coordinates = this.parentNode.firstChild.textContent;
 			var coords = coordinates.substring(8).split(',');
-			console.log(coords);
 			btplanets.centerOnCoordinates(parseFloat(coords[0]), parseFloat(coords[1]));
 		},
 
@@ -352,48 +427,6 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 
 			ct.selectAll('button.remove').on('click', this.onSelectionRemoveBtn);
 			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
-		},
-
-		/**
-		 * React to the route submit button being pressed
-		 */
-		onRouteSubmit : function () {
-			var from = d3.select('div.controls').select('.route')
-					.select('input[name="fromSystem"]').property('value');
-			var to = d3.select('div.controls').select('.route')
-					.select('input[name="toSystem"]').property('value');
-			var fromIdx, toIdx;
-			var errP = d3.select('div.controls').select('div.route').select('p.error');
-			var exAff = {};
-
-			var routeSettings = d3.select('div.controls').select('div.route');
-			exAff.cc = !routeSettings.select('#route_allow_cc').property('checked');
-			exAff.dc = !routeSettings.select('#route_allow_dc').property('checked');
-			exAff.fs = !routeSettings.select('#route_allow_fs').property('checked');
-			exAff.fwl = !routeSettings.select('#route_allow_fwl').property('checked');
-			exAff.lc = !routeSettings.select('#route_allow_lc').property('checked');
-			exAff.p = !routeSettings.select('#route_allow_per').property('checked');
-			exAff.o = !routeSettings.select('#route_allow_other').property('checked');
-
-			try {
-				if(!from.trim()) {
-					throw 'No starting system specified';
-				}
-				if(!to.trim()) {
-					throw 'No target system specified';
-				}
-				fromIdx = btplanets.findPlanetId(from);
-				toIdx = btplanets.findPlanetId(to);
-				errP.classed('visible', false);
-				routes.plotRoute({
-					fromIdx : fromIdx,
-					toIdx : toIdx,
-					excludeAffiliations : exAff
-				});
-			} catch(e) {
-				console.log(e, d3.select('div.controls').select('div.route'));
-				errP.classed('visible', true).html(e);
-			}
 		}
 	};
 });

@@ -48,6 +48,7 @@ define(['js/lib/d3.min'], function(d3) {
 					this.planets = json;
 					this.capitals = [];
 					for(var i = 0, len = this.planets.length; i < len; i++) {
+						this.planets[i].index = i;
 						cur = this.planets[i].name.toLowerCase();
 						if(	cur === 'sian' || cur === 'luthien'
 							|| cur === 'new avalon' || cur === 'atreus'

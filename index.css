@@ -159,6 +159,7 @@ div.controls > div {
 	height: calc(100% - 2em);
 	/*right: -100%;*/
 	right: 0;
+	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 1em 15px;
 	position: absolute;
@@ -185,6 +186,7 @@ div.controls > div.active {
 	top: 0;
 	transition-delay: .5s;
 	z-index: 5;
+	overflow-y: none;
 }
 div.controls h2 {
 	/*margin: 1em 0;*/
@@ -237,10 +239,10 @@ div.controls div.stop-info:before {
 	top: -1.5em;
 	width: 100%;
 }
-div.controls div.stop-info[data-idx="0"] {
+div.controls div.stop-info[data-stop-idx="0"] {
 	margin: 0;
 }
-div.controls div.stop-info[data-idx="0"]:before {
+div.controls div.stop-info[data-stop-idx="0"]:before {
 	display: none;
 }
 div.controls div.planet-info.liao,

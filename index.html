@@ -8,9 +8,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="./index.css" />
 	<link rel='shortcut icon' type='image/png' href='img/favicon.png' />
-
-	<script src="js/lib/require.min.js" charset="utf-8"></script>
-	<script src="js/index.js"></script>
 </head>
 
 <body>
@@ -92,7 +89,7 @@
 	</div>
 
 	<div class="map-ct">
-		<svg class="map planets-capitals borders-lines borders-hatch">
+		<svg class="map planets-capitals borders-lines borders-hatch route-visible">
 			<defs>
 				<pattern id="hatch-capellan-confederation" patternUnits="userSpaceOnUse" width="40" height="40">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(66,110,51,.4)" stroke-width="16" />
@@ -114,12 +111,16 @@
 			  	</pattern>
 			</defs>
 			<g class="borders"></g>
+			<g class="jump-routes"></g>
 			<g class="planet-circles"></g>
 			<g class="planet-names"></g>
 			<circle class="jump-range" />
 			<g class="legend"></g>
 		</svg>
 	</div>
+
+	<script src="js/lib/require.min.js" charset="utf-8"></script>
+	<script src="js/index.js"></script>
 </body>
 
 </html>
