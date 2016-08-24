@@ -245,6 +245,12 @@ div.controls div.stop-info[data-stop-idx="0"] {
 div.controls div.stop-info[data-stop-idx="0"]:before {
 	display: none;
 }
+div.controls div.stop-info span.route-stop-info {
+	font-size: .8em;
+	left: 3.5em;
+	position: absolute;
+	top: -2.4em;
+}
 div.controls div.planet-info.liao,
 div.controls div.stop-info.capellan-confederation {
 	background-image: url("./img/liao_64.png");
@@ -329,8 +335,14 @@ div.controls div.stop-info button.down {
 div.controls div.stop-info button.up {
 	right: 2em;
 }
+div.controls div.stop-info:first-child button.up {
+	color: #666;
+}
 div.controls div.stop-info button.down {
 	right: 3.75em;
+}
+div.controls div.stop-info:last-child button.down {
+	color: #666;
 }
 div.controls div.stop-info span.coordinates {
 	font-size: .8em;
@@ -705,8 +717,13 @@ svg.zoomed-in circle.jump-range.visible {
 
 /* JUMP PATH STYLES */
 svg g.jump-routes path {
+	opacity: 1;
 	stroke: #eee;
 	stroke-width: 2px;
+	transition: opacity .5s;
+}
+svg.route-hidden g.jump-routes path {
+	opacity: 0;
 }
 
 /* LEGEND STYLES */

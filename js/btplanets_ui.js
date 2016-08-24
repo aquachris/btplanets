@@ -21,7 +21,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			d3.select('#route-system').on('keypress', this.onRouteFindKeyPress.bind(this));
 			d3.select('#route-system-btn').on('click', this.onRouteFindBtn.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
-			//d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle);
+			d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle.bind(this));
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
 			btplanets.on('selectionadded', this, this.onSelectionAdded);
@@ -123,13 +123,14 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					return;
 				}
 				routes.addStop(planet);
-				this.updateRouteMapDisplay();
+				this.updateRoute();
 			} catch(e) {
 				i = -1;
 				err.text(e)
 					.classed('visible', true);
 			}
 			this.updateRouteUi();
+			field.node().select();
 		},
 
 		updateRouteUi : function () {
@@ -166,30 +167,41 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 						stopCt.append('button')
 							.classed('center', true)
 							.html('<span class="fa fa-dot-circle-o"></span>');
+						if(i > 0) {
+							stopCt.append('span')
+								.classed('route-stop-info', true)
+								.text(d.numJumps + ' jumps');
+						}
 						/*stopCt.append('p')
 							.classed('affilitation', true)
 							.text('Political affiliation: ' + d.affiliation);*/
 						return i;
 					});
+			if(routes.stops.length === 0) {
+				ct.classed('empty', true)
+					.append('em')
+					.text('No stops entered');
+			}
 			ct.selectAll('button.center').on('click', this.onRouteSystemCenterBtn);
 			ct.selectAll('button.remove').on('click', this.onRouteRemoveBtn.bind(this));
 			ct.selectAll('button.up').on('click', this.onRouteUpBtn.bind(this));
 			ct.selectAll('button.down').on('click', this.onRouteDownBtn.bind(this));
 		},
 
-		updateRouteMapDisplay : function () {
+		updateRoute : function () {
 			var err = d3.select('div.controls div.route p.error');
 			try {
 				routes.plotRoute({
 					excludeAffiliations: {
-						cc: !d3.select('#route_allow_cc').property('checked'),
-						dc: !d3.select('#route_allow_dc').property('checked'),
-						fs: !d3.select('#route_allow_fs').property('checked'),
-						fwl: !d3.select('#route_allow_fwl').property('checked'),
-						lc: !d3.select('#route_allow_lc').property('checked'),
-						p: !d3.select('#route_allow_per').property('checked'),
-						o: !d3.select('#route_allow_other').property('checked')
-					}
+						cc: !d3.select('#route-allow-cc').property('checked'),
+						dc: !d3.select('#route-allow-dc').property('checked'),
+						fs: !d3.select('#route-allow-fs').property('checked'),
+						fwl: !d3.select('#route-allow-fwl').property('checked'),
+						lc: !d3.select('#route-allow-lc').property('checked'),
+						p: !d3.select('#route-allow-per').property('checked'),
+						o: !d3.select('#route-allow-other').property('checked')
+					},
+					includeUninhabited: d3.select('#route-allow-uninhabited').property('checked')
 				});
 			} catch(e) {
 				err.text(e).classed('visible', true);
@@ -209,7 +221,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			}
 			var index = parseInt(target.getAttribute('data-stop-idx'), 10);
 			routes.removeStop(index);
-			this.updateRouteMapDisplay();
+			this.updateRoute();
 			this.updateRouteUi();
 		},
 
@@ -224,7 +236,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			} catch(e) {
 				console.warn(e);
 			}
-			this.updateRouteMapDisplay();
+			this.updateRoute();
 			this.updateRouteUi();
 		},
 
@@ -239,7 +251,20 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			} catch(e) {
 				console.warn(e);
 			}
-			this.updateRouteMapDisplay();
+			this.updateRoute();
+			this.updateRouteUi();
+		},
+
+		onRouteOptionToggle : function () {
+			var target = d3.event.target;
+			if(target.id === 'route-display') {
+				var checked = d3.select(target).property('checked');
+				d3.select('svg.map')
+					.classed('route-hidden', !checked)
+					.classed('route-visible', checked);
+				return;
+			}
+			this.updateRoute();
 			this.updateRouteUi();
 		},
 

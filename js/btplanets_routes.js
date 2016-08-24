@@ -251,6 +251,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				options.fromIdx = this.stops[i].index;
 				options.toIdx = this.stops[i+1].index;
 				curStretch = this.findRoute(options);
+				this.stops[i+1].numJumps = curStretch.length - 2;
 				if(route.length > 0 && curStretch.length > 0) {
 					curStretch.shift();
 				}
