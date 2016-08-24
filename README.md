@@ -75,7 +75,7 @@ _VIDEO_
 
 ## TODOs / Known issues
 - UI work needed: Define use cases, implement interface
-- Route planner: Current algorithm is too greedy, resulting in different routes when planning A -> B than B -> A. Compare Terra -> Tharkad to Tharkad -> Terra.
+- Route planner: Current algorithm is too greedy, resulting in different routes when planning A &rarr; B than B &rarr; A. Compare Terra &rarr; Tharkad to Tharkad &rarr; Terra.
 - Add periphery state borders
 - Pretty up the side bar
 - Add BT logo / graphics
