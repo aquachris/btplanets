@@ -93,8 +93,9 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			// - cameFrom: The planet previously visited in the route
 			var openList = {};
 			openList[options.fromIdx] = {
+				cameFrom : true,
 				jumps : 0,
-				cameFrom : true
+				heuristicDistance: 0
 			};
 
 			// The closed list is a key/value map containing all investigated planets
@@ -166,7 +167,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 						delete(openList[testKey]);
 						continue;
 					}
-					testDist = this.findDistance(testPlanet, targetPlanet);
+					testDist = this.findDistance(testPlanet, targetPlanet) + openList[testKey].heuristicDistance;
 					if(testDist < closestDist) {
 						curIdx = testKey;
 						closestDist = testDist;
@@ -191,11 +192,11 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 					}
 					// set or update the openList entry, if the number of jumps from the current
 					// closest planet is less than the existing path
-					if(!openList.hasOwnProperty(curPlanet.neighbors[i])
-						|| openList[curPlanet.neighbors[i]].jumps > openList[curIdx].jumps+1) {
+					if(!openList.hasOwnProperty(curPlanet.neighbors[i]) || openList[curPlanet.neighbors[i]].jumps > openList[curIdx].jumps+1) {
 						openList[curPlanet.neighbors[i]] = {
 							cameFrom : curIdx,
-							jumps : openList[curIdx].jumps+1
+							jumps : openList[curIdx].jumps+1,
+							heuristicDistance : (openList[curIdx].jumps+1) * 30
 						};
 					}
 				}
@@ -240,7 +241,6 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 			if(typeof route === 'string') {
 				throw route;//console.log(route);
-				return;
 			}
 
 			if(!this.stops || this.stops.length < 2) {
@@ -251,7 +251,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				options.fromIdx = this.stops[i].index;
 				options.toIdx = this.stops[i+1].index;
 				curStretch = this.findRoute(options);
-				this.stops[i+1].numJumps = curStretch.length - 2;
+				this.stops[i+1].numJumps = curStretch.length - 1;
 				if(route.length > 0 && curStretch.length > 0) {
 					curStretch.shift();
 				}

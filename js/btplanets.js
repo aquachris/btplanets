@@ -334,7 +334,7 @@ define(['js/lib/d3.min'], function(d3) {
 			var halfWidth = bbox.width * 0.5;
 			var halfHeight = bbox.height * 0.5;
 			cx = ((-translation[0] + halfWidth) / scale - halfWidth) / me.pxPerLy;
-			cy = -((((translation[1] / -1)  + halfHeight) / scale - halfHeight) / me.pxPerLy)
+			cy = -((((translation[1] / -1)  + halfHeight) / scale - halfHeight) / me.pxPerLy);
 			return [cx, cy];
 		},
 
@@ -460,7 +460,7 @@ define(['js/lib/d3.min'], function(d3) {
 			},
 			planetText : function (d, i) {
 				var ret = 'translate(';
-				ret += (this.xScale(d.x) + this.PLANET_RADIUS*2 + (d.isCapital ? this.PLANET_RADIUS * .75 : 0))
+				ret += (this.xScale(d.x) + this.PLANET_RADIUS*2 + (d.isCapital ? this.PLANET_RADIUS * 0.75 : 0));
 				ret += ',' ;
 				ret += (this.yScale(d.y)+(this.PLANET_RADIUS*0.5+2)) + ')';
 				return ret;
@@ -508,5 +508,5 @@ define(['js/lib/d3.min'], function(d3) {
 				me.listeners[eventName][i].fn.apply(me.listeners[eventName][i].scope, args);
 			}
 		}
-	}
+	};
 });
