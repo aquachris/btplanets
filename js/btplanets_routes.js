@@ -52,6 +52,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		 */
 		findRoute : function (options) {
 			options = options || {};
+			var route = [];
 
 			if(options.fromIdx === undefined || options.fromIdx === null || options.fromIdx < 0) {
 				throw 'route planner options object does not contain a start planet';
@@ -84,145 +85,252 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				options.excludeAffiliations.o = false;
 			}
 
+			var startPlanet = btplanets.planets[options.fromIdx];
 			var targetPlanet = btplanets.planets[options.toIdx];
 
 			// The open list is a key/value map containing all planets that can be reached from the
 			// investigated planets, but that have not been investigated themselves.
-			// The planet entries in the open list have two properties:
+			// The planet entries in the open list have three properties:
 			// - jumps: The minimum number of jumps to reach the planet
 			// - cameFrom: The planet previously visited in the route
-			var openList = {};
-			openList[options.fromIdx] = {
+			// - heuristicDistance: The distance travelled according to the heuristic function (30 * number of jumps)};
+			//
+			// There are two openList objects because we are employing a bidirectional search strategy.
+			var openListStartTarget = {}; // The open list for the search direction (start -> target)
+			var openListTargetStart = {}; // The open list for the reverse direction (target -> start)
+
+			openListStartTarget[options.fromIdx] = {
 				cameFrom : true,
 				jumps : 0,
-				heuristicDistance: 0
+				heuristicDistance : 0
+			};
+			openListTargetStart[options.toIdx] = {
+				cameFrom: true,
+				jumps : 0,
+				heuristicDistance : 0
 			};
 
 			// The closed list is a key/value map containing all investigated planets
 			// See openList for entry structure.
-			var closedList = {};
+			var closedListStartTarget = {};
+			var closedListTargetStart = {};
 
 			// The list of planet ids for the finished route
-			var route = [];
+			var routeStartTarget = [];
+			var routeTargetStart = [];
 
 			// Track the iterations made
 			var iterations = 0;
 
 			// Loop variables
-			var curIdx, curPlanet;
-			var curAff = '', affCat = '';
-			var closestDist;
-			var testDist, testPlanet;
+			var curListObj, curIdx;
+			var mergeIdxStartTarget = -1;
+			var mergeIdxTargetStart = -1;
+			var mergeIdx = -1;
 
-			// Main search loop: check the open list for the planet that is closest to the target
-			while(Object.keys(openList).length > 0) {
+			// Main search loop: check the open lists for the planets that are closest
+			// to the target / start planet. Alternate between the two searches.
+			while(Object.keys(openListStartTarget).length > 0 && Object.keys(openListTargetStart).length > 0) {
 				iterations++;
-				//  find planet that is closest to target
-				curIdx = -1;
-				curPlanet = null;
-				closestDist = Infinity;
-				for(var testKey in openList) {
-					if(!openList.hasOwnProperty(testKey)) {
-						continue;
-					}
-					testPlanet = btplanets.planets[testKey];
-					curAff = testPlanet.affiliation.toLowerCase();
-					switch(curAff) {
-						case 'capellan confederation':
-							affCat = 'cc';
-							break;
-						case 'draconis combine':
-							affCat = 'dc';
-							break;
-						case 'federated suns':
-							affCat = 'fs';
-							break;
-						case 'free worlds league':
-							affCat = 'fwl';
-							break;
-						case 'lyran commonwealth':
-							affCat = 'lc';
-							break;
-						case 'magistracy of canopus':
-						case 'taurian concordat':
-						case 'outworlds alliance':
-						case 'marian hegemony':
-						case 'illyrian palatinate':
-						case 'circinus federation':
-						case 'oberon confederation':
-						case "morgraine's valkyrate":
-							affCat = 'p';
-							break;
-						default:
-							affCat = 'o';
-							break;
-					}
-					if(!options.includeUninhabited && (curAff === '?' || curAff === 'no record')) {
-						closedList[testKey] = openList[testKey];
-						delete(openList[testKey]);
-						continue;
-					}
-					if(options.excludeAffiliations[affCat] === true) {
-						closedList[testKey] = openList[testKey];
-						delete(openList[testKey]);
-						continue;
-					}
-					testDist = this.findDistance(testPlanet, targetPlanet) + openList[testKey].heuristicDistance;
-					if(testDist < closestDist) {
-						curIdx = testKey;
-						closestDist = testDist;
-						curPlanet = testPlanet;
-					}
+
+				// START -> TARGET direction
+				// find planet in open list that is closest to the target
+				curListObj = this.processNextPlanet(
+					openListStartTarget,
+					closedListStartTarget,
+					targetPlanet,
+					options,
+					iterations * 2 - 1
+				);
+				// check if termination condition is reached
+				if(curListObj.planet === targetPlanet || closedListTargetStart.hasOwnProperty(curListObj.idx)) {
+					mergeIdxStartTarget = curListObj.idx;
 				}
-				if(!curPlanet) {
-					throw 'Closest neighbor cannot be found ('+ iterations + ' systems searched)';
+
+				// TARGET -> START direction
+				// find planet in open list that is closest to the start
+				curListObj = this.processNextPlanet(
+					openListTargetStart,
+					closedListTargetStart,
+					startPlanet,
+					options,
+					iterations * 2
+				);
+				// check if termination condition is reached
+				if(curListObj.planet === startPlanet || closedListStartTarget.hasOwnProperty(curListObj.idx)) {
+					mergeIdxTargetStart = curListObj.idx;
 				}
-				if(curPlanet === targetPlanet) {
-					closedList[curIdx] = openList[curIdx];
-					console.log(openList[curIdx]);
-					delete openList[curIdx];
+
+				// pick the merge point
+				if(mergeIdxStartTarget > 0 || mergeIdxTargetStart > 0) {
+					if(mergeIdxStartTarget === mergeIdxTargetStart ||
+							mergeIdxTargetStart < 0 ||
+							closedListStartTarget.hasOwnProperty(options.toIdx)) {
+						// only the forward search has found a merge point
+						// OR both searches have found the same merge point
+						// OR the forward search has arrived at the target planet
+						mergeIdx = mergeIdxStartTarget;
+					} else if(mergeIdxStartTarget < 0) {
+						// there is only a merge point for the reverse search
+						mergeIdx = mergeIdxTargetStart;
+					} else {
+						// pick the alphabetically first planet from both options
+						if(btplanets.planets[mergeIdxStartTarget].name < btplanets.planets[mergeIdxTargetStart].name) {
+							mergeIdx = mergeIdxStartTarget;
+						} else {
+							mergeIdx = mergeIdxTargetStart;
+						}
+					}
 					break;
 				}
-
-				// closest planet found, add all of its neighbors to open list (unless they are in closedList already)
-				for(var i = 0, len = curPlanet.neighbors.length; i < len; i++) {
-					// ignore neighbors that are in closed list
-					if(closedList.hasOwnProperty(curPlanet.neighbors[i])) {
-						continue;
-					}
-					// set or update the openList entry, if the number of jumps from the current
-					// closest planet is less than the existing path
-					if(!openList.hasOwnProperty(curPlanet.neighbors[i]) || openList[curPlanet.neighbors[i]].jumps > openList[curIdx].jumps+1) {
-						openList[curPlanet.neighbors[i]] = {
-							cameFrom : curIdx,
-							jumps : openList[curIdx].jumps+1,
-							heuristicDistance : (openList[curIdx].jumps+1) * 30
-						};
-					}
-				}
-
-				closedList[curIdx] = openList[curIdx];
-				delete openList[curIdx];
 
 				if(iterations > 4000) {
 					throw 'more than 4000 iterations, breaking off path search';
 				}
 			}
 
-			if(!closedList[options.toIdx]) {
-				throw 'Target cannot be reached';
+			if(mergeIdx < 0) {
+				throw 'Target cannot be reached';// ('+iterations*2+' systems searched)';
 			}
 
-			// Assemble final route: Go from the target planet backwards using the "cameFrom" property and
+			// Assemble final route for forward direction:
+			// Go backward from the merge planet using the "cameFrom" property and
 			// track the path, then reverse at the end.
-			curIdx = options.toIdx;
-
-			while(closedList[curIdx].jumps > 0) {
-				route.push(Number(curIdx));
-				curIdx = closedList[curIdx].cameFrom;
+			curIdx = mergeIdx;
+			if(closedListStartTarget.hasOwnProperty(curIdx)) {
+				while(closedListStartTarget[curIdx].jumps > 0) {
+					route.push(Number(curIdx));
+					curIdx = closedListStartTarget[curIdx].cameFrom;
+				}
+				route.push(Number(options.fromIdx));
+				route.reverse();
 			}
-			route.push(Number(options.fromIdx));
-			return route.reverse();
+
+			// Assemble final route for reverse direction:
+			// Go forward from the merge planet using the "cameFrom" property and
+			// track the path. Merge with path from forward search.
+			curIdx = mergeIdx;
+			if(!closedListStartTarget.hasOwnProperty(options.toIdx)) {
+				while(closedListTargetStart[curIdx].jumps > 0) {
+					if(curIdx !== mergeIdx) {
+						route.push(Number(curIdx));
+					}
+					curIdx = closedListTargetStart[curIdx].cameFrom;
+				}
+				route.push(Number(options.toIdx));
+			}
+
+			console.log('search completed after ' + iterations + ' iterations.');
+			return route;
+		},
+
+		/**
+		 * Find and process the best candidate in a given open list and modify the given
+		 * open and closed lists accordingly.
+		 * @private
+		 */
+		processNextPlanet : function (openList, closedList, target, options, systemsSearched) {
+			var testDist, testPlanet;
+			var curAff, affCat;
+			var retObj = {
+				idx : -1,
+				planet : null,
+				closestDist : Infinity
+			};
+			for(var testKey in openList) {
+				if(!openList.hasOwnProperty(testKey)) {
+					continue;
+				}
+				testPlanet = btplanets.planets[testKey];
+				// determine planet affiliation
+				curAff = testPlanet.affiliation.toLowerCase();
+				switch(curAff) {
+					case 'capellan confederation':
+						affCat = 'cc';
+						break;
+					case 'draconis combine':
+						affCat = 'dc';
+						break;
+					case 'federated suns':
+						affCat = 'fs';
+						break;
+					case 'free worlds league':
+						affCat = 'fwl';
+						break;
+					case 'lyran commonwealth':
+						affCat = 'lc';
+						break;
+					case 'magistracy of canopus':
+					case 'taurian concordat':
+					case 'outworlds alliance':
+					case 'marian hegemony':
+					case 'illyrian palatinate':
+					case 'circinus federation':
+					case 'oberon confederation':
+					case "morgraine's valkyrate":
+						affCat = 'p';
+						break;
+					default:
+						affCat = 'o';
+						break;
+				}
+
+				// test for exclusion filters:
+				// exclusion of uninhabited planets
+				if(!options.includeUninhabited && (curAff === '?' || curAff === 'no record')) {
+					closedList[testKey] = openList[testKey];
+					delete(openList[testKey]);
+					continue;
+				}
+				// exclusion by planet affiliation
+				if(options.excludeAffiliations[affCat] === true) {
+					closedList[testKey] = openList[testKey];
+					delete(openList[testKey]);
+					continue;
+				}
+
+				// planet not excluded, check distance and compare to shortest distance
+				testDist = this.findDistance(testPlanet, target) + openList[testKey].heuristicDistance;
+				if(testDist < retObj.closestDist) {
+					retObj.idx = testKey;
+					retObj.closestDist = testDist;
+					retObj.planet = testPlanet;
+				}
+			}
+			// no more valid entries in openList
+			if(!retObj.planet) {
+				throw 'No more valid neighbor systems found (' + systemsSearched + ' systems searched)';
+			}
+			// planet is target planet
+			if(retObj.planet === target) {
+				closedList[retObj.idx] = openList[retObj.idx];
+				delete openList[retObj.idx];
+				return retObj;
+			}
+
+			// closest planet found, add all of its neighbors to open list (unless they are in closedList already)
+			for(var i = 0, len = retObj.planet.neighbors.length; i < len; i++) {
+				// ignore neighbors that are in closed list
+				if(closedList.hasOwnProperty(retObj.planet.neighbors[i])) {
+					continue;
+				}
+				// set or update the openList entry, if the number of jumps from the current
+				// closest planet is less than the existing path
+				if(!openList.hasOwnProperty(retObj.planet.neighbors[i]) ||
+						openList[retObj.planet.neighbors[i]].jumps > openList[retObj.idx].jumps+1) {
+					openList[retObj.planet.neighbors[i]] = {
+						cameFrom : retObj.idx,
+						jumps : openList[retObj.idx].jumps+1,
+						heuristicDistance : (openList[retObj.idx].jumps+1) * 30
+					};
+				}
+			}
+
+			// add current system to closed list
+			closedList[retObj.idx] = openList[retObj.idx];
+			delete openList[retObj.idx];
+
+			return retObj;
 		},
 
 		/**
@@ -245,6 +353,12 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 			if(!this.stops || this.stops.length < 2) {
 				return;
+			}
+
+			// reset stops info
+			this.stops[0].numJumps = 0;
+			for(var i = 1, len = this.stops.length; i < len; i++) {
+				this.stops[i].numJumps = '\u221e';
 			}
 
 			for(var i = 0, len = this.stops.length - 1; i < len; i++) {

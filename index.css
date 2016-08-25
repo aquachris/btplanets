@@ -718,7 +718,7 @@ svg.zoomed-in circle.jump-range.visible {
 /* JUMP PATH STYLES */
 svg g.jump-routes path {
 	opacity: 1;
-	stroke: #eee;
+	stroke: rgba(255, 255, 255, .7);/*#eee;*/
 	stroke-width: 2px;
 	transition: opacity .5s;
 }

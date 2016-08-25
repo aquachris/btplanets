@@ -285,7 +285,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				controlsBg.classed('expanded', false);
 				controls.classed('expanded', false);
 				tabs.classed('expanded', false);
-				tabs.classed('active', false)
+				tabs.classed('active', false);
 			} else if(selection.length > 0) {
 				controlsBg.classed('expanded', true);
 				controls.classed('expanded', true);
