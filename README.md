@@ -1,7 +1,7 @@
 # btplanets
 An interactive map of the Inner Sphere in the year 3025.
 
-<img src="img/screenshots/collage.png" />
+<img src="img/screenshots/collage.png" style="box-shadow: 1px 1px 4px #333" />
 
 ## Content
 - Disclaimer
