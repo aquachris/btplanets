@@ -795,8 +795,7 @@ svg.planets-inhabited g.planet-names text.capital,
 svg.planets-capitals g.planet-names text.capital,
 svg g.planet-names text.selected,
 svg.route-visible.zoomed-in g.planet-names text.route,
-svg.route-visible g.planet-names text.route-start,
-svg.route-visible g.planet-names text.route-end {
+svg.route-visible g.planet-names text.route-stop {
 	opacity: 1;
 }
 /*svg.zoomed-in g.planet-names text.clan.visible,

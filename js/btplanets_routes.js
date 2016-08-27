@@ -347,6 +347,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			var curStretch;
 			var routeComponents = [];
 			var planet1, planet2;
+			var stopNameMap = {};
 			var group = d3.select('svg').select('g.jump-routes');
 
 			// remove the previous route from the dom
@@ -377,6 +378,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			for(var i = 0, len = this.stops.length - 1; i < len; i++) {
 				options.fromIdx = this.stops[i].index;
 				options.toIdx = this.stops[i+1].index;
+				stopNameMap[this.stops[i].name] = true;
+				stopNameMap[this.stops[i+1].name] = true;
 				curStretch = this.findRoute(options);
 				this.stops[i+1].numJumps = curStretch.length - 1;
 				if(route.length > 0 && curStretch.length > 0) {
@@ -401,10 +404,12 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				});
 				d3.selectAll('circle[name="'+planet1.name+'"], text.planet-name[name="'+planet1.name+'"]')
 					.classed('route', true)
+					.classed('route-stop', stopNameMap.hasOwnProperty(planet1.name))
 					.classed('route-start', i === 0);
 				if(i === len - 2) {
 					d3.selectAll('circle[name="'+planet2.name+'"], text.planet-name[name="'+planet2.name+'"]')
 						.classed('route', true)
+						.classed('route-stop', true)
 						.classed('route-end', true);
 				}
 			}
