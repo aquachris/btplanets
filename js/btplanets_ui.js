@@ -286,7 +286,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				controls.classed('expanded', false);
 				tabs.classed('expanded', false);
 				tabs.classed('active', false);
-			} else if(selection.length > 0) {
+			} else if(selection.length > 0 && !controls.classed('expanded')) {
 				controlsBg.classed('expanded', true);
 				controls.classed('expanded', true);
 				controls.selectAll('div').classed('active', false);
@@ -320,9 +320,58 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 		 * being clicked.
 		 */
 		onSelectionCenterBtn : function () {
-			var coordinates = this.parentNode.firstChild.textContent;
-			var coords = coordinates.substring(8).split(',');
+			var coordinateCt, coords;
+			var ps = this.parentNode.getElementsByTagName('p');
+			for(var i = 0, len = ps.length; i < len; i++) {
+				// if(ps[i].classList.contains('coordinates') {
+				if(ps[i].getAttribute('class') === 'coordinates') {
+					coordinateCt = ps[i];
+					break;
+				}
+			}
+			coords = coordinateCt.textContent.substring(8).split(',');
 			btplanets.centerOnCoordinates(parseFloat(coords[0]), parseFloat(coords[1]));
+		},
+
+		/**
+		 * React to the "start new route from this system" button being clicked.
+		 */
+		onSelectionNewRouteBtn : function () {
+			routes.clear();
+			this.onSelectionAppendToRouteBtn();
+		},
+
+ 		/**
+		 * React to the "append this system to the current route" button being clicked.
+		 */
+		onSelectionAppendToRouteBtn : function () {
+			var name, i, planet, err;
+			var el = d3.event.target.parentNode;
+			while(el.tagName.toLowerCase() !== 'div') {
+				el = el.parentNode;
+			}
+			el = el.firstChild;
+			name = el.textContent;
+			i, planet;
+			err = d3.select('div.controls div.route p.error');
+			if(name === '') {
+				err.classed('visible', false);
+				return;
+			}
+			try {
+				i = btplanets.findPlanetId(name);
+				planet = btplanets.planets[i];
+				err.classed('visible', false);
+				if(routes.stops.length > 0 && routes.stops[routes.stops.length - 1].name === planet.name) {
+					return;
+				}
+				routes.addStop(planet);
+				this.updateRoute();
+			} catch(e) {
+				i = -1;
+				err.text(e).classed('visible', true);
+			}
+			this.updateRouteUi();
 		},
 
 		/**
@@ -434,10 +483,12 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					}
 					html += '<div class="planet-info '+affiliationClass+'">';
 					html += '<h3>'+d.name+'</h3>';
-					html += '<button class="remove"><span class="fa fa-remove"></span></button>';
-					html += '<p><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
-					html += '<p><span>Coord.: '+d.x+', '+d.y+'</span>';
-					html += '<button class="center" title="center map on these coordinates"><span class="fa fa-dot-circle-o"></span></button></p>';
+					html += '<button class="remove" title="remove from selection"><span class="fa fa-remove"></span></button>';
+					html += '<button class="center" title="center map on these coordinates"><span class="fa fa-dot-circle-o"></span></button>';
+					html += '<button class="start-route" title="start a new route from this system"><span class="fa fa-level-down fa-rotate-270"></span></button>';
+					html += '<button class="append-route" title="add this system to the current route"><span class="fa fa-plus"></span></button>';
+					html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
+					html += '<p class="coordinates"><span>Coord.: '+d.x+', '+d.y+'</span></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
 					html += '</div>';
@@ -452,6 +503,8 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 
 			ct.selectAll('button.remove').on('click', this.onSelectionRemoveBtn);
 			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
+			ct.selectAll('button.start-route').on('click', this.onSelectionNewRouteBtn.bind(this));
+			ct.selectAll('button.append-route').on('click', this.onSelectionAppendToRouteBtn.bind(this));
 		}
 	};
 });

@@ -31,13 +31,78 @@ a:hover {
 /* HEADER */
 h1 {
 	color: #fff;
-	left: .75em;
+	left: 1em;
 	pointer-events: none;
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	/*text-shadow: 0px 0px 4px #aaa;*/
-	top: .75em;
+	top: 2.25em;
 	z-index: 1;
+}
+img.logo {
+	left: 1em;
+	position: fixed;
+	top: 1em;
+	width: 26em;
+	z-index: 1;
+}
+div.info-links {
+	display: inline-block;
+	left: 9em;
+	position: fixed;
+	top: 9em;
+	z-index: 1;
+}
+
+/* DISCLAIMER / ABOUT PAGES STYLES */
+div.popup-ct {
+	background-color: #f0f0f0;
+	border: 2px solid #333;
+	box-shadow: 1px 1px 0px #fff, -1px -1px 0 #fff;
+	color: #333;
+	font-size: 1.2em;
+	left: calc(50% - 17.5em);
+	opacity: 0;
+	padding: 1em 0;
+	position: fixed;
+	top: -100%;
+	transition: opacity .5s, top .5s ease-in-out 0s;
+	width: 35em;
+	z-index: 10;
+}
+div.popup-ct.visible {
+	opacity: 1;
+	top: 1em;
+}
+div.popup-ct > h2 {
+	font-size: 1.5em;
+	margin: 0 0 .1em 0;
+	padding: 0 .66em;
+}
+div.popup-ct > p {
+	margin: .75em 0 .25em 0;
+	padding: 0 1em;
+}
+div.popup-ct a:hover {
+	color: #666;
+}
+div.popup-ct button.close {
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	right: .25em;
+	top: .5em;
+}
+@media (max-width: 600px) {
+	div.popup-ct {
+		font-size: 1em;
+	}
+}
+@media (max-width: 500px) {
+	div.popup-ct {
+		font-size: .8em;
+	}
 }
 
 /* CONTROL PANEL STYLES */
@@ -323,6 +388,12 @@ div.controls div.stop-info button.center {
 	margin: 0 0 0 .5em;
 	padding: 0 .25em;
 }
+div.controls div.planet-info button.center,
+div.controls div.planet-info button.start-route,
+div.controls div.planet-info button.append-route {
+	margin: 0 .5em 0 0;
+	padding: 0 .25em;
+}
 div.controls div.planet-info button.remove,
 div.controls div.stop-info button.remove,
 div.controls div.stop-info button.up,
@@ -470,7 +541,7 @@ svg path.border {
 	stroke: transparent;
 	stroke-width: 0;
 	opacity: 1;
-	transition: opacity 1s, stroke-width 1s, fill 1s;
+	transition: opacity 1s, stroke-width 1s; /*, fill 1s;*/
 }
 svg.borders-lines path.border {
 	stroke-width: 2;
@@ -525,6 +596,35 @@ svg.borders-hatch path.border.lyran-commonwealth {
 svg.borders-fill path.border.lyran-commonwealth {
 	fill: rgba(90,180,240,.85);
 }
+/* Firefox specific hack.
+ * This becomes necessary because Firefox hash references only work for ids in the
+ * same document. Since the patterns are defined in the svg, and not in the parent
+ * document, they can't be referenced.
+ * The solution for FF is to reference an id in an external svg document, but that
+ * doesn't work in Chrome and Edge.
+ * see also http://stackoverflow.com/questions/15842224/firefox-svg-with-fillurlid-style-in-external-stylesheet-broken-inline-style
+ *
+ * I guess the safest solution would be to just put the style into the respective
+ * elements directly (using .attr('style') in javascript), but that goes against
+ * the idea of just having to set a class on the svg element to change path appearance.
+ */
+@-moz-document url-prefix() {
+	svg.borders-hatch path.border.capellan-confederation {
+		fill: url(./img/patterns.svg#hatch-capellan-confederation);
+	}
+	svg.borders-hatch path.border.draconis-combine {
+		fill: url(./img/patterns.svg#hatch-draconis-combine);
+	}
+	svg path.border.federated-suns {
+		fill: url(./img/patterns.svg#hatch-federated-suns);
+	}
+	svg.borders-hatch path.border.free-worlds-league {
+		fill: url(./img/patterns.svg#hatch-free-worlds-league);
+	}
+	svg.borders-hatch path.border.lyran-commonwealth {
+		fill: url(./img/patterns.svg#hatch-lyran-commonwealth);
+	}
+}
 
 
 /* PLANET CIRCLES STYLING */
@@ -548,7 +648,9 @@ svg.planets-all g.planet-circles circle.uncharted,
 svg.planets-inhabited g.planet-circles circle.inhabited,
 svg.planets-capitals g.planet-circles circle.capital,
 svg.planets-clans g.planet-circles circle.clan,
-svg g.planet-circles circle.selected {
+svg g.planet-circles circle.selected,
+svg.route-visible g.planet-circles circle.route,
+svg.route-visible g.planet-circles circle.route {
 	cursor: pointer;
 	opacity: 1;
 	pointer-events: all;
@@ -691,7 +793,10 @@ svg.planets-clans.zoomed-in g.planet-names text.clan,
 svg.planets-all g.planet-names text.capital,
 svg.planets-inhabited g.planet-names text.capital,
 svg.planets-capitals g.planet-names text.capital,
-svg g.planet-names text.selected {
+svg g.planet-names text.selected,
+svg.route-visible.zoomed-in g.planet-names text.route,
+svg.route-visible g.planet-names text.route-start,
+svg.route-visible g.planet-names text.route-end {
 	opacity: 1;
 }
 /*svg.zoomed-in g.planet-names text.clan.visible,

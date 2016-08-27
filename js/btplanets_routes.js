@@ -38,6 +38,10 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			this.stops.splice(i, 1);
 		},
 
+		clear : function () {
+			this.stops = [];
+		},
+
 		/**
 		 * Helper function that finds the euclidean distance between two planets
 		 */
@@ -342,10 +346,19 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			var route = [];
 			var curStretch;
 			var routeComponents = [];
+			var planet1, planet2;
 			var group = d3.select('svg').select('g.jump-routes');
 
 			// remove the previous route from the dom
 			group.selectAll('path.jump-path').remove();
+			d3.selectAll('circle.route')
+				.classed('route', false)
+				.classed('route-start', false)
+				.classed('route-end', false);
+			d3.selectAll('text.planet-name')
+				.classed('route', false)
+				.classed('route-start', false)
+				.classed('route-end', false);
 
 			if(typeof route === 'string') {
 				throw route;//console.log(route);
@@ -373,19 +386,27 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			}
 
 			// assemble the different route components
-			var planet, planet2;
+			// and set circle and text classes in map
 			for(var i = 0, len = route.length; i < len; i++) {
 				if(i >= len - 1) {
 					continue;
 				}
-				planet = btplanets.planets[route[i]];
+				planet1 = btplanets.planets[route[i]];
 				planet2 = btplanets.planets[route[i+1]];
 				routeComponents.push({
-					x1 : planet.x,
-					y1 : planet.y,
+					x1 : planet1.x,
+					y1 : planet1.y,
 					x2 : planet2.x,
 					y2 : planet2.y
 				});
+				d3.selectAll('circle[name="'+planet1.name+'"], text.planet-name[name="'+planet1.name+'"]')
+					.classed('route', true)
+					.classed('route-start', i === 0);
+				if(i === len - 2) {
+					d3.selectAll('circle[name="'+planet2.name+'"], text.planet-name[name="'+planet2.name+'"]')
+						.classed('route', true)
+						.classed('route-end', true);
+				}
 			}
 
 			group.selectAll('path')

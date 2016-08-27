@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+        <pattern xmlns="http://www.w3.org/2000/svg" patternUnits="userSpaceOnUse" id="hatch-free-worlds-league" height="40" width="40">
+			<path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(100,80,141,.4)" stroke-width="16"/>
+		</pattern>
+    </defs>
+
+    <circle xmlns="http://www.w3.org/2000/svg" cx="60" cy="60" r="50" fill="url(#hatch-free-worlds-league)"/>
+	<g>
+		<path d="M-12,1 L-3,2 L-5,8 L-1,15 L-12,14 L-20,49 L-4,56 L-6,78 L32,79 L28,119 L-1,131 L-13,165 L-32,181 L-24,191 L-40,200 L-38,210 L-25,217 L-39,231 L-21,240 L-26,244 L-21,260 L-9,269 L-11,296 L-1,301 L-3,328 L-11,336 L-5,346 L-4,362 L12,368 L-10,380 L-16,390 L-88,397 L-130,383 L-148,358 L-271,306 L-308,299 L-339,265 L-374,253 L-404,225 L-409,203 L-400,177 L-428,167 L-415,123 L-417,104 L-377,86 L-375,75 L-355,67 L-324,66 L-318,56 L-296,62 L-289,49 L-253,39 L-230,46 L-208,39 L-183,40 L-179,21 L-147,20 L-142,7 L-122,15 L-94,8 L-90,-2 L-73,9 L-65,13 L-50,8 L-38,-3 L-30,5 z" style="fill: url(&quot;#hatch-free-worlds-league&quot;) none;" transform="translate(500, 0)"/>
+	</g>
+</svg>

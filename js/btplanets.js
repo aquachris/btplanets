@@ -66,6 +66,31 @@ define(['js/lib/d3.min'], function(d3) {
 					this.fireEvent('initialized');
 				}.bind(this));
 			}.bind(this));
+			d3.selectAll('#disclaimer button.close, #about button.close').on('click', function () {
+				d3.select(this.parentNode).classed('visible', false);
+			});
+			d3.select('#disclaimer-link').on('click', function () {
+				var disclaimer = d3.select('#disclaimer');
+				var about = d3.select('#about');
+				var controls = d3.selectAll('.controls-background, .controls-tab-title, .controls');
+				if(!disclaimer.classed('visible')) {
+					controls.classed('expanded', false).classed('active', false);
+				}
+				disclaimer.classed('visible', !disclaimer.classed('visible'));
+				about.classed('visible', false);
+				d3.event.preventDefault();
+			});
+			d3.select('#about-link').on('click', function () {
+				var disclaimer = d3.select('#disclaimer');
+				var about = d3.select('#about');
+				var controls = d3.selectAll('.controls-background, .controls-tab-title, .controls');
+				if(!about.classed('visible')) {
+					controls.classed('expanded', false).classed('active', false);
+				}
+				disclaimer.classed('visible', false);
+				about.classed('visible', !about.classed('visible'));
+				d3.event.preventDefault();
+			});
 		},
 
 		/**

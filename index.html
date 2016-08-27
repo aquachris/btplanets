@@ -12,6 +12,12 @@
 
 <body>
 	<h1>The Inner Sphere (3025)</h1>
+	<img src="./img/bt_logo_transparent.svg" class="logo" />
+	<div class="info-links">
+		<a href="#" id="disclaimer-link">disclaimer</a>
+		<a href="#" id="about-link">about</a>
+	</div>
+
 	<div class="controls-tab-title noselect route expanded"><span>Jump route</span></div>
 	<div class="controls-tab-title noselect selection expanded"><span>Selection</span></div>
 	<div class="controls-tab-title noselect settings expanded active"><span>Settings</span></div>
@@ -62,16 +68,9 @@
 			</p>
 			<p class="error"></p>
 			<hr />
-			<!--
-			<p>From:</p>
-			<input name="fromSystem" value="" style="width: 100%" type="text" />
-			<p>To:</p>
-			<input name="toSystem" value="" style="width: 100%" type="text" />-->
 			<div id="stops-ct" class="stops-ct empty">
 				<em>No stops entered</em>
 			</div>
-			<!--button class="submit"><span class="fa fa-space-shuttle"></span> find shortest route</button>
-			<p class="more-button"><span class="fa fa-chevron-circle-down"></span> more options</p-->
 			<hr />
 			<div class="route-ct">
 				<h3>Options</h3>
@@ -90,24 +89,21 @@
 	</div>
 
 	<div class="map-ct">
-		<svg class="map planets-capitals borders-lines borders-hatch route-visible">
+		<svg class="map planets-capitals borders-lines borders-hatch route-visible" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
 			<defs>
-				<pattern id="hatch-capellan-confederation" patternUnits="userSpaceOnUse" width="40" height="40">
+				<pattern id="hatch-capellan-confederation" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(66,110,51,.4)" stroke-width="16" />
-				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(90,170,80,1)" stroke-width="10" /-->
 			  	</pattern>
-				<pattern id="hatch-draconis-combine" patternUnits="userSpaceOnUse" width="40" height="40">
+				<pattern id="hatch-draconis-combine" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(168,40,27,.4)" stroke-width="16" />
-				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(245,60,43,.8)" stroke-width="10" /-->
 				</pattern>
-				<pattern id="hatch-federated-suns" patternUnits="userSpaceOnUse" width="40" height="40">
+				<pattern id="hatch-federated-suns" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(156,97,39,.4)" stroke-width="16" />
-				  <!--path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(210,150,55,1)" stroke-width="10" /-->
 				</pattern>
-				<pattern id="hatch-free-worlds-league" patternUnits="userSpaceOnUse" width="40" height="40">
+				<pattern id="hatch-free-worlds-league" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(100,80,141,.4)" stroke-width="16" />
 				</pattern>
-				<pattern id="hatch-lyran-commonwealth" patternUnits="userSpaceOnUse" width="40" height="40">
+				<pattern id="hatch-lyran-commonwealth" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(63,122,170,.4)" stroke-width="16" />
 			  	</pattern>
 			</defs>
@@ -118,6 +114,33 @@
 			<circle class="jump-range" />
 			<g class="legend"></g>
 		</svg>
+	</div>
+
+	<div id="disclaimer" class="popup-ct disclaimer">
+		<button id="close-disclaimer" class="close" title="close this"><span class="fa fa-remove"></span></button>
+		<h2>Disclaimer</h2>
+		<p>This is a non-profit open source fan project for the BattleTech universe. It uses data from the public
+			fan Wiki at <a href="http://www.sarna.net" target="_blank">www.sarna.net</a>, as well as several art
+			assets from the community forums of the upcoming computer game
+			<a href="http://www.battletechgame.com" target="_blank">BATTLETECH</a> by
+			<a href="http://www.harebrained-schemes.com" target="_blank">Harebrained Schemes</a>, most notably the
+			BATTLETECH game logo and the house and faction sigils. The author understands these assets to be
+			promotional and free to use in an appropriate context.</p>
+		<p>The author intends no copyright or trademark infringement.</p>
+	</div>
+	<div id="about" class="popup-ct about">
+		<button id="close-about" class="close" title="close this"><span class="fa fa-remove"></span></button>
+		<h2>About</h2>
+		<p>I've always wanted to be able to explore the Battletech universe visually from a top-down perspective,
+			starting with an overview of the entire Inner Sphere and having the option to zoom in to interesting
+			points. Another interesting use case is plotting jump routes and estimating the travel time between
+			two systems.</p>
+		<p>I was inspired by the upcoming game <a href="http://www.battletechgame.com" target="_blank">BATTLETECH</a>
+			and hope that the map will help newcomers to familiarize themselves with the universe quickly and
+			enjoyably.</p>
+		<p>All planet names and coordinates are from <a href="http://www.sarna.net" target="_blank">www.sarna.net</a>,
+			with some corrections applied.</p>
+		<p>Programming by Christoph Wassermann.</p>
 	</div>
 
 	<script src="js/lib/require.min.js" charset="utf-8"></script>
