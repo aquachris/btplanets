@@ -224,7 +224,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				route.push(Number(options.toIdx));
 			}
 
-			console.log('search completed after ' + iterations + ' iterations.');
+			//console.log('search completed after ' + iterations + ' iterations.');
 			return route;
 		},
 
@@ -355,11 +355,13 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			d3.selectAll('circle.route')
 				.classed('route', false)
 				.classed('route-start', false)
-				.classed('route-end', false);
+				.classed('route-end', false)
+				.classed('route-stop', false);
 			d3.selectAll('text.planet-name')
 				.classed('route', false)
 				.classed('route-start', false)
-				.classed('route-end', false);
+				.classed('route-end', false)
+				.classed('route-stop', false);
 
 			if(typeof route === 'string') {
 				throw route;//console.log(route);
