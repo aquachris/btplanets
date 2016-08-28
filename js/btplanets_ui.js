@@ -154,18 +154,22 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 							.attr('data-system-idx', d.index);
 						stopCt.append('button')
 							.classed('up', true)
+							.attr('title', 'move this stop up')
 							.html('<span class="fa fa-caret-up"></span>');
 						stopCt.append('button')
 							.classed('down', true)
+							.attr('title', 'move this stop down')
 							.html('<span class="fa fa-caret-down"></span>');
 						stopCt.append('button')
 							.classed('remove', true)
+							.attr('title', 'remove this system from the route')
 							.html('<span class="fa fa-remove"></span>');
 						stopCt.append('span')
 							.classed('coordinates', true)
 							.html('Coord.: ' + d.x + ',' + d.y);
 						stopCt.append('button')
 							.classed('center', true)
+							.attr('title', 'center map on this system')
 							.html('<span class="fa fa-dot-circle-o"></span>');
 						if(i > 0) {
 							stopCt.append('span')
@@ -234,7 +238,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			try {
 				routes.moveStop(index, index - 1);
 			} catch(e) {
-				console.warn(e);
+				//console.warn(e);
 			}
 			this.updateRoute();
 			this.updateRouteUi();
@@ -484,7 +488,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					html += '<div class="planet-info '+affiliationClass+'">';
 					html += '<h3>'+d.name+'</h3>';
 					html += '<button class="remove" title="remove from selection"><span class="fa fa-remove"></span></button>';
-					html += '<button class="center" title="center map on these coordinates"><span class="fa fa-dot-circle-o"></span></button>';
+					html += '<button class="center" title="center map on this system"><span class="fa fa-dot-circle-o"></span></button>';
 					html += '<button class="start-route" title="start a new route from this system"><span class="fa fa-level-down fa-rotate-270"></span></button>';
 					html += '<button class="append-route" title="add this system to the current route"><span class="fa fa-plus"></span></button>';
 					html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';

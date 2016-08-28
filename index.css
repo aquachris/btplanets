@@ -615,7 +615,7 @@ svg.borders-fill path.border.lyran-commonwealth {
 	svg.borders-hatch path.border.draconis-combine {
 		fill: url(./img/patterns.svg#hatch-draconis-combine);
 	}
-	svg path.border.federated-suns {
+	svg.borders-hatch path.border.federated-suns {
 		fill: url(./img/patterns.svg#hatch-federated-suns);
 	}
 	svg.borders-hatch path.border.free-worlds-league {
