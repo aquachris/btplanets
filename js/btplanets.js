@@ -52,7 +52,10 @@ define(['js/lib/d3.min'], function(d3) {
 						cur = this.planets[i].name.toLowerCase();
 						if(	cur === 'sian' || cur === 'luthien'
 							|| cur === 'new avalon' || cur === 'atreus'
-							|| cur === 'tharkad' || cur === 'terra') {
+							|| cur === 'tharkad' || cur === 'terra'
+							|| cur === 'taurus' || cur === 'canopus'
+							|| cur === 'alphard' || cur === 'oberon'
+							|| cur === 'alpheratz') {
 							this.planets[i].isCapital = true;
 							this.capitals.push(this.planets[i]);
 						}
@@ -173,7 +176,12 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'luthien' ||
 							name === 'new avalon' ||
 							name === 'atreus' ||
-							name === 'tharkad';
+							name === 'tharkad' ||
+							name === 'taurus' ||
+							name === 'canopus' ||
+							name === 'alphard' ||
+							name === 'oberon' ||
+							name === 'alpheratz';
 					})
 					.attr('transform', me.transformers.planetCircle.bind(me))
 					.on('mouseover', function (planet) {
@@ -238,7 +246,12 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'luthien' ||
 							name === 'new avalon' ||
 							name === 'atreus' ||
-							name === 'tharkad';
+							name === 'tharkad' ||
+							name === 'taurus' ||
+							name === 'canopus' ||
+							name === 'alphard' ||
+							name === 'oberon' ||
+							name === 'alpheratz';
 					})
 					.attr('name', function(d) { return d.name; })
 					.text(function(d) {	return d.name; })

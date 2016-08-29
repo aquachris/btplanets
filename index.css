@@ -544,6 +544,7 @@ svg path.border {
 	transition: opacity 1s, stroke-width 1s; /*, fill 1s;*/
 }
 svg.borders-lines path.border {
+	stroke: #fff;
 	stroke-width: 2;
 }
 svg.borders-hide path.border {
@@ -564,6 +565,9 @@ svg path.border.free-worlds-league {
 }
 svg path.border.lyran-commonwealth {
 	stroke: #3f7aaa;
+}
+svg path.border.taurian-concordat {
+	stroke: #b55731;
 }
 /* Border fill colors / patterns */
 svg.borders-hatch path.border.capellan-confederation {
@@ -596,6 +600,14 @@ svg.borders-hatch path.border.lyran-commonwealth {
 svg.borders-fill path.border.lyran-commonwealth {
 	fill: rgba(90,180,240,.85);
 }
+svg.borders-hatch path.border.taurian-concordat {
+	fill: url(#hatch-taurian-concordat);
+}
+svg.borders-fill path.border.taurian-concordat {
+	fill: rgba(216, 104, 60, .85);
+	/*fill: rgba(181, 87, 49, .85);*/
+}
+
 /* Firefox specific hack.
  * This becomes necessary because Firefox hash references only work for ids in the
  * same document. Since the patterns are defined in the svg, and not in the parent
@@ -741,14 +753,32 @@ svg g.planet-circles path.comstar.capital {
 svg g.planet-circles circle.taurian-concordat {
 	fill: #a24920;
 }
+svg g.planet-circles path.taurian-concordat.capital {
+	stroke: #a24920;
+}
 svg g.planet-circles circle.magistracy-of-canopus {
 	fill: #2d9889;
+}
+svg g.planet-circles path.magistracy-of-canopus.capital {
+	stroke: #2d9889;
 }
 svg g.planet-circles circle.marian-hegemony {
 	fill: #e68a4b;
 }
+svg g.planet-circles path.marian-hegemony.capital {
+	stroke: #e68a4b;
+}
 svg g.planet-circles circle.outworlds-alliance {
 	fill: #969179;
+}
+svg g.planet-circles path.outworlds-alliance.capital {
+	stroke: #969179;
+}
+svg g.planet-circles circle.oberon-confederation {
+	fill: #C79F00;
+}
+svg g.planet-circles path.oberon-confederation.capital {
+	stroke: #C79F00
 }
 svg g.planet-circles circle.independent-world,
 svg g.planet-circles circle.circinus-federation,
@@ -757,7 +787,6 @@ svg g.planet-circles circle.lothian-league,
 svg g.planet-circles circle.tortuga-dominions,
 svg g.planet-circles circle.morgraines-valkyrate,
 svg g.planet-circles circle.elysian-fields,
-svg g.planet-circles circle.oberon-confederation,
 svg g.planet-circles circle.fiefdom-of-randis,
 svg g.planet-circles circle.barony-of-strang,
 svg g.planet-circles circle.periphery,
