@@ -1,5 +1,6 @@
-metal-three.jpg:
-http://marlborolt.deviantart.com/art/Rusty-Metal-THREE-439461512
-License?
+BattleTech logo, house and faction sigils: http://www.harebrained-schemes.com
+License: ?
 
-Possible alternatives: http://opengameart.org/node/9081
+metal-three.jpg (and all derivatives): http://marlborolt.deviantart.com/art/Rusty-Metal-THREE-439461512
+License: ?
+    --> Possible alternative: http://opengameart.org/node/9081

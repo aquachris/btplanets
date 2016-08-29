@@ -1,7 +1,7 @@
 # btplanets
 An interactive map of the Inner Sphere in the year 3025.
 
-<img src="img/screenshots/collage.png" style="box-shadow: 1px 1px 4px #333" />
+<img src="img/screenshots/collage.png" />
 
 ## Content
 - Disclaimer
@@ -19,7 +19,7 @@ game [BATTLETECH](https://community.battletechgame.com/forums) by [Harebrained S
 most notably the BATTLETECH game logo and the house and faction sigils. The author understands these assets
 to be promotional and free to use in an appropriate context.
 
-The author intends no copyright or trademark infringement.
+The author is not affiliated with Harebrained Schemes and intends no copyright or trademark infringement.
 
 ## What is this?
 
@@ -61,32 +61,32 @@ http://www.sarna.net/wiki/Successor_States
 http://www.sarna.net/wiki/BattleMech
 
 ### An interactive map
-I've always wanted to be able to explore the BattleTech universe visually from a top-down perspective, starting with an
-overview of the entire Inner Sphere and having the option to zoom in to interesting points. Another interesting use case
-is plotting jump routes and estimating the travel time between two systems.
-
-I was inspired by the upcoming game [BATTLETECH](http://battletechgame.com/) and hope that the map will help newcomers to
+I've always wanted to be able to explore the BattleTech universe visually from a top-down perspective. The upcoming game [BATTLETECH](http://battletechgame.com/) inspired me to make this interactive map, and I hope that it will help newcomers to
 familiarize themselves with the universe quickly and enjoyably.
 
 ## Features
-_VIDEO_
+The basic features can be seen in the following video:
+[![Features video](http://img.youtube.com/vi/3AD8RVQdKq8/0.jpg)](http://www.youtube.com/watch?v=3AD8RVQdKq8)
 
 ## TODOs / Known issues
-- Add link to upcoming game
-- Add credits
 - Known issue: Performance isn't great when running in MS Edge (bad) or Firefox (slightly better). Chrome is the go-to
-    browser, appears to have the best SVG support.
+    browser, appears to have the best SVG support. Safari has been reported to run well.
 
 ## Coming "soon" (currently planned features)
 - Periphery state borders
 
 ## Future possibilities (cool features that are not currently planned)
+_(not necessarily in order of priority)_
 - SVG export
 - Other eras
 - Full mobile support
 - 3D-ish effect (parallax)
+- Faction statistics
+- HPG networks and message path plotting
 
 ## Credits
-All planet names and coordinates are from www.sarna.net, with some corrections applied.
+The BATTLETECH logo and the faction sigils were created by [Harebrained Schemes](http://www.harebrained-schemes.com).
+
+All planet names and coordinates are from [www.sarna.net](http://www.sarna.net), with some corrections applied.
 
 Programming by Christoph Wassermann.
