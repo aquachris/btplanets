@@ -65,7 +65,7 @@ I've always wanted to be able to explore the BattleTech universe visually from a
 familiarize themselves with the universe quickly and enjoyably.
 
 ## Features
-The basic features can be seen in the following video:
+The basic features can be seen in the following video:  
 [![Features video](http://img.youtube.com/vi/3AD8RVQdKq8/0.jpg)](http://www.youtube.com/watch?v=3AD8RVQdKq8)
 
 ## TODOs / Known issues
@@ -76,7 +76,7 @@ The basic features can be seen in the following video:
 - Periphery state borders
 
 ## Future possibilities (cool features that are not currently planned)
-_(not necessarily in order of priority)_
+_(not necessarily in order of priority)_  
 - SVG export
 - Other eras
 - Full mobile support
