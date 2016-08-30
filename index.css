@@ -569,6 +569,12 @@ svg path.border.lyran-commonwealth {
 svg path.border.taurian-concordat {
 	stroke: #b55731;
 }
+svg path.border.magistracy-of-canopus {
+	stroke: #2d9889;
+}
+svg path.border.marian-hegemony {
+	stroke: #e68a4b;
+}
 /* Border fill colors / patterns */
 svg.borders-hatch path.border.capellan-confederation {
 	fill: url(#hatch-capellan-confederation);
@@ -605,7 +611,18 @@ svg.borders-hatch path.border.taurian-concordat {
 }
 svg.borders-fill path.border.taurian-concordat {
 	fill: rgba(216, 104, 60, .85);
-	/*fill: rgba(181, 87, 49, .85);*/
+}
+svg.borders-hatch path.border.magistracy-of-canopus {
+	fill: url(#hatch-magistracy-of-canopus);
+}
+svg.borders-fill path.border.magistracy-of-canopus {
+	fill: rgba(67, 224, 200, .85);
+}
+svg.borders-hatch path.border.marian-hegemony {
+	fill: url(#hatch-marian-hegemony);
+}
+svg.borders-fill path.border.marian-hegemony {
+	fill: rgba(255,152,84, .65);
 }
 
 /* Firefox specific hack.
