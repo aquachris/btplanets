@@ -388,6 +388,9 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				case 'settings_borders':
 					svg.classed('borders-lines', d3.select(this).property('checked'));
 					break;
+				case 'settings_periphery_states':
+					svg.classed('periphery-states', d3.select(this).property('checked'));
+					break;
 				case 'settings_borders_hatch':
 					svg.classed('borders-hatch', true);
 					svg.classed('borders-fill', false);
@@ -460,24 +463,39 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					if(!neighborsHtml) {
 						neighborsHtml = 'none';
 					}
-					switch(d.affiliation) {
-						case 'Capellan Confederation':
+					switch(d.affiliation.toLowerCase()) {
+						case 'capellan confederation':
 							affiliationClass = 'liao';
 							break;
-						case 'Draconis Combine':
+						case 'draconis combine':
 							affiliationClass = 'kurita';
 							break;
-						case 'Federated Suns':
+						case 'federated suns':
 							affiliationClass = 'davion';
 							break;
-						case 'Free Worlds League':
+						case 'free worlds league':
 							affiliationClass = 'marik';
 							break;
-						case 'Lyran Commonwealth':
+						case 'lyran commonwealth':
 							affiliationClass = 'steiner';
 							break;
-						case 'ComStar':
+						case 'comstar':
 							affiliationClass = 'comstar';
+							break;
+						case 'taurian concordat':
+							affiliationClass = 'taurian-concordat';
+							break;
+						case 'magistracy of canopus':
+							affiliationClass = 'magistracy-of-canopus';
+							break;
+						case 'marian hegemony':
+							affiliationClass = 'marian-hegemony';
+							break;
+						case 'oberon confederation':
+							affiliationClass = 'oberon-confederation';
+							break;
+						case 'outworlds alliance':
+							affiliationClass = 'outworlds-alliance';
 							break;
 						default :
 							affiliationClass = 'other';

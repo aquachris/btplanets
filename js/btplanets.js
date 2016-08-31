@@ -35,12 +35,13 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Initialize the object and its components
 		 */
 		init : function () {
-			d3.json('./data/borders.json', function (error, json) {
+			var noCache = new Date().getTime();
+			d3.json('./data/borders.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 				if(error) {
 					return console.warn(error);
 				}
 				this.borders = json;
-				d3.json('./data/planets.json', function (error, json) {
+				d3.json('./data/planets.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 					var cur, nb;
 					if(error) {
 						return console.warn(error);
@@ -52,10 +53,10 @@ define(['js/lib/d3.min'], function(d3) {
 						cur = this.planets[i].name.toLowerCase();
 						if(	cur === 'sian' || cur === 'luthien'
 							|| cur === 'new avalon' || cur === 'atreus'
-							|| cur === 'tharkad' || cur === 'terra'
-							|| cur === 'taurus' || cur === 'canopus'
-							|| cur === 'alphard' || cur === 'oberon'
-							|| cur === 'alpheratz') {
+							|| cur === 'tharkad' || cur === 'terra') {
+							//|| cur === 'taurus' || cur === 'canopus'
+							//|| cur === 'alphard' || cur === 'oberon'
+							//|| cur === 'alpheratz') {
 							this.planets[i].isCapital = true;
 							this.capitals.push(this.planets[i]);
 						}
@@ -176,8 +177,11 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'luthien' ||
 							name === 'new avalon' ||
 							name === 'atreus' ||
-							name === 'tharkad' ||
-							name === 'taurus' ||
+							name === 'tharkad';
+					})
+					.classed('periphery-capital', function (d) {
+						var name = d.name.toLowerCase();
+						return name === 'taurus' ||
 							name === 'canopus' ||
 							name === 'alphard' ||
 							name === 'oberon' ||
@@ -246,8 +250,11 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'luthien' ||
 							name === 'new avalon' ||
 							name === 'atreus' ||
-							name === 'tharkad' ||
-							name === 'taurus' ||
+							name === 'tharkad';
+					})
+					.classed('periphery-capital', function (d) {
+						var name = d.name.toLowerCase();
+						return name === 'taurus' ||
 							name === 'canopus' ||
 							name === 'alphard' ||
 							name === 'oberon' ||
@@ -491,7 +498,7 @@ define(['js/lib/d3.min'], function(d3) {
 				return 'translate('+this.xScale(0)+','+this.yScale(0)+') scale('+this.zoom.scale()*this.pxPerLy+')';
 			},
 			borderPath : function (d, i) {
-				return 'translate('+this.xScale(d.x)+','+this.yScale(d.y) + ') scale('+this.zoom.scale()*this.pxPerLy+')';
+				return 'translate('+this.xScale(d.x || 0)+','+this.yScale(d.y || 0) + ') scale('+this.zoom.scale()*this.pxPerLy+')';
 			},
 			planetCircle : function (d, i) {
 				return 'translate('+this.xScale(d.x) + ',' + this.yScale(d.y) + ')';

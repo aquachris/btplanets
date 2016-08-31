@@ -32,6 +32,9 @@
 				<p><input type="radio" name="rg_borders_fill" id="settings_borders_nofill" /><label for="settings_borders_nofill">Do not fill out state areas</label></p>
 			</div>
 			<div class="control-group">
+				<p><input type="checkbox" id="settings_periphery_states" checked="checked" /><label for="settings_periphery_states">Show periphery states</label></p>
+			</div>
+			<div class="control-group">
 				<p><input type="checkbox" id="settings_borders" checked="checked" /><label for="settings_borders">Show state borders</label></p>
 			</div>
 			<hr />
@@ -89,7 +92,7 @@
 	</div>
 
 	<div class="map-ct">
-		<svg class="map planets-capitals borders-lines borders-hatch route-visible" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<svg class="map planets-capitals borders-lines borders-hatch periphery-states route-visible" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
 			<defs>
 				<pattern id="hatch-capellan-confederation" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(66,110,51,.4)" stroke-width="16" />
@@ -114,6 +117,15 @@
 				</pattern>
 				<pattern id="hatch-marian-hegemony" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
 				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(255,152,84, .4)" stroke-width="16" />
+				</pattern>
+				<pattern id="hatch-oberon-confederation" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(234,183,0, .6)" stroke-width="16" />
+				</pattern>
+				<pattern id="hatch-outworlds-alliance" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(198,191,161, .5)" stroke-width="16" />
+				</pattern>
+				<pattern id="hatch-periphery" patternUnits="userSpaceOnUse" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+				  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" stroke="rgba(200,200,200, .6)" stroke-width="16" />
 				</pattern>
 			</defs>
 			<g class="borders"></g>

@@ -340,6 +340,27 @@ div.controls div.planet-info.comstar,
 div.controls div.stop-info.comstar {
 	background-image: url("./img/comstar_64.png");
 }
+div.controls div.planet-info.taurian-concordat,
+div.controls div.stop-info.taurian-concordat {
+	background-image: url("./img/taurian_concordat_64.png");
+}
+div.controls div.planet-info.magistracy-of-canopus,
+div.controls div.stop-info.magistracy-of-canopus {
+	background-image: url("./img/magistracy_of_canopus_64.png");
+}
+div.controls div.planet-info.marian-hegemony,
+div.controls div.stop-info.marian-hegemony {
+	background-image: url("./img/marian_hegemony_64.png");
+}
+div.controls div.planet-info.oberon-confederation,
+div.controls div.stop-info.oberon-confederation {
+	background-image: url("./img/oberon_confederation_64.png");
+}
+div.controls div.planet-info.outworlds-alliance,
+div.controls div.stop-info.outworlds-alliance {
+	background-image: url("./img/outworlds_alliance_64.png");
+}
+
 div.controls div.stop-info {
 	background-image: none;
 }
@@ -544,11 +565,37 @@ svg path.border {
 	transition: opacity 1s, stroke-width 1s; /*, fill 1s;*/
 }
 svg.borders-lines path.border {
-	stroke: #fff;
+	stroke: #cdcdcd;
 	stroke-width: 2;
 }
-svg.borders-hide path.border {
+svg path.border.taurian-concordat,
+svg path.border.magistracy-of-canopus,
+svg path.border.marian-hegemony,
+svg path.border.lothian-league,
+svg path.border.illyrian-palatinate,
+svg path.border.circinus-federation,
+svg path.border.morgraines-valkyrate,
+svg path.border.oberon-confederation,
+svg path.border.elysian-fields,
+svg path.border.outworlds-alliance,
+svg path.border.tortuga-dominions {
 	opacity: 0;
+}
+svg.periphery-states path.border.taurian-concordat,
+svg.periphery-states path.border.magistracy-of-canopus,
+svg.periphery-states path.border.marian-hegemony,
+svg.periphery-states path.border.lothian-league,
+svg.periphery-states path.border.illyrian-palatinate,
+svg.periphery-states path.border.circinus-federation,
+svg.periphery-states path.border.morgraines-valkyrate,
+svg.periphery-states path.border.oberon-confederation,
+svg.periphery-states path.border.elysian-fields,
+svg.periphery-states path.border.outworlds-alliance,
+svg.periphery-states path.border.tortuga-dominions {
+	opacity: 1;
+}
+svg.borders-hide path.border {
+	opacity: 0 !important;
 }
 /* Border line colors */
 svg path.border.capellan-confederation {
@@ -575,7 +622,22 @@ svg path.border.magistracy-of-canopus {
 svg path.border.marian-hegemony {
 	stroke: #e68a4b;
 }
+svg path.border.oberon-confederation {
+	stroke: #c79f00;
+}
+svg path.border.outworlds-alliance {
+	stroke: #969179;
+}
+svg path.border.periphery {
+	stroke: #dcdcdc;
+}
 /* Border fill colors / patterns */
+svg.borders-hatch path.border {
+	fill: url(#hatch-periphery);
+}
+svg.borders-fill path.border {
+	fill: rgba(200,200,200,.6);
+}
 svg.borders-hatch path.border.capellan-confederation {
 	fill: url(#hatch-capellan-confederation);
 }
@@ -624,6 +686,18 @@ svg.borders-hatch path.border.marian-hegemony {
 svg.borders-fill path.border.marian-hegemony {
 	fill: rgba(255,152,84, .65);
 }
+svg.borders-hatch path.border.oberon-confederation {
+	fill: url(#hatch-oberon-confederation);
+}
+svg.borders-fill path.border.oberon-confederation {
+	fill: rgba(234,183,0, .6);
+}
+svg.borders-hatch path.border.outworlds-alliance {
+	fill: url(#hatch-outworlds-alliance);
+}
+svg.borders-fill path.border.outworlds-alliance {
+	fill: rgba(198,191,161, .5);
+}
 
 /* Firefox specific hack.
  * This becomes necessary because Firefox hash references only work for ids in the
@@ -638,6 +712,9 @@ svg.borders-fill path.border.marian-hegemony {
  * the idea of just having to set a class on the svg element to change path appearance.
  */
 @-moz-document url-prefix() {
+	svg.borders-hatch path.border {
+		fill: url(./img/patterns.svg#hatch-periphery);
+	}
 	svg.borders-hatch path.border.capellan-confederation {
 		fill: url(./img/patterns.svg#hatch-capellan-confederation);
 	}
@@ -652,6 +729,21 @@ svg.borders-fill path.border.marian-hegemony {
 	}
 	svg.borders-hatch path.border.lyran-commonwealth {
 		fill: url(./img/patterns.svg#hatch-lyran-commonwealth);
+	}
+	svg.borders-hatch path.border.taurian-concordat {
+		fill: url(./img/patterns.svg#hatch-taurian-concordat);
+	}
+	svg.borders-hatch path.border.magistracy-of-canopus {
+		fill: url(./img/patterns.svg#hatch-magistracy-of-canopus);
+	}
+	svg.borders-hatch path.border.marian-hegemony {
+		fill: url(./img/patterns.svg#hatch-marian-hegemony);
+	}
+	svg.borders-hatch path.border.oberon-confederation {
+		fill: url(./img/patterns.svg#hatch-oberon-confederation);
+	}
+	svg.borders-hatch path.border.outworlds-alliance {
+		fill: url(./img/patterns.svg#hatch-outworlds-alliance);
 	}
 }
 
@@ -676,6 +768,7 @@ svg.planets-all g.planet-circles circle.inhabited,
 svg.planets-all g.planet-circles circle.uncharted,
 svg.planets-inhabited g.planet-circles circle.inhabited,
 svg.planets-capitals g.planet-circles circle.capital,
+svg.planets-capitals.periphery-states g.planet-circles circle.periphery-capital,
 svg.planets-clans g.planet-circles circle.clan,
 svg g.planet-circles circle.selected,
 svg.route-visible g.planet-circles circle.route,
@@ -837,8 +930,11 @@ svg.planets-all.zoomed-in g.planet-names text.inhabited,
 svg.planets-inhabited.zoomed-in g.planet-names text.inhabited,
 svg.planets-clans.zoomed-in g.planet-names text.clan,
 svg.planets-all g.planet-names text.capital,
+svg.planets-all.periphery-states g.planet-names text.periphery-capital,
 svg.planets-inhabited g.planet-names text.capital,
+svg.planets-inhabited.periphery-states g.planet-names text.periphery-capital,
 svg.planets-capitals g.planet-names text.capital,
+svg.planets-capitals.periphery-states g.planet-names text.periphery-capital,
 svg g.planet-names text.selected,
 svg.route-visible.zoomed-in g.planet-names text.route,
 svg.route-visible g.planet-names text.route-stop {
