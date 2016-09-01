@@ -972,6 +972,61 @@ svg.route-hidden g.jump-routes path {
 	opacity: 0;
 }
 
+/* STATE LABEL STYLES */
+svg g.state-labels > g.successor-state > image {
+	height: 64px;
+	width: 64px;
+}
+svg g.state-labels > g.periphery-major > image {
+	height: 32px;
+	width: 32px;
+}
+svg g.state-labels > g > text {
+	fill: #fff;
+	font-style: italic;
+	font-weight: bold;
+	pointer-events: none;
+}
+svg g.state-labels > g > text:nth-child(2) {
+	font-size: 1.8em;
+	transform: translate(66px, 1.4em);
+}
+svg g.state-labels > g > text:nth-child(3) {
+	font-size: 1.4em;
+	transform: translate(66px, 3.1em);
+}
+svg g.state-labels > g.capellan-confederation > text {
+	fill: #426e33;
+}
+svg g.state-labels > g.draconis-combine > text {
+	fill: #a8281b;
+}
+svg g.state-labels > g.federated-suns > text {
+	fill: #9c6127;
+}
+svg g.state-labels > g.free-worlds-league > text {
+	fill: #64508d;
+}
+svg g.state-labels > g.lyran-commonwealth > text {
+	fill: #3f7aaa;
+}
+svg g.state-labels > g.periphery-major > text:nth-child(2) {
+	font-size: 1.2em;
+	transform: translate(34px,1em);
+}
+svg g.state-labels > g.periphery-major > text:nth-child(3) {
+	font-size: 1em;
+	transform: translate(34px,2.3em);
+}
+/*
+taurian-concordat #b55731
+magistracy-of-canopus #2d9889
+marian-hegemony #e68a4b
+oberon-confederation #c79f00
+outworlds-alliance #969179
+periphery #dcdcdc
+*/
+
 /* LEGEND STYLES */
 svg g.legend rect.scale-axis-background {
 	fill: #000024;

@@ -1,66 +1,146 @@
 [
     {
         "name": "taurian-concordat",
+        "display": "Taurian Concordat",
+        "rulers": "House Calderon",
+        "type": "periphery-major",
+        "centroid": [],
+        "preferredLabelPos": [260, -440],
         "path": "M390,345 L388,380 L273,424 L218,418 L182,432 L141,413 L142,396 L157,391 L214,361 L266,363 L295,351 L400,333 z M405,490 L316,492 L313,475 L403,476 z"
     },
     {
         "name": "magistracy-of-canopus",
+        "display": "Magistracy of Canopus",
+        "rulers": "House Centrella",
+        "type": "periphery-major",
+        "centroid": [],
+        "preferredLabelPos": [-400, -560],
         "path": "M-99,390 L-57,450 L-39,497 L-7,510 L-10,540 L-60,517 L-103,510 L-135,497 L-200,530 L-222,525 L-199,435 L-242,435 L-280,393 L-336,386 L-325,365 L-265,373 L-238,343 L-187,344 L-148,359 L-130,385 z"
     },
     {
         "name": "marian-hegemony",
+        "display": "Marian Hegemony",
+        "rulers": "House O'Reilly",
+        "type": "periphery-major",
+        "centroid": [],
+        "preferredLabelPos": [-620, -450],
         "path": "M-366,378 L-392,379 L-437,401 L-481,372 L-470,346 L-444,335 L-439,308 L-468,309 L-481,300 L-479,291 L-440,280 L-388,282 L-386,345 L-375,360 z"
     },
     {
         "name": "illyrian-palatinate",
+        "display": "Illyrian Palatinate",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [-423, -195],
         "path": "M-411,202 L-419,210 L-440,195 L-443,174 L-428,175 L-412,183 z"
     },
     {
         "name": "lothian-league",
+        "display": "Lothian League",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [-490, -160],
         "path": "M-481,265 L-488,257 L-496,207 L-480,162 L-470,108 L-453,107 L-455,170 L-451,212 L-468,264 z"
     },
     {
         "name": "circinus-federation",
+        "display": "Circinus Federation",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [-440, -85],
         "path": "M-377,75 L-378,85 L-418,103 L-417,123 L-425,135 L-450,130 L-453,91 L-450,53 L-432,44 L-393,45 L-376,72z"
     },
     {
         "name": "morgraines-valkyrate",
+        "display": "Morgaine's Valkyrate",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [-180, 455],
         "path": "M-155,-459 L-155,-444 L-185,-438 L-192,-449 L-178,-458 L-188,-469 L-186,-490 L-142,-483 z"
     },
     {
         "name": "oberon-confederation",
+        "display": "Oberon Confederation",
+        "rulers": "House Grimm",
+        "type": "periphery-major",
+        "centroid": [],
+        "preferredLabelPos": [-135, 540],
         "path": "M-39,-508 L-55,-470 L-66,-462 L-86,-463 L-100,-470 L-112,-461 L-130,-469 L-129,-481 L-116,-503 L-54,-516 z"
     },
     {
         "name": "elysian-fields",
+        "display": "Elysian Fields",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [50, 500],
         "path": "M-52,-470 L-37,-508 L-45,-535 L10,-524 L109,-487 L110,-464 L85,-469 L86,-483 L40,-490 z"
     },
     {
         "name": "outworlds-alliance",
+        "display": "Outworlds Alliance",
+        "rulers": "House Avellar",
+        "type": "periphery-major",
+        "centroid": [],
+        "preferredLabelPos": [580, 240],
         "path": "M484,-246 L503,-228 L524,-179 L591,-162 L616,-163 L620,-131 L610,-108 L610,-89 L526,-69 L481,-97 L454,-94 L420,-130 L420,-131 L409,-166 L428,-185 L442,-217 L459,-232 L456,-253 L482,-250z"
     },
     {
         "name": "tortuga-dominions",
+        "display": "Tortuga Dominions",
+        "rulers": "",
+        "type": "periphery-minor",
+        "centroid": [],
+        "preferredLabelPos": [640, -235],
         "path": "M658,175 L700,181 L704,221 L685,248 L688,278 L642,272 L637,236 L651,220 L645,211 z"
     },
     {
         "name" : "capellan-confederation",
+        "display": "Capellan Confederation",
+        "rulers": "House Liao",
+        "type": "successor-state",
+        "centroid": [],
+        "preferredLabelPos": [50, -500],
         "path": "M-2,2 L2,3 L41,9 L61,2 L48,29 L54,38 L67,35 L81,20 L93,-1 L102,-1 L96,17 L94,24 L83,37 L85,45 L108,38 L115,44 L96,49 L91,61 L83,74 L35,64 L29,69 L30,71 L66,79 L69,82 L62,85 L66,94 L95,86 L105,93 L153,91 L154,99 L127,102 L103,130 L111,143 L102,162 L109,179 L110,198 L127,207 L114,221 L101,210 L73,224 L81,234 L101,236 L134,255 L120,279 L106,275 L77,256 L62,264 L68,292 L84,305 L124,313 L135,313 L135,315 L118,319 L119,339 L142,343 L157,390 L140,394 L72,419 L-15,412 L-9,380 L13,368 L-3,362 L-4,346 L-10,336 L-2,328 L0,301 L-10,296 L-8,269 L-20,260 L-25,244 L-20,240 L-38,231 L-24,217 L-37,210 L-39,200 L-23,191 L-31,181 L-12,165 L0,131 L29,119 L33,78 L-5,77 L-3,56 L-19,49 L-11,15 L0,16 L-4,8z"
     },
     {
         "name" : "draconis-combine",
+        "display": "Draconis Combine",
+        "rulers": "House Kurita",
+        "type": "successor-state",
+        "centroid": [],
+        "preferredLabelPos": [400, 550],
         "path": "M1-3 L-13,-12 L-15,-39 L-22,-43 L-23,-55 L-22,-74 L-38,-92 L-47,-98 L-43,-106 L-23,-107 L-11,-138 L-1,-138 L-3,-150 L17,-158 L18,-164 L-25,-161 L-28,-168 L-28,-181 L-18,-187 L-26,-190 L-28,-202 L-23,-205 L-23,-211 L-35,-219 L-32,-238 L-4,-235 L-4,-244 L-24,-246 L-23,-256 L-31,-261 L-33,-281 L-7,-278 L-6,-284 L-27,-285 L-31,-304 L-5,-307 L-9,-320 L-26,-314 L-52,-321 L-45,-341 L-39,-354 L-45,-368 L-66,-369 L-75,-392 L-65,-398 L-68,-411 L0,-421 L14,-437 L73,-470 L110,-462 L131,-476 L215,-430 L276,-457 L390,-422 L407,-351 L445,-322 L457,-232 L440,-217 L426,-186 L407,-166 L418,-131 L388,-126 L382,-111 L363,-110 L358,-101 L310,-87 L304,-71 L259,-89 L237,-73 L222,-94 L185,-75 L187,-68 L215,-66 L218,-55 L212,-36 L196,-46 L180,-40 L162,-27 L150,-27 L128,-21 L90,-20 L80,-11 L48,-19 L35,-14 L27,-19 z"
     },
     {
         "name" : "federated-suns",
+        "display": "Federated Suns",
+        "rulers": "House Davion",
+        "type": "successor-state",
+        "centroid": [],
+        "preferredLabelPos": [465, -340],
         "path" : "M2,-3 L27,-18 L35,-13 L48,-18 L80,-10 L90,-19 L128,-20 L150,-26 L162,-26 L180,-39 L196,-45 L212,-35 L219,-55 L216,-67 L188,-69 L186,-74 L222,-93 L237,-72 L259,-88 L304,-70 L310,-86 L358,-100 L363,-109 L382,-110 L388,-125 L418,-130 L454,-92 L481,-95 L526,-67 L610,-87 L630,-55 L650,36 L591,102 L564,174 L550,237 L522,260 L463,315 L406,331 L295,350 L266,362 L214,360 L158,390 L142,342 L120,338 L119,319 L136,315 L136,312 L124,313 L84,304 L69,291 L63,264 L77,257 L106,276 L120,280 L135,255 L101,235 L96,242 L88,241 L74,224 L101,211 L114,222 L129,207 L111,198 L110,179 L103,162 L112,143 L104,130 L127,103 L155,100 L154,90 L106,92 L95,85 L66,93 L63,85 L70,82 L66,78 L31,71 L30,69 L35,65 L83,75 L92,61 L97,49 L116,44 L108,37 L85,44 L84,36 L95,24 L97,17 L103,-1 L93,-2 L81,19 L67,34 L54,37 L49,29 L62,1 L41,8 L2,2 z"
     },
     {
         "name": "free-worlds-league",
+        "display": "Free Worlds League",
+        "rulers": "House Marik",
+        "type": "successor-state",
+        "centroid": [],
+        "preferredLabelPos": [-860, -300],
         "path": "M-12,1 L-3,2 L-5,8 L-1,15 L-12,14 L-20,49 L-4,56 L-6,78 L32,79 L28,119 L-1,131 L-13,165 L-32,181 L-24,191 L-40,200 L-38,210 L-25,217 L-39,231 L-21,240 L-26,244 L-21,260 L-9,269 L-11,296 L-1,301 L-3,328 L-11,336 L-5,346 L-4,362 L12,368 L-10,380 L-16,390 L-55,393 L-84,385 L-130,383 L-148,358 L-271,306 L-308,299 L-339,265 L-374,253 L-404,225 L-409,203 L-400,177 L-428,167 L-415,123 L-417,104 L-377,86 L-375,75 L-355,67 L-324,66 L-318,56 L-296,62 L-289,49 L-253,39 L-230,46 L-208,39 L-183,40 L-179,21 L-147,20 L-142,7 L-122,15 L-94,8 L-90,-2 L-73,9 L-65,13 L-50,8 L-38,-3 L-30,5 z"
     },
     {
         "name": "lyran-commonwealth",
+        "display": "Lyran Commonwealth",
+        "rulers": "House Steiner",
+        "type": "successor-state",
+        "centroid": [],
+        "preferredLabelPos": [-800, 300],
         "path": "M1,-2 L-3,1 L-12,0 L-30,4 L-38,-4 L-50,7 L-65,12 L-73,8 L-90,-3 L-94,7 L-122,14 L-143,6 L-148,19 L-180,20 L-184,39 L-208,38 L-230,45 L-253,38 L-290,48 L-297,61 L-318,55 L-324,65 L-355,66 L-374,72 L-392,43 L-431,42 L-438,22 L-447,-34 L-475,-48 L-476,-92 L-459,-112 L-448,-152 L-452,-167 L-432,-241 L-389,-370 L-241,-390 L-205,-449 L-200,-469 L-180,-458 L-194,-449 L-185,-436 L-153,-443 L-153,-458 L-104,-448 L-86,-420 L-69,-413 L-66,-398 L-76,-392 L-67,-368 L-46,-367 L-40,-354 L-46,-341 L-53,-320 L-26,-313 L-10,-319 L-6,-308 L-32,-305 L-28,-284 L-7,-283 L-8,-279 L-34,-282 L-32,-261 L-24,-256 L-25,-245 L-5,-243 L-5,-236 L-33,-239 L-36,-219 L-24,-211 L-24,-205 L-29,-202 L-27,-190 L-20,-187 L-29,-181 L-29,-168 L-26,-160 L17,-163 L16,-158 L-4,-150 L-2,-139 L-12,-139 L-24,-108 L-44,-107 L-48,-98 L-39,-92 L-23,-74 L-24,-55 L-23,-43 L-16,-39 L-14,-12 z"
     }
 ]

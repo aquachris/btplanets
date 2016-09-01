@@ -9,6 +9,7 @@ define(['js/lib/d3.min'], function(d3) {
 
 		// data array handles
 		borders : null,
+		labels : null,
 		planets : null,
 		capitals : null,
 		selectedPlanets : null,
@@ -151,6 +152,26 @@ define(['js/lib/d3.min'], function(d3) {
 					.attr('d', function (d) { return d.path })
 					//.attr('fill', function (d) { return 'url(#hatch-'+d.name+')'; })
 					.attr('class', function (d) { return 'border ' + d.name; });
+			var stateLabelsCt = me.svg.select('g.state-labels');
+			var stateLabels = stateLabelsCt.selectAll('g')
+					.data(me.borders)
+				.enter().append('g')
+					.attr('class', function (d, i) {
+						var g = d3.select(this);
+						if(d.type === 'successor-state' || d.type === 'periphery-major') {
+							g.append('image')
+								.attr('xlink:href', './img/'+d.name.replace(/\-/g, '_')+'_64.png');
+						}
+						g.append('text')
+							.text(d.display);
+						if(d.rulers) {
+							g.append('text')
+								.text(d.rulers);
+						}
+						return d.name + ' ' + d.type;
+					});
+
+
 			var circleGroup = me.svg.select('g.planet-circles');
 
 			var circles = circleGroup.selectAll('circle')
@@ -321,6 +342,7 @@ define(['js/lib/d3.min'], function(d3) {
 			var scale = me.zoom.scale();
 			me.svg.selectAll('path.border')
 				.attr('transform', me.transformers.borderPath.bind(me));
+			me.svg.selectAll('g.state-labels > g').attr('transform', me.transformers.labelGroup.bind(me));
 			me.svg.select('circle.jump-range')
 				.classed('visible', false)
 			//this.svg.selectAll('path.jump-route')
@@ -499,6 +521,10 @@ define(['js/lib/d3.min'], function(d3) {
 			},
 			borderPath : function (d, i) {
 				return 'translate('+this.xScale(d.x || 0)+','+this.yScale(d.y || 0) + ') scale('+this.zoom.scale()*this.pxPerLy+')';
+			},
+			labelGroup : function (d, i) {
+				console.log(d.name);
+				return 'translate('+this.xScale(d.preferredLabelPos[0])+','+this.yScale(d.preferredLabelPos[1])+')';
 			},
 			planetCircle : function (d, i) {
 				return 'translate('+this.xScale(d.x) + ',' + this.yScale(d.y) + ')';
