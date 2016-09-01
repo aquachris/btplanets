@@ -73,7 +73,7 @@ The basic features can be seen in the following video:
     browser, appears to have the best SVG support. Safari has been reported to run well.
 
 ## Coming "soon" (currently planned features)
-- Periphery state borders
+- State legend (make states immediately identifiable)
 
 ## Future possibilities (cool features that are not currently planned)
 _(not necessarily in order of priority)_  
@@ -83,6 +83,7 @@ _(not necessarily in order of priority)_
 - 3D-ish effect (parallax)
 - Faction statistics
 - HPG networks and message path plotting
+- Books guide: Highlight all systems that occur in one of the books
 
 ## Credits
 The BATTLETECH logo and the faction sigils were created by [Harebrained Schemes](http://www.harebrained-schemes.com).
