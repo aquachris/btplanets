@@ -530,8 +530,10 @@ define(['js/lib/d3.min'], function(d3) {
 				// check if a significant part of the current region is visible
 				var centroidX = this.xScale(d.centroid[0]);
 				var centroidY = this.yScale(d.centroid[1]);
-				if(centroidX < 0 || centroidX > wWidth
-					|| centroidY < 0 || centroidY > wHeight) {
+				var sizeX = d.dims ? d.dims[0] * this.pxPerLy : 1;
+				var sizeY = d.dims ? d.dims[1] * this.pxPerLy : 1;
+				if(centroidX + sizeX < 0 || centroidX - sizeX > wWidth
+					|| centroidY + sizeY < 0 || centroidY - sizeY > wHeight) {
 					label.classed('out-of-vision', true);
 				} else {
 					label.classed('out-of-vision', false);
