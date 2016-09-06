@@ -973,6 +973,13 @@ svg.route-hidden g.jump-routes path {
 }
 
 /* STATE LABEL STYLES */
+svg g.state-labels > g {
+	opacity: 1;
+	transition: opacity .5s;
+}
+svg g.state-labels > g.out-of-vision {
+	opacity: 0;
+}
 svg g.state-labels > g.successor-state > image {
 	height: 64px;
 	width: 64px;
