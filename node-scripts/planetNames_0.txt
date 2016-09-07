@@ -1,4 +1,5 @@
 <a href="/wiki/A_Place" title="A Place">A Place</a>
+<a href="/wiki/A2341CA" title="A2341CA">A2341CA</a>
 <a href="/wiki/Aalzorg" title="Aalzorg">Aalzorg</a>
 <a href="/wiki/Abadan" title="Abadan">Abadan</a>
 <a href="/wiki/Abagnar" title="Abagnar">Abagnar</a>
@@ -15,7 +16,6 @@
 <a href="/wiki/Acala" title="Acala">Acala</a>
 <a href="/wiki/Acamar" title="Acamar">Acamar</a>
 <a href="/wiki/Accrington" title="Accrington">Accrington</a>
-<span class="redirect-in-category"><a href="/wiki/Achernar" class="mw-redirect" title="Achernar">Achernar</a></span>
 <a href="/wiki/Achilles_(CC)" title="Achilles (CC)">Achilles (CC)</a>
 <a href="/wiki/Achnoly" title="Achnoly">Achnoly</a>
 <a href="/wiki/Achton" title="Achton">Achton</a>
@@ -31,7 +31,6 @@
 <a href="/wiki/Adelaide" title="Adelaide">Adelaide</a>
 <a href="/wiki/Adelson" title="Adelson">Adelson</a>
 <a href="/wiki/Adhafera" title="Adhafera">Adhafera</a>
-<span class="redirect-in-category"><a href="/wiki/Adhara" class="mw-redirect" title="Adhara">Adhara</a></span>
 <a href="/wiki/Adherlwin" title="Adherlwin">Adherlwin</a>
 <a href="/wiki/Adler" title="Adler">Adler</a>
 <a href="/wiki/Adrar" title="Adrar">Adrar</a>
@@ -42,7 +41,6 @@
 <a href="/wiki/Agematsu" title="Agematsu">Agematsu</a>
 <a href="/wiki/Aggstein" title="Aggstein">Aggstein</a>
 <a href="/wiki/Agliana" title="Agliana">Agliana</a>
-<span class="redirect-in-category"><a href="/wiki/Agmond" class="mw-redirect" title="Agmond">Agmond</a></span>
 <a href="/wiki/Aigle" title="Aigle">Aigle</a>
 <a href="/wiki/Aiguebelle" title="Aiguebelle">Aiguebelle</a>
 <a href="/wiki/Aitutaki" title="Aitutaki">Aitutaki</a>
@@ -114,7 +112,6 @@
 <a href="/wiki/Altoona_(FS)" title="Altoona (FS)">Altoona (FS)</a>
 <a href="/wiki/Altoona_(LC)" title="Altoona (LC)">Altoona (LC)</a>
 <a href="/wiki/Altorra" title="Altorra">Altorra</a>
-<span class="redirect-in-category"><a href="/wiki/Alula_Australis" class="mw-redirect" title="Alula Australis">Alula Australis</a></span>
 <a href="/wiki/Alula_Borealis" title="Alula Borealis">Alula Borealis</a>
 <a href="/wiki/Alya" title="Alya">Alya</a>
 <a href="/wiki/Alyina" title="Alyina">Alyina</a>
@@ -131,7 +128,6 @@
 <a href="/wiki/An_Ting" title="An Ting">An Ting</a>
 <a href="/wiki/Anaea" title="Anaea">Anaea</a>
 <a href="/wiki/Anaheim" title="Anaheim">Anaheim</a>
-<span class="redirect-in-category"><a href="/wiki/Anatolia" class="mw-redirect" title="Anatolia">Anatolia</a></span>
 <a href="/wiki/Ancha" title="Ancha">Ancha</a>
 <a href="/wiki/Andalusia" title="Andalusia">Andalusia</a>
 <a href="/wiki/Andarmax" title="Andarmax">Andarmax</a>
@@ -183,7 +179,7 @@
 <a href="/wiki/Arcadia_(LC)" title="Arcadia (LC)">Arcadia (LC)</a>
 <a href="/wiki/Arcturus" title="Arcturus">Arcturus</a>
 <a href="/wiki/Ardoz" title="Ardoz">Ardoz</a>
-<a href="/wiki/Ares_(planet)" title="Ares (planet)">Ares (planet)</a>
+<a href="/wiki/Ares_(system)" title="Ares (system)">Ares (system)</a>
 <a href="/wiki/Arganda" title="Arganda">Arganda</a>
 <a href="/wiki/Argos" title="Argos">Argos</a>
 <a href="/wiki/Argyle" title="Argyle">Argyle</a>
@@ -196,5 +192,3 @@
 <a href="/wiki/Armaxa" title="Armaxa">Armaxa</a>
 <a href="/wiki/Armington" title="Armington">Armington</a>
 <a href="/wiki/Armstrong" title="Armstrong">Armstrong</a>
-<a href="/wiki/Arnaudville" title="Arnaudville">Arnaudville</a>
-<a href="/wiki/Arromanches" title="Arromanches">Arromanches</a>

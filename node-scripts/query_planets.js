@@ -18,6 +18,8 @@ var requestUrl = function (host, path, callback) {
 // http://www.sarna.net/wiki/Acala
 
 var startingPlanet = 'A Place';
+//startingPlanet = 'Azur';
+//startingPlanet = 'Zwipadze';
 var i = 0;
 var requestNextPlanetBatch = function () {
 	var host = 'http://www.sarna.net',
@@ -35,34 +37,53 @@ var requestNextPlanetBatch = function () {
 			body = body.substring(idx);
 			idx = body.indexOf('<div class="printfooter">');
 			body = body.substring(0, idx);
-			idx = body.indexOf('<tr');
+			idx = body.indexOf('<li>');
 			body = body.substring(idx);
-			idx = body.indexOf('</tr>');
+			idx = body.indexOf('</div></div>');
 			body = body.substring(0, idx);
-			body = body.replace(/\<tr.+\>\n/g, '');
-			body = body.replace(/\<\/tr\>/g, '');
-			body = body.replace(/\<td.+\n/g, '');
-			body = body.replace(/\<\/td\>/g, '');
+			body = body.replace(/<span([^\r\n]+)\r?\n|\r/g, '');
+			body = body.replace(/\<h3\>[^\<]+\<\/h3\>/g, '');
 			body = body.replace(/\<ul\>/g, '');
 			body = body.replace(/\<\/ul\>/g, '');
 			body = body.replace(/\<li\>/g, '');
 			body = body.replace(/\<\/li\>/g, '');
 			body = body.replace(/\n+$/g, '');
-			//var matches = body.match(/\<span.+\n/);
-			//if(matches.length) {
-				//console.log(matches[0]);
-			//}
-			var matches = body.match(/\<.+\>(.+)\<\/a\>$/g);
-			if(matches && matches.length) {
-				console.log(matches[0], matches[1]);
+			body = body.replace(/\<div class="mw-category-group"\>/g, '');
+			body = body.replace(/\<\/div\>/g, '');
+
+			// remove first line
+			if(i > 0) {
+				//body = body.replace(/(.+)\r?\n|\r/i, '');
 			}
-			
-			fs.writeFile('./planetNames_'+i+'.txt', body, function (err) {
-				if(err) {
-					return console.log('error!', err);
-				}
-				console.log('batch '+i+' written to file');
-			});
+
+			var matches = body.match(/\<.+\>(.*)\<\/a\>$/i);
+			if(!matches || matches.length < 2) {
+				console.log('no more matches');
+				return;
+			}
+			startingPlanet = matches[1];
+
+			if(i === 0) {
+				fs.writeFile('./planetNames.txt', body, function (err) {
+					if(err) {
+						return console.log('error!', err);
+					}
+					console.log('batch '+i+' written to file');
+				});
+			} else {
+				fs.appendFile('./planetNames.txt', body, function (err) {
+					if(err) {
+						return console.log('error!', err);
+					}
+					console.log('batch '+i+' appended to file');
+				});
+			}
+			i++;
+			if(startingPlanet !== 'Úr Cruinne') {
+				requestNextPlanetBatch();
+			} else {
+				console.log('DONE!');
+			}
 		});
 		console.log('res: ' + res.statusCode);
 		// find out last planet in the list
