@@ -974,11 +974,18 @@ svg.route-hidden g.jump-routes path {
 
 /* STATE LABEL STYLES */
 svg g.state-labels > g {
-	opacity: 1;
+	opacity: 0;
 	transition: opacity .5s;
 }
+svg.labels-all g.state-labels > g.successor-state,
+svg.labels-successor-states g.state-labels > g.successor-state,
+svg.labels-major-powers g.state-labels > g.successor-state,
+svg.labels-major-powers.periphery-states g.state-labels > g.periphery-major,
+svg.labels-all.periphery-states g.state-labels > g {
+	opacity: 1;
+}
 svg g.state-labels > g.out-of-vision {
-	opacity: 0;
+	opacity: 0 !important;
 }
 svg g.state-labels > g.successor-state > image {
 	height: 64px;
@@ -996,11 +1003,11 @@ svg g.state-labels > g > text {
 }
 svg g.state-labels > g > text:nth-child(2) {
 	font-size: 1.8em;
-	transform: translate(66px, 1.4em);
+	transform: translate(64px, 1.4em);
 }
 svg g.state-labels > g > text:nth-child(3) {
 	font-size: 1.4em;
-	transform: translate(66px, 3.1em);
+	transform: translate(64px, 3.1em);
 }
 svg g.state-labels > g.capellan-confederation > text {
 	fill: #426e33;

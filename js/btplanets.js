@@ -530,8 +530,9 @@ define(['js/lib/d3.min'], function(d3) {
 				// check if a significant part of the current region is visible
 				var centroidX = this.xScale(d.centroid[0]);
 				var centroidY = this.yScale(d.centroid[1]);
-				var sizeX = d.dims ? d.dims[0] * this.pxPerLy : 1;
-				var sizeY = d.dims ? d.dims[1] * this.pxPerLy : 1;
+				var scale = this.zoom.scale();
+				var sizeX = d.dims ? d.dims[0] * this.pxPerLy * scale : 1;
+				var sizeY = d.dims ? d.dims[1] * this.pxPerLy * scale : 1;
 				if(centroidX + sizeX < 0 || centroidX - sizeX > wWidth
 					|| centroidY + sizeY < 0 || centroidY - sizeY > wHeight) {
 					label.classed('out-of-vision', true);
@@ -540,22 +541,31 @@ define(['js/lib/d3.min'], function(d3) {
 				}
 
 				// find out label width
-				var x = this.xScale(d.preferredLabelPos[0]) - bbox.width;
-				var y = this.yScale(d.preferredLabelPos[1]) - bbox.height;
+				var x = this.xScale(d.preferredLabelPos[0]); - bbox.width * .5;
+				var y = this.yScale(d.preferredLabelPos[1]);
+				d.labelAnchor = d.labelAnchor || '';
+				if(d.labelAnchor.indexOf('right') > 0)  {
+					x -= bbox.width;
+				} else if(d.labelAnchor.indexOf('left') === -1) {
+					x -= bbox.width * .5;
+				}
+				if(d.labelAnchor.indexOf('bottom') > 0) {
+					y -= bbox.height;
+				} else if(d.labelAnchor.indexOf('top') === -1) {
+					y -= bbox.height * .5;
+				}
 				x = Math.max(20,Math.min(x, wWidth - bbox.width - 20));
 				y = Math.max(20,Math.min(y, wHeight - bbox.height - 20));
-				if(x < 350 && y < 130) {
-					y = 130;
-				}
-				/*if(x < 400 && y < 200) {
-					x = () * 340 + 10;
-					y = () * 120 + 10;*/
-					/*if(350 - x < 130 - y) {
-						x = 350;
+				if(x < 320 && y < 130) {
+					if(x > 2* y) {
+						x = 320;
 					} else {
 						y = 130;
-					}*/
-				//}
+					}
+				}
+				if(x < 420 && y > wHeight - bbox.height - 70) {
+					y = wHeight - bbox.height - 70;
+				}
 				return 'translate('+x+','+y+')';
 			},
 			planetCircle : function (d, i) {

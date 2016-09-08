@@ -403,6 +403,26 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					svg.classed('borders-hatch', false);
 					svg.classed('borders-fill', false);
 					break;
+				case 'settings_state_labels_all':
+					svg.classed('labels-successor-states', false);
+					svg.classed('labels-major-powers', false);
+					svg.classed('labels-all', true);
+					break;
+				case 'settings_state_labels_maj':
+					svg.classed('labels-successor-states', false);
+					svg.classed('labels-major-powers', true);
+					svg.classed('labels-all', false);
+					break;
+				case 'settings_state_labels_succ':
+					svg.classed('labels-successor-states', true);
+					svg.classed('labels-major-powers', false);
+					svg.classed('labels-all', false);
+					break;
+				case 'settings_state_labels_none':
+					svg.classed('labels-successor-states', false);
+					svg.classed('labels-major-powers', false);
+					svg.classed('labels-all', false);
+					break;
 				case 'settings_planets_none':
 					svg.classed('planets-hidden', true);
 					svg.classed('planets-capitals', false);
