@@ -1000,6 +1000,7 @@ svg g.state-labels > g > text {
 	font-style: italic;
 	font-weight: bold;
 	pointer-events: none;
+	text-shadow: 0 0 5px #000;
 }
 svg g.state-labels > g > text:nth-child(2) {
 	font-size: 1.8em;
