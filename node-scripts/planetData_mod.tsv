@@ -1221,7 +1221,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	3025 AFFILIATION
 /wiki/Holt	Holt	-49.33:-103.66	Free Worlds League
 /wiki/Homam	Homam	146.29:51.90	Draconis Combine
 /wiki/Home	Home	-278.41:-165.15	Free Worlds League
-/wiki/Homer_(Clan)	Homer (Clan)	-90.83:1785.07	Clans
+/wiki/Homer_(Clan)	Homer (Clan)		-90.83:1785.07	Clans
 /wiki/Homestead	Homestead	57.85:-285.64	Capellan Confederation
 /wiki/Hongor	Hongor	390.06:314.27	Draconis Combine
 /wiki/Hongqiao	Hongqiao	-227.01:-234.33	Free Worlds League
@@ -1253,7 +1253,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	3025 AFFILIATION
 /wiki/Hurik	Hurik	77.74:-399.14	Capellan Confederation
 /wiki/Huron	Huron	315.10:-71.91	Federated Suns
 /wiki/Hustaing	Hustaing	55.02:-247.40	Capellan Confederation
-/wiki/Hyades_Cluster	Hyades Cluster	183.34:-393.55	Taurian Concordat
+/wiki/Hyades_Cluster	Hyades Cluster	2571-TaurianConcordat	Taurian Concordat
 /wiki/Hyalite	Hyalite	268.82:-354.19	No record
 /wiki/Hyde	Hyde	-162.23:2.56	Lyran Commonwealth
 /wiki/Hyner	Hyner	204.20:327.98	Draconis Combine
@@ -2408,7 +2408,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	3025 AFFILIATION
 /wiki/Sarikavak	Sarikavak	-425.41:8.35	Lyran Commonwealth
 /wiki/Sarkel	Sarkel	-89.76:-98.68	No record
 /wiki/Sarmaxa	Sarmaxa	53.20:-164.55	Capellan Confederation
-/wiki/Sarna	Sarna	55.02:-155.97	Capellan Confederation
+/wiki/Sarna	Sarna	55.02:-155.97	No record
 /wiki/Sarpsborg	Sarpsborg	-149.66:32.26	Lyran Commonwealth
 /wiki/Sartu	Sartu	297.22:-342.83	No record
 /wiki/Satalice	Satalice	5.94:260.77	Draconis Combine
@@ -2717,6 +2717,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	3025 AFFILIATION
 /wiki/Thibodaux	Thibodaux	576.17:-7.54	Federated Suns
 /wiki/Thimphu	Thimphu	346.63:286.36	Draconis Combine
 /wiki/Thirty_Weight	Thirty Weight	-246.24:-153.91	No record
+/wiki/Thomas	Thomas	2750-CapellanConfederation	Capellan Confederation
 /wiki/Thorin	Thorin	-23.51:8.02	Lyran Commonwealth
 /wiki/Thorn_(HL)	Thorn (HL)	-766.21:660.54	No record
 /wiki/Thraxa	Thraxa	-322.08:-378.00	Magistracy of Canopus
@@ -2859,7 +2860,7 @@ SARNA.NET PATH	PLANET NAME	COORDINATES	3025 AFFILIATION
 /wiki/Vannes	Vannes	-167.47:548.32	No record
 /wiki/Vanra	Vanra	-48.30:-164.35	Free Worlds League
 /wiki/Vantaa	Vantaa	-72.59:354.01	Lyran Commonwealth
-/wiki/Vard	Vard	74.12:-357.51	Capellan Confederation
+/wiki/Vard	Vard	3025-CapellanConfederation	Capellan Confederation
 /wiki/Vargtass	Vargtass	-236.65:467.49	No record
 /wiki/Vaucluse	Vaucluse	496.82:-162.10	Federated Suns
 /wiki/Vecchio	Vecchio	247.70:-137.00	No record

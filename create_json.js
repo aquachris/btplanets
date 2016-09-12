@@ -31,7 +31,7 @@ var init = function () {
 			for(var i = 1, len = lines.length; i < len; i++) {
 				tokens = lines[i].split('\t');
 				
-				if(!tokens || tokens.length < 5) {
+				if(!tokens || tokens.length < 4) {
 					continue;
 				}
 				coords = tokens[2].split(':');
@@ -44,7 +44,7 @@ var init = function () {
 					name : tokens[1],
 					x : Number(coords[0]),
 					y : Number(coords[1]),
-					affiliation : tokens[4]
+					affiliation : tokens[3]
 				});
 			}
 			for(var i = 0, len = planetArr.length; i < len; i++) {
