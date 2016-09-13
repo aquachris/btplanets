@@ -7,6 +7,9 @@ define(['js/lib/d3.min'], function(d3) {
 		ZOOM_FACTOR_MIN : 0.5,
 		ZOOM_FACTOR_MAX : 40,
 
+		// browser detection (edge)
+		isEdge : false,
+
 		// data array handles
 		borders : null,
 		labels : null,
@@ -30,6 +33,7 @@ define(['js/lib/d3.min'], function(d3) {
 		bbox : null, // the current bounding box
 		pxPerLy : 1, // pixel per lightyear for the unzoomed view
 		startTranslate : [0, 0], // translation coordinates at last zoom start
+		labelRepositionTimeout : null,
 
 		// functions
 		/**
@@ -37,6 +41,7 @@ define(['js/lib/d3.min'], function(d3) {
 		 */
 		init : function () {
 			var noCache = new Date().getTime();
+			this.isEdge = window.navigator.userAgent.indexOf("Edge") > -1;
 			d3.json('./data/borders.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 				if(error) {
 					return console.warn(error);
@@ -158,14 +163,23 @@ define(['js/lib/d3.min'], function(d3) {
 				.enter().append('g')
 					.attr('class', function (d, i) {
 						var g = d3.select(this);
-						if(d.type === 'successor-state' || d.type === 'periphery-major') {
+						var succ = d.type === 'successor-state';
+						var maj = d.type === 'periphery-major';
+						if(succ || maj) {
 							g.append('image')
-								.attr('xlink:href', './img/'+d.name.replace(/\-/g, '_')+'_64.png');
+								.attr('xlink:href', './img/'+d.name.replace(/\-/g, '_')+'_64.png')
+								.attr('width', succ ? 64 : 32)
+								.attr('height', succ ? 64 : 32);
 						}
 						g.append('text')
+							.attr('x', succ ? 62 : 32)
+							.attr('y', succ ? 28 : 14)
 							.text(d.display);
+
 						if(d.rulers) {
 							g.append('text')
+								.attr('x', succ ? 62 : 32)
+								.attr('y', succ ? 48: 30)
 								.text(d.rulers);
 						}
 						return d.name + ' ' + d.type;
@@ -342,7 +356,16 @@ define(['js/lib/d3.min'], function(d3) {
 			var scale = me.zoom.scale();
 			me.svg.selectAll('path.border')
 				.attr('transform', me.transformers.borderPath.bind(me));
-			me.svg.selectAll('g.state-labels > g').attr('transform', me.transformers.labelGroup.bind(me));
+
+			if(me.svg.classed('labels-successor-states')
+				|| me.svg.classed('labels-major-powers')
+				|| me.svg.classed('labels-all')) {
+				if(me.isEdge) {
+					me.svg.selectAll('g.state-labels > g').attr('transform', me.transformers.labelGroup.bind(me));
+				} else {
+					me.svg.selectAll('g.state-labels > g').attr('style', me.transformers.labelGroup.bind(me));
+				}
+			}
 			me.svg.select('circle.jump-range')
 				.classed('visible', false)
 			//this.svg.selectAll('path.jump-route')
@@ -533,15 +556,35 @@ define(['js/lib/d3.min'], function(d3) {
 				var scale = this.zoom.scale();
 				var sizeX = d.dims ? d.dims[0] * this.pxPerLy * scale : 1;
 				var sizeY = d.dims ? d.dims[1] * this.pxPerLy * scale : 1;
-				if(centroidX + sizeX < 0 || centroidX - sizeX > wWidth
-					|| centroidY + sizeY < 0 || centroidY - sizeY > wHeight) {
+				var left = centroidX - sizeX;
+				var right = centroidX + sizeX;
+				var top = centroidY - sizeY;
+				var bottom = centroidY + sizeY;
+
+				if(right < 0 || left > wWidth
+					|| bottom < 0 || top > wHeight) {
 					label.classed('out-of-vision', true);
 				} else {
 					label.classed('out-of-vision', false);
 				}
 
-				// find out label width
-				var x = this.xScale(d.preferredLabelPos[0]); - bbox.width * .5;
+
+				var x = this.xScale(d.centroid[0]);
+				var y = this.yScale(d.centroid[1]);
+				if(left >= 0 && right <= wWidth && top >= 0 && bottom <= wHeight) {
+					x = this.xScale(d.preferredLabelPos[0]);
+					y = this.yScale(d.preferredLabelPos[1]);
+				} else {
+					x = (Math.max(0, left) + Math.min(wWidth, right)) * .5;
+					y = (Math.max(0, top) + Math.min(wHeight, bottom)) * .5;
+				}
+
+				// set label coordinates
+
+				x -= bbox.width * .5;
+				y -= bbox.height * .5;
+
+				/*var x = this.xScale(d.preferredLabelPos[0]); - bbox.width * .5;
 				var y = this.yScale(d.preferredLabelPos[1]);
 				d.labelAnchor = d.labelAnchor || '';
 				if(d.labelAnchor.indexOf('right') > 0)  {
@@ -565,8 +608,12 @@ define(['js/lib/d3.min'], function(d3) {
 				}
 				if(x < 420 && y > wHeight - bbox.height - 70) {
 					y = wHeight - bbox.height - 70;
+				}*/
+				if(this.isEdge) {
+					return 'translate('+x+','+y+')'
+				} else {
+					return 'transform:translate('+x+'px,'+y+'px)';
 				}
-				return 'translate('+x+','+y+')';
 			},
 			planetCircle : function (d, i) {
 				return 'translate('+this.xScale(d.x) + ',' + this.yScale(d.y) + ')';

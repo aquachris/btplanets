@@ -975,7 +975,7 @@ svg.route-hidden g.jump-routes path {
 /* STATE LABEL STYLES */
 svg g.state-labels > g {
 	opacity: 0;
-	transition: opacity .5s;
+	transition: opacity .5s, transform .25s;
 }
 svg.labels-all g.state-labels > g.successor-state,
 svg.labels-successor-states g.state-labels > g.successor-state,
@@ -987,6 +987,7 @@ svg.labels-all.periphery-states g.state-labels > g {
 svg g.state-labels > g.out-of-vision {
 	opacity: 0 !important;
 }
+/*
 svg g.state-labels > g.successor-state > image {
 	height: 64px;
 	width: 64px;
@@ -994,7 +995,7 @@ svg g.state-labels > g.successor-state > image {
 svg g.state-labels > g.periphery-major > image {
 	height: 32px;
 	width: 32px;
-}
+}*/
 svg g.state-labels > g > text {
 	fill: #fff;
 	font-style: italic;
@@ -1003,14 +1004,14 @@ svg g.state-labels > g > text {
 	text-shadow: 0 0 5px #000;
 }
 svg g.state-labels > g > text:nth-child(2) {
-	font-size: 1.8em;
-	transform: translate(64px, 1.4em);
+	font-size: 1.4em;
+	/*transform: translate(64px, 1.7em);*/
 }
 svg g.state-labels > g > text:nth-child(3) {
-	font-size: 1.4em;
-	transform: translate(64px, 3.1em);
+	font-size: 1.2em;
+	/*transform: translate(64px, 3.2em);*/
 }
-svg g.state-labels > g.capellan-confederation > text {
+/*svg g.state-labels > g.capellan-confederation > text {
 	fill: #426e33;
 }
 svg g.state-labels > g.draconis-combine > text {
@@ -1024,14 +1025,14 @@ svg g.state-labels > g.free-worlds-league > text {
 }
 svg g.state-labels > g.lyran-commonwealth > text {
 	fill: #3f7aaa;
-}
+}*/
 svg g.state-labels > g.periphery-major > text:nth-child(2) {
 	font-size: 1.2em;
-	transform: translate(34px,1em);
+	/*transform: translate(34px,1em);*/
 }
 svg g.state-labels > g.periphery-major > text:nth-child(3) {
 	font-size: 1em;
-	transform: translate(34px,2.3em);
+	/*transform: translate(34px,2.3em);*/
 }
 /*
 taurian-concordat #b55731

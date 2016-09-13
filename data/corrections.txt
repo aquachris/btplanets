@@ -1,0 +1,109 @@
+https://www.diffchecker.com/A6VpShBC
+http://www.sarna.net/wiki/Special:Contributions/Gruese
+
+Names:
+Alphard (MH) --> Alphard
+Atreus (FWL) --> Atreus
+Beowulf (system) --> Beowulf
+Bismarck (system) --> Bismarck
+Blackjack (system) --> Blackjack
+Bremen (RWR) --> Bremen
+Cadiz (DC) --> Cadiz
+Cerberus (system) --> Cerberus
+Cygnus (system) --> Cygnus
+Dagda (LC) --> Dagda
+Dante (planet) --> Dante
+Defiance (system) --> Defiance
+Elbing (FWL) --> Elbing
+Falsterbo (DC) --> Falsterbo
+Ferris (OC) --> Ferris
+Gladius (system) --> Gladius
+Glory (system) --> Glory
+Gorgon (system) --> Gorgon
+Hachiman (system) --> Hachiman
+Hammer (system) --> Hammer
+Hector (system) --> Hector
+Helios (planet) --> Helios
+Herat (FS) --> Herat
+Homer (Clan) --> Homer
+Ishtar (system) --> Ishtar
+Kalmar (FWL) --> Kalmar
+Kupang (CC) --> Kupang
+Köln (FWL) --> Köln
+Liao (system) --> Liao
+Matar (system) --> Matar
+McKenna (system) --> McKenna
+Merlin (system) --> Merlin
+Morrigan (LC) --> Morrigan
+Niles (DC) --> Niles
+Orkney (LC) --> Orkney
+Outpost (system) --> Outpost
+Point Barrow (System) --> Point Barrow
+Primus (system) --> Primus
+Rover (system) --> Rover
+Santiago (JF) --> Santiago
+Sanurcha (FS) --> Sanurcha
+Savannah (system) --> Savannah
+Sheridan (Clan system) --> Sheridan
+Spirit (system) --> Spirit
+Stettin (HL) --> Stettin
+Sylvester (system) --> Sylvester
+Thorn (HL) --> Thorn
+Tiber (FWL) --> Tiber
+Trinity (system) --> Trinity
+Trondheim (FRR) --> Trondheim
+Vixen (system) --> Vixen
+Vulcan (system) --> Vulcan
+York (LC) --> York
+
+Coordinates:
+Diass
+-171.38:256.95 --> -171.38:-256.95
+
+Diboll
+-475.36:67.16 --> 475.36:67.16
+
+Dickinson
+-146.60:112.74 --> -146.60:-112.74
+
+Londerholm
+-43.25:-1.858.27 --> -43.25:1.858.27
+
+Lum
+4.73:-1743.65 --> 4.73:1743.65
+
+Ma'anshan
+-389.04:420.35 --> -388.74:274.61
+
+New Kent
+119.57:-1770.14 --> 119.57:1770.14
+
+Niles (Clan)
+117.76:-1.692.63 --> 117.76:1.692.63
+
+Paxon
+-71.79:-1.865.23 --> -71.79:1.865.23
+
+Pirates' Haven
+150.17:-155.16 --> 424.96:-349.83
+
+Porthos
+72.89:459.29 --> 90.20:477.83
+
+Saiph
+4.64:207.45 --> 4.64:-207.45
+
+Shadow
+-3.10:-1735.69 --> -3.10:1735.69
+
+Syrma
+-57.88:580.49 --> -57.88:40.66
+
+Ventabren
+3.35-123:34.61 --> 3.35:-98.45
+
+Westerstede
+73.94:-417.24 --> -208:173.94
+
+
+Fager, Fr�islandis?
