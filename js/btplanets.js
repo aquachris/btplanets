@@ -60,9 +60,6 @@ define(['js/lib/d3.min'], function(d3) {
 						if(	cur === 'sian' || cur === 'luthien'
 							|| cur === 'new avalon' || cur === 'atreus'
 							|| cur === 'tharkad' || cur === 'terra') {
-							//|| cur === 'taurus' || cur === 'canopus'
-							//|| cur === 'alphard' || cur === 'oberon'
-							//|| cur === 'alpheratz') {
 							this.planets[i].isCapital = true;
 							this.capitals.push(this.planets[i]);
 						}
@@ -244,12 +241,6 @@ define(['js/lib/d3.min'], function(d3) {
 					.data(me.capitals)
 				.enter().append('path')
 					.attr('name', function(d) { return d.name; })
-					//.attr('d', 'M0,-10 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,10 C1,1 1,1 10,0 C1,-1 1,-1 0,-10')
-					//.attr('d', 'M0,-15 C-2,-2 -2,-2 -15,0 C-2,2 -2,2 0,15 C2,2 2,2 15,0 C2,-2 2,-2 0,-15')
-					//.attr('d', 'M0,-12 C-2,-2 -2,-2 -12,0 C-2,2 -2,2 0,12 C2,2 2,2 12,0 C2,-2 2,-2 0,-12')
-					//.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13')
-					//.attr('d', 'M0,-13 C-1,-1 -1,-1 -10,0 C-1,1 -1,1 0,13 C1,1 1,1 10,0 C1,-1 1,-1 0,-13 M0,-4 C-4,-4 -4,4 0,4 C4,4 4,-4 0,-4z')
-					//.attr('d', 'M0,-14 C-1,-1 -1,-1 -10,0 L-4,0 C-6,0 0,-6 0,-4 M0,-14 C1,1 1,1 10,0 L4,0 C6,0 0,-6 0,-4')
 					.attr('d', 'M-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0')
 					.attr('class', function (d) {
 						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
@@ -584,31 +575,6 @@ define(['js/lib/d3.min'], function(d3) {
 				x -= bbox.width * .5;
 				y -= bbox.height * .5;
 
-				/*var x = this.xScale(d.preferredLabelPos[0]); - bbox.width * .5;
-				var y = this.yScale(d.preferredLabelPos[1]);
-				d.labelAnchor = d.labelAnchor || '';
-				if(d.labelAnchor.indexOf('right') > 0)  {
-					x -= bbox.width;
-				} else if(d.labelAnchor.indexOf('left') === -1) {
-					x -= bbox.width * .5;
-				}
-				if(d.labelAnchor.indexOf('bottom') > 0) {
-					y -= bbox.height;
-				} else if(d.labelAnchor.indexOf('top') === -1) {
-					y -= bbox.height * .5;
-				}
-				x = Math.max(20,Math.min(x, wWidth - bbox.width - 20));
-				y = Math.max(20,Math.min(y, wHeight - bbox.height - 20));
-				if(x < 320 && y < 130) {
-					if(x > 2* y) {
-						x = 320;
-					} else {
-						y = 130;
-					}
-				}
-				if(x < 420 && y > wHeight - bbox.height - 70) {
-					y = wHeight - bbox.height - 70;
-				}*/
 				if(this.isEdge) {
 					return 'translate('+x+','+y+')'
 				} else {
