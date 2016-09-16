@@ -641,11 +641,17 @@ svg.borders-fill path.border {
 svg.borders-hatch path.border.capellan-confederation {
 	fill: url(#hatch-capellan-confederation);
 }
+svg.borders-sigils path.border.capellan-confederation {
+	fill: url(#house-bg-capellan-confederation);
+}
 svg.borders-fill path.border.capellan-confederation {
 	fill: rgba(90,170,80,.85);
 }
 svg.borders-hatch path.border.draconis-combine {
 	fill: url(#hatch-draconis-combine);
+}
+svg.borders-sigils path.border.draconis-combine {
+	fill: url(#house-bg-draconis-combine);
 }
 svg.borders-fill path.border.draconis-combine {
 	fill: rgba(245,60,43,.85);
@@ -653,17 +659,26 @@ svg.borders-fill path.border.draconis-combine {
 svg.borders-hatch path.border.federated-suns {
 	fill: url(#hatch-federated-suns);
 }
+svg.borders-sigils path.border.federated-suns {
+	fill: url(#house-bg-federated-suns);
+}
 svg.borders-fill path.border.federated-suns {
 	fill: rgba(210,150,55,.85);
 }
 svg.borders-hatch path.border.free-worlds-league {
 	fill: url(#hatch-free-worlds-league);
 }
+svg.borders-sigils path.border.free-worlds-league {
+	fill: url(#house-bg-free-worlds-league);
+}
 svg.borders-fill path.border.free-worlds-league {
 	fill: rgba(150,105,205,.85);
 }
 svg.borders-hatch path.border.lyran-commonwealth {
 	fill: url(#hatch-lyran-commonwealth);
+}
+svg.borders-sigils path.border.lyran-commonwealth {
+	fill: url(#house-bg-lyran-commonwealth);
 }
 svg.borders-fill path.border.lyran-commonwealth {
 	fill: rgba(90,180,240,.85);
@@ -676,6 +691,9 @@ svg.borders-fill path.border.taurian-concordat {
 }
 svg.borders-hatch path.border.magistracy-of-canopus {
 	fill: url(#hatch-magistracy-of-canopus);
+}
+svg.borders-sigils path.border.magistracy-of-canopus {
+	fill: url(#house-bg-magistracy-of-canopus);
 }
 svg.borders-fill path.border.magistracy-of-canopus {
 	fill: rgba(67, 224, 200, .85);

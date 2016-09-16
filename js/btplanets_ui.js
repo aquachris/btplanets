@@ -393,14 +393,22 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					break;
 				case 'settings_borders_hatch':
 					svg.classed('borders-hatch', true);
+					svg.classed('borders-sigils', false);
+					svg.classed('borders-fill', false);
+					break;
+				case 'settings_borders_sigils':
+					svg.classed('borders-hatch', false);
+					svg.classed('borders-sigils', true);
 					svg.classed('borders-fill', false);
 					break;
 				case 'settings_borders_fill':
 					svg.classed('borders-hatch', false);
+					svg.classed('borders-sigils', false);
 					svg.classed('borders-fill', true);
 					break;
 				case 'settings_borders_nofill':
 					svg.classed('borders-hatch', false);
+					svg.classed('borders-sigils', false);
 					svg.classed('borders-fill', false);
 					break;
 				case 'settings_state_labels_all':
