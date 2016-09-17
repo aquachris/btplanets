@@ -569,6 +569,7 @@ svg.borders-lines path.border {
 	stroke-width: 2;
 }
 svg path.border.taurian-concordat,
+svg path.border.aurigan-coalition,
 svg path.border.magistracy-of-canopus,
 svg path.border.marian-hegemony,
 svg path.border.lothian-league,
@@ -582,6 +583,7 @@ svg path.border.tortuga-dominions {
 	opacity: 0;
 }
 svg.periphery-states path.border.taurian-concordat,
+svg.periphery-states path.border.aurigan-coalition,
 svg.periphery-states path.border.magistracy-of-canopus,
 svg.periphery-states path.border.marian-hegemony,
 svg.periphery-states path.border.lothian-league,
@@ -616,6 +618,9 @@ svg path.border.lyran-commonwealth {
 svg path.border.taurian-concordat {
 	stroke: #b55731;
 }
+/*svg path.border.aurigan-coalition {
+	stroke: rgba(218,74,47,1);
+}*/
 svg path.border.magistracy-of-canopus {
 	stroke: #2d9889;
 }
@@ -686,8 +691,14 @@ svg.borders-fill path.border.lyran-commonwealth {
 svg.borders-hatch path.border.taurian-concordat {
 	fill: url(#hatch-taurian-concordat);
 }
+svg.borders-sigils path.border.taurian-concordat {
+	fill: url(#house-bg-taurian-concordat);
+}
 svg.borders-fill path.border.taurian-concordat {
 	fill: rgba(216, 104, 60, .85);
+}
+svg.borders-sigils path.border.aurigan-coalition {
+	fill: url(#house-bg-aurigan-coalition);
 }
 svg.borders-hatch path.border.magistracy-of-canopus {
 	fill: url(#hatch-magistracy-of-canopus);
@@ -701,11 +712,17 @@ svg.borders-fill path.border.magistracy-of-canopus {
 svg.borders-hatch path.border.marian-hegemony {
 	fill: url(#hatch-marian-hegemony);
 }
+svg.borders-sigils path.border.marian-hegemony {
+	fill: url(#house-bg-marian-hegemony);
+}
 svg.borders-fill path.border.marian-hegemony {
 	fill: rgba(255,152,84, .65);
 }
 svg.borders-hatch path.border.oberon-confederation {
 	fill: url(#hatch-oberon-confederation);
+}
+svg.borders-sigils path.border.oberon-confederation {
+	fill: url(#house-bg-oberon-confederation);
 }
 svg.borders-fill path.border.oberon-confederation {
 	fill: rgba(234,183,0, .6);
@@ -713,8 +730,29 @@ svg.borders-fill path.border.oberon-confederation {
 svg.borders-hatch path.border.outworlds-alliance {
 	fill: url(#hatch-outworlds-alliance);
 }
+svg.borders-sigils path.border.outworlds-alliance {
+	fill: url(#house-bg-outworlds-alliance);
+}
 svg.borders-fill path.border.outworlds-alliance {
 	fill: rgba(198,191,161, .5);
+}
+svg.borders-sigils path.border.lothian-league {
+	fill: url(#house-bg-lothian-league);
+}
+svg.borders-sigils path.border.illyrian-palatinate {
+	fill: url(#house-bg-illyrian-palatinate);
+}
+svg.borders-sigils path.border.circinus-federation {
+	fill: url(#house-bg-circinus-federation);
+}
+svg.borders-sigils path.border.morgraines-valkyrate {
+	fill: url(#house-bg-morgraines-valkyrate);
+}
+svg.borders-sigils path.border.elysian-fields {
+	fill: url(#house-bg-elysian-fields);
+}
+svg.borders-sigils path.border.tortuga-dominions {
+	fill: url(#house-bg-tortuga-dominions);
 }
 
 /* Firefox specific hack.
@@ -909,6 +947,7 @@ svg g.planet-circles path.oberon-confederation.capital {
 	stroke: #C79F00
 }
 svg g.planet-circles circle.independent-world,
+svg g.planet-circles circle.aurigan-coalition,
 svg g.planet-circles circle.circinus-federation,
 svg g.planet-circles circle.illyrian-palatinate,
 svg g.planet-circles circle.lothian-league,
