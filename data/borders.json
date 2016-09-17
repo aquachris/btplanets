@@ -91,7 +91,7 @@
         "rulers": "",
         "type": "periphery-minor",
         "centroid": [35,500],
-        "preferredLabelPos": [50, 470],
+        "preferredLabelPos": [65, 485],
         "path": "M-52,-470 L-37,-508 L-45,-535 L10,-524 L109,-487 L110,-464 L85,-469 L86,-483 L40,-490 z"
     },
     {

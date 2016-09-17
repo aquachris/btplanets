@@ -162,20 +162,22 @@ define(['js/lib/d3.min'], function(d3) {
 						var g = d3.select(this);
 						var succ = d.type === 'successor-state';
 						var maj = d.type === 'periphery-major';
-						if(succ || maj) {
+						/*if(succ || maj) {
 							g.append('image')
 								.attr('xlink:href', './img/'+d.name.replace(/\-/g, '_')+'_64.png')
 								.attr('width', succ ? 64 : 32)
 								.attr('height', succ ? 64 : 32);
-						}
+						}*/
 						g.append('text')
-							.attr('x', succ ? 62 : 32)
+							//.attr('x', succ ? 62 : 32)
+							.attr('x', 0)
 							.attr('y', succ ? 28 : 14)
 							.text(d.display);
 
 						if(d.rulers) {
 							g.append('text')
-								.attr('x', succ ? 62 : 32)
+								//.attr('x', succ ? 62 : 32)
+								.attr('x', 0)
 								.attr('y', succ ? 48: 30)
 								.text(d.rulers);
 						}

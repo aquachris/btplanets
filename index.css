@@ -774,32 +774,83 @@ svg.borders-sigils path.border.tortuga-dominions {
 	svg.borders-hatch path.border.capellan-confederation {
 		fill: url(./img/patterns.svg#hatch-capellan-confederation);
 	}
+	svg.borders-sigils path.border.capellan-confederation {
+		fill: url(./img/patterns.svg#house-bg-capellan-confederation);
+	}
 	svg.borders-hatch path.border.draconis-combine {
 		fill: url(./img/patterns.svg#hatch-draconis-combine);
+	}
+	svg.borders-sigils path.border.draconis-combine {
+		fill: url(./img/patterns.svg#house-bg-draconis-combine);
 	}
 	svg.borders-hatch path.border.federated-suns {
 		fill: url(./img/patterns.svg#hatch-federated-suns);
 	}
+	svg.borders-sigils path.border.federated-suns {
+		fill: url(./img/patterns.svg#house-bg-federated-suns);
+	}
 	svg.borders-hatch path.border.free-worlds-league {
 		fill: url(./img/patterns.svg#hatch-free-worlds-league);
+	}
+	svg.borders-sigils path.border.free-worlds-league {
+		fill: url(./img/patterns.svg#house-bg-free-worlds-league);
 	}
 	svg.borders-hatch path.border.lyran-commonwealth {
 		fill: url(./img/patterns.svg#hatch-lyran-commonwealth);
 	}
+	svg.borders-sigils path.border.lyran-commonwealth {
+		fill: url(./img/patterns.svg#house-bg-lyran-commonwealth);
+	}
 	svg.borders-hatch path.border.taurian-concordat {
 		fill: url(./img/patterns.svg#hatch-taurian-concordat);
+	}
+	svg.borders-sigils path.border.taurian-concordat {
+		fill: url(./img/patterns.svg#house-bg-taurian-concordat);
 	}
 	svg.borders-hatch path.border.magistracy-of-canopus {
 		fill: url(./img/patterns.svg#hatch-magistracy-of-canopus);
 	}
+	svg.borders-sigils path.border.magistracy-of-canopus {
+		fill: url(./img/patterns.svg#house-bg-magistracy-of-canopus);
+	}
 	svg.borders-hatch path.border.marian-hegemony {
 		fill: url(./img/patterns.svg#hatch-marian-hegemony);
+	}
+	svg.borders-sigils path.border.marian-hegemony {
+		fill: url(./img/patterns.svg#house-bg-marian-hegemony);
 	}
 	svg.borders-hatch path.border.oberon-confederation {
 		fill: url(./img/patterns.svg#hatch-oberon-confederation);
 	}
+	svg.borders-sigils path.border.aurigan-coalition {
+		fill: url(./img/patterns.svg#house-bg-aurigan-coalition);
+	}
+	svg.borders-sigils path.border.oberon-confederation {
+		fill: url(./img/patterns.svg#house-bg-oberon-confederation);
+	}
 	svg.borders-hatch path.border.outworlds-alliance {
 		fill: url(./img/patterns.svg#hatch-outworlds-alliance);
+	}
+	svg.borders-sigils path.border.outworlds-alliance {
+		fill: url(./img/patterns.svg#house-bg-outworlds-alliance);
+	}
+	svg.borders-sigils path.border.lothian-league {
+		fill: url(./img/patterns.svg#house-bg-lothian-league);
+	}
+	svg.borders-sigils path.border.illyrian-palatinate {
+		fill: url(./img/patterns.svg#house-bg-illyrian-palatinate);
+	}
+	svg.borders-sigils path.border.circinus-federation {
+		fill: url(./img/patterns.svg#house-bg-circinus-federation);
+	}
+	svg.borders-sigils path.border.morgraines-valkyrate {
+		fill: url(./img/patterns.svg#house-bg-morgraines-valkyrate);
+	}
+	svg.borders-sigils path.border.elysian-fields {
+		fill: url(./img/patterns.svg#house-bg-elysian-fields);
+	}
+	svg.borders-sigils path.border.tortuga-dominions {
+		fill: url(./img/patterns.svg#house-bg-tortuga-dominions);
 	}
 }
 
@@ -1060,11 +1111,14 @@ svg g.state-labels > g > text {
 	pointer-events: none;
 	text-shadow: 0 0 5px #000;
 }
-svg g.state-labels > g > text:nth-child(2) {
+svg g.state-labels > g > text:nth-child(1) {
+	font-size: 1.1em;
+}
+svg g.state-labels > g.successor-state > text:nth-child(1) {
 	font-size: 1.4em;
 	/*transform: translate(64px, 1.7em);*/
 }
-svg g.state-labels > g > text:nth-child(3) {
+svg g.state-labels > g.successor-state > text:nth-child(2) {
 	font-size: 1.2em;
 	/*transform: translate(64px, 3.2em);*/
 }
@@ -1083,14 +1137,6 @@ svg g.state-labels > g.free-worlds-league > text {
 svg g.state-labels > g.lyran-commonwealth > text {
 	fill: #3f7aaa;
 }*/
-svg g.state-labels > g.periphery-major > text:nth-child(2) {
-	font-size: 1.2em;
-	/*transform: translate(34px,1em);*/
-}
-svg g.state-labels > g.periphery-major > text:nth-child(3) {
-	font-size: 1em;
-	/*transform: translate(34px,2.3em);*/
-}
 /*
 taurian-concordat #b55731
 magistracy-of-canopus #2d9889
