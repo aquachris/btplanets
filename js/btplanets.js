@@ -196,10 +196,13 @@ define(['js/lib/d3.min'], function(d3) {
 					.attr('cy', 0)
 					.attr('class', function (d) {
 						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
-							return 'uncharted';
+							return 'uninhabited';
 						}
 						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
 							return 'clan';
+						}
+						if(d.affiliation.toLowerCase() === 'hidden system') {
+							return 'hidden-system';
 						}
 						return 'inhabited ' + d.affiliation.toLowerCase().replace(/[\'\/]+/g, '').replace(/\s+/g, '-');
 					})
@@ -246,7 +249,7 @@ define(['js/lib/d3.min'], function(d3) {
 					.attr('d', 'M-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0')
 					.attr('class', function (d) {
 						if(d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record') {
-							return 'uncharted';
+							return 'uninhabited';
 						}
 						if(d.affiliation.toLowerCase().indexOf('clan') !== -1) {
 							return 'clan';
@@ -262,11 +265,14 @@ define(['js/lib/d3.min'], function(d3) {
 					.data(me.planets)
 				.enter().append('text')
 					.classed('planet-name', true)
-					.classed('uncharted', function(d) {
+					.classed('uninhabited', function(d) {
 						return d.affiliation === '?' || d.affiliation.toLowerCase() === 'no record';
 					})
+					.classed('hidden-system', function(d) {
+						return d.affiliation.toLowerCase() === 'hidden system';
+					})
 					.classed('inhabited', function(d) {
-						return d.affiliation !== '?' && d.affiliation.toLowerCase() !== 'no record';
+						return d.affiliation !== '?' && d.affiliation.toLowerCase() !== 'no record' && d.affiliation.toLowerCase() !== 'hidden system';
 					})
 					.classed('clan', function(d) {
 						return d.affiliation.toLowerCase().indexOf('clan') !== -1;

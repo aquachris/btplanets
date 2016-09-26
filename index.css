@@ -871,8 +871,11 @@ svg g.planet-circles path.capital {
 	stroke: #fff;
 	stroke-width: 2;
 }
+svg.planets-all-hidden g.planet-circles circle.inhabited,
+svg.planets-all-hidden g.planet-circles circle.uninhabited,
+svg.planets-all-hidden g.planet-circles circle.hidden-system,
 svg.planets-all g.planet-circles circle.inhabited,
-svg.planets-all g.planet-circles circle.uncharted,
+svg.planets-all g.planet-circles circle.uninhabited,
 svg.planets-inhabited g.planet-circles circle.inhabited,
 svg.planets-capitals g.planet-circles circle.capital,
 svg.planets-capitals.periphery-states g.planet-circles circle.periphery-capital,
@@ -884,21 +887,28 @@ svg.route-visible g.planet-circles circle.route {
 	opacity: 1;
 	pointer-events: all;
 }
+svg.planets-all-hidden g.planet-circles path.capital,
 svg.planets-all g.planet-circles path.capital,
 svg.planets-inhabited g.planet-circles path.capital,
 svg.planets-capitals g.planet-circles path.capital {
 	opacity: 1;
 }
+svg.planets-all-hidden g.planet-circles circle.inhabited:hover,
+svg.planets-all-hidden g.planet-circles circle.uninhabited:hover,
+svg.planets-all-hidden g.planet-circles circle.hidden-system:hover,
 svg.planets-all g.planet-circles circle.inhabited:hover,
-svg.planets-all g.planet-circles circle.uncharted:hover,
+svg.planets-all g.planet-circles circle.uninhabited:hover,
 svg.planets-inhabited g.planet-circles circle.inhabited:hover,
 svg.planets-capitals g.planet-circles circle.capital:hover,
 svg.planets-clans g.planet-circles circle.clan:hover,
 svg g.planet-circles circle.selected:hover {
 	stroke: #ccc;
 }
+svg.planets-all-hidden g.planet-circles circle.inhabited.selected,
+svg.planets-all-hidden g.planet-circles circle.uninhabited.selected,
+svg.planets-all-hidden g.planet-circles circle.hidden-system.selected,
 svg.planets-all g.planet-circles circle.inhabited.selected,
-svg.planets-all g.planet-circles circle.uncharted.selected,
+svg.planets-all g.planet-circles circle.uninhabited.selected,
 svg.planets-inhabited g.planet-circles circle.inhabited.selected,
 svg.planets-capitals g.planet-circles circle.capital.selected,
 svg.planets-clans g.planet-circles circle.clan.selected,
@@ -906,21 +916,6 @@ svg g.planet-circles circle.selected {
 	stroke: #fff;
 }
 
-
-
-/*svg g.planet-circles circle.clan,
-svg g.planet-circles circle.uncharted {
-	cursor: default !important;
-	opacity: 0 !important;
-	pointer-events: none !important;
-	transition: opacity .5s;
-}
-svg g.planet-circles circle.clan.visible,
-svg g.planet-circles circle.uncharted.visible {
-	cursor: pointer !important;
-	opacity: 1 !important;
-	pointer-events: auto !important;
-}*/
 svg g.planet-circles path.capital {
 	/*fill: rgba(255,255,255,.6);*/
 	pointer-events: none;
@@ -1011,6 +1006,9 @@ svg g.planet-circles circle.periphery,
 svg g.planet-circles circle.unknown-planet {
 	fill: #dcdcdc;
 }
+svg g.planet-circles circle.hidden-system {
+	fill: #cc0;
+}
 svg g.planet-circles circle.disputed-world {
 	fill: #f00;
 }
@@ -1033,7 +1031,12 @@ svg g.planet-names text {
 	pointer-events: none !important;
 	transition: opacity 1s;
 }
-svg.planets-all.zoomed-in g.planet-names text.uncharted,
+svg.planets-all-hidden g.planet-names text.capital,
+svg.planets-all-hidden.periphery-states g.planet-names text.periphery-capital,
+svg.planets-all-hidden.zoomed-in g.planet-names text.uninhabited,
+svg.planets-all-hidden.zoomed-in g.planet-names text.inhabited,
+svg.planets-all-hidden.zoomed-in g.planet-names text.hidden-system,
+svg.planets-all.zoomed-in g.planet-names text.uninhabited,
 svg.planets-all.zoomed-in g.planet-names text.inhabited,
 svg.planets-inhabited.zoomed-in g.planet-names text.inhabited,
 svg.planets-clans.zoomed-in g.planet-names text.clan,
@@ -1048,10 +1051,12 @@ svg.route-visible.zoomed-in g.planet-names text.route,
 svg.route-visible g.planet-names text.route-stop {
 	opacity: 1;
 }
-/*svg.zoomed-in g.planet-names text.clan.visible,
-svg.zoomed-in g.planet-names text.uncharted.visible {
-	opacity: 1 !important;
-}*/
+
+svg g.planet-names text.hidden-system {
+	fill: #ee0;
+	font-style: italic;
+	text-shadow: 1px 1px #999;
+}
 
 /* JUMP RANGE INDICATOR STYLES */
  svg circle.jump-range {

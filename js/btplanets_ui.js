@@ -290,7 +290,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				controls.classed('expanded', false);
 				tabs.classed('expanded', false);
 				tabs.classed('active', false);
-			} else if(selection.length > 0 && !controls.classed('expanded')) {
+			} else if(selection.length > 0) {// && !controls.classed('expanded')) {
 				controlsBg.classed('expanded', true);
 				controls.classed('expanded', true);
 				controls.selectAll('div').classed('active', false);
@@ -436,24 +436,35 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					svg.classed('planets-capitals', false);
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', false);
+					svg.classed('planets-all-hidden', false);
 					break;
 				case 'settings_planets_capitals':
 					svg.classed('planets-hidden', false);
 					svg.classed('planets-capitals', true);
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', false);
+					svg.classed('planets-all-hidden', false);
 					break;
 				case 'settings_planets_inhabited':
 					svg.classed('planets-hidden', false);
 					svg.classed('planets-capitals', false);
 					svg.classed('planets-inhabited', true);
 					svg.classed('planets-all', false);
+					svg.classed('planets-all-hidden', false);
 					break;
 				case 'settings_planets_all':
 					svg.classed('planets-hidden', false);
 					svg.classed('planets-capitals', false);
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', true);
+					svg.classed('planets-all-hidden', false);
+					break;
+				case 'settings_planets_all_hidden':
+					svg.classed('planets-hidden', false);
+					svg.classed('planets-capitals', false);
+					svg.classed('planets-inhabited', false);
+					svg.classed('planets-all', false);
+					svg.classed('planets-all-hidden', true);
 					break;
 				case 'settings_clan_systems':
 					svg.classed('planets-clans', d3.select(this).property('checked'));
