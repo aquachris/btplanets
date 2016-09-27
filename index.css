@@ -1055,7 +1055,7 @@ svg.route-visible g.planet-names text.route-stop {
 svg g.planet-names text.hidden-system {
 	fill: #ee0;
 	font-style: italic;
-	text-shadow: 1px 1px #999;
+	/*text-shadow: 1px 1px #999;*/
 }
 
 /* JUMP RANGE INDICATOR STYLES */
