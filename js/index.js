@@ -1,4 +1,4 @@
-window.BTPLANETS_VERSION = 201610062230;
+window.BTPLANETS_VERSION = 201610081030;
 require.config({
 	urlArgs: "v=" + window.BTPLANETS_VERSION
 });
