@@ -52,6 +52,8 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					type = 'selection';
 				} else if(tabTitle.classed('route')) {
 					type = 'route';
+				} else if(tabTitle.classed('userdata')) {
+					type = 'userdata';
 				}
 				controlsBg.classed('expanded', true);
 				controls.selectAll('div').classed('active', false);
@@ -356,7 +358,6 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			}
 			el = el.firstChild;
 			name = el.textContent;
-			i, planet;
 			err = d3.select('div.controls div.route p.error');
 			if(name === '') {
 				err.classed('visible', false);
@@ -553,6 +554,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
 					html += '</div>';
+					debugger;
 					return html;
 				});
 

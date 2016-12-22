@@ -3,7 +3,7 @@ require.config({
 	urlArgs: "v=" + window.BTPLANETS_VERSION
 });
 
-require(['js/btplanets', 'js/btplanets_keys', 'js/btplanets_routes', 'js/btplanets_ui'], function (main, keys, routes, ui) {
+require(['js/btplanets', 'js/btplanets_keys', 'js/btplanets_routes', 'js/btplanets_ui', 'js/btplanets_userdata'], function (main, keys, routes, ui, userdata) {
 	'use strict';
 
 	var initialized = false;

@@ -128,6 +128,9 @@ div.controls-tab-title.selection {
 div.controls-tab-title.route {
 	top: calc(5% + 270px);
 }
+div.controls-tab-title.userdata {
+	top: calc(5% + 400px);
+}
 div.controls-tab-title > span {
 	display: inline-block;
 	left: -114px;
@@ -441,6 +444,11 @@ div.controls div.stop-info span.coordinates {
 }
 div.controls p.route-ct {
 	position: relative;
+}
+div.controls div.userdata-drop-ct {
+	border: 2px dashed #aaa;
+	height: 6em;
+	width: 100%;
 }
 div.controls input.route-field {
 	margin: 0 0 0 .5em;
