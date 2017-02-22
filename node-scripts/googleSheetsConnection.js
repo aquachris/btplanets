@@ -10,8 +10,7 @@ module.exports = (function () {
     // at ~/.credentials/[APP_KEY].json
     var APP_KEY = 'inner-sphere-map-sheet-reader';
     var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-    var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-        process.env.USERPROFILE) + '/.credentials/';
+    var TOKEN_DIR = (process.env.USERPROFILE || process.env.HOME || process.env.HOMEPATH) + '/.credentials/';
     var TOKEN_PATH = TOKEN_DIR + APP_KEY +'.json';
 
     return {
