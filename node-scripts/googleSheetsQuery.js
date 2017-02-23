@@ -2,53 +2,22 @@ module.exports = (function () {
     'use strict';
 
     var google = require('googleapis');
-    var sheetsConn = require('./googleSheetsConnection.js');
 
-    var SheetQuery = function () {
+    var GoogleSheetsQuery = function () {
         this.systems = [];
     };
-
-
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- */
-/*var listMajors = function(auth) {
-    var sheets = google.sheets('v4');
-    sheets.spreadsheets.values.get({
-        auth: auth,
-        spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-        range: 'Class Data!A2:E',
-    }, function(err, response) {
-        if (err) {
-            console.log('The API returned an error: ' + err);
-            return;
-        }
-        var rows = response.values;
-        if (rows.length == 0) {
-            console.log('No data found.');
-        } else {
-            console.log('Name, Major:');
-            for (var i = 0; i < rows.length; i++) {
-                var row = rows[i];
-                // Print columns A and E, which correspond to indices 0 and 4.
-                console.log('%s, %s', row[0], row[4]);
-            }
-        }
-    });
-};*/
 
     /**
      * Calculate the distance between two planetary systems (euclidean distance in LY)
      */
-    SheetQuery.prototype.calcDistance = function(p1, p2) {
+    GoogleSheetsQuery.prototype.calcDistance = function(p1, p2) {
     	return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
     };
 
     /**
      * Find all planetary systems' neighbor systems.
      */
-    SheetQuery.prototype.findNeighbors = function () {
+    GoogleSheetsQuery.prototype.findNeighbors = function () {
         var p;
     	var neighbors;
 
@@ -68,7 +37,7 @@ module.exports = (function () {
         }
     };
 
-    SheetQuery.prototype.readSystems = function (auth) {
+    GoogleSheetsQuery.prototype.readSystems = function (auth) {
         var sheets = google.sheets('v4');
         sheets.spreadsheets.values.get({
             auth: auth,
@@ -115,7 +84,5 @@ module.exports = (function () {
         }.bind(this));
     };
 
-    var query = new SheetQuery();
-
-    sheetsConn.loginAndAuthorize(query.readSystems, query);
+    return GoogleSheetsQuery;
 })();
