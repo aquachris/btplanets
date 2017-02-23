@@ -74,7 +74,8 @@ module.exports = (function () {
                 xCoord = Number(coords[0]);
                 yCoord = Number(coords[1]);
                 if(isNaN(xCoord) || isNaN(yCoord)) {
-                    this.logger.warn(row[1] + ' has corrupt coordinates: ' + xCoord + ', ' + yCoord);
+                    this.logger.warn(row[1] + ' has corrupt coordinates: ' + xCoord + ', ' + yCoord + '. System will be ignored.');
+                    continue;
                 }
 
                 this.systems.push({
