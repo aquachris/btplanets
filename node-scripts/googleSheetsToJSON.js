@@ -1,11 +1,18 @@
 'use strict';
 
-var GoogleSheetsAuth = require('./googleSheetsAuth.js');
-var GoogleSheetsQuery = require('./googleSheetsQuery.js');
+var Logger = require('./Logger.js');
+var LogRenderer = require('./LogRenderer.js');
+var SheetsSystemsReader = require('./SheetsSystemsReader.js');
 
+var logger = new Logger();
+var logRenderer = new LogRenderer(logger, 'scriptLog.html');
+var reader = new SheetsSystemsReader(logger);
 
-var sheetsAuth = new GoogleSheetsAuth('inner-sphere-map-sheet-reader',
-    ['https://www.googleapis.com/auth/spreadsheets.readonly']);
-var query = new GoogleSheetsQuery();
+logger.log('script started');
 
-sheetsAuth.loadCredentialsAndAuthorize(query.readSystems, query);
+reader.on('systemsRead', function (reader, systems) {
+    console.log(systems.length + ' systems read');
+    logRenderer.render();
+});
+
+reader.readSystems();
