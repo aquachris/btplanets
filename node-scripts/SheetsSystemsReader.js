@@ -109,6 +109,7 @@ module.exports = (function () {
     SheetsSystemsReader.prototype.findNeighbors = function () {
         var p;
     	var neighbors;
+        var dist;
 
         for(var idx = 0, len = this.systems.length; idx < len; idx++) {
             p = this.systems[idx];
@@ -117,7 +118,11 @@ module.exports = (function () {
         		if(nIdx === idx) {
         			continue;
         		}
-        		if(this.calcDistance(p, this.systems[nIdx]) <= 30) {
+                dist = this.calcDistance(p, this.systems[nIdx]);
+                if(dist === 0 && p.name < this.systems[nIdx].name) {
+                    this.logger.warn('Identical coordinates for '+p.name+' and '+this.systems[nIdx].name+'.');
+                }
+        		if(dist <= 30) {
         			neighbors.push(nIdx);
         		}
         	}
