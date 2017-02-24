@@ -19,7 +19,7 @@ var INDEX_HTML_PATH = '../index.html';
 var UPDATE_VERSION_STRING = true;
 
 var logger = new Logger();
-var logRenderer = new LogRenderer(logger, 'scriptLog.html');
+var logRenderer = new LogRenderer(logger, '../data/systems_log.html', '../data/log.tpl.html');
 var reader = new SheetsSystemsReader(logger);
 
 logger.log('script started');

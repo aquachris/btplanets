@@ -47,7 +47,7 @@ define(['js/lib/d3.min'], function(d3) {
 					return console.warn(error);
 				}
 				this.borders = json;
-				d3.json('./data/planets.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
+				d3.json('./data/systems.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 					var cur, nb;
 					if(error) {
 						return console.warn(error);
