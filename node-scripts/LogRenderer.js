@@ -1,55 +1,50 @@
 module.exports = (function () {
 
     var fs = require('fs');
+    var Logger = require('./Logger.js');
 
-    var LogRenderer = function (logger, fileName) {
+    var LogRenderer = function (logger, outputPath, templatePath) {
         this.logger = logger;
-        this.fileName = fileName;
+        this.outputPath = outputPath;
+        this.templateHTML = '';
+
+        if(templatePath) {
+            this.templateHTML = fs.readFileSync(templatePath, {
+                encoding: 'utf8'
+            });
+        }
     };
 
     LogRenderer.prototype.render = function () {
         var logs = this.logger.logs;
-        var html = '<h1>Script log</h1>\n';
-        html += '<p>Time of execution: ' + new Date() + '</p>\n';
+        this.logger.time();
 
-        html += '<h2>' + logs.error.length + ' ';
-        html += logs.error.length === 1 ? 'error' : 'errors';
-        html += '</h2>\n';
-        html += '<div class="msg">\n';
-        for(var i = 0, len = logs.error.length; i < len; i++) {
-            html += '<p>';
-            html += logs.error[i].join(' ');
+        var classes = {};
+        classes[Logger.MESSAGE] = 'msg';
+        classes[Logger.WARNING] = 'warn';
+        classes[Logger.ERROR] = 'err';
+
+        var html = '';
+        // html += '<p>Start time: ' + this.logger.startTime + '</p>\n';
+        // html += '<p>End time: ' + this.logger.endTime + '</p>\n';
+
+        html += '<div class="logs">\n';
+        for(var i = 0, len = logs.length; i < len; i++) {
+            html += '<p class="'+classes[logs[i].severity]+'" data-idx="'+logs[i].idx+'">';
+            html += logs[i].textParts.join(' ');
             html += '</p>\n';
         }
         html += '</div>\n';
 
-        html += '<h2>' + logs.warning.length + ' ';
-        html += logs.warning.length === 1 ? 'warning' : 'warnings';
-        html += '</h2>\n';
-        html += '<div class="warnings">\n';
-        for(var i = 0, len = logs.warning.length; i < len; i++) {
-            html += '<p>';
-            html += logs.warning[i].join(' ');
-            html += '</p>\n';
+        if(this.templateHTML) {
+            html = this.templateHTML.replace('{LOG_CONTENT}', html);
         }
-        html += '</div>\n';
 
-        html += '<h2>' + logs.msg.length + ' ';
-        html += logs.msg.length === 1 ? 'message' : 'messages';
-        html += '</h2>\n';
-        html += '<div class="messages">\n';
-        for(var i = 0, len = logs.msg.length; i < len; i++) {
-            html += '<p>';
-            html += logs.msg[i].join(' ');
-            html += '</p>\n';
-        }
-        html += '</div>\n';
-
-        fs.writeFile(this.fileName, html, function(err) {
+        fs.writeFile(this.outputPath, html, function(err) {
             if(err) {
                 return console.log(err);
             }
-            console.log('log file "'+this.fileName+'" was saved');
+            console.log('log file "'+this.outputPath+'" was saved');
         }.bind(this));
         this.logger.flush();
     };

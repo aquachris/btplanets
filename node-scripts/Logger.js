@@ -2,12 +2,10 @@ module.exports = (function () {
     'use strict';
 
     var Logger = function (consoleVerbosity) {
-        this.logs = {
-            msg : [],
-            warning : [],
-            error : []
-        };
+        this.startTime = new Date();
+        this.endTime = null;
         this.consoleVerbosity = consoleVerbosity || 0;
+        this.flush();
     };
 
     Logger.ALL = 0;
@@ -16,40 +14,43 @@ module.exports = (function () {
     Logger.ERROR = 3;
     Logger.SILENT = 4;
 
-
-    Logger.prototype.log = function () {
-        this.logs.msg.push(Array.prototype.slice.call(arguments));
-        if(this.consoleVerbosity <= Logger.MESSAGE) {
-            for(var i = 0; i < arguments.length; i++) {
-                console.log(arguments[i]);
+    /**
+     * @private
+     */
+    Logger.prototype.addEntry = function (severity, textParts) {
+        this.logs.push({
+            idx : this.logIndex,
+            severity : severity,
+            textParts : textParts
+        });
+        if(this.consoleVerbosity <= severity) {
+            for(var i = 0; i < textParts.length; i++) {
+                console.log(textParts[i]);
             }
         }
+        this.logIndex++;
+    };
+
+
+    Logger.prototype.log = function () {
+        this.addEntry(Logger.MESSAGE, Array.prototype.slice.call(arguments));
     };
 
     Logger.prototype.warn = function () {
-        this.logs.warning.push(Array.prototype.slice.call(arguments));
-        if(this.consoleVerbosity <= Logger.WARNING) {
-            for(var i = 0; i < arguments.length; i++) {
-                console.warn(arguments[i]);
-            }
-        }
+        this.addEntry(Logger.WARNING, Array.prototype.slice.call(arguments));
     };
 
     Logger.prototype.error = function () {
-        this.logs.error.push(Array.prototype.slice.call(arguments));
-        if(this.consoleVerbosity <= Logger.ERROR) {
-            for(var i = 0; i < arguments.length; i++) {
-                console.error(arguments[i]);
-            }
-        }
+        this.addEntry(Logger.ERROR, Array.prototype.slice.call(arguments));
     };
 
     Logger.prototype.flush = function () {
-        this.logs = {
-            msg : [],
-            warning : [],
-            error : []
-        };
+        this.logIndex = 0;
+        this.logs = [];
+    };
+
+    Logger.prototype.time = function () {
+        this.endTime = new Date();
     };
 
     return Logger;
