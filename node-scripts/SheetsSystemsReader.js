@@ -121,6 +121,8 @@ module.exports = (function () {
                 dist = this.calcDistance(p, this.systems[nIdx]);
                 if(dist === 0 && p.name < this.systems[nIdx].name) {
                     this.logger.warn('Identical coordinates for '+p.name+' and '+this.systems[nIdx].name+'.');
+                } else if(dist <= 1 && p.name < this.systems[nIdx].name) {
+                    this.logger.warn('Very similar coordinates for ' + p.name + ' and ' + this.systems[nIdx].name + ': Distance is ' + dist +' LY.');
                 }
         		if(dist <= 30) {
         			neighbors.push(nIdx);
