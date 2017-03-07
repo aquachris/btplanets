@@ -18,7 +18,7 @@
 		<a href="#" id="about-link">about</a>
 	</div>
 
-	<!--div class="controls-tab-title noselect userdata expanded"><span>User data</span></div-->
+	<div class="controls-tab-title noselect userdata expanded"><span>User data</span></div>
 	<div class="controls-tab-title noselect route expanded"><span>Jump route</span></div>
 	<div class="controls-tab-title noselect selection expanded"><span>Selection</span></div>
 	<div class="controls-tab-title noselect settings expanded active"><span>Settings</span></div>
@@ -56,6 +56,9 @@
 			</div>
 			<div class="control-group">
 				<p><input type="checkbox" id="settings_clan_systems" /><label for="settings_clan_systems">Show clan systems</label></p>
+			</div>
+			<div class="control-group">
+				<p><input type="checkbox" id="settings_userdata_highlights" checked="checked" /><label for="settings_userdata_highlights">Highlight systems with user data</label></p>
 			</div>
 		</div>
 		<div class="selection">
@@ -98,10 +101,12 @@
 				<p><input type="checkbox" id="route-allow-uninhabited" /><label for="route-allow-uninhabited">Uninhabited systems</label></p>
 			</div>
 		</div>
-		<!--div class="userdata">
+		<div class="userdata">
 			<h2>User data</h2>
-			<div class="userdata-drop-ct"></div>
-		</div-->
+			<div>Load / save user data area</div>
+			<!--div class="userdata-drop-ct"></div-->
+			<!--div class="userdata-no-selection"></div-->
+		</div>
 	</div>
 
 	<div class="map-ct">

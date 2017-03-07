@@ -407,6 +407,18 @@ div.controls button.find-btn {
 div.controls div.selection-ct {
 	padding: .5em 0;
 }
+div.controls div.selection-ct div.userdata-rte {
+	border: 1px solid rgba(255,255,255, 0.4);
+	font-size: .8em;
+	margin: 0;
+	padding: .2em .25em;
+}
+div.controls div.selection-ct div.userdata-rte blockquote {
+	background-color: #000;
+	border: 1px solid #666;
+	margin: .5em 0 .5em 2em;
+	padding: .2em;
+}
 div.controls div.planet-info button.center,
 div.controls div.stop-info button.center {
 	margin: 0 0 0 .5em;

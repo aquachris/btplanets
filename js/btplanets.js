@@ -40,7 +40,6 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Initialize the object and its components
 		 */
 		init : function () {
-			var noCache = new Date().getTime();
 			this.isEdge = window.navigator.userAgent.indexOf("Edge") > -1;
 			d3.json('./data/borders.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 				if(error) {

@@ -1,4 +1,4 @@
-define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, btplanets, routes) {
+define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/btplanets_routes'], function (d3, tm, btplanets, routes) {
 	'use strict';
 
 	return {
@@ -300,6 +300,8 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 				tabs.classed('expanded', true);
 				tabs.classed('active', false);
 				selTab.classed('active', true);
+
+				this.initUserDataRTEs();
 			}
 		},
 
@@ -473,6 +475,61 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 			}
 		},
 
+		initUserDataRTEs : function () {
+			var self = this;
+			this.removeUserDataRTEs();
+			tinymce.init({
+				selector: 'div.userdata-rte',
+				inline: true,
+				insert_toolbar: 'quicktable',
+				plugins : [
+					'advlist autolink lists link image charmap anchor',
+					'searchreplace fullscreen table textpattern',
+					'insertdatetime media contextmenu paste'
+				],
+				menubar: false,
+				toolbar: 'bold italic | bullist numlist | quicklink blockquote',
+				init_instance_callback: function (editor) {
+					editor.on('blur', self.onUserDataRTEChange.bind(self));
+					editor.on('change', self.onUserDataRTEChange.bind(self));
+					editor.on('paste', self.onUserDataRTEChange.bind(self));
+					editor.on('keyup', self.onUserDataRTEChange.bind(self));
+					/*editor.on('blur', function (e) {
+						target.classed('active', false);
+						tinymce.remove();
+					});*/
+				}
+			});
+		},
+
+		removeUserDataRTEs : function () {
+			tinymce.remove();
+		},
+
+		onUserDataRTEChange : function () {
+			var editor = tinymce.activeEditor;
+			var i, planet, name, circle;
+
+			i = editor.targetElm.getAttribute('data-system-idx');
+			planet = btplanets.planets[i];
+			if(editor.targetElm.innerText.trim().length > 0) {
+				planet.userData = tinymce.activeEditor.getContent();
+			} else {
+				planet.userData = '';
+			}
+
+			/*
+			i = btplanets.findPlanetId(name);
+			planet = btplanets.planets[i];
+			btplanets.centerOnCoordinates(planet.x, planet.y);
+			circle = d3.select('circle[name="'+planet.name+'"]');
+			if(!circle.classed('selected')) {
+				btplanets.togglePlanetSelection(planet.name);
+			}
+			err.classed('visible', false);
+			*/
+		},
+
 		/**
 		 * React to the selection changing by re-assembling the selection panel
 		 */
@@ -487,6 +544,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					var html = '';
 					var affiliationClass = '';
 					var neighborsHtml = '', neighbor, neighborCls, neighborTitle;
+					var userdata = '';
 					for(var i = 0, len = d.neighbors.length; i < len; i++) {
 						neighbor = btplanets.planets[d.neighbors[i]];
 						neighborCls = 'neighbor';
@@ -540,6 +598,7 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 						default :
 							affiliationClass = 'other';
 					}
+					userdata = d.userData || '';//'<p><br data-mce-bogus="1" /></p>';
 					if(idx > 0) {
 						html += '<hr/>';
 					}
@@ -553,8 +612,8 @@ define(['js/lib/d3.min', 'js/btplanets', 'js/btplanets_routes'], function (d3, b
 					html += '<p class="coordinates"><span>Coord.: '+d.x+', '+d.y+'</span></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
+					html += '<p>User defined system info:</p><div class="userdata-rte inactive" data-system-idx="'+d.index+'">'+userdata+'</div>';
 					html += '</div>';
-					debugger;
 					return html;
 				});
 

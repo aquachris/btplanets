@@ -71,8 +71,10 @@ The basic features can be seen in the following video:
 ## TODOs / Known issues
 - Known issue: Performance isn't great when running in MS Edge (bad) or Firefox (slightly better). Chrome is the go-to
     browser, appears to have the best SVG support. Safari has been reported to run well.
+- MS Edge seems to lack support for some SVG features, parts of the Steiner and Liao logos are not displayed
 
 ## Coming "soon" (currently planned features)
+- User defined system data
 
 ## Future possibilities (cool features that are not currently planned)
 _(in no particular order, *especially* not ordered by priority)_  
@@ -93,3 +95,4 @@ The BATTLETECH logo and the faction sigils were created by [Harebrained Schemes]
 All planet names and coordinates are from [www.sarna.net](http://www.sarna.net), with some corrections applied.
 
 Programming by Christoph Wassermann.
+Data editing and cleanup by Wraith_81.
