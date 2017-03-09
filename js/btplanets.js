@@ -35,6 +35,9 @@ define(['js/lib/d3.min'], function(d3) {
 		startTranslate : [0, 0], // translation coordinates at last zoom start
 		labelRepositionTimeout : null,
 
+		modifiedUserData : {},
+		userDataSaveTimeout : null,
+
 		// functions
 		/**
 		 * Initialize the object and its components
@@ -62,6 +65,7 @@ define(['js/lib/d3.min'], function(d3) {
 							this.planets[i].isCapital = true;
 							this.capitals.push(this.planets[i]);
 						}
+						this.planets[i].userData = localStorage.getItem(this.planets[i].name);
 					}
 					this.selectedPlanets = [];
 					this.instantiateComponents();
@@ -222,6 +226,9 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'alphard' ||
 							name === 'oberon' ||
 							name === 'alpheratz';
+					})
+					.classed('has-userdata', function (d) {
+						return !!d.userData;
 					})
 					.attr('transform', me.transformers.planetCircle.bind(me))
 					.on('mouseover', function (planet) {
@@ -502,6 +509,39 @@ define(['js/lib/d3.min'], function(d3) {
 			text.classed('selected', true);
 			this.fireEvent('selectionadded', planet);
 			this.fireEvent('selectionchanged', this.selectedPlanets);
+		},
+
+		updateUserDataHighlight : function (idx, planet) {
+			var circle, text;
+
+			circle = this.svg.select('circle[name="'+planet.name+'"]');
+			circle.classed('has-userdata', !!planet.userData);
+
+			text = this.svg.select('text[name="'+planet.name+'"]');
+			text.classed('has-userdata', !!planet.userData);
+
+			this.scheduleUserDataSave(planet);
+		},
+
+		scheduleUserDataSave : function (planet) {
+			clearTimeout(this.userDataSaveTimeout);
+			this.modifiedUserData[planet.name] = planet.userData;
+			this.userDataSaveTimeout = setTimeout(this.saveModifiedUserData.bind(this), 1000);
+		},
+
+		saveModifiedUserData : function () {
+			for(var key in this.modifiedUserData) {
+				if(!this.modifiedUserData.hasOwnProperty(key)) {
+					continue;
+				}
+				if(!!this.modifiedUserData[key]) {
+					localStorage.setItem(key, this.modifiedUserData[key]);
+				} else {
+					localStorage.removeItem(key);
+				}
+			}
+			this.modifiedUserData = {};
+			this.fireEvent('userdatasaved');
 		},
 
 		/**

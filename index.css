@@ -900,6 +900,7 @@ svg.planets-inhabited g.planet-circles circle.inhabited,
 svg.planets-capitals g.planet-circles circle.capital,
 svg.planets-capitals.periphery-states g.planet-circles circle.periphery-capital,
 svg.planets-clans g.planet-circles circle.clan,
+svg.planets-userdata-visible g.planet-circles circle.has-userdata,
 svg g.planet-circles circle.selected,
 svg.route-visible g.planet-circles circle.route,
 svg.route-visible g.planet-circles circle.route {
@@ -912,6 +913,11 @@ svg.planets-all g.planet-circles path.capital,
 svg.planets-inhabited g.planet-circles path.capital,
 svg.planets-capitals g.planet-circles path.capital {
 	opacity: 1;
+}
+svg.planets-userdata-visible g.planet-circles circle.has-userdata,
+svg.planets-userdata-highlight g.planet-circles circle.has-userdata {
+	stroke: #fc0;
+	stroke-width: 2px;
 }
 svg.planets-all-hidden g.planet-circles circle.inhabited:hover,
 svg.planets-all-hidden g.planet-circles circle.uninhabited:hover,
@@ -933,7 +939,8 @@ svg.planets-inhabited g.planet-circles circle.inhabited.selected,
 svg.planets-capitals g.planet-circles circle.capital.selected,
 svg.planets-clans g.planet-circles circle.clan.selected,
 svg g.planet-circles circle.selected {
-	stroke: #fff;
+	stroke: #fff !important;
+	stroke-width: 3px !important;
 }
 
 svg g.planet-circles path.capital {
@@ -1066,6 +1073,7 @@ svg.planets-inhabited g.planet-names text.capital,
 svg.planets-inhabited.periphery-states g.planet-names text.periphery-capital,
 svg.planets-capitals g.planet-names text.capital,
 svg.planets-capitals.periphery-states g.planet-names text.periphery-capital,
+/*svg.planets-userdata-visible g.planet-names text.has-userdata,*/
 svg g.planet-names text.selected,
 svg.route-visible.zoomed-in g.planet-names text.route,
 svg.route-visible g.planet-names text.route-stop {

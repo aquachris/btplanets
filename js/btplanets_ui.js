@@ -25,6 +25,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
 			btplanets.on('selectionadded', this, this.onSelectionAdded);
+			btplanets.on('userdatasaved', this, this.onUserDataSaved);
 		},
 
 		/**
@@ -472,6 +473,21 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				case 'settings_clan_systems':
 					svg.classed('planets-clans', d3.select(this).property('checked'));
 					break;
+				case 'settings_userdata_show':
+					svg.classed('planets-userdata-visible', true);
+					svg.classed('planets-userdata-highlight', false);
+					svg.classed('planets-userdata-hidden', false);
+					break;
+				case 'settings_userdata_highlight':
+					svg.classed('planets-userdata-visible', false);
+					svg.classed('planets-userdata-highlight', true);
+					svg.classed('planets-userdata-hidden', false);
+					break;
+				case 'settings_userdata_hidden':
+					svg.classed('planets-userdata-visible', false);
+					svg.classed('planets-userdata-highlight', false);
+					svg.classed('planets-userdata-hidden', true);
+					break;
 			}
 		},
 
@@ -514,8 +530,10 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			planet = btplanets.planets[i];
 			if(editor.targetElm.innerText.trim().length > 0) {
 				planet.userData = tinymce.activeEditor.getContent();
+				btplanets.updateUserDataHighlight(i, planet);
 			} else {
 				planet.userData = '';
+				btplanets.updateUserDataHighlight(i, planet)
 			}
 
 			/*
@@ -598,7 +616,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						default :
 							affiliationClass = 'other';
 					}
-					userdata = d.userData || '';//'<p><br data-mce-bogus="1" /></p>';
+					userdata = d.userData || '';
 					if(idx > 0) {
 						html += '<hr/>';
 					}
@@ -612,7 +630,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					html += '<p class="coordinates"><span>Coord.: '+d.x+', '+d.y+'</span></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
-					html += '<p>User defined system info:</p><div class="userdata-rte inactive" data-system-idx="'+d.index+'">'+userdata+'</div>';
+					html += '<p>User defined system info:</p>';
+					html += '<div class="userdata-rte" data-system-idx="'+d.index+'" data-system-name="'+d.name+'">'+userdata+'</div>';
 					html += '</div>';
 					return html;
 				});
@@ -627,6 +646,10 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
 			ct.selectAll('button.start-route').on('click', this.onSelectionNewRouteBtn.bind(this));
 			ct.selectAll('button.append-route').on('click', this.onSelectionAppendToRouteBtn.bind(this));
+		},
+
+		onUserDataSaved : function () {
+			console.log('user data saved');
 		}
 	};
 });
