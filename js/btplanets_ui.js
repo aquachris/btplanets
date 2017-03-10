@@ -497,11 +497,38 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 
 			// register listeners on userdata divs
 			var divs = d3.selectAll('div.userdata-rte');
+
+			// paste event
 			divs.on('paste', function () {
-				debugger;
-			});
+				var e, text, html;
+
+				e = d3.event;
+
+				// http://stackoverflow.com/questions/27733025/paste-html-content-as-plain-text-in-contenteditable-div-using-angularjs
+				e.preventDefault();
+
+				// get text representation of clipboard
+			    text = e.clipboardData.getData("text/plain");
+
+				text = text.replace(/\t/g, '&emsp;');
+				html = '<p>'+text.split(/\n/).join('</p><p>')+'</p>';
+
+				console.log(html);
+
+				// insert text manually
+			    document.execCommand("insertHTML", false, html);
+   			});
+
+			// blur event
 			divs.on('blur', function () {
 				console.log('focus lost');
+			});
+
+			// keydown event
+			divs.on('keyup', function () {
+				//console.log('change event');
+				var e = d3.event;
+				//console.log(e.currentTarget.innerText);
 			});
 
 			// tinymce.init({
