@@ -494,28 +494,38 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 		initUserDataRTEs : function () {
 			var self = this;
 			this.removeUserDataRTEs();
-			tinymce.init({
-				selector: 'div.userdata-rte',
-				inline: true,
-				insert_toolbar: 'quicktable',
-				plugins : [
-					'advlist autolink lists link image charmap anchor',
-					'searchreplace fullscreen table textpattern',
-					'insertdatetime media contextmenu paste'
-				],
-				menubar: false,
-				toolbar: 'bold italic | bullist numlist | quicklink blockquote',
-				init_instance_callback: function (editor) {
-					editor.on('blur', self.onUserDataRTEChange.bind(self));
-					editor.on('change', self.onUserDataRTEChange.bind(self));
-					editor.on('paste', self.onUserDataRTEChange.bind(self));
-					editor.on('keyup', self.onUserDataRTEChange.bind(self));
-					/*editor.on('blur', function (e) {
-						target.classed('active', false);
-						tinymce.remove();
-					});*/
-				}
+
+			// register listeners on userdata divs
+			var divs = d3.selectAll('div.userdata-rte');
+			divs.on('paste', function () {
+				debugger;
 			});
+			divs.on('blur', function () {
+				console.log('focus lost');
+			});
+
+			// tinymce.init({
+			// 	selector: 'div.userdata-rte',
+			// 	inline: true,
+			// 	insert_toolbar: 'quicktable',
+			// 	plugins : [
+			// 		'advlist autolink lists link image charmap anchor',
+			// 		'searchreplace fullscreen table textpattern',
+			// 		'insertdatetime media contextmenu paste'
+			// 	],
+			// 	menubar: false,
+			// 	toolbar: 'bold italic | bullist numlist | quicklink blockquote',
+			// 	init_instance_callback: function (editor) {
+			// 		editor.on('blur', self.onUserDataRTEChange.bind(self));
+			// 		editor.on('change', self.onUserDataRTEChange.bind(self));
+			// 		editor.on('paste', self.onUserDataRTEChange.bind(self));
+			// 		editor.on('keyup', self.onUserDataRTEChange.bind(self));
+			// 		/*editor.on('blur', function (e) {
+			// 			target.classed('active', false);
+			// 			tinymce.remove();
+			// 		});*/
+			// 	}
+			// });
 		},
 
 		removeUserDataRTEs : function () {
@@ -533,7 +543,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				btplanets.updateUserDataHighlight(i, planet);
 			} else {
 				planet.userData = '';
-				btplanets.updateUserDataHighlight(i, planet)
+				btplanets.updateUserDataHighlight(i, planet);
 			}
 
 			/*
@@ -631,7 +641,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
 					html += '<p>User defined system info:</p>';
-					html += '<div class="userdata-rte" data-system-idx="'+d.index+'" data-system-name="'+d.name+'">'+userdata+'</div>';
+					html += '<div class="userdata-rte" data-system-idx="'+d.index+'" data-system-name="'+d.name+'" contenteditable>'+userdata+'</div>';
 					html += '</div>';
 					return html;
 				});
