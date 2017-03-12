@@ -35,9 +35,6 @@ define(['js/lib/d3.min'], function(d3) {
 		startTranslate : [0, 0], // translation coordinates at last zoom start
 		labelRepositionTimeout : null,
 
-		modifiedUserData : {},
-		userDataSaveTimeout : null,
-
 		// functions
 		/**
 		 * Initialize the object and its components
@@ -519,29 +516,6 @@ define(['js/lib/d3.min'], function(d3) {
 
 			text = this.svg.select('text[name="'+planet.name+'"]');
 			text.classed('has-userdata', !!planet.userData);
-
-			this.scheduleUserDataSave(planet);
-		},
-
-		scheduleUserDataSave : function (planet) {
-			clearTimeout(this.userDataSaveTimeout);
-			this.modifiedUserData[planet.name] = planet.userData;
-			this.userDataSaveTimeout = setTimeout(this.saveModifiedUserData.bind(this), 1000);
-		},
-
-		saveModifiedUserData : function () {
-			for(var key in this.modifiedUserData) {
-				if(!this.modifiedUserData.hasOwnProperty(key)) {
-					continue;
-				}
-				if(!!this.modifiedUserData[key]) {
-					localStorage.setItem(key, this.modifiedUserData[key]);
-				} else {
-					localStorage.removeItem(key);
-				}
-			}
-			this.modifiedUserData = {};
-			this.fireEvent('userdatasaved');
 		},
 
 		/**
@@ -680,6 +654,61 @@ define(['js/lib/d3.min'], function(d3) {
 			for(var i = 0, len = me.listeners[eventName].length; i < len; i++) {
 				me.listeners[eventName][i].fn.apply(me.listeners[eventName][i].scope, args);
 			}
+		},
+
+		// http://stackoverflow.com/questions/6157929/how-to-simulate-a-mouse-click-using-javascript
+		simulateEvent : function(element, eventName) {
+			console.log('event', arguments);
+			var eventMatchers = {
+				'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll)$/,
+				'MouseEvents': /^(?:click|dblclick|mouse(?:down|up|over|move|out))$/
+			};
+			var defaultOptions = {
+				pointerX: 0,
+				pointerY: 0,
+				button: 0,
+				ctrlKey: false,
+				altKey: false,
+				shiftKey: false,
+				metaKey: false,
+				bubbles: true,
+				cancelable: true
+			};
+			var extend = function(destination, source) {
+				for (var property in source)
+				  destination[property] = source[property];
+				return destination;
+			}
+
+		    var options = extend(defaultOptions, arguments[2] || {});
+		    var oEvent, eventType = null;
+
+		    for (var name in eventMatchers) {
+		        if (eventMatchers[name].test(eventName)) { eventType = name; break; }
+		    }
+
+		    if (!eventType) {
+		        throw new SyntaxError('Only HTMLEvents and MouseEvents interfaces are supported');
+			}
+
+		    if (document.createEvent) {
+		        oEvent = document.createEvent(eventType);
+		        if (eventType == 'HTMLEvents') {
+					oEvent.initEvent(eventName, options.bubbles, options.cancelable);
+		        } else {
+		            oEvent.initMouseEvent(eventName, options.bubbles, options.cancelable, document.defaultView,
+		            options.button, options.pointerX, options.pointerY, options.pointerX, options.pointerY,
+		            options.ctrlKey, options.altKey, options.shiftKey, options.metaKey, options.button, element);
+		        }
+		        element.dispatchEvent(oEvent);
+		    } else {
+		        options.clientX = options.pointerX;
+		        options.clientY = options.pointerY;
+		        var evt = document.createEventObject();
+		        oEvent = extend(evt, options);
+		        element.fireEvent('on' + eventName, oEvent);
+		    }
+		    return element;
 		}
 	};
 });

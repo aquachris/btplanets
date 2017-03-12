@@ -373,10 +373,16 @@ div.controls div.planet-info span.neighbor.uninhabited {
 }
 
 div.controls input[type="text"] {
-	background-color: transparent;
-	border: inset 2px #eee;
+	border: none;
+	background-color: rgba(150,150,150,.35);
+	box-shadow: 1px 1px 3px #000;
 	color: #fff;
-	padding: .25em;
+	padding: .5em .25em;
+	outline: none;
+}
+div.controls input[type="text"]:focus {
+	background-color: rgba(255,255,225,.9);
+	color: #444;
 }
 div.controls button {
 	background: none;
@@ -408,16 +414,37 @@ div.controls div.selection-ct {
 	padding: .5em 0;
 }
 div.controls div.selection-ct div.userdata-rte {
-	border: 1px solid rgba(255,255,255, 0.4);
+	/*background-image: url('./img/natural_paper.png');*/
+	background-color: rgba(150,150,150,.35);
+	box-shadow: 1px 1px 3px #000;
+	color: #fff;
 	font-size: .8em;
 	margin: 0;
-	padding: .2em .25em;
+	padding: .5em .45em;
+	transition: border .5s;
+}
+div.controls div.selection-ct div.userdata-rte.mce-content-body {
+	background-color: rgba(255,255,225,.9);
+	color: #444;
+}
+div.controls div.selection-ct div.userdata-rte p {
+	line-height: 1.1em;
+	margin: .2em 0;
+	min-height: 1.1em;
+}
+div.controls div.selection-ct div.userdata-rte span {
+	font-size: 1em !important;
 }
 div.controls div.selection-ct div.userdata-rte blockquote {
-	background-color: #000;
+	background-color: #444;
 	border: 1px solid #666;
+	color: #fff;
 	margin: .5em 0 .5em 2em;
 	padding: .2em;
+}
+div.controls div.selection-ct div.userdata-rte.mce-content-body blockquote {
+	background-color: #ccc;
+	color: #444;
 }
 div.controls div.planet-info button.center,
 div.controls div.stop-info button.center {

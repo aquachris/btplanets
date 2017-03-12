@@ -1,4 +1,4 @@
-define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/btplanets_routes'], function (d3, tm, btplanets, routes) {
+define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/btplanets_routes', 'js/btplanets_userdata'], function (d3, tm, btplanets, routes, userdata) {
 	'use strict';
 
 	return {
@@ -20,12 +20,13 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			// route panel listeners
 			d3.select('#route-system').on('keypress', this.onRouteFindKeyPress.bind(this));
 			d3.select('#route-system-btn').on('click', this.onRouteFindBtn.bind(this));
+			// user data panel listeners
+			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle.bind(this));
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
 			btplanets.on('selectionadded', this, this.onSelectionAdded);
-			btplanets.on('userdatasaved', this, this.onUserDataSaved);
 		},
 
 		/**
@@ -491,6 +492,10 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			}
 		},
 
+		onUserDataSave : function () {
+			userdata.exportToTextFile();
+		},
+
 		initUserDataRTEs : function () {
 			var self = this;
 			this.removeUserDataRTEs();
@@ -498,61 +503,41 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			// register listeners on userdata divs
 			var divs = d3.selectAll('div.userdata-rte');
 
-			// paste event
-			divs.on('paste', function () {
-				var e, text, html;
-
-				e = d3.event;
-
-				// http://stackoverflow.com/questions/27733025/paste-html-content-as-plain-text-in-contenteditable-div-using-angularjs
-				e.preventDefault();
-
-				// get text representation of clipboard
-			    text = e.clipboardData.getData("text/plain");
-
-				text = text.replace(/\t/g, '&emsp;');
-				html = '<p>'+text.split(/\n/).join('</p><p>')+'</p>';
-
-				console.log(html);
-
-				// insert text manually
-			    document.execCommand("insertHTML", false, html);
-   			});
-
-			// blur event
-			divs.on('blur', function () {
-				console.log('focus lost');
-			});
-
-			// keydown event
-			divs.on('keyup', function () {
-				//console.log('change event');
+			divs.on('click', function () {
 				var e = d3.event;
-				//console.log(e.currentTarget.innerText);
-			});
+				var target = e.currentTarget;
+				var id = target.getAttribute('id');
 
-			// tinymce.init({
-			// 	selector: 'div.userdata-rte',
-			// 	inline: true,
-			// 	insert_toolbar: 'quicktable',
-			// 	plugins : [
-			// 		'advlist autolink lists link image charmap anchor',
-			// 		'searchreplace fullscreen table textpattern',
-			// 		'insertdatetime media contextmenu paste'
-			// 	],
-			// 	menubar: false,
-			// 	toolbar: 'bold italic | bullist numlist | quicklink blockquote',
-			// 	init_instance_callback: function (editor) {
-			// 		editor.on('blur', self.onUserDataRTEChange.bind(self));
-			// 		editor.on('change', self.onUserDataRTEChange.bind(self));
-			// 		editor.on('paste', self.onUserDataRTEChange.bind(self));
-			// 		editor.on('keyup', self.onUserDataRTEChange.bind(self));
-			// 		/*editor.on('blur', function (e) {
-			// 			target.classed('active', false);
-			// 			tinymce.remove();
-			// 		});*/
-			// 	}
-			// });
+				if(target.classList.contains('mce-content-body')) {
+					return;
+				}
+
+				// destroy all existing tinymce instances
+				tinymce.remove();
+
+				tinymce.init({
+				 	selector: '#' + id,
+				 	inline: true,
+				 	//insert_toolbar: 'quicktable',
+				 	plugins : [
+				 		'advlist autolink lists link image charmap anchor',
+				 		'searchreplace fullscreen table textpattern',
+				 		'insertdatetime media contextmenu paste'
+				 	],
+				 	menubar: false,
+				 	toolbar: 'bold italic | bullist numlist | quicklink blockquote',
+				 	init_instance_callback: function (editor) {
+						tinymce.get(id).focus();
+						editor.on('blur', function (e) {
+							self.onUserDataRTEChange();
+							tinymce.remove();
+						});
+						editor.on('change', self.onUserDataRTEChange.bind(self));
+						editor.on('paste', self.onUserDataRTEChange.bind(self));
+						editor.on('keyup', self.onUserDataRTEChange.bind(self));
+				 	}
+				});
+			});
 		},
 
 		removeUserDataRTEs : function () {
@@ -572,17 +557,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				planet.userData = '';
 				btplanets.updateUserDataHighlight(i, planet);
 			}
-
-			/*
-			i = btplanets.findPlanetId(name);
-			planet = btplanets.planets[i];
-			btplanets.centerOnCoordinates(planet.x, planet.y);
-			circle = d3.select('circle[name="'+planet.name+'"]');
-			if(!circle.classed('selected')) {
-				btplanets.togglePlanetSelection(planet.name);
-			}
-			err.classed('visible', false);
-			*/
+			btplanets_userdata.scheduleUserDataSave(planet);
 		},
 
 		/**
@@ -653,7 +628,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						default :
 							affiliationClass = 'other';
 					}
-					userdata = d.userData || '';
+					userdata = d.userData || '<p><br data-placeholder="1"></p>';
 					if(idx > 0) {
 						html += '<hr/>';
 					}
@@ -667,8 +642,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					html += '<p class="coordinates"><span>Coord.: '+d.x+', '+d.y+'</span></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';
-					html += '<p>User defined system info:</p>';
-					html += '<div class="userdata-rte" data-system-idx="'+d.index+'" data-system-name="'+d.name+'" contenteditable>'+userdata+'</div>';
+					html += '<p>User defined system info (click to edit):</p>';
+					html += '<div class="userdata-rte" id="rte-'+d.index+'" data-system-idx="'+d.index+'" data-system-name="'+d.name+'">'+userdata+'</div>';
 					html += '</div>';
 					return html;
 				});
@@ -683,10 +658,6 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
 			ct.selectAll('button.start-route').on('click', this.onSelectionNewRouteBtn.bind(this));
 			ct.selectAll('button.append-route').on('click', this.onSelectionAppendToRouteBtn.bind(this));
-		},
-
-		onUserDataSaved : function () {
-			console.log('user data saved');
 		}
 	};
 });
