@@ -27,7 +27,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			}
 		}
 		this.modifiedUserData = {};
-		this.fireEvent('userdatasaved');
+		//this.fireEvent('userdatasaved');
 	},
 
 	exportToTextFile : function () {
@@ -41,11 +41,9 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		timestamp += this.padInteger(now.getMinutes(), 2);
 		timestamp += this.padInteger(now.getSeconds(), 2);
 
-		var userdataJSON = JSON.stringify({obj: 'test'});
-
 		var link = document.createElement('a');
 		link.setAttribute('download', 'innersphere-userdata-'+timestamp+'.json');
-		link.href = this.makeTextFile(userdataJSON);
+		link.href = this.makeTextFile(this.createExportString());
 		document.body.appendChild(link);
 
 		// wait for the link to be added to the document
@@ -56,6 +54,24 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		});
 	},
 
+	/**
+	 * @private
+	 */
+	createExportString : function () {
+		var obj = {};
+		var curPlanet;
+		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
+			curPlanet = btplanets.planets[i];
+			if(!!curPlanet.userData) {
+				obj[curPlanet.name] = curPlanet.userData;
+			}
+		}
+		return JSON.stringify(obj);
+	},
+
+	/**
+	 * @private
+	 */
   	makeTextFile : function (text) {
     	var data = new Blob([text], {type: 'text/plain'});
 
@@ -69,6 +85,9 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
     	return this.textFile;
   	},
 
+	/**
+	 * @private
+	 */
 	padInteger : function (int, totalNumChar) {
 		var str = int + '';
 		totalNumChar = totalNumChar || 1;

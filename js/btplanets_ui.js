@@ -557,7 +557,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				planet.userData = '';
 				btplanets.updateUserDataHighlight(i, planet);
 			}
-			btplanets_userdata.scheduleUserDataSave(planet);
+			userdata.scheduleUserDataSave(planet);
 		},
 
 		/**
