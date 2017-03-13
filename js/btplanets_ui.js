@@ -21,12 +21,47 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			d3.select('#route-system').on('keypress', this.onRouteFindKeyPress.bind(this));
 			d3.select('#route-system-btn').on('click', this.onRouteFindBtn.bind(this));
 			// user data panel listeners
+			d3.select('#userdata-drop-zone')
+				.on('drag', this.swallowEvent)
+				.on('dragstart', this.swallowEvent)
+				.on('dragover', this.onUserdataDragEnter.bind(this))
+				.on('dragenter', this.onUserdataDragEnter.bind(this))
+				.on('dragleave', this.onUserdataDragLeave.bind(this))
+				.on('dragend', this.onUserdataDragLeave.bind(this))
+				.on('drop', this.onUserdataDragLeave.bind(this));
+				//.on('drop', function() {
+				//	var e = d3.event;
+    				//droppedFiles = e.dataTransfer.files;
+					//console.log(droppedFiles);
+  				//});
+
 			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle.bind(this));
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
 			btplanets.on('selectionadded', this, this.onSelectionAdded);
+		},
+
+		swallowEvent : function () {
+			d3.event.stopPropagation();
+			d3.event.preventDefault();
+		},
+
+		onUserdataDragEnter : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.add('dragover');
+		},
+
+		onUserdataDragLeave : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.remove('dragover');
 		},
 
 		/**

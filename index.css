@@ -486,8 +486,22 @@ div.controls p.route-ct {
 }
 div.controls div.userdata-drop-ct {
 	border: 2px dashed #aaa;
-	height: 6em;
+	color: rgba(200,200,200,.5);
+	font-size: 1.5em;
+	font-weight: bold;
+	height: 5em;
+	line-height: 2.5em;
+	margin: .5em 0 0 0;
+	text-align: center;
 	width: 100%;
+}
+div.controls div.userdata-drop-ct.dragover {
+	background-color: #ccc;
+}
+div.controls div.userdata-drop-ct span {
+	font-size: 2em;
+	position: relative;
+	top: .4em;
 }
 div.controls input.route-field {
 	margin: 0 0 0 .5em;
