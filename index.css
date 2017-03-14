@@ -489,19 +489,50 @@ div.controls div.userdata-drop-ct {
 	color: rgba(200,200,200,.5);
 	font-size: 1.5em;
 	font-weight: bold;
-	height: 5em;
+	height: 7em;
 	line-height: 2.5em;
 	margin: .5em 0 0 0;
+	position: relative;
 	text-align: center;
+	transition: background-color .4s, color .4s;
 	width: 100%;
 }
 div.controls div.userdata-drop-ct.dragover {
-	background-color: #ccc;
+	background-color: rgba(0,0,0,.5);
+	color: #eee;
 }
-div.controls div.userdata-drop-ct span {
+div.controls div.userdata-drop-ct span.fa {
 	font-size: 2em;
 	position: relative;
 	top: .4em;
+}
+div.controls div.userdata-drop-ct span.small {
+	display: inline-block;
+	font-size: .65em;
+	font-weight: normal;
+	position: relative;
+	top: -1.5em;
+}
+div.controls div.userdata-drop-ct label {
+	color: #ccc;
+	cursor: pointer;
+	text-decoration: underline;
+}
+div.controls div.userdata-drop-ct label:hover {
+	color: #fff;
+}
+div.controls div.userdata-drop-ct > div.userdata-loading {
+	background-color: #fc0;
+	bottom: 0;
+	height: auto;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: auto;
+}
+div.controls .userdata input[type="file"] {
+	display: none;
 }
 div.controls input.route-field {
 	margin: 0 0 0 .5em;

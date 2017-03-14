@@ -28,12 +28,11 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				.on('dragenter', this.onUserdataDragEnter.bind(this))
 				.on('dragleave', this.onUserdataDragLeave.bind(this))
 				.on('dragend', this.onUserdataDragLeave.bind(this))
-				.on('drop', this.onUserdataDragLeave.bind(this));
-				//.on('drop', function() {
-				//	var e = d3.event;
-    				//droppedFiles = e.dataTransfer.files;
-					//console.log(droppedFiles);
-  				//});
+				.on('drop', this.onUserdataDrop.bind(this));
+			d3.select('#userdata-import-file').on('change', this.onUserdataDrop.bind(this));
+			// d3.select('#userdata-import-file').on('change', function () {
+			// 	console.log('file changed', d3.event.target.files);
+			// });
 
 			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
@@ -62,6 +61,69 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			e.stopPropagation();
 			e.preventDefault();
 			target.classList.remove('dragover');
+		},
+
+		onUserdataDrop : function () {
+			var e = d3.event;
+			var target = e.currentTarget.classList.remove('dragover');
+			var files, file;
+
+			if(e.dataTransfer && e.dataTransfer.files) {
+				e.stopPropagation();
+				e.preventDefault();
+
+				files = e.dataTransfer.files;
+			} else if(e.target.files) {
+				files = e.target.files;
+			} else {
+				console.error('no files array found');
+			}
+
+			if(files.length < 1) {
+				console.error('no files selected');
+				return;
+			}
+			file = files[0];
+
+			this.showUserdataLoadingPane();
+
+			// read the file as text
+			var reader = new FileReader();
+            reader.onload = function(e2) {
+				var jsonText = e2.target.result;
+				var parsedObj;
+				try {
+					parsedObj = JSON.parse(jsonText);
+					//console.log(parsedObj);
+					this.hideUserdataLoadingPane();
+					this.showUserdataMsgPane('parsedObj');
+				} catch (e) {
+					this.hideUserdataLoadingPane();
+					this.showUserdataMsgPane('The uploaded file doesn\'t seem to be in the correct format.', 'error');
+				}
+            }.bind(this);
+
+            reader.readAsText(file);
+		},
+
+		showUserdataLoadingPane() {
+			var dropZone = d3.select('#userdata-drop-zone');
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-loading')
+				.classed('userdata-loading', true);
+		},
+
+		hideUserdataLoadingPane() {
+			d3.select('#userdata-drop-zone-loading').remove();
+		},
+
+		showUserdataMsgPane(msg, severity) {
+			severity = severity || 'ok';
+			console.log(msg);
+		},
+
+		hideUserdataMsgPane() {
+
 		},
 
 		/**
