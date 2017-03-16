@@ -96,7 +96,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					parsedObj = JSON.parse(jsonText);
 					//console.log(parsedObj);
 					this.hideUserdataLoadingPane();
-					this.showUserdataMsgPane('parsedObj');
+					this.showUserdataConfirmPane();
+					//this.showUserdataMsgPane('parsedObj');
 				} catch (e) {
 					this.hideUserdataLoadingPane();
 					this.showUserdataMsgPane('The uploaded file doesn\'t seem to be in the correct format.', 'error');
@@ -117,13 +118,36 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			d3.select('#userdata-drop-zone-loading').remove();
 		},
 
+		showUserdataConfirmPane() {
+			var dropZone = d3.select('#userdata-drop-zone');
+			var confirmCt = dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-confirm')
+				.classed('userdata-drop-zone-confirm', true);
+
+			this.hideUserdataConfirmPane();S
+			confirmCt.append('button').text('confirm');
+			confirmCt.append('button').text('cancel');
+		},
+
+		hideUserdataConfirmPane() {
+			d3.select('#userdata-drop-zone-confirm').remove();
+		},
+
 		showUserdataMsgPane(msg, severity) {
+			var dropZone = d3.select('#userdata-drop-zone');
 			severity = severity || 'ok';
-			console.log(msg);
+			this.hideUserdataMsgPane();
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-message')
+				.classed('userdata-message', severity === 'ok')
+				.classed('userdata-error', severity !== 'ok')
+				.html(msg);
+			clearTimeout(this.userdataMsgPaneTimeout);
+			//this.userdataMsgPaneTimeout = setTimeout(this.hideUserdataMsgPane.bind(this), 5000);
 		},
 
 		hideUserdataMsgPane() {
-
+			d3.select('#userdata-drop-zone-message').remove();
 		},
 
 		/**

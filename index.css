@@ -521,15 +521,47 @@ div.controls div.userdata-drop-ct label {
 div.controls div.userdata-drop-ct label:hover {
 	color: #fff;
 }
-div.controls div.userdata-drop-ct > div.userdata-loading {
-	background-color: #fc0;
+div.controls div.userdata-drop-ct > div {
+	align-items: center;
+	animation-name: fade;
+	animation-iteration-count: 1;
+	animation-duration: 5s;
 	bottom: 0;
+	color: #fff;
+	display: flex;
 	height: auto;
+	justify-content: center;
 	left: 0;
+	line-height: 1.1em;
+	opacity: 0;
+	padding: .5em;
 	position: absolute;
 	right: 0;
 	top: 0;
 	width: auto;
+}
+div.controls div.userdata-drop-ct > div.userdata-message {
+	background-color: rgba(80,80,80,.8);
+}
+div.controls div.userdata-drop-ct > div.userdata-error {
+	background-color: rgba(210, 50, 50, .8);
+}
+div.controls div.userdata-drop-ct > div.userdata-loading {
+	background-color: rgba(50,50,50,.8);
+}
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 div.controls .userdata input[type="file"] {
 	display: none;
