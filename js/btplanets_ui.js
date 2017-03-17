@@ -107,33 +107,35 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
             reader.readAsText(file);
 		},
 
-		showUserdataLoadingPane() {
+		showUserdataLoadingPane : function() {
 			var dropZone = d3.select('#userdata-drop-zone');
 			dropZone.append('div')
 				.attr('id', 'userdata-drop-zone-loading')
 				.classed('userdata-loading', true);
 		},
 
-		hideUserdataLoadingPane() {
+		hideUserdataLoadingPane : function () {
 			d3.select('#userdata-drop-zone-loading').remove();
 		},
 
-		showUserdataConfirmPane() {
+		showUserdataConfirmPane : function () {
 			var dropZone = d3.select('#userdata-drop-zone');
-			var confirmCt = dropZone.append('div')
+			var confirmCt;
+			this.hideUserdataConfirmPane();
+			confirmCt = dropZone.append('div')
 				.attr('id', 'userdata-drop-zone-confirm')
-				.classed('userdata-drop-zone-confirm', true);
+				.classed('userdata-confirm', true);
 
-			this.hideUserdataConfirmPane();S
+			confirmCt.append('p').html('This will overwrite all your existing saved user data.<br>Are you sure this is what you want to do?');
 			confirmCt.append('button').text('confirm');
 			confirmCt.append('button').text('cancel');
 		},
 
-		hideUserdataConfirmPane() {
+		hideUserdataConfirmPane : function() {
 			d3.select('#userdata-drop-zone-confirm').remove();
 		},
 
-		showUserdataMsgPane(msg, severity) {
+		showUserdataMsgPane: function(msg, severity) {
 			var dropZone = d3.select('#userdata-drop-zone');
 			severity = severity || 'ok';
 			this.hideUserdataMsgPane();
@@ -146,7 +148,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			//this.userdataMsgPaneTimeout = setTimeout(this.hideUserdataMsgPane.bind(this), 5000);
 		},
 
-		hideUserdataMsgPane() {
+		hideUserdataMsgPane : function() {
 			d3.select('#userdata-drop-zone-message').remove();
 		},
 

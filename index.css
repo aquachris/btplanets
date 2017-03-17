@@ -529,6 +529,7 @@ div.controls div.userdata-drop-ct > div {
 	bottom: 0;
 	color: #fff;
 	display: flex;
+	flex-wrap: wrap;
 	height: auto;
 	justify-content: center;
 	left: 0;
@@ -540,6 +541,17 @@ div.controls div.userdata-drop-ct > div {
 	top: 0;
 	width: auto;
 }
+div.controls div.userdata-drop-ct > div.userdata-confirm {
+	animation-name: fade-in;
+	animation-duration: .5s;
+	background-color: rgba(200,150,20,.9);
+	font-size: .75em;
+	font-weight: normal;
+	opacity: 1;
+}
+div.controls div.userdata-drop-ct > div.userdata-confirm > button {
+	margin: .5em;
+}
 div.controls div.userdata-drop-ct > div.userdata-message {
 	background-color: rgba(80,80,80,.8);
 }
@@ -548,6 +560,14 @@ div.controls div.userdata-drop-ct > div.userdata-error {
 }
 div.controls div.userdata-drop-ct > div.userdata-loading {
 	background-color: rgba(50,50,50,.8);
+}
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 @keyframes fade {
 	0% {
