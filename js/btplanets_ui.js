@@ -21,12 +21,133 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			d3.select('#route-system').on('keypress', this.onRouteFindKeyPress.bind(this));
 			d3.select('#route-system-btn').on('click', this.onRouteFindBtn.bind(this));
 			// user data panel listeners
+			d3.select('#userdata-drop-zone')
+				.on('drag', this.swallowEvent)
+				.on('dragstart', this.swallowEvent)
+				.on('dragover', this.onUserdataDragEnter.bind(this))
+				.on('dragenter', this.onUserdataDragEnter.bind(this))
+				.on('dragleave', this.onUserdataDragLeave.bind(this))
+				.on('dragend', this.onUserdataDragLeave.bind(this))
+				.on('drop', this.onUserdataDrop.bind(this));
+			d3.select('#userdata-import-file').on('change', this.onUserdataDrop.bind(this));
+			// d3.select('#userdata-import-file').on('change', function () {
+			// 	console.log('file changed', d3.event.target.files);
+			// });
+
 			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle.bind(this));
 
 			btplanets.on('selectionchanged', this, this.onSelectionChanged);
 			btplanets.on('selectionadded', this, this.onSelectionAdded);
+		},
+
+		swallowEvent : function () {
+			d3.event.stopPropagation();
+			d3.event.preventDefault();
+		},
+
+		onUserdataDragEnter : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.add('dragover');
+		},
+
+		onUserdataDragLeave : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.remove('dragover');
+		},
+
+		onUserdataDrop : function () {
+			var e = d3.event;
+			var target = e.currentTarget.classList.remove('dragover');
+			var files, file;
+
+			if(e.dataTransfer && e.dataTransfer.files) {
+				e.stopPropagation();
+				e.preventDefault();
+
+				files = e.dataTransfer.files;
+			} else if(e.target.files) {
+				files = e.target.files;
+			} else {
+				console.error('no files array found');
+			}
+
+			if(files.length < 1) {
+				console.error('no files selected');
+				return;
+			}
+			file = files[0];
+
+			this.showUserdataLoadingPane();
+
+			// read the file as text
+			var reader = new FileReader();
+            reader.onload = function(e2) {
+				var jsonText = e2.target.result;
+				var parsedObj;
+				try {
+					parsedObj = JSON.parse(jsonText);
+					//console.log(parsedObj);
+					this.hideUserdataLoadingPane();
+					this.showUserdataConfirmPane();
+					//this.showUserdataMsgPane('parsedObj');
+				} catch (e) {
+					this.hideUserdataLoadingPane();
+					this.showUserdataMsgPane('The uploaded file doesn\'t seem to be in the correct format.', 'error');
+				}
+            }.bind(this);
+
+            reader.readAsText(file);
+		},
+
+		showUserdataLoadingPane() {
+			var dropZone = d3.select('#userdata-drop-zone');
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-loading')
+				.classed('userdata-loading', true);
+		},
+
+		hideUserdataLoadingPane() {
+			d3.select('#userdata-drop-zone-loading').remove();
+		},
+
+		showUserdataConfirmPane() {
+			var dropZone = d3.select('#userdata-drop-zone');
+			var confirmCt = dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-confirm')
+				.classed('userdata-drop-zone-confirm', true);
+
+			this.hideUserdataConfirmPane();S
+			confirmCt.append('button').text('confirm');
+			confirmCt.append('button').text('cancel');
+		},
+
+		hideUserdataConfirmPane() {
+			d3.select('#userdata-drop-zone-confirm').remove();
+		},
+
+		showUserdataMsgPane(msg, severity) {
+			var dropZone = d3.select('#userdata-drop-zone');
+			severity = severity || 'ok';
+			this.hideUserdataMsgPane();
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-message')
+				.classed('userdata-message', severity === 'ok')
+				.classed('userdata-error', severity !== 'ok')
+				.html(msg);
+			clearTimeout(this.userdataMsgPaneTimeout);
+			//this.userdataMsgPaneTimeout = setTimeout(this.hideUserdataMsgPane.bind(this), 5000);
+		},
+
+		hideUserdataMsgPane() {
+			d3.select('#userdata-drop-zone-message').remove();
 		},
 
 		/**

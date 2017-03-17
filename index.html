@@ -107,8 +107,15 @@
 		</div>
 		<div class="userdata">
 			<h2>User data</h2>
-			<div class="userdata-drop-ct"></div>
-			<button id="userdata-save"><span class="fa fa-download"></span> download user data as file</button>
+				<div class="userdata-drop-ct" id="userdata-drop-zone">
+					<span class="fa fa-upload"></span><br />drop file here to import data<br />
+					<span class="small">or <label for="userdata-import-file">select file to import</label></span>
+				</div>
+				<input type="file" id="userdata-import-file" />
+			<hr />
+			<p>
+				<button id="userdata-save"><span class="fa fa-download"></span> export user data to file</button>
+			</p>
 		</div>
 	</div>
 
