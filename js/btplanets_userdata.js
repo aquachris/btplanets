@@ -5,6 +5,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
     planetData : null,
 
 	modifiedUserData : {},
+	parsedUserData : null,
 	userDataSaveTimeout : null,
 
 	textFile : null,
@@ -28,6 +29,37 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		}
 		this.modifiedUserData = {};
 		//this.fireEvent('userdatasaved');
+	},
+
+	parseUserData : function (jsonText) {
+		var parsedObj = JSON.parse(jsonText);
+		var curPlanet;
+		var counter = 0;
+
+		this.parsedUserData = {};
+
+		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
+			curPlanet = btplanets.planets[i];
+			if(parsedObj.hasOwnProperty(curPlanet.name)) {
+				this.parsedUserData[curPlanet.name] = parsedObj[curPlanet.name];
+				counter++;
+			}
+		}
+
+		return counter;
+	},
+
+	commitParsedUserData : function () {
+		var curPlanet;
+
+		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
+			curPlanet = btplanets.planets[i];
+			curPlanet.userData = this.parsedUserData[curPlanet.name] || '';
+		}
+		this.modifiedUserData = this.parsedUserData || {};
+		localStorage.clear();
+		this.saveModifiedUserData();
+		btplanets.updateAllUserDataHighlights();
 	},
 
 	exportToTextFile : function () {
@@ -96,21 +128,5 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		}
 		return str;
 	}
-  //
-  //
-  //
-  //
-  // var create = document.getElementById('create'),
-  //   textbox = document.getElementById('textbox');
-  //
-  // create.addEventListener('click', function () {
-  //   var link = document.createElement('a');
-  //   link.setAttribute('download', 'info.txt');
-  //   link.href = makeTextFile(textbox.value);
-  //   document.body.appendChild(link);
-  //
-  //
-
-
   };
 });

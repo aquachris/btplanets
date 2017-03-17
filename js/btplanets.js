@@ -297,6 +297,9 @@ define(['js/lib/d3.min'], function(d3) {
 							name === 'oberon' ||
 							name === 'alpheratz';
 					})
+					.classed('has-userdata', function (d) {
+						return !!d.userData;
+					})
 					.attr('name', function(d) { return d.name; })
 					.text(function(d) {	return d.name; })
 					.attr('transform', me.transformers.planetText.bind(me));
@@ -508,6 +511,9 @@ define(['js/lib/d3.min'], function(d3) {
 			this.fireEvent('selectionchanged', this.selectedPlanets);
 		},
 
+		/**
+		 * Update the system display after a single user data entry has changed.
+		 */
 		updateUserDataHighlight : function (idx, planet) {
 			var circle, text;
 
@@ -516,6 +522,21 @@ define(['js/lib/d3.min'], function(d3) {
 
 			text = this.svg.select('text[name="'+planet.name+'"]');
 			text.classed('has-userdata', !!planet.userData);
+		},
+
+		/**
+		 * Update the system display after a new set of user data has been loaded.
+		 */
+		updateAllUserDataHighlights : function () {
+			this.svg.selectAll('circle.has-userdata').classed('has-userdata', false);
+			this.svg.selectAll('text.has-userdata').classed('has-userdata', false);
+
+			this.svg.selectAll('g.planet-circles circle')
+				.data(this.planets)
+				.classed('has-userdata', function (d) {	return !!d.userData; });
+			this.svg.selectAll('g.planet-names text')
+				.data(this.planets)
+				.classed('has-userdata', function (d) { return !!d.userData; });
 		},
 
 		/**

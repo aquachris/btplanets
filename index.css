@@ -501,7 +501,7 @@ div.controls div.userdata-drop-ct.dragover {
 	background-color: rgba(0,0,0,.5);
 	color: #eee;
 }
-div.controls div.userdata-drop-ct span.fa {
+div.controls div.userdata-drop-ct > span.fa {
 	font-size: 2em;
 	position: relative;
 	top: .4em;
@@ -545,11 +545,19 @@ div.controls div.userdata-drop-ct > div.userdata-confirm {
 	animation-name: fade-in;
 	animation-duration: .5s;
 	background-color: rgba(200,150,20,.9);
-	font-size: .75em;
 	font-weight: normal;
 	opacity: 1;
 }
+div.controls div.userdata-drop-ct > div.userdata-confirm.closing {
+	animation-name: fade-out;
+	opacity: 0;
+}
+div.controls div.userdata-drop-ct > div.userdata-confirm > p {
+	font-size: .6em;
+	width: 100%;
+}
 div.controls div.userdata-drop-ct > div.userdata-confirm > button {
+	background-color: #333;
 	margin: .5em;
 }
 div.controls div.userdata-drop-ct > div.userdata-message {
@@ -567,6 +575,14 @@ div.controls div.userdata-drop-ct > div.userdata-loading {
 	}
 	100% {
 		opacity: 1;
+	}
+}
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
 	}
 }
 @keyframes fade {
@@ -1197,7 +1213,7 @@ svg.planets-inhabited g.planet-names text.capital,
 svg.planets-inhabited.periphery-states g.planet-names text.periphery-capital,
 svg.planets-capitals g.planet-names text.capital,
 svg.planets-capitals.periphery-states g.planet-names text.periphery-capital,
-/*svg.planets-userdata-visible g.planet-names text.has-userdata,*/
+svg.planets-userdata-visible.zoomed-in g.planet-names text.has-userdata,
 svg g.planet-names text.selected,
 svg.route-visible.zoomed-in g.planet-names text.route,
 svg.route-visible g.planet-names text.route-stop {
@@ -1279,21 +1295,6 @@ svg g.state-labels > g.successor-state > text:nth-child(2) {
 	font-size: 1.2em;
 	/*transform: translate(64px, 3.2em);*/
 }
-/*svg g.state-labels > g.capellan-confederation > text {
-	fill: #426e33;
-}
-svg g.state-labels > g.draconis-combine > text {
-	fill: #a8281b;
-}
-svg g.state-labels > g.federated-suns > text {
-	fill: #9c6127;
-}
-svg g.state-labels > g.free-worlds-league > text {
-	fill: #64508d;
-}
-svg g.state-labels > g.lyran-commonwealth > text {
-	fill: #3f7aaa;
-}*/
 /*
 taurian-concordat #b55731
 magistracy-of-canopus #2d9889

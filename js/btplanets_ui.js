@@ -47,111 +47,6 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			d3.event.preventDefault();
 		},
 
-		onUserdataDragEnter : function () {
-			var e = d3.event;
-			var target = e.currentTarget;
-			e.stopPropagation();
-			e.preventDefault();
-			target.classList.add('dragover');
-		},
-
-		onUserdataDragLeave : function () {
-			var e = d3.event;
-			var target = e.currentTarget;
-			e.stopPropagation();
-			e.preventDefault();
-			target.classList.remove('dragover');
-		},
-
-		onUserdataDrop : function () {
-			var e = d3.event;
-			var target = e.currentTarget.classList.remove('dragover');
-			var files, file;
-
-			if(e.dataTransfer && e.dataTransfer.files) {
-				e.stopPropagation();
-				e.preventDefault();
-
-				files = e.dataTransfer.files;
-			} else if(e.target.files) {
-				files = e.target.files;
-			} else {
-				console.error('no files array found');
-			}
-
-			if(files.length < 1) {
-				console.error('no files selected');
-				return;
-			}
-			file = files[0];
-
-			this.showUserdataLoadingPane();
-
-			// read the file as text
-			var reader = new FileReader();
-            reader.onload = function(e2) {
-				var jsonText = e2.target.result;
-				var parsedObj;
-				try {
-					parsedObj = JSON.parse(jsonText);
-					//console.log(parsedObj);
-					this.hideUserdataLoadingPane();
-					this.showUserdataConfirmPane();
-					//this.showUserdataMsgPane('parsedObj');
-				} catch (e) {
-					this.hideUserdataLoadingPane();
-					this.showUserdataMsgPane('The uploaded file doesn\'t seem to be in the correct format.', 'error');
-				}
-            }.bind(this);
-
-            reader.readAsText(file);
-		},
-
-		showUserdataLoadingPane : function() {
-			var dropZone = d3.select('#userdata-drop-zone');
-			dropZone.append('div')
-				.attr('id', 'userdata-drop-zone-loading')
-				.classed('userdata-loading', true);
-		},
-
-		hideUserdataLoadingPane : function () {
-			d3.select('#userdata-drop-zone-loading').remove();
-		},
-
-		showUserdataConfirmPane : function () {
-			var dropZone = d3.select('#userdata-drop-zone');
-			var confirmCt;
-			this.hideUserdataConfirmPane();
-			confirmCt = dropZone.append('div')
-				.attr('id', 'userdata-drop-zone-confirm')
-				.classed('userdata-confirm', true);
-
-			confirmCt.append('p').html('This will overwrite all your existing saved user data.<br>Are you sure this is what you want to do?');
-			confirmCt.append('button').text('confirm');
-			confirmCt.append('button').text('cancel');
-		},
-
-		hideUserdataConfirmPane : function() {
-			d3.select('#userdata-drop-zone-confirm').remove();
-		},
-
-		showUserdataMsgPane: function(msg, severity) {
-			var dropZone = d3.select('#userdata-drop-zone');
-			severity = severity || 'ok';
-			this.hideUserdataMsgPane();
-			dropZone.append('div')
-				.attr('id', 'userdata-drop-zone-message')
-				.classed('userdata-message', severity === 'ok')
-				.classed('userdata-error', severity !== 'ok')
-				.html(msg);
-			clearTimeout(this.userdataMsgPaneTimeout);
-			//this.userdataMsgPaneTimeout = setTimeout(this.hideUserdataMsgPane.bind(this), 5000);
-		},
-
-		hideUserdataMsgPane : function() {
-			d3.select('#userdata-drop-zone-message').remove();
-		},
-
 		/**
 		 * React to tab title being clicked
 		 */
@@ -192,6 +87,9 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				controls.classed('expanded', true);
 				tabTitle.classed('active', true);
 			}
+
+			// hide any active temporary controls
+			d3.selectAll('#userdata-drop-zone > div').remove();
 		},
 
 		onFindKeyPress : function () {
@@ -615,74 +513,6 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			}
 		},
 
-		onUserDataSave : function () {
-			userdata.exportToTextFile();
-		},
-
-		initUserDataRTEs : function () {
-			var self = this;
-			this.removeUserDataRTEs();
-
-			// register listeners on userdata divs
-			var divs = d3.selectAll('div.userdata-rte');
-
-			divs.on('click', function () {
-				var e = d3.event;
-				var target = e.currentTarget;
-				var id = target.getAttribute('id');
-
-				if(target.classList.contains('mce-content-body')) {
-					return;
-				}
-
-				// destroy all existing tinymce instances
-				tinymce.remove();
-
-				tinymce.init({
-				 	selector: '#' + id,
-				 	inline: true,
-				 	//insert_toolbar: 'quicktable',
-				 	plugins : [
-				 		'advlist autolink lists link image charmap anchor',
-				 		'searchreplace fullscreen table textpattern',
-				 		'insertdatetime media contextmenu paste'
-				 	],
-				 	menubar: false,
-				 	toolbar: 'bold italic | bullist numlist | quicklink blockquote',
-				 	init_instance_callback: function (editor) {
-						tinymce.get(id).focus();
-						editor.on('blur', function (e) {
-							self.onUserDataRTEChange();
-							tinymce.remove();
-						});
-						editor.on('change', self.onUserDataRTEChange.bind(self));
-						editor.on('paste', self.onUserDataRTEChange.bind(self));
-						editor.on('keyup', self.onUserDataRTEChange.bind(self));
-				 	}
-				});
-			});
-		},
-
-		removeUserDataRTEs : function () {
-			tinymce.remove();
-		},
-
-		onUserDataRTEChange : function () {
-			var editor = tinymce.activeEditor;
-			var i, planet, name, circle;
-
-			i = editor.targetElm.getAttribute('data-system-idx');
-			planet = btplanets.planets[i];
-			if(editor.targetElm.innerText.trim().length > 0) {
-				planet.userData = tinymce.activeEditor.getContent();
-				btplanets.updateUserDataHighlight(i, planet);
-			} else {
-				planet.userData = '';
-				btplanets.updateUserDataHighlight(i, planet);
-			}
-			userdata.scheduleUserDataSave(planet);
-		},
-
 		/**
 		 * React to the selection changing by re-assembling the selection panel
 		 */
@@ -781,6 +611,204 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			ct.selectAll('button.center').on('click', this.onSelectionCenterBtn);
 			ct.selectAll('button.start-route').on('click', this.onSelectionNewRouteBtn.bind(this));
 			ct.selectAll('button.append-route').on('click', this.onSelectionAppendToRouteBtn.bind(this));
+		},
+
+		onUserdataDragEnter : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.add('dragover');
+		},
+
+		onUserdataDragLeave : function () {
+			var e = d3.event;
+			var target = e.currentTarget;
+			e.stopPropagation();
+			e.preventDefault();
+			target.classList.remove('dragover');
+		},
+
+		onUserdataDrop : function () {
+			var e = d3.event;
+			var target = e.currentTarget.classList.remove('dragover');
+			var files, file;
+
+			if(e.dataTransfer && e.dataTransfer.files) {
+				e.stopPropagation();
+				e.preventDefault();
+
+				files = e.dataTransfer.files;
+			} else if(e.target.files) {
+				files = e.target.files;
+			} else {
+				console.error('no files array found');
+			}
+
+			if(files.length < 1) {
+				console.error('no files selected');
+				return;
+			}
+			file = files[0];
+
+			this.hideUserdataConfirmPane();
+			this.hideUserdataMsgPane();
+			this.showUserdataLoadingPane();
+
+			// read the file as text
+			var reader = new FileReader();
+			reader.onload = function(e2) {
+				var jsonText = e2.target.result;
+				var parsedObj;
+				var numEntries;
+				try {
+					//parsedObj = JSON.parse(jsonText);
+					numEntries = userdata.parseUserData(jsonText);
+					//console.log(parsedObj);
+					this.hideUserdataLoadingPane();
+					this.showUserdataConfirmPane(numEntries);
+				} catch (e) {
+					this.hideUserdataLoadingPane();
+					this.showUserdataMsgPane('The uploaded file doesn\'t seem to be in the correct format.', 'error');
+				}
+				d3.select('#userdata-import-file-form').node().reset();
+			}.bind(this);
+
+			reader.readAsText(file);
+		},
+
+		showUserdataLoadingPane : function() {
+			var dropZone = d3.select('#userdata-drop-zone');
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-loading')
+				.classed('userdata-loading', true);
+		},
+
+		hideUserdataLoadingPane : function () {
+			d3.select('#userdata-drop-zone-loading').remove();
+		},
+
+		showUserdataConfirmPane : function (numEntries) {
+			var dropZone = d3.select('#userdata-drop-zone');
+			var confirmCt, confirmBtn, cancelBtn;
+			this.hideUserdataConfirmPane();
+			confirmCt = dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-confirm')
+				.classed('userdata-confirm', true);
+
+			//confirmCt.append('p').html('This file contains '++' custom entries.');
+			confirmCt.append('p').html('This file contains user data for ' + numEntries + ' systems.');
+			confirmCt.append('p').html('Importing it will replace all your existing saved user data.');
+			confirmCt.append('p').html('Are you sure this is what you want to do?');
+			confirmBtn = confirmCt.append('button')
+				.attr('id', 'userdata-overwrite-confirm-btn')
+				.html('<span class="fa fa-check"></span> confirm');
+			cancelBtn = confirmCt.append('button')
+				.attr('id', 'userdata-overwrite-cancel-btn')
+				.html('<span class="fa fa-times"></span> cancel');
+			confirmBtn.on('click', function () {
+				userdata.commitParsedUserData();
+				this.fadeOutUserdataConfirmPane();
+				this.showUserdataMsgPane('<span class="fa fa-check"></span>&nbsp;&nbsp;data file imported');
+			}.bind(this));
+			cancelBtn.on('click', this.fadeOutUserdataConfirmPane.bind(this));
+		},
+
+		fadeOutUserdataConfirmPane : function () {
+			d3.select('#userdata-overwrite-confirm-btn').remove();
+			d3.select('#userdata-overwrite-cancel-btn').remove();
+			d3.select('#userdata-drop-zone-confirm').classed('closing', true);
+			clearTimeout(this.userdataConfirmPaneTimeout);
+			this.userdataConfirmPaneTimeout = setTimeout(this.hideUserdataConfirmPane.bind(this), 500);
+		},
+
+		hideUserdataConfirmPane : function() {
+			d3.select('#userdata-drop-zone-confirm').remove();
+		},
+
+		showUserdataMsgPane: function(msg, severity) {
+			var dropZone = d3.select('#userdata-drop-zone');
+			severity = severity || 'ok';
+			this.hideUserdataMsgPane();
+			dropZone.append('div')
+				.attr('id', 'userdata-drop-zone-message')
+				.classed('userdata-message', severity === 'ok')
+				.classed('userdata-error', severity !== 'ok')
+				.html(msg);
+			clearTimeout(this.userdataMsgPaneTimeout);
+			this.userdataMsgPaneTimeout = setTimeout(this.hideUserdataMsgPane.bind(this), 5000);
+		},
+
+		hideUserdataMsgPane : function() {
+			d3.select('#userdata-drop-zone-message').remove();
+		},
+
+		onUserDataSave : function () {
+			userdata.exportToTextFile();
+		},
+
+		initUserDataRTEs : function () {
+			var self = this;
+			this.removeUserDataRTEs();
+
+			// register listeners on userdata divs
+			var divs = d3.selectAll('div.userdata-rte');
+
+			divs.on('click', function () {
+				var e = d3.event;
+				var target = e.currentTarget;
+				var id = target.getAttribute('id');
+
+				if(target.classList.contains('mce-content-body')) {
+					return;
+				}
+
+				// destroy all existing tinymce instances
+				tinymce.remove();
+
+				tinymce.init({
+					selector: '#' + id,
+					inline: true,
+					//insert_toolbar: 'quicktable',
+					plugins : [
+						'advlist autolink lists link image charmap anchor',
+						'searchreplace fullscreen table textpattern',
+						'insertdatetime media contextmenu paste'
+					],
+					menubar: false,
+					toolbar: 'bold italic | bullist numlist | quicklink blockquote',
+					init_instance_callback: function (editor) {
+						tinymce.get(id).focus();
+						editor.on('blur', function (e) {
+							self.onUserDataRTEChange();
+							tinymce.remove();
+						});
+						editor.on('change', self.onUserDataRTEChange.bind(self));
+						editor.on('paste', self.onUserDataRTEChange.bind(self));
+						editor.on('keyup', self.onUserDataRTEChange.bind(self));
+					}
+				});
+			});
+		},
+
+		removeUserDataRTEs : function () {
+			tinymce.remove();
+		},
+
+		onUserDataRTEChange : function () {
+			var editor = tinymce.activeEditor;
+			var i, planet, name, circle;
+
+			i = editor.targetElm.getAttribute('data-system-idx');
+			planet = btplanets.planets[i];
+			if(editor.targetElm.innerText.trim().length > 0) {
+				planet.userData = tinymce.activeEditor.getContent();
+				btplanets.updateUserDataHighlight(i, planet);
+			} else {
+				planet.userData = '';
+				btplanets.updateUserDataHighlight(i, planet);
+			}
+			userdata.scheduleUserDataSave(planet);
 		}
 	};
 });

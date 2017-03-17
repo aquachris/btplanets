@@ -111,7 +111,9 @@
 					<span class="fa fa-upload"></span><br />drop file here to import data<br />
 					<span class="small">or <label for="userdata-import-file">select file to import</label></span>
 				</div>
-				<input type="file" id="userdata-import-file" />
+				<form id="userdata-import-file-form" name="import-file-form">
+					<input type="file" id="userdata-import-file" />
+				</form>
 			<hr />
 			<p>
 				<button id="userdata-save"><span class="fa fa-download"></span> export user data to file</button>
@@ -323,7 +325,7 @@
 	</div>
 
 	<script type="text/javascript">
-		window.BTPLANETS_VERSION = 201703021944;
+		window.BTPLANETS_VERSION = 201703180000;
 	</script>
 	<script src="js/lib/require.min.js" charset="utf-8"></script>
 	<script src="js/index.js"></script>
