@@ -10,12 +10,20 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 	textFile : null,
 
+	/**
+	 * Registers a user data change and schedule all modified user data to be saved.
+	 *
+	 * @param planet {Object} The planet whose user data has changed
+	 */
 	scheduleUserDataSave : function (planet) {
 		clearTimeout(this.userDataSaveTimeout);
 		this.modifiedUserData[planet.name] = planet.userData;
 		this.userDataSaveTimeout = setTimeout(this.saveModifiedUserData.bind(this), 1000);
 	},
 
+	/**
+	 * Saves all modified user data to the browser's localStorage.
+	 */
 	saveModifiedUserData : function () {
 		for(var key in this.modifiedUserData) {
 			if(!this.modifiedUserData.hasOwnProperty(key)) {
@@ -31,6 +39,13 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		//this.fireEvent('userdatasaved');
 	},
 
+	/**
+	 * Parses user data JSON and validates entries against planet array.
+	 * The resulting object is saved in this.parsedUserData.
+	 *
+	 * @param jsonText {String} The user data object in JSON format
+	 * @returns {int} The number of entries in the parsed user data object
+	 */
 	parseUserData : function (jsonText) {
 		var parsedObj = JSON.parse(jsonText);
 		var curPlanet;
@@ -49,6 +64,10 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		return counter;
 	},
 
+	/**
+	 * Commits the parsedUserData object to the browser's localStorage and updates
+	 * the planet array and the map display accordingly.
+	 */
 	commitParsedUserData : function () {
 		var curPlanet;
 
@@ -62,6 +81,10 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		btplanets.updateAllUserDataHighlights();
 	},
 
+	/**
+	 * Create and export a text file containing all custom user data in this
+	 * browser's localStorage.
+	 */
 	exportToTextFile : function () {
 		var textFile = null;
 		var now = new Date();
