@@ -799,6 +799,10 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			var editor = tinymce.activeEditor;
 			var i, planet, name, circle;
 
+			if(!editor) {
+				this.removeUserDataRTEs();
+				return;
+			}
 			i = editor.targetElm.getAttribute('data-system-idx');
 			planet = btplanets.planets[i];
 			if(editor.targetElm.innerText.trim().length > 0) {
