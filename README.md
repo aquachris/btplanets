@@ -74,7 +74,7 @@ The basic features can be seen in the following video:
 - MS Edge seems to lack support for some SVG features, parts of the Steiner and Liao logos are not displayed
 
 ## Coming "soon" (currently planned features)
-- User defined system data
+- Sarna data comparison script
 
 ## Future possibilities (cool features that are not currently planned)
 _(in no particular order, *especially* not ordered by priority)_  
@@ -94,5 +94,5 @@ The BATTLETECH logo and the faction sigils were created by [Harebrained Schemes]
 
 All planet names and coordinates are from [www.sarna.net](http://www.sarna.net), with some corrections applied.
 
-Programming by Christoph Wassermann.
+Programming by Christoph Wassermann.<br>
 Data editing and cleanup by Wraith_81.
