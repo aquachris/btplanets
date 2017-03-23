@@ -6,6 +6,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 	modifiedUserData : {},
 	parsedUserData : null,
+	parsedSettings : null,
 	userDataSaveTimeout : null,
 
 	textFile : null,
@@ -40,11 +41,32 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 	},
 
 	/**
+	 * Saves a setting user choice to the browser's localStorage.
+	 *
+	 * @param settingName {String} The setting's name
+	 * @param choice {any} The user choice
+	 */
+	saveUserSetting : function (settingName, choice) {
+		localStorage.setItem('__setting__'+settingName, choice);
+	},
+
+	/**
+	 * Reads and returns a previously saved user setting choice.
+	 *
+	 * @param settingName {String} The setting's name
+	 * @returns {any} The user choice
+	 */
+	readUserSetting : function (settingName) {
+		return localStorage.getItem('__setting__'+settingName);
+	},
+
+	/**
 	 * Parses user data JSON and validates entries against planet array.
 	 * The resulting object is saved in this.parsedUserData.
 	 *
 	 * @param jsonText {String} The user data object in JSON format
 	 * @returns {int} The number of entries in the parsed user data object
+	 * @throws {ParseException} if the jsonText param is not a valid JSON string
 	 */
 	parseUserData : function (jsonText) {
 		var parsedObj = JSON.parse(jsonText);
@@ -52,12 +74,21 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 		var counter = 0;
 
 		this.parsedUserData = {};
+		this.parsedSettings = {};
 
 		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
 			curPlanet = btplanets.planets[i];
 			if(parsedObj.hasOwnProperty(curPlanet.name)) {
 				this.parsedUserData[curPlanet.name] = parsedObj[curPlanet.name];
+				delete parsedObj[curPlanet.name];
 				counter++;
+			}
+		}
+
+		// check the remaining entries - they might be settings
+		for(var key in parsedObj) {
+			if(parsedObj.hasOwnProperty(key) && key.indexOf('__setting__') === 0) {
+				this.parsedSettings[key.substring(11)] = parsedObj[key];
 			}
 		}
 

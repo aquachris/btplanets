@@ -6,6 +6,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 		 * Initialize module
 		 */
 		init : function () {
+			this.restoreUserSettings();
+
 			// register listeners
 			d3.select('div.controls').on('keydown', function () {
 				d3.event.stopPropagation();
@@ -30,9 +32,6 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				.on('dragend', this.onUserdataDragLeave.bind(this))
 				.on('drop', this.onUserdataDrop.bind(this));
 			d3.select('#userdata-import-file').on('change', this.onUserdataDrop.bind(this));
-			// d3.select('#userdata-import-file').on('change', function () {
-			// 	console.log('file changed', d3.event.target.files);
-			// });
 
 			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
@@ -405,57 +404,130 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 		},
 
 		/**
+		 * Read and restore previous user settings
+		 */
+		restoreUserSettings : function () {
+			var svg = d3.select('svg');
+			var curSetting;
+
+			// state border lines
+			curSetting = userdata.readUserSetting('stateBorders');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('borders-lines', curSetting);
+			}
+
+			// periphery states
+			curSetting = userdata.readUserSetting('peripheryStates');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('periphery-states', curSetting);
+			}
+
+			// state fill mode
+			curSetting = userdata.readUserSetting('stateFillMode');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('borders-sigils', curSetting === 'sigils'); // default
+				svg.classed('borders-hatch', curSetting === 'hatch');
+				svg.classed('borders-fill', curSetting === 'fill');
+			}
+
+			// state labels
+			curSetting = userdata.readUserSetting('stateLabels');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('labels-successor-states', curSetting === 'successorStates'); // default
+				svg.classed('labels-all', curSetting === 'all');
+				svg.classed('labels-major-powers', curSetting === 'majorPowers');
+			}
+
+			// visible systems
+			curSetting = userdata.readUserSetting('visibleSystems');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('planets-capitals', curSetting === 'capitals'); // default
+				svg.classed('planets-hidden', curSetting === 'none');
+				svg.classed('planets-inhabited', curSetting === 'inhabited');
+				svg.classed('planets-all', curSetting === 'all');
+				svg.classed('planets-all-hidden', curSetting === 'allHidden');
+			}
+
+			// clan systems visible
+			curSetting = userdata.readUserSetting('clanSystems');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('planets-clans', curSetting);
+			}
+
+			// user data highlight
+			curSetting = userdata.readUserSetting('userDataHighlight');
+			if(curSetting !== undefined && curSetting !== null) {
+				svg.classed('planets-userdata-visible',	curSetting === 'visible'); // default
+				svg.classed('planets-userdata-highlight', curSetting === 'highlight');
+				svg.classed('planets-userdata-hidden', curSetting === 'hidden');
+			}
+		},
+
+		/**
 		 * React to a settings option being changed
 		 */
 		onSettingOptionToggle : function () {
 			var curVisibility;
 			var svg = d3.select('svg');
+			var val;
 			switch(this.id) {
 				case 'settings_borders':
-					svg.classed('borders-lines', d3.select(this).property('checked'));
+					val = d3.select(this).property('checked');
+					svg.classed('borders-lines', val);
+					userdata.saveUserSetting('stateBorders', val);
 					break;
 				case 'settings_periphery_states':
-					svg.classed('periphery-states', d3.select(this).property('checked'));
+					val = d3.select(this).property('checked');
+					svg.classed('periphery-states', val);
+					userdata.saveUserSetting('peripheryStates', val);
 					break;
 				case 'settings_borders_hatch':
 					svg.classed('borders-hatch', true);
 					svg.classed('borders-sigils', false);
 					svg.classed('borders-fill', false);
+					userdata.saveUserSetting('stateFillMode', 'hatch');
 					break;
 				case 'settings_borders_sigils':
 					svg.classed('borders-hatch', false);
 					svg.classed('borders-sigils', true);
 					svg.classed('borders-fill', false);
+					userdata.saveUserSetting('stateFillMode', 'sigils');
 					break;
 				case 'settings_borders_fill':
 					svg.classed('borders-hatch', false);
 					svg.classed('borders-sigils', false);
 					svg.classed('borders-fill', true);
+					userdata.saveUserSetting('stateFillMode', 'solid');
 					break;
 				case 'settings_borders_nofill':
 					svg.classed('borders-hatch', false);
 					svg.classed('borders-sigils', false);
 					svg.classed('borders-fill', false);
+					userdata.saveUserSetting('stateFillMode', 'none');
 					break;
 				case 'settings_state_labels_all':
 					svg.classed('labels-successor-states', false);
 					svg.classed('labels-major-powers', false);
 					svg.classed('labels-all', true);
+					userdata.saveUserSetting('stateLabels', 'all');
 					break;
 				case 'settings_state_labels_maj':
 					svg.classed('labels-successor-states', false);
 					svg.classed('labels-major-powers', true);
 					svg.classed('labels-all', false);
+					userdata.saveUserSetting('stateLabels', 'majorPowers');
 					break;
 				case 'settings_state_labels_succ':
 					svg.classed('labels-successor-states', true);
 					svg.classed('labels-major-powers', false);
 					svg.classed('labels-all', false);
+					userdata.saveUserSetting('stateLabels', 'successorStates');
 					break;
 				case 'settings_state_labels_none':
 					svg.classed('labels-successor-states', false);
 					svg.classed('labels-major-powers', false);
 					svg.classed('labels-all', false);
+					userdata.saveUserSetting('stateLabels', 'none');
 					break;
 				case 'settings_planets_none':
 					svg.classed('planets-hidden', true);
@@ -463,6 +535,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', false);
 					svg.classed('planets-all-hidden', false);
+					userdata.saveUserSetting('visibleSystems', 'none');
 					break;
 				case 'settings_planets_capitals':
 					svg.classed('planets-hidden', false);
@@ -470,6 +543,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', false);
 					svg.classed('planets-all-hidden', false);
+					userdata.saveUserSetting('visibleSystems', 'capitals');
 					break;
 				case 'settings_planets_inhabited':
 					svg.classed('planets-hidden', false);
@@ -477,6 +551,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					svg.classed('planets-inhabited', true);
 					svg.classed('planets-all', false);
 					svg.classed('planets-all-hidden', false);
+					userdata.saveUserSetting('visibleSystems', 'inhabited');
 					break;
 				case 'settings_planets_all':
 					svg.classed('planets-hidden', false);
@@ -484,6 +559,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', true);
 					svg.classed('planets-all-hidden', false);
+					userdata.saveUserSetting('visibleSystems', 'all');
 					break;
 				case 'settings_planets_all_hidden':
 					svg.classed('planets-hidden', false);
@@ -491,24 +567,30 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					svg.classed('planets-inhabited', false);
 					svg.classed('planets-all', false);
 					svg.classed('planets-all-hidden', true);
+					userdata.saveUserSetting('visibleSystems', 'allHidden');
 					break;
 				case 'settings_clan_systems':
-					svg.classed('planets-clans', d3.select(this).property('checked'));
+					val = d3.select(this).property('checked');
+					svg.classed('planets-clans', val);
+					userdata.saveUserSetting('clanSystems', val);
 					break;
 				case 'settings_userdata_show':
 					svg.classed('planets-userdata-visible', true);
 					svg.classed('planets-userdata-highlight', false);
 					svg.classed('planets-userdata-hidden', false);
+					userdata.saveUserSetting('userDataHighlight', 'visible');
 					break;
 				case 'settings_userdata_highlight':
 					svg.classed('planets-userdata-visible', false);
 					svg.classed('planets-userdata-highlight', true);
 					svg.classed('planets-userdata-hidden', false);
+					userdata.saveUserSetting('userDataHighlight', 'highlight');
 					break;
 				case 'settings_userdata_hidden':
 					svg.classed('planets-userdata-visible', false);
 					svg.classed('planets-userdata-highlight', false);
 					svg.classed('planets-userdata-hidden', true);
+					userdata.saveUserSetting('userDataHighlight', 'hidden');
 					break;
 			}
 		},
