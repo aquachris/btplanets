@@ -404,22 +404,26 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 		},
 
 		/**
-		 * Read and restore previous user settings
+		 * Read and restore previous user settings from localStorage.
 		 */
 		restoreUserSettings : function () {
 			var svg = d3.select('svg');
-			var curSetting;
+			var curSetting, curControl;
 
 			// state border lines
+			curControl = d3.select('#settings_borders');
 			curSetting = userdata.readUserSetting('stateBorders');
 			if(curSetting !== undefined && curSetting !== null) {
-				svg.classed('borders-lines', curSetting);
+				svg.classed('borders-lines', curSetting === 'true');
+				curControl.property('checked', curSetting === 'true');
 			}
 
 			// periphery states
+			curControl = d3.select('#settings_periphery_states');
 			curSetting = userdata.readUserSetting('peripheryStates');
 			if(curSetting !== undefined && curSetting !== null) {
-				svg.classed('periphery-states', curSetting);
+				svg.classed('periphery-states', curSetting === 'true');
+				curControl.property('checked', curSetting === 'true');
 			}
 
 			// state fill mode
@@ -428,14 +432,42 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				svg.classed('borders-sigils', curSetting === 'sigils'); // default
 				svg.classed('borders-hatch', curSetting === 'hatch');
 				svg.classed('borders-fill', curSetting === 'fill');
+				switch(curSetting) {
+					case 'sigils':
+						curControl = d3.select('#settings_borders_sigils');
+						break;
+					case 'hatch':
+						curControl = d3.select('#settings_borders_hatch');
+						break;
+					case 'fill':
+						curControl = d3.select('#settings_borders_fill');
+						break;
+					default:
+						curControl = d3.select('#settings_borders_nofill');
+				}
+				curControl.property('checked', true);
 			}
 
 			// state labels
 			curSetting = userdata.readUserSetting('stateLabels');
 			if(curSetting !== undefined && curSetting !== null) {
-				svg.classed('labels-successor-states', curSetting === 'successorStates'); // default
 				svg.classed('labels-all', curSetting === 'all');
 				svg.classed('labels-major-powers', curSetting === 'majorPowers');
+				svg.classed('labels-successor-states', curSetting === 'successorStates'); // default
+				switch(curSetting) {
+					case 'all':
+						curControl = d3.select('#settings_state_labels_all');
+						break;
+					case 'majorPowers':
+						curControl = d3.select('#settings_state_labels_maj');
+						break;
+					case 'successorStates':
+						curControl = d3.select('#settings_state_labels_succ');
+						break;
+					default:
+						curControl = d3.select('#settings_state_labels_none');
+				}
+				curControl.property('checked', true);
 			}
 
 			// visible systems
@@ -446,12 +478,31 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				svg.classed('planets-inhabited', curSetting === 'inhabited');
 				svg.classed('planets-all', curSetting === 'all');
 				svg.classed('planets-all-hidden', curSetting === 'allHidden');
+				switch(curSetting) {
+					case 'allHidden':
+						curControl = d3.select('#settings_planets_all_hidden');
+						break;
+					case 'all':
+						curControl = d3.select('#settings_planets_all');
+						break;
+					case 'inhabited':
+						curControl = d3.select('#settings_planets_inhabited');
+						break;
+					case 'capitals':
+						curControl = d3.select('#settings_planets_capitals');
+						break;
+					default:
+						curControl = d3.select('#settings_planets_none');
+				}
+				curControl.property('checked', true);
 			}
 
 			// clan systems visible
+			curControl = d3.select('#settings_clan_systems');
 			curSetting = userdata.readUserSetting('clanSystems');
 			if(curSetting !== undefined && curSetting !== null) {
-				svg.classed('planets-clans', curSetting);
+				svg.classed('planets-clans', curSetting === 'true');
+				curControl.property('checked', curSetting === 'true');
 			}
 
 			// user data highlight
@@ -460,6 +511,17 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				svg.classed('planets-userdata-visible',	curSetting === 'visible'); // default
 				svg.classed('planets-userdata-highlight', curSetting === 'highlight');
 				svg.classed('planets-userdata-hidden', curSetting === 'hidden');
+				switch(curSetting) {
+					case 'visible':
+						curControl = d3.select('#settings_userdata_show');
+						break;
+					case 'highlight':
+						curControl = d3.select('#settings_userdata_highlight');
+						break;
+					default:
+						curControl = d3.select('#settings_userdata_hidden');
+				}
+				curControl.property('checked', true);
 			}
 		},
 
@@ -593,6 +655,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					userdata.saveUserSetting('userDataHighlight', 'hidden');
 					break;
 			}
+
+			btplanets.repositionComponents();
 		},
 
 		/**
