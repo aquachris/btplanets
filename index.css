@@ -393,9 +393,16 @@ div.controls button {
 	cursor: pointer;
 	margin: 0;
 	padding: .25em .5em;
+	transition: background-color .3s
 }
 div.controls button:active {
 	border: 2px inset #aaa;
+}
+div.controls button:disabled {
+	color: #999;
+}
+div.controls button.confirm {
+	background-color: #a00;
 }
 div.controls p.find-ct {
 	position: relative;

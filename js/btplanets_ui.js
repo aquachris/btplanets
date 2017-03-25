@@ -34,6 +34,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			d3.select('#userdata-import-file').on('change', this.onUserdataDrop.bind(this));
 
 			d3.select('#userdata-save').on('click', this.onUserDataSave.bind(this));
+			d3.select('#userdata-clear').on('click', this.onUserDataClear.bind(this));
+
 			//d3.select('div.controls').select('.route').select('button.submit').on('click', this.onRouteSubmit);
 			d3.select('div.controls').select('.route').selectAll('input[type=checkbox]').on('click', this.onRouteOptionToggle.bind(this));
 
@@ -416,6 +418,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			if(curSetting !== undefined && curSetting !== null) {
 				svg.classed('borders-lines', curSetting === 'true');
 				curControl.property('checked', curSetting === 'true');
+			} else {
+				userdata.saveUserSetting('stateBorders', 'true');
 			}
 
 			// periphery states
@@ -424,6 +428,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			if(curSetting !== undefined && curSetting !== null) {
 				svg.classed('periphery-states', curSetting === 'true');
 				curControl.property('checked', curSetting === 'true');
+			} else {
+				userdata.saveUserSetting('peripheryStates', true)
 			}
 
 			// state fill mode
@@ -446,6 +452,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						curControl = d3.select('#settings_borders_nofill');
 				}
 				curControl.property('checked', true);
+			} else {
+				userdata.saveUserSetting('stateFillMode', 'sigils');
 			}
 
 			// state labels
@@ -468,6 +476,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						curControl = d3.select('#settings_state_labels_none');
 				}
 				curControl.property('checked', true);
+			} else {
+				userdata.saveUserSetting('stateLabels', 'successorStates');
 			}
 
 			// visible systems
@@ -495,6 +505,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						curControl = d3.select('#settings_planets_none');
 				}
 				curControl.property('checked', true);
+			} else {
+				userdata.saveUserSetting('visibleSystems', 'capitals');
 			}
 
 			// clan systems visible
@@ -503,6 +515,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 			if(curSetting !== undefined && curSetting !== null) {
 				svg.classed('planets-clans', curSetting === 'true');
 				curControl.property('checked', curSetting === 'true');
+			} else {
+				userdata.saveUserSetting('clanSystems', 'false');
 			}
 
 			// user data highlight
@@ -522,6 +536,8 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						curControl = d3.select('#settings_userdata_hidden');
 				}
 				curControl.property('checked', true);
+			} else {
+				userdata.saveUserSetting('userDataHighlight', 'visible');
 			}
 		},
 
@@ -842,7 +858,6 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				.attr('id', 'userdata-drop-zone-confirm')
 				.classed('userdata-confirm', true);
 
-			//confirmCt.append('p').html('This file contains '++' custom entries.');
 			confirmCt.append('p').html('This file contains user data for ' + numEntries + ' systems.');
 			confirmCt.append('p').html('Importing it will replace all your existing saved user data.');
 			confirmCt.append('p').html('Are you sure this is what you want to do?');
@@ -854,6 +869,7 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 				.html('<span class="fa fa-times"></span> cancel');
 			confirmBtn.on('click', function () {
 				userdata.commitParsedUserData();
+				this.restoreUserSettings();
 				this.fadeOutUserdataConfirmPane();
 				this.showUserdataMsgPane('<span class="fa fa-check"></span>&nbsp;&nbsp;data file imported');
 			}.bind(this));
@@ -891,6 +907,25 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 
 		onUserDataSave : function () {
 			userdata.exportToTextFile();
+		},
+
+		onUserDataClear : function () {
+			var btn = d3.select('#userdata-clear');
+			if(btn.classed('confirm')) {
+				clearTimeout(this.clearUserDataConfirmTimeout);
+				userdata.clearUserData();
+				btn.html('<span class="fa fa-trash"></span> clear all user data');
+				btn.classed('confirm', false);
+				btn.property('disabled', false);
+			} else {
+				btn.property('disabled', true);
+				btn.classed('confirm', true);
+				btn.html('<span class="fa fa-trash"></span> are you sure?');
+				setTimeout(function () {
+					btn.property('disabled', false);
+					this.clearUserDataConfirmTimeout = setTimeout(this.onUserDataClear.bind(this), 3000);
+				}.bind(this), 500);
+			}
 		},
 
 		initUserDataRTEs : function () {

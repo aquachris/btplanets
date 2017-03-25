@@ -5,11 +5,29 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
     planetData : null,
 
 	modifiedUserData : {},
+	modifiedSettings : {},
 	parsedUserData : null,
 	parsedSettings : null,
 	userDataSaveTimeout : null,
 
 	textFile : null,
+
+	/**
+	 * Removes all user data
+	 */
+	clearUserData : function () {
+		var key;
+		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
+			key = btplanets.planets[i].name;
+			if(localStorage.getItem(key) !== null) {
+				localStorage.removeItem(key);
+			}
+			if(btplanets.planets[i].userData) {
+				btplanets.planets[i].userData = '';
+			}
+		}
+		btplanets.updateAllUserDataHighlights();
+	},
 
 	/**
 	 * Registers a user data change and schedule all modified user data to be saved.
@@ -23,7 +41,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 	},
 
 	/**
-	 * Saves all modified user data to the browser's localStorage.
+	 * Saves all modified user data and settings to the browser's localStorage.
 	 */
 	saveModifiedUserData : function () {
 		for(var key in this.modifiedUserData) {
@@ -37,6 +55,14 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			}
 		}
 		this.modifiedUserData = {};
+
+		for(var key in this.modifiedSettings) {
+			if(!this.modifiedSettings.hasOwnProperty(key)) {
+				continue;
+			}
+			localStorage.setItem('__setting__'+key, this.modifiedSettings[key]);
+		}
+		this.modifiedSettings = {};
 		//this.fireEvent('userdatasaved');
 	},
 
@@ -107,6 +133,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			curPlanet.userData = this.parsedUserData[curPlanet.name] || '';
 		}
 		this.modifiedUserData = this.parsedUserData || {};
+		this.modifiedSettings = this.parsedSettings || {};
 		localStorage.clear();
 		this.saveModifiedUserData();
 		btplanets.updateAllUserDataHighlights();
@@ -144,6 +171,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 	 * @private
 	 */
 	createExportString : function () {
+		var settingFields = ['clanSystems','peripheryStates', 'stateBorders',
+			'stateFillMode', 'stateLabels', 'userDataHighlight', 'visibleSystems'];
 		var obj = {};
 		var curPlanet;
 		for(var i = 0, len = btplanets.planets.length; i < len; i++) {
@@ -151,6 +180,11 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			if(!!curPlanet.userData) {
 				obj[curPlanet.name] = curPlanet.userData;
 			}
+		}
+		var key;
+		for(var i = 0, len = settingFields.length; i < len; i++) {
+			key = '__setting__' + settingFields[i];
+			obj[key] = localStorage.getItem(key);
 		}
 		return JSON.stringify(obj);
 	},
