@@ -90,13 +90,14 @@ var lines;
 var planetData;
 var errorData;
 var requestPlanetDetails = function () {
-	fs.readFile('./planetNames.txt', 'utf8', function (err, data) {
+	fs.readFile('../temp/planetNames.txt', 'utf8', function (err, data) {
 		if(err) {
 			throw err;
 		}
+		data = data.trim();
 		lines = data.split('\n');
 		//lines = ['/wiki/A%20Place\tA Place'];
-		lines = ['/wiki/Terra\tTerra'];
+		//lines = ['/wiki/Terra\tTerra'];
 		//lines = ['/wiki/A%20Place\tA Place', '/wiki/Tathis\tTathis', '/wiki/Sichuan\tSichuan'];
 		//lines = ['/wiki/Inglesmond\tInglesmond', '/wiki/Clovis\tClovis'];
 		//lines = ['/wiki/Abagnar\tAbagnar', '/wiki/Barada\tBarada'];
@@ -131,7 +132,7 @@ var requestNextPlanet = function () {
 			var $ = cheerio.load(body);
 
 			// coordinates
-			if(name.trim() === 'Terra') {
+			if((name+'').trim() === 'Terra') {
 				coordinates = '0:0';
 			} else {
 				$search = $('sup.noprint').first();
@@ -202,8 +203,8 @@ var requestNextPlanet = function () {
 			}
 
 			planetData += path.trim() + '\t';
-			planetData += name.trim() + '\t';
-			planetData += coordinates.trim() + '\t';
+			planetData += (name+'').trim() + '\t';
+			planetData += (''+coordinates).trim() + '\t';
 			planetData += affiliation.trim() + '\n';
 
 			i++;

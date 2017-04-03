@@ -1,5 +1,3 @@
-'use strict';
-
 var fs = require('fs');
 var Logger = require('./Logger.js');
 var LogRenderer = require('./LogRenderer.js');
