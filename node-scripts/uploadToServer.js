@@ -1,4 +1,4 @@
-var fs = require('fs')
+var fs = require('fs');
 var JSFtp = require('jsftp');
 
 var files = [
@@ -47,7 +47,7 @@ var uploadNextFile = function () {
             curIdx++;
             uploadNextFile();
         }
-    })
+    });
 };
 
 var logout = function () {

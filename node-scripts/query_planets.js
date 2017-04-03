@@ -52,18 +52,19 @@ var requestNextPlanetBatch = function () {
 				return;
 			}
 			startingPlanet = matches[2];
-			
+
 			body = body.replace(/\<a href="([^\"]+)"[^\>]+\>([^\<]+)\<\/a>/g, '$1\t$2');
+			body = body.replace(/\&\#039\;/g, "'");
 
 			if(i === 0) {
-				fs.writeFile('./planetNames.txt', body, function (err) {
+				fs.writeFile('../temp/planetNames.txt', body, 'utf8', function (err) {
 					if(err) {
 						return console.log('error!', err);
 					}
 					console.log('batch '+i+' written to file');
 				});
 			} else {
-				fs.appendFile('./planetNames.txt', body, function (err) {
+				fs.appendFile('../temp/planetNames.txt', body, 'utf8', function (err) {
 					if(err) {
 						return console.log('error!', err);
 					}
@@ -75,7 +76,7 @@ var requestNextPlanetBatch = function () {
 				requestNextPlanetBatch();
 			} else {
 				console.log('Done assembling planet names / links');
-				requestPlanetDetails();
+				//requestPlanetDetails();
 			}
 		});
 		console.log('res: ' + res.statusCode);
@@ -89,11 +90,14 @@ var lines;
 var planetData;
 var errorData;
 var requestPlanetDetails = function () {
-	fs.readFile('./planetNames.txt', 'utf8', function (err, data) {
+	fs.readFile('../temp/planetNames.txt', 'utf8', function (err, data) {
 		if(err) {
 			throw err;
 		}
+		data = data.trim();
 		lines = data.split('\n');
+		//lines = ['/wiki/A%20Place\tA Place'];
+		//lines = ['/wiki/Terra\tTerra'];
 		//lines = ['/wiki/A%20Place\tA Place', '/wiki/Tathis\tTathis', '/wiki/Sichuan\tSichuan'];
 		//lines = ['/wiki/Inglesmond\tInglesmond', '/wiki/Clovis\tClovis'];
 		//lines = ['/wiki/Abagnar\tAbagnar', '/wiki/Barada\tBarada'];
@@ -106,14 +110,14 @@ var requestPlanetDetails = function () {
 
 var requestNextPlanet = function () {
 	var path, name, url;
-	
+
 	var tokens = lines[i].split('\t');
 	path = tokens[0];
 	name = tokens[1];
 	url = 'http://www.sarna.net' + path;
 
-	console.log(path + ' (' + i + '/' + lines.length + ')');
-	
+	console.log(path + ' (' + (i + 1) + '/' + lines.length + ')');
+
 	http.get(url, function (res) {
 		var body = '', idx;
 		var $, $search;
@@ -124,16 +128,16 @@ var requestNextPlanet = function () {
 			var coordinates, affiliation;
 			var idx, bodyPart;
 			var matches;
-			
+
 			var $ = cheerio.load(body);
-			
+
 			// coordinates
-			if(name === 'Terra') {
+			if((name+'').trim() === 'Terra') {
 				coordinates = '0:0';
 			} else {
 				$search = $('sup.noprint').first();
 				$search.each(function (index, element) {
-					if($search.text().trim() === 'e') {
+					if($search.text().trim() === 'e' || $search.text().trim() === '[e]') {
 						coordinates = $search.parent().text();
 						idx = coordinates.indexOf('[e]');
 						coordinates = coordinates.substr(0,idx);
@@ -147,7 +151,7 @@ var requestNextPlanet = function () {
 					}
 				});
 			}
-			
+
 			if(!coordinates) {
 				// try finding coordinates with a string search
 				bodyPart = body;
@@ -165,7 +169,7 @@ var requestNextPlanet = function () {
 					errorData += 'NO COORDINATES for ' + name + '\n';
 				}
 			}
-			
+
 			// affiliation
 			$search = $('#Political_Affiliation,#Owner_History');
 			if($search.length === 0) {
@@ -197,12 +201,12 @@ var requestNextPlanet = function () {
 				errorData += 'no affiliation info for ' + name + '\n';
 				affiliation = 'No record';
 			}
-			
-			planetData += path + '\t';
-			planetData += name + '\t';
-			planetData += coordinates + '\t';
-			planetData += affiliation + '\n';
-			
+
+			planetData += path.trim() + '\t';
+			planetData += (name+'').trim() + '\t';
+			planetData += (''+coordinates).trim() + '\t';
+			planetData += affiliation.trim() + '\n';
+
 			i++;
 			if(i < lines.length) {
 				requestNextPlanet();
@@ -216,14 +220,14 @@ var requestNextPlanet = function () {
 };
 
 var writePlanetData = function () {
-	fs.writeFile('./errorData.tsv', errorData, function (err) {
+	fs.writeFile('../temp/errorData.tsv', errorData, function (err) {
 		if(err) {
 			return console.log('error!', err);
 		}
 		console.log('wrote error file');
 	});
-	
-	fs.writeFile('./planetData.tsv', planetData, function (err) {
+
+	fs.writeFile('../temp/planetData.tsv', planetData, function (err) {
 		if(err) {
 			return console.log('error!', err);
 		}
@@ -235,7 +239,8 @@ var main = function () {
 	console.log('query_planets script started');
 	// gather all planet pages on sarna wiki
 	//requestNextPlanetBatch();
-	
+
+	// use assembled list to request all planet details
 	requestPlanetDetails();
 };
 

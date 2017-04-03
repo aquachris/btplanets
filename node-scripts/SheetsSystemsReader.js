@@ -14,6 +14,7 @@ module.exports = (function () {
     var SheetsSystemsReader = function (logger) {
         this.parent.call(this);
         this.logger = logger || console;
+        this.skipNeighborSearch = false;
         this.systems = [];
         this.sheetsAuth = new SheetsAuthInstance('inner-sphere-map-sheet-reader',
             ['https://www.googleapis.com/auth/spreadsheets.readonly']);
@@ -30,7 +31,8 @@ module.exports = (function () {
     /**
      * Initiates the data loading
      */
-    SheetsSystemsReader.prototype.readSystems = function () {
+    SheetsSystemsReader.prototype.readSystems = function (skipNeighborSearch) {
+        this.skipNeighborSearch = skipNeighborSearch || false;
         this.sheetsAuth.loadCredentialsAndAuthorize();
     };
 
@@ -87,7 +89,9 @@ module.exports = (function () {
                 });
             }
 
-            this.findNeighbors();
+            if(!this.skipNeighborSearch) {
+                this.findNeighbors();
+            }
 
             //var res = JSON.stringify(this.systems);
             this.fireEvent('systemsRead', [this, this.systems]);
