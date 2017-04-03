@@ -29,7 +29,7 @@ reader.on('systemsRead', function (reader, systems) {
 
     logger.log(systems.length + ' systems read from google sheet.');
 
-    sarnaTsv = fs.readFileSync('../temp/planetData_201704030957.tsv', {
+    sarnaTsv = fs.readFileSync('../temp/planetData.tsv', {
         encoding: 'utf8'
     });
     sarnaArr = sarnaTsv.split('\n');
