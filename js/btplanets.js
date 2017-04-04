@@ -547,10 +547,15 @@ define(['js/lib/d3.min'], function(d3) {
 			if(!name) {
 				throw 'No planet name given';
 			}
-			// Pass 1: look for exact matches
+			// Pass 1: look for exact matches (system name and aliases)
 			for(var i = 0, len = this.planets.length; i < len; i++) {
 				if(this.planets[i].name.toLowerCase() === name) {
 					return i;
+				}
+				for(var j = 0, jlen = this.planets[i].aliases.length; j < jlen; j++) {
+					if(this.planets[i].aliases[j].toLowerCase() === name) {
+						return i;
+					}
 				}
 			}
 			// Pass 2: look for substring matches at the start
@@ -558,11 +563,21 @@ define(['js/lib/d3.min'], function(d3) {
 				if(this.planets[i].name.toLowerCase().indexOf(name) === 0) {
 					return i;
 				}
+				for(var j = 0, jlen = this.planets[i].aliases.length; j < jlen; j++) {
+					if(this.planets[i].aliases[j].toLowerCase().indexOf(name) === 0) {
+						return i;
+					}
+				}
 			}
 			// Pass 3: look for substring matches
 			for(var i = 0, len = this.planets.length; i < len; i++) {
 				if(this.planets[i].name.toLowerCase().indexOf(name) !== -1) {
 					return i;
+				}
+				for(var j = 0, jlen = this.planets[i].aliases.length; j < jlen; j++) {
+					if(this.planets[i].aliases[j].toLowerCase().indexOf(name) !== -1) {
+						return i;
+					}
 				}
 			}
 			throw 'Planet "' + name + '" could not be found';

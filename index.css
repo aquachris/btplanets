@@ -453,6 +453,11 @@ div.controls div.selection-ct div.userdata-rte.mce-content-body blockquote {
 	background-color: #ccc;
 	color: #444;
 }
+div.controls div.planet-info p.aliases {
+	color: #ddd;
+	font-size: .8em;
+	margin: 0;
+}
 div.controls div.planet-info button.center,
 div.controls div.stop-info button.center {
 	margin: 0 0 0 .5em;

@@ -202,8 +202,8 @@ reader.on('systemsRead', function (reader, systems) {
                 recomMsg = 'investigate';
             }
             html += '<tr><td>' + differentAffiliations[i][0] + '</td>\n';
-            html += '<td class="centered">' + differentAffiliations[i][1] + '</td>\n';
-            html += '<td class="centered">' + differentAffiliations[i][2] + '</td>\n';
+            html += '<td>' + differentAffiliations[i][1] + '</td>\n';
+            html += '<td>' + differentAffiliations[i][2] + '</td>\n';
             html += '<td class="'+recomCls+'">' + recomMsg + '</td>\n';
             html += '</tr>\n';
         }

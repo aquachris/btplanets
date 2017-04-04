@@ -1,0 +1,5417 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Logger output</title>
+    <style>
+        html, body {
+            background-color: #f0f0f0;
+            font-family: monospace;
+            font-size: 11pt;
+        }
+        blockquote, code, div, p, pre, span, h1, h2, h3, h4, h5 {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: .5em 0;
+            padding-left: .4em;
+        }
+		h2 {
+			margin: .5em 0;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		tr:nth-child(2n) {
+			background-color: #eee;
+		}
+		th, td {
+			border: 1px solid #aaa;
+			text-align: left;
+			padding: .3em .5em;
+			transition: background-color .3s, color .3s;
+		}
+		tr:hover > th, tr:hover > td {
+			background-color: #999;
+			color: #fff;
+		}
+		td.centered {
+			text-align: center;
+		}
+		td.warning {
+			background-color: #fc0;
+		}
+		td.attention {
+			background-color: #cf6;
+		}
+		td.ok {
+			background-color: #6c6;
+		}
+		div.logs {
+            background-color: #fff;
+            box-shadow: 1px 1px 3px #333;
+            padding: .5em;
+            position: relative;
+            z-index: 1;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<h1>&gt; script logs</h1>
+<div class="logs">
+	<h2>Systems that exist on Sarna, but are not in the google sheet:</h2>
+<table><tr><th>System name</th><th>Coordinates parsed from Sarna</th><th>Affiliation parsed from Sarna</th><th>Script's recommendation</th></tr>
+<tr>
+<td>A2341CA</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Aquila Rift</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Barada</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Barbados</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Bikini Atoll</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Brittany III</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Caesar's Bow</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Caliban Nebula</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Cermak</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Champollion</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Charlie 425 A</td>
+<td>No record</td>
+<td>Clans</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Epsilon Pegasus</td>
+<td>404.69:601.38</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Cygnus X-1</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Cyrene</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Dark Nebula</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Delos VI</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Dragon's Field</td>
+<td>No record</td>
+<td>Federated Suns</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Durham</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Eagle Cloud Complex</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>EC-EY-4170</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>EC-EY-4189</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Erit cluster</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Farhome</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Gamma 12901 FQ</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Gamma 1301 LW</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Gamma 25098 3W</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Holloway V</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>J-1256T</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>KA-418</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Kaetetôã</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Kalindam</td>
+<td>52.18:-382.02</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Kiyev III</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Knutstad</td>
+<td>349.39:481.25</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Labbezanga</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Lee Shore</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Lincoln</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Luckla</td>
+<td>-53.58:-227.17</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Lupus Cloud</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Meribah</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Mesozoa</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Mundo Nublar</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Murrain</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>New London</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>New Texas</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Pioche</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Pivot Prime</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Quimper (CrM)</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Remis</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Ross 248</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Roxborough</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Sador</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Siroc</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Sophos</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>T-892</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Tanis</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Tanite Worlds</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Thomas</td>
+<td>No record</td>
+<td>Capellan Confederation</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Tibolt</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Valhalla VI</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Vul Rift</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Waypoint 531</td>
+<td>-741.96:1348.15</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Wayside</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+<tr>
+<td>Zulu 11981 TZ</td>
+<td>No record</td>
+<td>No record</td>
+<td class="ok">leave this system out</td></tr>
+</table>
+<h2>Systems that exist in the google sheet, but not on Sarna:</h2>
+<table><tr><th>System name</th><th>Google Sheet Coordinates</th><th>Google Sheet Affiliation</th><th>Script's recommendation</th></tr>
+<tr>
+<td>Columbus</td>
+<td>404.69:601.38</td>
+<td>Unknown Planet</td>
+<td class="warning">investigate</td>
+</tr>
+<tr>
+<td>Weldry</td>
+<td>73.94:-417.24</td>
+<td>Aurigan Coalition</td>
+<td class="warning">investigate</td>
+</tr>
+</table>
+<h2>Systems whose coordinates on Sarna are different to those listed in the google sheet:</h2>
+<table><tr><th>System name</th><th>Sarna coordinates</th><th>Google sheet coordinates</th><th>Distance between coordinates</th><th>Script's recommendation</th></tr>
+<tr><td>Achtur</td>
+<td class="centered">43.55:-421.61</td>
+<td class="centered">43.55:-421.53</td>
+<td>0.08 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Argondale</td>
+<td class="centered">-942.41:-574.39</td>
+<td class="centered">942.41:-574.39</td>
+<td>1884.82 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Beehive Cluster</td>
+<td class="centered">-404:-708.67</td>
+<td class="centered">-404.97:-708.67</td>
+<td>0.97 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Bernardo</td>
+<td class="centered">-21.2:-94.59</td>
+<td class="centered">-21.21:-94.6</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Chara</td>
+<td class="centered">-29.21:6.41</td>
+<td class="centered">-29.2:6.47</td>
+<td>0.06 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Dayr Khuna</td>
+<td class="centered">-113.79:-196.49</td>
+<td class="centered">-113.79:-196.5</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Diamantina</td>
+<td class="centered">-171.38:-256.95</td>
+<td class="centered">-314.66:-100.27</td>
+<td>212.32 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Diass</td>
+<td class="centered">-171.38:256.95</td>
+<td class="centered">-171.38:-256.95</td>
+<td>513.90 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Diboll</td>
+<td class="centered">-475.36:67.16</td>
+<td class="centered">475.36:67.16</td>
+<td>950.72 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Dickinson</td>
+<td class="centered">-146.6:112.74</td>
+<td class="centered">-146.6:-112.74</td>
+<td>225.48 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Dumassas</td>
+<td class="centered">421.69:-354.2</td>
+<td class="centered">428.87:-321.74</td>
+<td>33.24 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Eden</td>
+<td class="centered">-133.35:1612.49</td>
+<td class="centered">-130.81:1600.12</td>
+<td>12.63 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Ellijay</td>
+<td class="centered">-334.03:7.71</td>
+<td class="centered">-334.03:-7.71</td>
+<td>15.42 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Elnath</td>
+<td class="centered">18.6:-127.2</td>
+<td class="centered">18.6:-127.21</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Elume</td>
+<td class="centered">-372.48:331.07</td>
+<td class="centered">-372.48:331.08</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Emporia</td>
+<td class="centered">256.66:-6</td>
+<td class="centered">256.66:-6.5</td>
+<td>0.50 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Emris IV</td>
+<td class="centered">-88.93:-149.41</td>
+<td class="centered">-88.93:-149.42</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Escobas</td>
+<td class="centered">-216.88:-126.42</td>
+<td class="centered">-216.7:-127.32</td>
+<td>0.92 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Espia</td>
+<td class="centered">-16.91:-389.69</td>
+<td class="centered">-16.91:-392.47</td>
+<td>2.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Esteros</td>
+<td class="centered">-157.66:268.59</td>
+<td class="centered">-157.53:270.52</td>
+<td>1.93 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Esztergom</td>
+<td class="centered">-237.22:-96.95</td>
+<td class="centered">-237.03:-97.62</td>
+<td>0.70 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Etiler</td>
+<td class="centered">-378.23:199</td>
+<td class="centered">-377.94:200.42</td>
+<td>1.45 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Eutin</td>
+<td class="centered">-222.82:150.13</td>
+<td class="centered">-222.66:151.22</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Evciler</td>
+<td class="centered">-95.14:356.67</td>
+<td class="centered">-95.05:359.23</td>
+<td>2.56 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ewanrigg</td>
+<td class="centered">-330.86:287.4</td>
+<td class="centered">-330.6:289.46</td>
+<td>2.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Exedor</td>
+<td class="centered">-13.2:-207.89</td>
+<td class="centered">-13.17:-209.37</td>
+<td>1.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fable</td>
+<td class="centered">193.28:-192.36</td>
+<td class="centered">193.13:-193.72</td>
+<td>1.37 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fadiffolu</td>
+<td class="centered">-243.53:-242.78</td>
+<td class="centered">-243.35:-244.51</td>
+<td>1.74 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fager</td>
+<td class="centered">90.982:-1590.71</td>
+<td class="centered">91.36:-1589.75</td>
+<td>1.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fagerholm</td>
+<td class="centered">-81.95:-363</td>
+<td class="centered">-81.88:-365.58</td>
+<td>2.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fairfax</td>
+<td class="centered">193.28:-192.36</td>
+<td class="centered">353.33:31.21</td>
+<td>274.95 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Faleolo</td>
+<td class="centered">-188.22:-200.36</td>
+<td class="centered">-188.09:-201.78</td>
+<td>1.43 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fallon</td>
+<td class="centered">367.83:48.55</td>
+<td class="centered">367.83:48.54</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>False Dawn</td>
+<td class="centered">632.7:288.31</td>
+<td class="centered">632.69:288.31</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Falsterbo (DC)</td>
+<td class="centered">170.86:147.56</td>
+<td class="centered">170.86:147.55</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Falsterbo (HL)</td>
+<td class="centered">-771.35:843.43</td>
+<td class="centered">-763.72:837.8</td>
+<td>9.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Far Reach</td>
+<td class="centered">-216.87:567.7</td>
+<td class="centered">-216.86:567.69</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Farcry</td>
+<td class="centered">-485.1:248.96</td>
+<td class="centered">-485.09:248.96</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fasa (system)</td>
+<td class="centered">-144.52:1624.37</td>
+<td class="centered">-144.51:1624.36</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fefferfer</td>
+<td class="centered">17.14:203.22</td>
+<td class="centered">17.14:204.65</td>
+<td>1.43 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ferihegy</td>
+<td class="centered">390.12:161.51</td>
+<td class="centered">-389.83:162.67</td>
+<td>779.95 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Ferranil</td>
+<td class="centered">121.05:403.59</td>
+<td class="centered">121.05:403.6</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fetsund</td>
+<td class="centered">446.67:-241</td>
+<td class="centered">446.66:-240.99</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fianna</td>
+<td class="centered">-141.44:20.63</td>
+<td class="centered">-141.34:20.78</td>
+<td>0.18 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fieferana</td>
+<td class="centered">-172.96:-268.85</td>
+<td class="centered">-172.84:-270.76</td>
+<td>1.91 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Finnalon</td>
+<td class="centered">-55.14:-187.63</td>
+<td class="centered">55.1:-188.96</td>
+<td>110.25 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Finsterwalde</td>
+<td class="centered">-289.83:17.8</td>
+<td class="centered">-289.6:17.93</td>
+<td>0.26 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Firenze</td>
+<td class="centered">-401.73:134.38</td>
+<td class="centered">-401.41:135.34</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Forkas</td>
+<td class="centered">-211.23:159.97</td>
+<td class="centered">-211.06:161.11</td>
+<td>1.15 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fjaldr</td>
+<td class="centered">88.31:-404.57</td>
+<td class="centered">88.23:-407.44</td>
+<td>2.87 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Flannagan's Nebulea</td>
+<td class="centered">222.82:-385.18</td>
+<td class="centered">192.19:-392.3</td>
+<td>31.45 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Fletcher (CC)</td>
+<td class="centered">46.78:-23.57</td>
+<td class="centered">46.77:-23.56</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fletcher (FWL)</td>
+<td class="centered">-67.73:-209.97</td>
+<td class="centered">-67.68:-211.46</td>
+<td>1.49 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Florarda</td>
+<td class="centered">32.03:-256.93</td>
+<td class="centered">31.98:-258.77</td>
+<td>1.84 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Flychenia</td>
+<td class="centered">-181.92:-100.89</td>
+<td class="centered">-181.77:-101.59</td>
+<td>0.72 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Foochow</td>
+<td class="centered">88.92:-97.5</td>
+<td class="centered">88.85:-98.19</td>
+<td>0.69 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Foot Fall</td>
+<td class="centered">94.6:-109.87</td>
+<td class="centered">94.53:-110.65</td>
+<td>0.78 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ford</td>
+<td class="centered">-191.3:-29.51</td>
+<td class="centered">-191.16:-29.71</td>
+<td>0.24 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Fortymile</td>
+<td class="centered">193.6:-214.33</td>
+<td class="centered">193.59:-214.33</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Frazer</td>
+<td class="centered">129.23:-333.47</td>
+<td class="centered">129.15:-335.84</td>
+<td>2.37 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fröislandis</td>
+<td class="centered">90.982:-1590.71</td>
+<td class="centered">-1316.46:-640.86</td>
+<td>1697.97 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Fujidera</td>
+<td class="centered">-76.78:-225.44</td>
+<td class="centered">-76.73:-227.04</td>
+<td>1.60 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fukuroi</td>
+<td class="centered">110.63:134.12</td>
+<td class="centered">110.62:134.11</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Furillo</td>
+<td class="centered">-137.27:78.26</td>
+<td class="centered">-137.18:78.84</td>
+<td>0.59 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Furud</td>
+<td class="centered">-25.34:-284.11</td>
+<td class="centered">-25.32:-286.14</td>
+<td>2.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Futuna</td>
+<td class="centered">-209.63:-190.85</td>
+<td class="centered">-209.48:-192.2</td>
+<td>1.36 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Fylovar</td>
+<td class="centered">461.35:-489.81</td>
+<td class="centered">461.35:489.81</td>
+<td>979.62 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Gacrux</td>
+<td class="centered">-86.5:10.72</td>
+<td class="centered">-86.43:10.8</td>
+<td>0.11 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gahral</td>
+<td class="centered">120.66:-176.54</td>
+<td class="centered">120.52:-177.8</td>
+<td>1.27 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Galatea</td>
+<td class="centered">-53.77:34.07</td>
+<td class="centered">-53.74:34.32</td>
+<td>0.25 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Galicia</td>
+<td class="centered">-663.19:1142.76</td>
+<td class="centered">-656.67:1135.48</td>
+<td>9.77 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Galisteo</td>
+<td class="centered">-355.92:-71.9</td>
+<td class="centered">-355.66:-75.42</td>
+<td>3.53 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gallatin</td>
+<td class="centered">-160.77:-74.49</td>
+<td class="centered">-160.65:-75.02</td>
+<td>0.54 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gallery</td>
+<td class="centered">-198.23:108.26</td>
+<td class="centered">-198.09:109.05</td>
+<td>0.80 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gallitzin</td>
+<td class="centered">131.56:-163.38</td>
+<td class="centered">131.47:-164.55</td>
+<td>1.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gan Singh</td>
+<td class="centered">41.61:-79.66</td>
+<td class="centered">41.58:-80.23</td>
+<td>0.57 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gannett</td>
+<td class="centered">-165.42:-60.53</td>
+<td class="centered">-165.31:-60.96</td>
+<td>0.44 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ganshoren</td>
+<td class="centered">-43.42:158.15</td>
+<td class="centered">-43.4:159.28</td>
+<td>1.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gardnaus</td>
+<td class="centered">118.31:-324.25</td>
+<td class="centered">118.3:-326.56</td>
+<td>2.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Garrison</td>
+<td class="centered">-103.18:180.38</td>
+<td class="centered">-103.1:181.68</td>
+<td>1.30 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gatchina</td>
+<td class="centered">-270.88:-268.84</td>
+<td class="centered">-270.69:-297.31</td>
+<td>28.47 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Gateway</td>
+<td class="centered">-720.2:642.49</td>
+<td class="centered">-712.64:637.12</td>
+<td>9.27 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gatineau</td>
+<td class="centered">-242.44:296.96</td>
+<td class="centered">-242.26:299.08</td>
+<td>2.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gei-Fu</td>
+<td class="centered">57.63:-199.07</td>
+<td class="centered">57.59:-200.49</td>
+<td>1.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Geifer</td>
+<td class="centered">37.53:-186.26</td>
+<td class="centered">37.5:-187.59</td>
+<td>1.33 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Genf</td>
+<td class="centered">147:-123.18</td>
+<td class="centered">146.82:-124.06</td>
+<td>0.90 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Genoa</td>
+<td class="centered">39.02:-59.75</td>
+<td class="centered">38.99:-60.17</td>
+<td>0.42 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ghaziabad</td>
+<td class="centered">-307.66:-237.62</td>
+<td class="centered">-307.43:-239.31</td>
+<td>1.71 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ghent</td>
+<td class="centered">211.07:1163.56</td>
+<td class="centered">208.85:1155.74</td>
+<td>8.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ghorepani</td>
+<td class="centered">10.05:-406.48</td>
+<td class="centered">10.07:-409.38</td>
+<td>2.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Giausar</td>
+<td class="centered">-207.85:-26.41</td>
+<td class="centered">-207.69:-26.59</td>
+<td>0.24 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gibbs</td>
+<td class="centered">-201.11:157.89</td>
+<td class="centered">-200.96:159.02</td>
+<td>1.14 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gibraltar</td>
+<td class="centered">-359.59:-139.89</td>
+<td class="centered">-359.33:-140.89</td>
+<td>1.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gibson</td>
+<td class="centered">-245.81:-215.12</td>
+<td class="centered">-245.63:-216.66</td>
+<td>1.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gienah</td>
+<td class="centered">-183.07:-12.97</td>
+<td class="centered">-182.94:-13.06</td>
+<td>0.16 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ginestra</td>
+<td class="centered">-110.61:163.32</td>
+<td class="centered">-110.53:164.49</td>
+<td>1.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gladius (system)</td>
+<td class="centered">-95.91:71.81</td>
+<td class="centered">-95.84:72.33</td>
+<td>0.52 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Glasgow</td>
+<td class="centered">28.43:-215.62</td>
+<td class="centered">28.41:-217.16</td>
+<td>1.54 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Glengarry</td>
+<td class="centered">-76.78:76.98</td>
+<td class="centered">-76.73:77.54</td>
+<td>0.56 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Glenlivet</td>
+<td class="centered">14.49:174.54</td>
+<td class="centered">14.5:175.77</td>
+<td>1.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Glentworth</td>
+<td class="centered">125.88:-317.71</td>
+<td class="centered">125.79:-319.98</td>
+<td>2.27 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Glevakha</td>
+<td class="centered">-206.76:-303.73</td>
+<td class="centered">-206.61:-305.9</td>
+<td>2.18 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gniezno</td>
+<td class="centered">-127.55:-22.01</td>
+<td class="centered">-127.44:-22.18</td>
+<td>0.20 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Goat Path</td>
+<td class="centered">-154.33:353.56</td>
+<td class="centered">-154.21:356.09</td>
+<td>2.53 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Goetville</td>
+<td class="centered">-242.44:296.96</td>
+<td class="centered">-261.18:265.76</td>
+<td>36.40 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Gomeisa</td>
+<td class="centered">-49.38:-127</td>
+<td class="centered">-49.33:-127.92</td>
+<td>0.92 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Goodna</td>
+<td class="centered">-28.45:-240.2</td>
+<td class="centered">-28.42:-241.9</td>
+<td>1.70 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gorki</td>
+<td class="centered">-15.37:-163.48</td>
+<td class="centered">-15.37:-164.66</td>
+<td>1.18 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Goslar</td>
+<td class="centered">-661.82:747.19</td>
+<td class="centered">-654.34:741.7</td>
+<td>9.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Goth Khakar</td>
+<td class="centered">-332.44:-244.56</td>
+<td class="centered">-332.19:-246.3</td>
+<td>1.76 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Graceland</td>
+<td class="centered">-100.6:246.03</td>
+<td class="centered">-100.54:247.8</td>
+<td>1.77 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Graham IV</td>
+<td class="centered">-23.52:-10.38</td>
+<td class="centered">-23.51:-10.45</td>
+<td>0.07 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Gran</td>
+<td class="centered">-296.27:-171.17</td>
+<td class="centered">-296.04:-172.37</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Granada</td>
+<td class="centered">-674.29:1161.68</td>
+<td class="centered">-667.4:1154.8</td>
+<td>9.74 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Grand Base</td>
+<td class="centered">46:-298.87</td>
+<td class="centered">45.97:-301</td>
+<td>2.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Granera</td>
+<td class="centered">-98.23:-330.39</td>
+<td class="centered">-98.16:-332.75</td>
+<td>2.36 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Graus</td>
+<td class="centered">-100.61:297.22</td>
+<td class="centered">-100.54:299.34</td>
+<td>2.12 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Graz</td>
+<td class="centered">-216.68:123.89</td>
+<td class="centered">-216.51:127.78</td>
+<td>3.89 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Great X</td>
+<td class="centered">-184.36:287.91</td>
+<td class="centered">-184.22:289.98</td>
+<td>2.07 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Greenlaw</td>
+<td class="centered">-227.47:159.43</td>
+<td class="centered">-227.31:160.58</td>
+<td>1.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Greifswald</td>
+<td class="centered">-666.84:669.64</td>
+<td class="centered">-659.35:664.24</td>
+<td>9.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Griffith</td>
+<td class="centered">-333.73:-76.56</td>
+<td class="centered">-333.48:-77.11</td>
+<td>0.60 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Grobin</td>
+<td class="centered">-98.67:-68.2</td>
+<td class="centered">-98.59:-68.69</td>
+<td>0.50 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Grunwald</td>
+<td class="centered">-97.44:203.12</td>
+<td class="centered">-97.39:204.59</td>
+<td>1.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Guangzho</td>
+<td class="centered">-109.82:-285.4</td>
+<td class="centered">-109.75:-287.43</td>
+<td>2.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Guatavita</td>
+<td class="centered">-286.44:238.02</td>
+<td class="centered">-286.24:239.73</td>
+<td>1.72 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gunthar</td>
+<td class="centered">39.27:-383.12</td>
+<td class="centered">39.25:-385.86</td>
+<td>2.74 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Gurnet</td>
+<td class="centered">93.47:-231.09</td>
+<td class="centered">93.41:-232.74</td>
+<td>1.65 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Haappajarvi</td>
+<td class="centered">137.24:-240.69</td>
+<td class="centered">137.14:-242.41</td>
+<td>1.72 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Haddings</td>
+<td class="centered">-44.03:13.93</td>
+<td class="centered">-43.98:14.06</td>
+<td>0.14 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hadnall</td>
+<td class="centered">136.73:-262.7</td>
+<td class="centered">136.63:-264.57</td>
+<td>1.87 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Haerhbin</td>
+<td class="centered">-6.44:-213.64</td>
+<td class="centered">-6.45:-215.17</td>
+<td>1.53 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Halfway</td>
+<td class="centered">-252.55:86.03</td>
+<td class="centered">-252.36:86.65</td>
+<td>0.65 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hall</td>
+<td class="centered">-13.96:-44.25</td>
+<td class="centered">-13.95:-44.56</td>
+<td>0.31 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Halloran V</td>
+<td class="centered">72.89:-77.02</td>
+<td class="centered">72.84:-77.11</td>
+<td>0.10 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Halmyre Deans</td>
+<td class="centered">-125.88:97.17</td>
+<td class="centered">-125.79:98.88</td>
+<td>1.71 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hamal</td>
+<td class="centered">64.87:-43.47</td>
+<td class="centered">64.83:-43.78</td>
+<td>0.31 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hamburg</td>
+<td class="centered">-624.16:806.6</td>
+<td class="centered">-616.73:801.03</td>
+<td>9.29 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hamilton (LC)</td>
+<td class="centered">-150.76:222</td>
+<td class="centered">-150.64:223.59</td>
+<td>1.59 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hamilton (FWL)</td>
+<td class="centered">-35.67:-81.31</td>
+<td class="centered">-35.66:-81.88</td>
+<td>0.57 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hammer (system)</td>
+<td class="centered">-369.91:-142.76</td>
+<td class="centered">-369.92:-143.79</td>
+<td>1.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Harbin</td>
+<td class="centered">17.6:-223.26</td>
+<td class="centered">17.57:-224.86</td>
+<td>1.60 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Harloc</td>
+<td class="centered">41.87:-224.44</td>
+<td class="centered">41.84:-226.04</td>
+<td>1.60 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Harmony</td>
+<td class="centered">-141.63:-170.62</td>
+<td class="centered">-141.54:-171.84</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Harris</td>
+<td class="centered">-141.21:801.85</td>
+<td class="centered">-140.02:797.45</td>
+<td>4.56 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Harsefeld</td>
+<td class="centered">-17.85:-141.97</td>
+<td class="centered">-17.83:-142.98</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hassad</td>
+<td class="centered">-29.98:-160.61</td>
+<td class="centered">-29.97:-161.76</td>
+<td>1.15 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Heart Fjord</td>
+<td class="centered">-135.27:-203.39</td>
+<td class="centered">-135.16:-204.82</td>
+<td>1.43 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hechnar</td>
+<td class="centered">-16.84:-26.07</td>
+<td class="centered">-16.81:-26.24</td>
+<td>0.17 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hednesford</td>
+<td class="centered">-365.92:-228.85</td>
+<td class="centered">-365.66:-230.48</td>
+<td>1.65 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hegel</td>
+<td class="centered">-239.88:126.15</td>
+<td class="centered">-239.69:127.05</td>
+<td>0.92 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Heligoland</td>
+<td class="centered">86.07:-145.05</td>
+<td class="centered">86:-146.09</td>
+<td>1.04 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hell's Paradise</td>
+<td class="centered">-293.75:-65.87</td>
+<td class="centered">-293.52:-66.33</td>
+<td>0.51 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hellos Minor</td>
+<td class="centered">-210.43:-239.71</td>
+<td class="centered">-185.34:-182.25</td>
+<td>62.70 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Helm</td>
+<td class="centered">-133.61:-58.2</td>
+<td class="centered">-133.52:-58.61</td>
+<td>0.42 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Helvetia</td>
+<td class="centered">993.695:204.758</td>
+<td class="centered">975.96:187.48</td>
+<td>24.76 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Herzberg</td>
+<td class="centered">-309.94:21.41</td>
+<td class="centered">-309.93:21.41</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hesperus</td>
+<td class="centered">-123.6:46.73</td>
+<td class="centered">-123.51:47.07</td>
+<td>0.35 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hexare</td>
+<td class="centered">31.01:-233.16</td>
+<td class="centered">30.99:-234.83</td>
+<td>1.67 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hibuarius</td>
+<td class="centered">-38.68:-410.74</td>
+<td class="centered">-38.66:-413.67</td>
+<td>2.93 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Highspire</td>
+<td class="centered">100.28:-119.18</td>
+<td class="centered">100.21:-120.03</td>
+<td>0.85 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hillerod</td>
+<td class="centered">-128.26:141.86</td>
+<td class="centered">-128.16:142.88</td>
+<td>1.02 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hinckley</td>
+<td class="centered">-452.37:98.7</td>
+<td class="centered">-452.38:98.7</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hindmarsh</td>
+<td class="centered">-195.46:-271.72</td>
+<td class="centered">-195.32:-273.65</td>
+<td>1.94 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hiratsuka</td>
+<td class="centered">-258.49:-253.38</td>
+<td class="centered">-258.3:-255.19</td>
+<td>1.82 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hollabrunn</td>
+<td class="centered">-208.34:33.29</td>
+<td class="centered">-208.2:33.54</td>
+<td>0.29 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Holloway</td>
+<td class="centered">64.87:-301.45</td>
+<td class="centered">64.83:-303.61</td>
+<td>2.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Holt</td>
+<td class="centered">-49.37:-102.92</td>
+<td class="centered">-49.33:-103.66</td>
+<td>0.74 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Home</td>
+<td class="centered">-278.61:-163.98</td>
+<td class="centered">-278.41:-165.15</td>
+<td>1.19 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Homer (Clan)</td>
+<td class="centered">No record</td>
+<td class="centered">-90.83:1785.07</td>
+<td>Infinity</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Homestead</td>
+<td class="centered">57.89:-283.61</td>
+<td class="centered">57.85:-285.64</td>
+<td>2.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hongqiao</td>
+<td class="centered">-227.17:-232.66</td>
+<td class="centered">-227.01:-234.33</td>
+<td>1.68 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Horneburg</td>
+<td class="centered">-225.39:166.94</td>
+<td class="centered">-225.22:168.14</td>
+<td>1.21 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hornir's Keep</td>
+<td class="centered">-258.37:-33.63</td>
+<td class="centered">-258.17:-33.87</td>
+<td>0.31 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Housekarle</td>
+<td class="centered">33.33:-276.87</td>
+<td class="centered">33.31:-278.85</td>
+<td>1.98 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Howick</td>
+<td class="centered">-343.83:315.83</td>
+<td class="centered">-343.58:318.1</td>
+<td>2.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Howrah</td>
+<td class="centered">-219.75:-279.25</td>
+<td class="centered">-219.58:-281.24</td>
+<td>2.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hsien</td>
+<td class="centered">5.68:-54.33</td>
+<td class="centered">5.68:-54.72</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hudeiba</td>
+<td class="centered">-78.58:-285.4</td>
+<td class="centered">-78.53:-287.43</td>
+<td>2.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hunan</td>
+<td class="centered">71.2:-95.94</td>
+<td class="centered">71.16:-96.63</td>
+<td>0.69 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hurgh</td>
+<td class="centered">129.04:-171.02</td>
+<td class="centered">128.92:-172.23</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hurik</td>
+<td class="centered">77.79:-396.3</td>
+<td class="centered">77.74:-399.14</td>
+<td>2.84 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hustaing</td>
+<td class="centered">55.05:-245.65</td>
+<td class="centered">55.02:-247.4</td>
+<td>1.75 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hyades Cluster</td>
+<td class="centered">191.31:-389.55</td>
+<td class="centered">183.34:-393.55</td>
+<td>8.92 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Hyde</td>
+<td class="centered">-162.35:2.54</td>
+<td class="centered">-162.23:2.56</td>
+<td>0.12 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Hódmezovásárhely</td>
+<td class="centered">-193.27:-142.5</td>
+<td class="centered">-193.12:-143.5</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ibarra</td>
+<td class="centered">-253.04:-182.02</td>
+<td class="centered">-252.86:-183.31</td>
+<td>1.30 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ibstock</td>
+<td class="centered">-20.98:-101.91</td>
+<td class="centered">-20.96:-102.63</td>
+<td>0.72 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ichlangis</td>
+<td class="centered">-227.47:159.43</td>
+<td class="centered">101.63:-404.09</td>
+<td>652.58 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Ideyld</td>
+<td class="centered">-201.4:-97.49</td>
+<td class="centered">-201.26:-98.19</td>
+<td>0.71 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ife</td>
+<td class="centered">71.48:-288.13</td>
+<td class="centered">71.48:-288.08</td>
+<td>0.05 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Iijima</td>
+<td class="centered">211.18:196.18</td>
+<td class="centered">211.02:197.56</td>
+<td>1.39 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ikast</td>
+<td class="centered">101.31:-284.1</td>
+<td class="centered">101.24:-286.14</td>
+<td>2.04 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Iknogoro</td>
+<td class="centered">-50.15:-248.43</td>
+<td class="centered">-50.12:-250.2</td>
+<td>1.77 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ildlandet</td>
+<td class="centered">-241.3:-320.68</td>
+<td class="centered">-240.92:-322.96</td>
+<td>2.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ilion</td>
+<td class="centered">-285.29:-28.82</td>
+<td class="centered">-285.05:-29.01</td>
+<td>0.31 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ilmachna</td>
+<td class="centered">-3.35:-108.45</td>
+<td class="centered">-3.36:-109.23</td>
+<td>0.78 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ilmar</td>
+<td class="centered">48.8:-170.53</td>
+<td class="centered">48.8:-170.5</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ilzra</td>
+<td class="centered">-397.86:2.28</td>
+<td class="centered">-397.53:2.31</td>
+<td>0.33 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Imalda</td>
+<td class="centered">29.97:-240.2</td>
+<td class="centered">29.96:-241.9</td>
+<td>1.70 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Immenstadt</td>
+<td class="centered">82.18:-277.96</td>
+<td class="centered">82.12:-279.95</td>
+<td>1.99 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Inarcs</td>
+<td class="centered">-295.18:337.54</td>
+<td class="centered">-294.95:339.95</td>
+<td>2.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Inchicore</td>
+<td class="centered">-362.37:7.44</td>
+<td class="centered">-362.11:7.5</td>
+<td>0.27 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Incukalns</td>
+<td class="centered">-201.11:212.95</td>
+<td class="centered">-200.96:214.48</td>
+<td>1.54 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Indicass</td>
+<td class="centered">72.36:-249.02</td>
+<td class="centered">72.32:-250.8</td>
+<td>1.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ingersoll</td>
+<td class="centered">-5.17:-172.21</td>
+<td class="centered">-5.17:-173.43</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ingonish</td>
+<td class="centered">-88.15:-344.07</td>
+<td class="centered">-88.08:-346.53</td>
+<td>2.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ingress</td>
+<td class="centered">49.62:-18.66</td>
+<td class="centered">49.59:-18.79</td>
+<td>0.13 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ionus</td>
+<td class="centered">-183.56:-152.78</td>
+<td class="centered">-183.44:-153.87</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ipswich</td>
+<td class="centered">-48.34:-232.96</td>
+<td class="centered">-48.3:-234.63</td>
+<td>1.67 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Iron Land</td>
+<td class="centered">-88.31:265.43</td>
+<td class="centered">-88.4:445.68</td>
+<td>180.25 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Isabela</td>
+<td class="centered">-270.88:-242.48</td>
+<td class="centered">-270.69:-244.21</td>
+<td>1.74 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Itica</td>
+<td class="centered">-64.06:-373.08</td>
+<td class="centered">-64.01:-375.74</td>
+<td>2.66 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ito</td>
+<td class="centered">7.47:-275.58</td>
+<td class="centered">7.47:-277.55</td>
+<td>1.97 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Itrom</td>
+<td class="centered">92.45:-442.68</td>
+<td class="centered">92.37:-445.82</td>
+<td>3.14 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Itsbur</td>
+<td class="centered">64.18:-362.85</td>
+<td class="centered">64.1:-365.44</td>
+<td>2.59 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Izar</td>
+<td class="centered">-59.98:97.4</td>
+<td class="centered">-59.94:98.11</td>
+<td>0.71 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Izmir</td>
+<td class="centered">-340.85:-268.16</td>
+<td class="centered">-340.59:-270.04</td>
+<td>1.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jacomarle</td>
+<td class="centered">12.91:-382.61</td>
+<td class="centered">12.9:-385.36</td>
+<td>2.75 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jacson</td>
+<td class="centered">110.61:-346.45</td>
+<td class="centered">110.55:-348.92</td>
+<td>2.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jardine</td>
+<td class="centered">-200.94:-91.19</td>
+<td class="centered">-200.76:-91.83</td>
+<td>0.66 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Jasmine</td>
+<td class="centered">-31.03:-202.14</td>
+<td class="centered">-31:-203.58</td>
+<td>1.44 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jatznik</td>
+<td class="centered">-302.21:191.49</td>
+<td class="centered">-301.98:192.87</td>
+<td>1.40 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jaumegarde</td>
+<td class="centered">-140.65:98.17</td>
+<td class="centered">-140.55:98.88</td>
+<td>0.72 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Java</td>
+<td class="centered">2.71:-241.81</td>
+<td class="centered">2.7:-243.54</td>
+<td>1.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jiddah</td>
+<td class="centered">-279.41:-236.04</td>
+<td class="centered">-279.21:-237.72</td>
+<td>1.69 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jilin</td>
+<td class="centered">-6.21:-114.93</td>
+<td class="centered">-33.22:-388.16</td>
+<td>274.56 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Jonathan</td>
+<td class="centered">100.54:-93.14</td>
+<td class="centered">100.47:-93.77</td>
+<td>0.63 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Jonzac</td>
+<td class="centered">115.27:-23.05</td>
+<td class="centered">115.2:-299.71</td>
+<td>276.66 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Jorvikland</td>
+<td class="centered">-210.48:307.65</td>
+<td class="centered">-210.3:309.88</td>
+<td>2.24 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jouques</td>
+<td class="centered">-110.61:-211.75</td>
+<td class="centered">-110.53:-213.26</td>
+<td>1.51 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jubka</td>
+<td class="centered">-338.69:-210.46</td>
+<td class="centered">-338.43:-211.96</td>
+<td>1.52 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Jungar Qi</td>
+<td class="centered">15.54:-281.89</td>
+<td class="centered">15.51:-283.91</td>
+<td>2.02 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Junior</td>
+<td class="centered">399.62:99.46</td>
+<td class="centered">399.62:0.99</td>
+<td>98.47 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Jászberény</td>
+<td class="centered">-105.57:-142.41</td>
+<td class="centered">-105.47:-143.41</td>
+<td>1.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kafr Silim</td>
+<td class="centered">118.63:-287.97</td>
+<td class="centered">118.55:-290.02</td>
+<td>2.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kakada</td>
+<td class="centered">-290.31:-124.63</td>
+<td class="centered">-290.11:-125.51</td>
+<td>0.90 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kalidasa</td>
+<td class="centered">-105.76:-23.05</td>
+<td class="centered">-105.68:-23.21</td>
+<td>0.18 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kalmar (FWL)</td>
+<td class="centered">-67.58:-302.28</td>
+<td class="centered">-67.51:-304.42</td>
+<td>2.14 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kalmar (HL)</td>
+<td class="centered">-824.06:862.16</td>
+<td class="centered">-816.37:856.52</td>
+<td>9.54 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kamenz</td>
+<td class="centered">-311.15:-4.36</td>
+<td class="centered">-310.91:-4.38</td>
+<td>0.24 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kampen</td>
+<td class="centered">-739.12:906.56</td>
+<td class="centered">-731.54:900.86</td>
+<td>9.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kanata</td>
+<td class="centered">-96.16:-307.86</td>
+<td class="centered">-96.1:-310.1</td>
+<td>2.24 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kandersteg</td>
+<td class="centered">-120.72:227.94</td>
+<td class="centered">-120.64:229.58</td>
+<td>1.64 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kansu</td>
+<td class="centered">67.71:-59.75</td>
+<td class="centered">67.68:-60.17</td>
+<td>0.42 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Karachi</td>
+<td class="centered">-292.39:-243.27</td>
+<td class="centered">-292.18:-245.01</td>
+<td>1.75 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Karakiraz</td>
+<td class="centered">-270.88:-268.84</td>
+<td class="centered">-305.05:-200.78</td>
+<td>76.16 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Karlstejn</td>
+<td class="centered">-52.46:-290.76</td>
+<td class="centered">-52.42:-292.84</td>
+<td>2.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kasdach</td>
+<td class="centered">20.92:-313.05</td>
+<td class="centered">20.91:-315.28</td>
+<td>2.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kashilla</td>
+<td class="centered">-1.55:-201.15</td>
+<td class="centered">-1.55:-202.58</td>
+<td>1.43 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Katla</td>
+<td class="centered">-59.62:-341.01</td>
+<td class="centered">-59.58:-343.45</td>
+<td>2.44 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Katlehong</td>
+<td class="centered">-217.66:-252.09</td>
+<td class="centered">-217.5:-253.89</td>
+<td>1.81 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kaumberg</td>
+<td class="centered">-387.84:144.45</td>
+<td class="centered">-387.55:145.49</td>
+<td>1.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kazu</td>
+<td class="centered">101.11:-364.2</td>
+<td class="centered">101.02:-366.79</td>
+<td>2.59 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kearny</td>
+<td class="centered">-127.16:-274.59</td>
+<td class="centered">-127.07:-276.54</td>
+<td>1.95 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Keeling</td>
+<td class="centered">-173.75:-217.4</td>
+<td class="centered">-173.63:-218.95</td>
+<td>1.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Keid</td>
+<td class="centered">3.09:-10.12</td>
+<td class="centered">3.09:-10.2</td>
+<td>0.08 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kek</td>
+<td class="centered">105.02:-153.2</td>
+<td class="centered">104.92:-152.29</td>
+<td>0.92 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kelang</td>
+<td class="centered">-357.22:200.8</td>
+<td class="centered">-356.95:202.24</td>
+<td>1.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kelenfold</td>
+<td class="centered">-57.39:198.21</td>
+<td class="centered">-57.35:199.63</td>
+<td>1.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kendall</td>
+<td class="centered">-370.2:-200.85</td>
+<td class="centered">-369.92:-202.28</td>
+<td>1.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kentares</td>
+<td class="centered">160.78:-23.05</td>
+<td class="centered">149.28:-13.32</td>
+<td>15.06 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Kerensky's Vision</td>
+<td class="centered">-72.64:189.27</td>
+<td class="centered">-72.67:190.55</td>
+<td>1.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kern</td>
+<td class="centered">126.17:-384.04</td>
+<td class="centered">126.09:-386.77</td>
+<td>2.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kettering</td>
+<td class="centered">446.67:-97.51</td>
+<td class="centered">446.33:-98.19</td>
+<td>0.76 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Keystone</td>
+<td class="centered">-125.08:-105.5</td>
+<td class="centered">-125:-106.25</td>
+<td>0.75 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Khartoum</td>
+<td class="centered">-328.77:273.96</td>
+<td class="centered">-328.53:275.91</td>
+<td>1.96 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Khi</td>
+<td class="centered">134.04:-205.92</td>
+<td class="centered">133.91:-207.38</td>
+<td>1.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kievanur</td>
+<td class="centered">-55.48:-152.45</td>
+<td class="centered">-55.43:-153.53</td>
+<td>1.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kilarney</td>
+<td class="centered">-313.6:-116.4</td>
+<td class="centered">-313.37:-117.24</td>
+<td>0.87 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Killbourn</td>
+<td class="centered">-5.08:13.1</td>
+<td class="centered">-5.06:13.23</td>
+<td>0.13 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kimi</td>
+<td class="centered">51.85:-410.66</td>
+<td class="centered">51.89:-413.59</td>
+<td>2.93 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kinbrace</td>
+<td class="centered">-395.82:862.97</td>
+<td class="centered">-392.33:858</td>
+<td>6.07 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kingtribel</td>
+<td class="centered">32.59:142.44</td>
+<td class="centered">32.58:143.45</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kirkcaldy</td>
+<td class="centered">-96.42:127.12</td>
+<td class="centered">-96.36:128.05</td>
+<td>0.93 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kirkenlaard</td>
+<td class="centered">-159.97:-121.76</td>
+<td class="centered">-159.87:-122.62</td>
+<td>0.87 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kittery</td>
+<td class="centered">82.18:-223.94</td>
+<td class="centered">82.12:-225.54</td>
+<td>1.60 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kitzingen</td>
+<td class="centered">-223.11:47</td>
+<td class="centered">-222.95:47.34</td>
+<td>0.38 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kiyev</td>
+<td class="centered">-88.14:-171.71</td>
+<td class="centered">-88.08:-172.94</td>
+<td>1.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Klayne</td>
+<td class="centered">-11.53:-242.39</td>
+<td class="centered">-11.54:-244.12</td>
+<td>1.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Knutdor</td>
+<td class="centered">145.17:-194.63</td>
+<td class="centered">144.99:-196.03</td>
+<td>1.41 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kochab</td>
+<td class="centered">-68.24:62.5</td>
+<td class="centered">-68.19:62.95</td>
+<td>0.45 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kockengen</td>
+<td class="centered">-111.71:62.5</td>
+<td class="centered">-111.62:151.47</td>
+<td>88.97 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Kogl</td>
+<td class="centered">-354.94:-176.56</td>
+<td class="centered">-354.67:-177.82</td>
+<td>1.29 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kohlman</td>
+<td class="centered">20.58:-198.3</td>
+<td class="centered">20.54:-199.72</td>
+<td>1.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kolobrzeg</td>
+<td class="centered">-130.24:-45.58</td>
+<td class="centered">-130.13:-45.9</td>
+<td>0.34 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Koniz</td>
+<td class="centered">-92.54:259.73</td>
+<td class="centered">-92.48:261.59</td>
+<td>1.86 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Konopiste</td>
+<td class="centered">-44.04:-285.56</td>
+<td class="centered">-44.01:-287.6</td>
+<td>2.04 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Konstance</td>
+<td class="centered">-20.16:96.37</td>
+<td class="centered">-20.17:96.37</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kooken's Pleasure Pit</td>
+<td class="centered">-165.23:345.81</td>
+<td class="centered">-166.65:348.95</td>
+<td>3.45 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kosciusko</td>
+<td class="centered">-302.71:-91.03</td>
+<td class="centered">-302.48:-91.68</td>
+<td>0.69 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Kostinbrod</td>
+<td class="centered">-374.86:157.89</td>
+<td class="centered">-374.58:159.02</td>
+<td>1.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Krakatau</td>
+<td class="centered">54.9:-344.93</td>
+<td class="centered">54.91:-347.39</td>
+<td>2.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kreller</td>
+<td class="centered">-59.83:352.89</td>
+<td class="centered">-59.77:355.45</td>
+<td>2.56 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Krievci</td>
+<td class="centered">56.85:230.27</td>
+<td class="centered">-225.22:228.79</td>
+<td>282.07 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Krin</td>
+<td class="centered">-7.76:-221.26</td>
+<td class="centered">-7.75:-222.84</td>
+<td>1.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kristiandsund</td>
+<td class="centered">-9.19:-83.56</td>
+<td class="centered">-9.2:-84.16</td>
+<td>0.60 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Krung Thep</td>
+<td class="centered">-369.6:235.44</td>
+<td class="centered">-369.34:237.12</td>
+<td>1.70 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kumqwat</td>
+<td class="centered">155.68:-265.69</td>
+<td class="centered">155.58:-267.47</td>
+<td>1.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kupang (CC)</td>
+<td class="centered">-51.33:-273.64</td>
+<td class="centered">-51.29:-275.6</td>
+<td>1.96 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kurragin</td>
+<td class="centered">3.35:-203.23</td>
+<td class="centered">3.35:-204.67</td>
+<td>1.44 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kurvasa</td>
+<td class="centered">39.54:-351.6</td>
+<td class="centered">39.51:-354.11</td>
+<td>2.51 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kutludugun</td>
+<td class="centered">-331.44:-190.54</td>
+<td class="centered">-331.2:-191.9</td>
+<td>1.38 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kvistgard</td>
+<td class="centered">-332.43:151.94</td>
+<td class="centered">-332.19:153.04</td>
+<td>1.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kwamashu</td>
+<td class="centered">72.12:-260.12</td>
+<td class="centered">-72.07:-261.98</td>
+<td>144.20 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Kyeinnisan</td>
+<td class="centered">-100.8:-150.5</td>
+<td class="centered">-100.73:-151.58</td>
+<td>1.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Kyrkbacken</td>
+<td class="centered">3.41:-94.29</td>
+<td class="centered">3.41:-94.97</td>
+<td>0.68 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Köln (FWL)</td>
+<td class="centered">-150.07:-153.98</td>
+<td class="centered">-149.95:-155.07</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Köln (HL)</td>
+<td class="centered">-705.33:721.09</td>
+<td class="centered">-697.79:715.63</td>
+<td>9.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Köningsberg</td>
+<td class="centered">-837.75:896.73</td>
+<td class="centered">-830.04:891.05</td>
+<td>9.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>La Blon</td>
+<td class="centered">-31.8:72.85</td>
+<td class="centered">-31.78:73.37</td>
+<td>0.52 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>La Grave</td>
+<td class="centered">-51.18:247.06</td>
+<td class="centered">-51.15:248.84</td>
+<td>1.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Labouchere</td>
+<td class="centered">-253.35:-74.48</td>
+<td class="centered">-253.16:-75.02</td>
+<td>0.57 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lacadon</td>
+<td class="centered">133.72:-135.54</td>
+<td class="centered">133.56:-136.52</td>
+<td>0.99 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lahti</td>
+<td class="centered">-392.41:-223.15</td>
+<td class="centered">-392.11:-224.75</td>
+<td>1.63 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Laiaka</td>
+<td class="centered">-100.6:54.23</td>
+<td class="centered">-100.54:54.63</td>
+<td>0.40 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lamon</td>
+<td class="centered">-132.32:33.29</td>
+<td class="centered">-132.23:33.54</td>
+<td>0.27 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lancaster</td>
+<td class="centered">-268.3:110.32</td>
+<td class="centered">-268.11:111.12</td>
+<td>0.82 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lancaster (FWL)</td>
+<td class="centered">-115.77:-88.19</td>
+<td class="centered">-115.69:-88.81</td>
+<td>0.63 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Laong</td>
+<td class="centered">114.53:-223.08</td>
+<td class="centered">114.42:-224.66</td>
+<td>1.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Larsha</td>
+<td class="centered">118.37:-393.23</td>
+<td class="centered">118.3:-396.04</td>
+<td>2.81 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Latice</td>
+<td class="centered">10.59:-293.72</td>
+<td class="centered">10.58:-295.82</td>
+<td>2.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Launam</td>
+<td class="centered">-167.21:-12.45</td>
+<td class="centered">-167.08:-12.54</td>
+<td>0.16 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Laureles</td>
+<td class="centered">-186.05:-126.2</td>
+<td class="centered">-185.91:-127.1</td>
+<td>0.91 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Laurent</td>
+<td class="centered">-44.21:302.91</td>
+<td class="centered">-44.18:305.08</td>
+<td>2.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Laurieston</td>
+<td class="centered">-106.55:93.52</td>
+<td class="centered">-106.48:94.2</td>
+<td>0.68 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Leamington</td>
+<td class="centered">372.22:-316.23</td>
+<td class="centered">353.35:-91.68</td>
+<td>225.34 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lee</td>
+<td class="centered">116.83:-148.12</td>
+<td class="centered">116.75:-149.18</td>
+<td>1.06 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Leganes</td>
+<td class="centered">-77.81:160.22</td>
+<td class="centered">-77.76:161.37</td>
+<td>1.15 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lengkong</td>
+<td class="centered">-239.07:-259.03</td>
+<td class="centered">-238.9:-260.88</td>
+<td>1.86 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lepaterique</td>
+<td class="centered">-375.06:-166.55</td>
+<td class="centered">-374.78:-167.74</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Les Halles</td>
+<td class="centered">-39.05:-187.96</td>
+<td class="centered">-39.01:-189.31</td>
+<td>1.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lesalles</td>
+<td class="centered">9.81:-164.97</td>
+<td class="centered">9.81:-166.15</td>
+<td>1.18 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Leskovik</td>
+<td class="centered">-90.48:333.15</td>
+<td class="centered">-90.42:335.53</td>
+<td>2.38 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lesnovo</td>
+<td class="centered">-315.4:-266.86</td>
+<td class="centered">-315.21:-268.64</td>
+<td>1.79 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Leyda</td>
+<td class="centered">-71.09:-346.95</td>
+<td class="centered">-71.04:-349.42</td>
+<td>2.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lhasa</td>
+<td class="centered">91.81:-164.96</td>
+<td class="centered">91.7:-166.14</td>
+<td>1.19 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ling</td>
+<td class="centered">-43.95:-121.06</td>
+<td class="centered">-43.92:-121.92</td>
+<td>0.86 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Linhauiguan</td>
+<td class="centered">15.77:-425.72</td>
+<td class="centered">15.74:-428.76</td>
+<td>3.04 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Linqing</td>
+<td class="centered">341.72:310.4</td>
+<td class="centered">341.73:310.4</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lintz</td>
+<td class="centered">-172.13:138.44</td>
+<td class="centered">-172:139.42</td>
+<td>0.99 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lipton</td>
+<td class="centered">-33.86:6.41</td>
+<td class="centered">-33.84:6.47</td>
+<td>0.06 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Liu's Memory</td>
+<td class="centered">-10.82:-416.35</td>
+<td class="centered">-10.92:-419.33</td>
+<td>2.98 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Loburg</td>
+<td class="centered">-324.71:10.29</td>
+<td class="centered">-324.46:10.37</td>
+<td>0.26 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lochmantle</td>
+<td class="centered">138.3:-327.7</td>
+<td class="centered">138.13:-330.04</td>
+<td>2.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Logres</td>
+<td class="centered">-317.91:175.64</td>
+<td class="centered">-317.67:176.9</td>
+<td>1.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Londerholm</td>
+<td class="centered">-43.25:-1858.27</td>
+<td class="centered">-43.25:1858.27</td>
+<td>3716.54 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lone Star</td>
+<td class="centered">-4.65:50.41</td>
+<td class="centered">-4.63:50.8</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Lopez</td>
+<td class="centered">-37.75:-330.39</td>
+<td class="centered">-37.72:-332.75</td>
+<td>2.36 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Loric</td>
+<td class="centered">-230.35:-38.82</td>
+<td class="centered">-230.18:-39.09</td>
+<td>0.32 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Loxley</td>
+<td class="centered">-312.31:224.06</td>
+<td class="centered">-312.09:225.67</td>
+<td>1.62 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lucianca</td>
+<td class="centered">-96.94:163.32</td>
+<td class="centered">-96.87:164.49</td>
+<td>1.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lucknow</td>
+<td class="centered">73.02:-337.09</td>
+<td class="centered">72.93:-339.49</td>
+<td>2.40 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ludwigshafen</td>
+<td class="centered">-242.74:281.96</td>
+<td class="centered">-242.56:283.99</td>
+<td>2.04 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Lum</td>
+<td class="centered">4.73:-1743.65</td>
+<td class="centered">4.73:1743.65</td>
+<td>3487.30 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lurgatan</td>
+<td class="centered">20.16:-330.89</td>
+<td class="centered">-20.15:-333.25</td>
+<td>40.38 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lyndon</td>
+<td class="centered">-374.86:157.89</td>
+<td class="centered">-127.37:197.56</td>
+<td>250.65 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lynn</td>
+<td class="centered">-761.3:196.15</td>
+<td class="centered">-753.69:678.4</td>
+<td>482.31 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lyreton</td>
+<td class="centered">59.05:-420.68</td>
+<td class="centered">58.98:-423.68</td>
+<td>3.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>León</td>
+<td class="centered">690.67:1102.12</td>
+<td class="centered">-683.4:1094.89</td>
+<td>1374.09 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Lübeck</td>
+<td class="centered">-702.68:817.34</td>
+<td class="centered">-695.15:811.75</td>
+<td>9.38 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ma'anshan</td>
+<td class="centered">-389.04:420.35</td>
+<td class="centered">-388.74:274.61</td>
+<td>145.74 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>MacLeod's Land</td>
+<td class="centered">169.47:-387.17</td>
+<td class="centered">169.35:-389.83</td>
+<td>2.66 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Madiun</td>
+<td class="centered">-400.43:-36.74</td>
+<td class="centered">-400.14:-37</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Madras</td>
+<td class="centered">70.55:-325.24</td>
+<td class="centered">70.51:-327.57</td>
+<td>2.33 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mahone</td>
+<td class="centered">-232.93:307.04</td>
+<td class="centered">-232.75:309.24</td>
+<td>2.21 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Maisons</td>
+<td class="centered">-346.12:4.34</td>
+<td class="centered">-345.85:4.38</td>
+<td>0.27 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Maladar</td>
+<td class="centered">108.82:-247.73</td>
+<td class="centered">108.74:-249.49</td>
+<td>1.76 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Malazan</td>
+<td class="centered">-282.66:-43.9</td>
+<td class="centered">-282.44:-44.22</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Maldive</td>
+<td class="centered">138.07:-364.57</td>
+<td class="centered">137.9:-367.17</td>
+<td>2.61 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Manapire</td>
+<td class="centered">82.45:-292.92</td>
+<td class="centered">82.4:-295.02</td>
+<td>2.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mandal</td>
+<td class="centered">-8.76:-55.98</td>
+<td class="centered">-8.74:-56.36</td>
+<td>0.38 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mandaoaaru</td>
+<td class="centered">-304.99:307.56</td>
+<td class="centered">-304.75:309.75</td>
+<td>2.20 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mandate</td>
+<td class="centered">88.39:-126.22</td>
+<td class="centered">88.32:-127.12</td>
+<td>0.90 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Manennaia</td>
+<td class="centered">27.68:-89.51</td>
+<td class="centered">27.63:-90.16</td>
+<td>0.65 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mangzhangdian</td>
+<td class="centered">111.94:-433.68</td>
+<td class="centered">111.9:-436.78</td>
+<td>3.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Manx</td>
+<td class="centered">-182.04:317</td>
+<td class="centered">-181.9:319.24</td>
+<td>2.24 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Marcus</td>
+<td class="centered">-58.94:-15.55</td>
+<td class="centered">-58.9:-15.67</td>
+<td>0.13 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mariefred</td>
+<td class="centered">-180.19:25.54</td>
+<td class="centered">-180.06:25.73</td>
+<td>0.23 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Marik</td>
+<td class="centered">-79.62:-75.28</td>
+<td class="centered">-79.56:-75.85</td>
+<td>0.57 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Marsalle</td>
+<td class="centered">-333.96:25.18</td>
+<td class="centered">-333.68:25.38</td>
+<td>0.34 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Masterson</td>
+<td class="centered">2.76:-185.77</td>
+<td class="centered">2.76:-187.09</td>
+<td>1.32 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Matheran</td>
+<td class="centered">-65.65:-170.52</td>
+<td class="centered">-65.61:-171.64</td>
+<td>1.12 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Matsu</td>
+<td class="centered">78.3:-136.22</td>
+<td class="centered">78.26:-137.2</td>
+<td>0.98 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mattisskogen</td>
+<td class="centered">58.66:-361.36</td>
+<td class="centered">-58.61:-363.94</td>
+<td>117.30 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Maxie's Planet</td>
+<td class="centered">-96.43:389.5</td>
+<td class="centered">-96.36:392.29</td>
+<td>2.79 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Maxwell</td>
+<td class="centered">-376.94:-114.52</td>
+<td class="centered">-376.65:-115.53</td>
+<td>1.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mazdru</td>
+<td class="centered">92.72:-321.51</td>
+<td class="centered">92.61:-323.81</td>
+<td>2.30 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>McAffe</td>
+<td class="centered">-181.18:-45.28</td>
+<td class="centered">-181.06:-45.59</td>
+<td>0.33 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>McGehee</td>
+<td class="centered">330.33:74.91</td>
+<td class="centered">330.1:75.45</td>
+<td>0.59 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>McKellan</td>
+<td class="centered">-225.06:74.02</td>
+<td class="centered">-224.88:74.55</td>
+<td>0.56 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mechdur</td>
+<td class="centered">112.42:-423.34</td>
+<td class="centered">112.38:-426.37</td>
+<td>3.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Medzev</td>
+<td class="centered">-255.42:46.73</td>
+<td class="centered">-255.24:47.07</td>
+<td>0.38 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Megrez</td>
+<td class="centered">-211.22:-41.92</td>
+<td class="centered">-211.06:-42.21</td>
+<td>0.33 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mendham</td>
+<td class="centered">147.84:-344.86</td>
+<td class="centered">147.74:-347.33</td>
+<td>2.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Menkar</td>
+<td class="centered">90.72:-92.06</td>
+<td class="centered">90.66:-92.72</td>
+<td>0.66 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Menke</td>
+<td class="centered">90.72:-330.89</td>
+<td class="centered">90.66:-333.25</td>
+<td>2.36 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Menkent</td>
+<td class="centered">-38.28:22.95</td>
+<td class="centered">-38.26:23.13</td>
+<td>0.18 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Menkib</td>
+<td class="centered">75.46:-128.99</td>
+<td class="centered">75.41:-129.91</td>
+<td>0.92 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mentasta</td>
+<td class="centered">114.24:-237.32</td>
+<td class="centered">114.16:-239.01</td>
+<td>1.69 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mercedes</td>
+<td class="centered">-392.71:112.14</td>
+<td class="centered">-392.41:112.95</td>
+<td>0.86 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Merdal</td>
+<td class="centered">91.89:-390.7</td>
+<td class="centered">91.87:-393.5</td>
+<td>2.80 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mesa Verde</td>
+<td class="centered">-136.49:116.53</td>
+<td class="centered">-136.38:117.37</td>
+<td>0.85 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mezzana</td>
+<td class="centered">-357.52:84.74</td>
+<td class="centered">-357.25:85.35</td>
+<td>0.67 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Midthun</td>
+<td class="centered">74.4:-384.04</td>
+<td class="centered">74.36:-386.75</td>
+<td>2.71 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Millerton</td>
+<td class="centered">-343.25:2855.32</td>
+<td class="centered">-342.99:287.37</td>
+<td>2567.95 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Milnerton</td>
+<td class="centered">-85.3:-232.47</td>
+<td class="centered">-85.25:-234.13</td>
+<td>1.66 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Milos</td>
+<td class="centered">57.63:-225.23</td>
+<td class="centered">57.59:-226.84</td>
+<td>1.61 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Milton</td>
+<td class="centered">-64.37:2.79</td>
+<td class="centered">-64.32:2.82</td>
+<td>0.06 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Minderoo</td>
+<td class="centered">-255.62:155.04</td>
+<td class="centered">-255.44:156.16</td>
+<td>1.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Minnacora</td>
+<td class="centered">77.28:-170.62</td>
+<td class="centered">77.23:-171.84</td>
+<td>1.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Miquelon</td>
+<td class="centered">-285.85:300.83</td>
+<td class="centered">-280.24:298.75</td>
+<td>5.98 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mira</td>
+<td class="centered">103.39:-52</td>
+<td class="centered">103.32:-52.37</td>
+<td>0.38 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mississauga</td>
+<td class="centered">-224.9:294.63</td>
+<td class="centered">-224.74:296.74</td>
+<td>2.12 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mitchel</td>
+<td class="centered">108.81:-328.31</td>
+<td class="centered">108.74:-330.66</td>
+<td>2.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mizar</td>
+<td class="centered">-54.54:20.62</td>
+<td class="centered">-54.5:20.78</td>
+<td>0.16 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mkuranga</td>
+<td class="centered">-160.78:317.38</td>
+<td class="centered">-160.65:319.54</td>
+<td>2.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Monhegan</td>
+<td class="centered">116.04:-184.1</td>
+<td class="centered">115.98:-185.41</td>
+<td>1.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Montmarault</td>
+<td class="centered">-59.19:263.09</td>
+<td class="centered">-59.16:264.97</td>
+<td>1.88 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Moravian</td>
+<td class="centered">109.08:-132.36</td>
+<td class="centered">109:-133.3</td>
+<td>0.94 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Morges</td>
+<td class="centered">-141.41:283.19</td>
+<td class="centered">-141.31:285.22</td>
+<td>2.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Moriguchi</td>
+<td class="centered">-365.25:290.24</td>
+<td class="centered">-364.97:292.32</td>
+<td>2.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Morrigan (LC)</td>
+<td class="centered">-333.15:71.81</td>
+<td class="centered">-332.86:72.35</td>
+<td>0.61 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mosiro</td>
+<td class="centered">-65.14:-280.74</td>
+<td class="centered">-65.1:-282.74</td>
+<td>2.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Mumbai</td>
+<td class="centered">25.3:-248.92</td>
+<td class="centered">25.26:-250.7</td>
+<td>1.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Muphrid</td>
+<td class="centered">-27.4:15.2</td>
+<td class="centered">-27.38:15.32</td>
+<td>0.12 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Muridox</td>
+<td class="centered">106.49:-382.13</td>
+<td class="centered">106.41:-384.86</td>
+<td>2.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Murris</td>
+<td class="centered">52.21:-379.32</td>
+<td class="centered">52.18:-382.02</td>
+<td>2.70 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Muscida</td>
+<td class="centered">-139.55:-182.32</td>
+<td class="centered">-139.46:-183.61</td>
+<td>1.29 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Muswell</td>
+<td class="centered">35.24:289.64</td>
+<td class="centered">35.24:291.74</td>
+<td>2.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Myrrdin</td>
+<td class="centered">-388.53:62.77</td>
+<td class="centered">-388.23:63.22</td>
+<td>0.54 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Myrvoll</td>
+<td class="centered">-17.66:-88.59</td>
+<td class="centered">-17.66:-89.23</td>
+<td>0.64 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Mytilene</td>
+<td class="centered">151.16:-135.63</td>
+<td class="centered">150.98:-136.6</td>
+<td>0.99 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Nam Dinh</td>
+<td class="centered">-66.67:-251.43</td>
+<td class="centered">-66.62:-253.19</td>
+<td>1.76 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Namen</td>
+<td class="centered">171.98:-215.71</td>
+<td class="centered">171.85:-217.25</td>
+<td>1.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nanking</td>
+<td class="centered">22.74:-51.74</td>
+<td class="centered">22.73:-52.11</td>
+<td>0.37 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Naryn</td>
+<td class="centered">-37.19:-361.15</td>
+<td class="centered">-37.17:-363.73</td>
+<td>2.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nashuar</td>
+<td class="centered">97.58:-202.1</td>
+<td class="centered">97.52:-203.54</td>
+<td>1.44 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Navarre</td>
+<td class="centered">-713.38:-1146.08</td>
+<td class="centered">-706.07:1138.5</td>
+<td>2284.59 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Necromo</td>
+<td class="centered">102.87:-188.46</td>
+<td class="centered">102.8:-189.81</td>
+<td>1.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nestor</td>
+<td class="centered">-170.58:-25.89</td>
+<td class="centered">-170.46:-26.08</td>
+<td>0.22 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Neukirchen</td>
+<td class="centered">396.52:-306.72</td>
+<td class="centered">406.34:-247.14</td>
+<td>60.38 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>New Aragon</td>
+<td class="centered">69.53:-88.19</td>
+<td class="centered">69.48:-88.81</td>
+<td>0.62 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Athens</td>
+<td class="centered">59.75:-129.93</td>
+<td class="centered">59.67:-130.87</td>
+<td>0.94 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Canton</td>
+<td class="centered">8.26:-72.94</td>
+<td class="centered">8.28:-72.92</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Capetown</td>
+<td class="centered">-252.05:260.77</td>
+<td class="centered">-251.87:262.64</td>
+<td>1.88 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Crete</td>
+<td class="centered">39.82:-200.51</td>
+<td class="centered">39.82:-200.47</td>
+<td>0.04 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Dallas</td>
+<td class="centered">-55:-25.46</td>
+<td class="centered">-54.93:-25.62</td>
+<td>0.17 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Delos</td>
+<td class="centered">-38:-140.69</td>
+<td class="centered">-37.98:-141.69</td>
+<td>1.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Earth</td>
+<td class="centered">-12.41:3.05</td>
+<td class="centered">-12.4:3.08</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Exford</td>
+<td class="centered">-137.28:243.19</td>
+<td class="centered">-137.18:244.94</td>
+<td>1.75 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Hessen</td>
+<td class="centered">84.01:-57.12</td>
+<td class="centered">83.97:-57.06</td>
+<td>0.07 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Home</td>
+<td class="centered">7.22:-12.71</td>
+<td class="centered">7.22:-12.8</td>
+<td>0.09 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Kent</td>
+<td class="centered">119.57:-1770.14</td>
+<td class="centered">119.57:1770.14</td>
+<td>3540.28 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>New Kyoto</td>
+<td class="centered">-125.72:11.81</td>
+<td class="centered">-125.64:11.9</td>
+<td>0.12 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Macao</td>
+<td class="centered">77.54:-122.35</td>
+<td class="centered">77.48:-123.22</td>
+<td>0.87 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Olympia</td>
+<td class="centered">-150.16:-130.28</td>
+<td class="centered">-150.06:-131.21</td>
+<td>0.94 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Praha</td>
+<td class="centered">-104.53:-175.74</td>
+<td class="centered">-104.43:-176.98</td>
+<td>1.24 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Roland</td>
+<td class="centered">-8.02:-401.26</td>
+<td class="centered">-8:-404.12</td>
+<td>2.86 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Sagan</td>
+<td class="centered">79.87:-177.66</td>
+<td class="centered">79.8:-178.93</td>
+<td>1.27 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Stevens</td>
+<td class="centered">22.34:-6.06</td>
+<td class="centered">22.34:-6.09</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>New Troy</td>
+<td class="centered">-51.1:-259.9</td>
+<td class="centered">-51.06:-261.76</td>
+<td>1.86 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>New Westin</td>
+<td class="centered">38.25:-241.98</td>
+<td class="centered">38.22:-243.71</td>
+<td>1.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Niangol</td>
+<td class="centered">-374.25:242.93</td>
+<td class="centered">-373.99:244.67</td>
+<td>1.76 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nichol's Rest</td>
+<td class="centered">-265.87:69.61</td>
+<td class="centered">-265.67:70.1</td>
+<td>0.53 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Nihal</td>
+<td class="centered">43.93:-310.77</td>
+<td class="centered">43.9:-312.99</td>
+<td>2.22 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Niles (Clan)</td>
+<td class="centered">117.76:-1692.63</td>
+<td class="centered">117.76:1692.63</td>
+<td>3385.26 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Ningpo</td>
+<td class="centered">54.27:-66.74</td>
+<td class="centered">54.28:-66.74</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Niomede</td>
+<td class="centered">-0.27:-349.52</td>
+<td class="centered">-0.26:-352.01</td>
+<td>2.49 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>No Return</td>
+<td class="centered">56.33:-177.36</td>
+<td class="centered">56.31:-178.63</td>
+<td>1.27 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nockatunga</td>
+<td class="centered">-289.02:-54.07</td>
+<td class="centered">-288.82:-54.46</td>
+<td>0.44 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Noisiel</td>
+<td class="centered">-308.36:148.07</td>
+<td class="centered">-308.12:149.14</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Non Diz</td>
+<td class="centered">146.98:-369.06</td>
+<td class="centered">146.84:-371.69</td>
+<td>2.63 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nopah</td>
+<td class="centered">57.12:-33.64</td>
+<td class="centered">57.08:-33.88</td>
+<td>0.24 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Northwind</td>
+<td class="centered">34.11:-2.89</td>
+<td class="centered">34.12:-2.89</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Nouasseur</td>
+<td class="centered">70.55:-325.24</td>
+<td class="centered">-351.01:264.2</td>
+<td>724.67 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Nouveaux Paris</td>
+<td class="centered">129.6:843.17</td>
+<td class="centered">128.2:838.45</td>
+<td>4.92 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nova Roma</td>
+<td class="centered">-83.25:-133.95</td>
+<td class="centered">-83.18:-134.91</td>
+<td>0.96 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Novara</td>
+<td class="centered">-366.33:115.64</td>
+<td class="centered">-366.04:116.48</td>
+<td>0.89 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Novgorod</td>
+<td class="centered">-759.56:940.2</td>
+<td class="centered">-751.95:934.45</td>
+<td>9.54 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nox</td>
+<td class="centered">13.17:239.83</td>
+<td class="centered">13.18:239.83</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Nuelson Minor</td>
+<td class="centered">101.11:-364.2</td>
+<td class="centered">-345.45:173.11</td>
+<td>698.65 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Nukus</td>
+<td class="centered">-2.09:-320.6</td>
+<td class="centered">-2.11:322.89</td>
+<td>643.49 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Nuneaton</td>
+<td class="centered">-335.52:141.86</td>
+<td class="centered">-335.26:142.88</td>
+<td>1.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Nusakan</td>
+<td class="centered">-34.77:43.29</td>
+<td class="centered">-34.77:43.28</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Nyasa</td>
+<td class="centered">-413.73:394.29</td>
+<td class="centered">-413.41:397.1</td>
+<td>2.83 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Odessa</td>
+<td class="centered">-120.72:185.54</td>
+<td class="centered">-120.64:186.87</td>
+<td>1.33 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ohrensen</td>
+<td class="centered">-16.29:-121.76</td>
+<td class="centered">-16.28:-122.62</td>
+<td>0.86 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Old Kentucky</td>
+<td class="centered">2.06:-141.68</td>
+<td class="centered">2.06:-142.68</td>
+<td>1.00 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Oli</td>
+<td class="centered">136.49:-151.26</td>
+<td class="centered">136.33:-152.34</td>
+<td>1.09 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Oligar</td>
+<td class="centered">89.77:-270.83</td>
+<td class="centered">89.69:-272.75</td>
+<td>1.92 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Oliver</td>
+<td class="centered">-31.8:-7.02</td>
+<td class="centered">-31.78:-7.07</td>
+<td>0.05 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ordino</td>
+<td class="centered">42.01:-362.73</td>
+<td class="centered">41.95:-365.32</td>
+<td>2.59 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Oriente</td>
+<td class="centered">-76.27:-211.42</td>
+<td class="centered">-76.2:-212.91</td>
+<td>1.49 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Orkney (LC)</td>
+<td class="centered">-48.6:234.92</td>
+<td class="centered">-48.56:236.61</td>
+<td>1.69 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ovan</td>
+<td class="centered">30.49:-205.8</td>
+<td class="centered">30.47:-207.28</td>
+<td>1.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Overton</td>
+<td class="centered">46.25:-207.89</td>
+<td class="centered">46.22:-209.37</td>
+<td>1.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>P3</td>
+<td class="centered">-112.32:884.95</td>
+<td class="centered">-111.42:879.74</td>
+<td>5.29 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>P9</td>
+<td class="centered">-115.35:1036.84</td>
+<td class="centered">-114.46:1030.19</td>
+<td>6.71 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Paches</td>
+<td class="centered">154.56:-142.76</td>
+<td class="centered">154.37:-143.79</td>
+<td>1.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Palladaine</td>
+<td class="centered">-3.1:-287.97</td>
+<td class="centered">-3.11:-290.02</td>
+<td>2.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pandora</td>
+<td class="centered">-84.55:234.78</td>
+<td class="centered">-84.49:236.48</td>
+<td>1.70 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Paradise</td>
+<td class="centered">-239.9:-126.4</td>
+<td class="centered">-239.23:-127.3</td>
+<td>1.12 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Parakoila</td>
+<td class="centered">-132.33:322.81</td>
+<td class="centered">-132.23:325.12</td>
+<td>2.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pardeau</td>
+<td class="centered">-149.63:-5.17</td>
+<td class="centered">-149.51:-5.21</td>
+<td>0.13 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Park Place</td>
+<td class="centered">-29.47:-110.95</td>
+<td class="centered">-29.46:-111.74</td>
+<td>0.79 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Pasig</td>
+<td class="centered">-165.23:332.63</td>
+<td class="centered">-165.11:335.01</td>
+<td>2.38 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Patan</td>
+<td class="centered">92.95:-261.96</td>
+<td class="centered">92.69:-263.84</td>
+<td>1.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pavia</td>
+<td class="centered">-65.72:-112.2</td>
+<td class="centered">-65.66:-112.81</td>
+<td>0.61 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Paxon</td>
+<td class="centered">-71.79:-1865.23</td>
+<td class="centered">-71.79:1865.23</td>
+<td>3730.46 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Payia</td>
+<td class="centered">35.24:-406.48</td>
+<td class="centered">35.18:-409.38</td>
+<td>2.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pec</td>
+<td class="centered">-156.61:-224.8</td>
+<td class="centered">-156.48:-226.37</td>
+<td>1.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pell</td>
+<td class="centered">16.09:-334.88</td>
+<td class="centered">16.06:-337.27</td>
+<td>2.39 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pella II</td>
+<td class="centered">-30.5:-227.02</td>
+<td class="centered">-30.49:-228.63</td>
+<td>1.61 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pencader</td>
+<td class="centered">-374.86:157.89</td>
+<td class="centered">-350.22:-53.14</td>
+<td>212.46 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Penobscot</td>
+<td class="centered">-332.94:-45.79</td>
+<td class="centered">-332.69:-46.12</td>
+<td>0.41 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Pentvar</td>
+<td class="centered">131.65:-301.13</td>
+<td class="centered">131.5:-303.28</td>
+<td>2.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Perkasie</td>
+<td class="centered">130.78:-143.76</td>
+<td class="centered">130.68:-144.79</td>
+<td>1.03 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pernik</td>
+<td class="centered">-83.63:-335.94</td>
+<td class="centered">-83.55:-338.34</td>
+<td>2.40 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Phact</td>
+<td class="centered">10.84:-139.89</td>
+<td class="centered">10.84:-140.89</td>
+<td>1.00 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Phalan</td>
+<td class="centered">-19.9:134.37</td>
+<td class="centered">-19.89:135.34</td>
+<td>0.97 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Phecda</td>
+<td class="centered">-74.45:-1.59</td>
+<td class="centered">-74.39:-1.6</td>
+<td>0.06 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Pherkad</td>
+<td class="centered">-142.13:170.81</td>
+<td class="centered">-142.04:172.04</td>
+<td>1.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Piriapolis</td>
+<td class="centered">-98.76:-358.35</td>
+<td class="centered">-98.68:-360.9</td>
+<td>2.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Planting</td>
+<td class="centered">-53.78:364.69</td>
+<td class="centered">-53.79:364.69</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Plataea</td>
+<td class="centered">113.1:-122.49</td>
+<td class="centered">112.97:-123.37</td>
+<td>0.89 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Pleione</td>
+<td class="centered">51.43:-79.66</td>
+<td class="centered">51.39:-80.23</td>
+<td>0.57 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Pobeda</td>
+<td class="centered">-244.82:189.17</td>
+<td class="centered">-244.64:190.53</td>
+<td>1.37 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Pojos</td>
+<td class="centered">85.02:-377.17</td>
+<td class="centered">84.97:-379.86</td>
+<td>2.69 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Porrima</td>
+<td class="centered">-113.98:139.27</td>
+<td class="centered">-113.9:140.28</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Porthos</td>
+<td class="centered">72.89:459.29</td>
+<td class="centered">90.2:477.83</td>
+<td>25.36 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Potwin</td>
+<td class="centered">307.6:-19.95</td>
+<td class="centered">307.37:-20.09</td>
+<td>0.27 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Premana</td>
+<td class="centered">-366.33:115.64</td>
+<td class="centered">-366.26:61.92</td>
+<td>53.72 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Pressby</td>
+<td class="centered">-215.29:-14.87</td>
+<td class="centered">-215.3:-14.91</td>
+<td>0.04 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Preston (CC)</td>
+<td class="centered">13.17:-214.03</td>
+<td class="centered">13.16:-215.56</td>
+<td>1.53 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Primus (system)</td>
+<td class="centered">39.54:-320.09</td>
+<td class="centered">39.51:-322.37</td>
+<td>2.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Principia</td>
+<td class="centered">0.02:-357.85</td>
+<td class="centered">0:-360.4</td>
+<td>2.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Prix</td>
+<td class="centered">38.24:-328.31</td>
+<td class="centered">38.22:-330.66</td>
+<td>2.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Promised Land</td>
+<td class="centered">-304.29:-72.42</td>
+<td class="centered">-304.07:-72.93</td>
+<td>0.56 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Propus</td>
+<td class="centered">-12.41:-183.8</td>
+<td class="centered">-12.4:-185.11</td>
+<td>1.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Prydain</td>
+<td class="centered">-269.75:247.1</td>
+<td class="centered">-269.54:248.84</td>
+<td>1.75 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Purvo</td>
+<td class="centered">59.69:-258.83</td>
+<td class="centered">59.66:-260.68</td>
+<td>1.85 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Qanatir</td>
+<td class="centered">-377.13:256.89</td>
+<td class="centered">-376.85:258.74</td>
+<td>1.87 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Qarahta</td>
+<td class="centered">-336.01:226.91</td>
+<td class="centered">-335.76:228.53</td>
+<td>1.64 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Quemoy</td>
+<td class="centered">44.45:-151.49</td>
+<td class="centered">44.42:-152.56</td>
+<td>1.07 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Quilino</td>
+<td class="centered">-323.62:154.53</td>
+<td class="centered">-323.37:155.64</td>
+<td>1.14 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Quimberton</td>
+<td class="centered">83.22:-359.39</td>
+<td class="centered">83.17:-361.96</td>
+<td>2.57 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Quittacas</td>
+<td class="centered">157.94:-219.79</td>
+<td class="centered">157.82:-221.36</td>
+<td>1.57 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Raballa</td>
+<td class="centered">21.7:-157.74</td>
+<td class="centered">21.91:-159.09</td>
+<td>1.37 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Radostov</td>
+<td class="centered">-308.16:43.9</td>
+<td class="centered">-307.82:44.22</td>
+<td>0.47 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Rahne</td>
+<td class="centered">-141.92:9.28</td>
+<td class="centered">-141.84:9.34</td>
+<td>0.10 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Rajkot</td>
+<td class="centered">-374.56:-21.24</td>
+<td class="centered">-374.28:-21.39</td>
+<td>0.32 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ramen II</td>
+<td class="centered">-28.01:-152.95</td>
+<td class="centered">-27.99:-154.05</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ramsey</td>
+<td class="centered">-402.37:1025.14</td>
+<td class="centered">-398.69:1018.64</td>
+<td>7.47 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Randar</td>
+<td class="centered">61.77:-175.77</td>
+<td class="centered">61.73:-177.02</td>
+<td>1.25 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Raphael</td>
+<td class="centered">45.23:-314.88</td>
+<td class="centered">45.19:-317.13</td>
+<td>2.25 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Rasalgethi</td>
+<td class="centered">-41.88:212.17</td>
+<td class="centered">-41.86:213.69</td>
+<td>1.52 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Rasalhague</td>
+<td class="centered">39.27:389.78</td>
+<td class="centered">39.28:389.77</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Recife</td>
+<td class="centered">-286.65:274.21</td>
+<td class="centered">-286.44:276.19</td>
+<td>1.99 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Reese Station</td>
+<td class="centered">-292.59:170.81</td>
+<td class="centered">-292.38:172.04</td>
+<td>1.25 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Regulus</td>
+<td class="centered">-152.06:-180.02</td>
+<td class="centered">-151.98:-181.36</td>
+<td>1.34 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Relevow</td>
+<td class="centered">70.3:-188.26</td>
+<td class="centered">70.25:-189.61</td>
+<td>1.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Remulac</td>
+<td class="centered">-73.16:-39.33</td>
+<td class="centered">-73.1:-39.61</td>
+<td>0.29 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Renown</td>
+<td class="centered">41.6:-397.89</td>
+<td class="centered">41.58:-400.73</td>
+<td>2.84 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Repulse</td>
+<td class="centered">16.27:-397.1</td>
+<td class="centered">16.27:-399.94</td>
+<td>2.84 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Revivim</td>
+<td class="centered">-403.3:18.3</td>
+<td class="centered">-403:18.44</td>
+<td>0.33 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Richvale</td>
+<td class="centered">-275.84:175.2</td>
+<td class="centered">-275.64:176.46</td>
+<td>1.28 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Ridderkerk</td>
+<td class="centered">-46.27:351.24</td>
+<td class="centered">-46.27:351.25</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Riga (HL)</td>
+<td class="centered">-862.84:859.48</td>
+<td class="centered">-855.1:853.84</td>
+<td>9.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Rigil Kentarus</td>
+<td class="centered">-2.85:2.54</td>
+<td class="centered">-2.85:2.56</td>
+<td>0.02 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Rijeka</td>
+<td class="centered">-338.88:95.34</td>
+<td class="centered">-338.63:96.03</td>
+<td>0.73 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Roadside</td>
+<td class="centered">-185.05:368.82</td>
+<td class="centered">-184.91:371.46</td>
+<td>2.64 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Rochelle</td>
+<td class="centered">-113.79:-15.81</td>
+<td class="centered">-113.7:-15.92</td>
+<td>0.14 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Rochers</td>
+<td class="centered">-278.46:-15.97</td>
+<td class="centered">-278.22:-16.07</td>
+<td>0.26 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Romulus</td>
+<td class="centered">-89.7:379.41</td>
+<td class="centered">-89.64:382.12</td>
+<td>2.71 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Rosendal</td>
+<td class="centered">-42.17:-344.34</td>
+<td class="centered">-42.14:-344.34</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Rosice</td>
+<td class="centered">-279.22:52.94</td>
+<td class="centered">-279.01:53.33</td>
+<td>0.44 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Runrig</td>
+<td class="centered">101.11:-364.2</td>
+<td class="centered">48.89:-218.68</td>
+<td>154.61 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Ryans Fate</td>
+<td class="centered">90.2:-416.56</td>
+<td class="centered">90.09:-419.53</td>
+<td>2.97 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sabhal Mòr Ostaig</td>
+<td class="centered">-253.54:237.28</td>
+<td class="centered">-253.34:238.95</td>
+<td>1.68 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Safe Port</td>
+<td class="centered">134.41:286.98</td>
+<td class="centered">134.32:-289.03</td>
+<td>576.01 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Saiph</td>
+<td class="centered">4.64:-68.03</td>
+<td class="centered">4.64:-207.45</td>
+<td>139.42 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Sakhalin (LC)</td>
+<td class="centered">-24.04:151.68</td>
+<td class="centered">-24.03:152.78</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Salardion</td>
+<td class="centered">-37.91:-394.62</td>
+<td class="centered">-37.89:-397.43</td>
+<td>2.81 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Salonika</td>
+<td class="centered">435.9:973.56</td>
+<td class="centered">431.52:967.01</td>
+<td>7.88 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Santana</td>
+<td class="centered">-198.83:258.44</td>
+<td class="centered">-198.69:260.29</td>
+<td>1.86 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Santiago IV</td>
+<td class="centered">-365.68:930.26</td>
+<td class="centered">-362.41:924.71</td>
+<td>6.44 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sappho</td>
+<td class="centered">-59.8:-240.67</td>
+<td class="centered">-59.76:-242.39</td>
+<td>1.72 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sappir</td>
+<td class="centered">-367.62:218.65</td>
+<td class="centered">-367.35:220.21</td>
+<td>1.58 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Saravan</td>
+<td class="centered">-274.26:186.07</td>
+<td class="centered">-274.05:187.4</td>
+<td>1.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sargasso</td>
+<td class="centered">-216.87:268.26</td>
+<td class="centered">-216.7:270.19</td>
+<td>1.94 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sarikavak</td>
+<td class="centered">-425.74:8.29</td>
+<td class="centered">-425.41:8.35</td>
+<td>0.34 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sarpsborg</td>
+<td class="centered">-149.67:32.26</td>
+<td class="centered">-149.66:32.26</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sax</td>
+<td class="centered">-1.56:-374.6</td>
+<td class="centered">-1.55:-273.95</td>
+<td>100.65 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Second Chance</td>
+<td class="centered">-22.76:-129.78</td>
+<td class="centered">-22.74:-130.71</td>
+<td>0.93 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Second Try</td>
+<td class="centered">34.37:-115.8</td>
+<td class="centered">34.35:-116.63</td>
+<td>0.83 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Segerica</td>
+<td class="centered">-27.28:-406.94</td>
+<td class="centered">-27.27:-409.84</td>
+<td>2.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Seginus</td>
+<td class="centered">-82.36:62.76</td>
+<td class="centered">-82.3:63.22</td>
+<td>0.46 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Seiduts</td>
+<td class="centered">-81.94:361.58</td>
+<td class="centered">-81.88:364.17</td>
+<td>2.59 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Semenyih</td>
+<td class="centered">-74.45:-161.6</td>
+<td class="centered">-74.39:-162.76</td>
+<td>1.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sendalor</td>
+<td class="centered">43.68:-266.86</td>
+<td class="centered">43.65:-268.77</td>
+<td>1.91 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Senftenberg</td>
+<td class="centered">-208.84:7.96</td>
+<td class="centered">-208.68:8.02</td>
+<td>0.17 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Shadow</td>
+<td class="centered">-3.1:-1735.69</td>
+<td class="centered">-3.1:1735.69</td>
+<td>3471.38 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Shardayne</td>
+<td class="centered">4.57:247.12</td>
+<td class="centered">4.6:248.91</td>
+<td>1.79 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sharpe</td>
+<td class="centered">63.63:-207.46</td>
+<td class="centered">63.55:-208.94</td>
+<td>1.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Shaunavon</td>
+<td class="centered">160.26:-323.46</td>
+<td class="centered">160.14:-325.76</td>
+<td>2.30 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Shensi</td>
+<td class="centered">53.76:-92.52</td>
+<td class="centered">53.76:-92.06</td>
+<td>0.46 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Shiba</td>
+<td class="centered">0.24:-331.18</td>
+<td class="centered">0.26:-333.55</td>
+<td>2.37 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Shiloh</td>
+<td class="centered">-88.14:-4.96</td>
+<td class="centered">-88.08:-5</td>
+<td>0.07 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Shoreham</td>
+<td class="centered">123.79:-217.7</td>
+<td class="centered">123.71:-219.25</td>
+<td>1.55 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Shuen Wan</td>
+<td class="centered">-37.23:-219.29</td>
+<td class="centered">-37.2:-220.85</td>
+<td>1.56 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Shui-pào</td>
+<td class="centered">-7.78:-134.26</td>
+<td class="centered">-7.79:-135.23</td>
+<td>0.97 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sian</td>
+<td class="centered">7.15:-229.66</td>
+<td class="centered">7.15:-231.29</td>
+<td>1.63 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sichuan</td>
+<td class="centered">35.53:-108.34</td>
+<td class="centered">35.48:-109.12</td>
+<td>0.78 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Siendou</td>
+<td class="centered">-113.99:-291.7</td>
+<td class="centered">-113.9:-293.71</td>
+<td>2.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sierpc</td>
+<td class="centered">-288.27:43.92</td>
+<td class="centered">-288.06:44.25</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sierra</td>
+<td class="centered">-411.23:-111.75</td>
+<td class="centered">-410.92:-112.54</td>
+<td>0.85 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sigma Mare</td>
+<td class="centered">6.45:-314.93</td>
+<td class="centered">6.46:-317.18</td>
+<td>2.25 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Silver</td>
+<td class="centered">-339.18:-130.87</td>
+<td class="centered">-338.92:-131.81</td>
+<td>0.98 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Simpson Desert</td>
+<td class="centered">-271.59:-99.3</td>
+<td class="centered">-271.39:-100.01</td>
+<td>0.74 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sindalin</td>
+<td class="centered">104.84:-338.73</td>
+<td class="centered">104.74:-341.14</td>
+<td>2.41 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sirdar</td>
+<td class="centered">127.16:-309.48</td>
+<td class="centered">127.07:-311.68</td>
+<td>2.20 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sirius</td>
+<td class="centered">-2.56:-7.86</td>
+<td class="centered">-2.56:-7.85</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Skvorec</td>
+<td class="centered">-158.2:-307.69</td>
+<td class="centered">-158.08:-309.89</td>
+<td>2.20 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Skye</td>
+<td class="centered">-57:51.37</td>
+<td class="centered">-57.01:51.74</td>
+<td>0.37 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Slocum</td>
+<td class="centered">58.15:-52.26</td>
+<td class="centered">58.11:-52.63</td>
+<td>0.37 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Smithon</td>
+<td class="centered">126.49:-432.67</td>
+<td class="centered">126.37:-435.74</td>
+<td>3.07 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Smolnik</td>
+<td class="centered">-253.35:110.84</td>
+<td class="centered">-253.16:111.64</td>
+<td>0.82 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Snailzar</td>
+<td class="centered">21.03:-101.42</td>
+<td class="centered">21:-102.15</td>
+<td>0.73 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Soilihull</td>
+<td class="centered">-188.22:46.21</td>
+<td class="centered">-188.09:46.55</td>
+<td>0.36 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Solaris</td>
+<td class="centered">-122.31:-7.02</td>
+<td class="centered">-122.22:-7.07</td>
+<td>0.10 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Son Hoa</td>
+<td class="centered">-421.04:-36.49</td>
+<td class="centered">-420.73:-36.74</td>
+<td>0.40 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sonnia</td>
+<td class="centered">123.55:-41.93</td>
+<td class="centered">123.47:-42.21</td>
+<td>0.29 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sophie's World</td>
+<td class="centered">-102.59:-131.87</td>
+<td class="centered">-102.58:-131.87</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Sparta</td>
+<td class="centered">-219.53:-207.58</td>
+<td class="centered">-219.36:-209.03</td>
+<td>1.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Spencer</td>
+<td class="centered">5.52:-489.47</td>
+<td class="centered">5.53:-492.97</td>
+<td>3.50 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Spica</td>
+<td class="centered">92.53:-237.67</td>
+<td class="centered">92.46:-239.31</td>
+<td>1.64 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Spirit (system)</td>
+<td class="centered">-222.8:-117.54</td>
+<td class="centered">-222.63:-118.37</td>
+<td>0.85 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>St. Andre</td>
+<td class="centered">65.64:-100.64</td>
+<td class="centered">65.6:-101.36</td>
+<td>0.72 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>St. Ives</td>
+<td class="centered">109.62:-214.37</td>
+<td class="centered">109.62:-214.4</td>
+<td>0.03 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>St. Loris</td>
+<td class="centered">89.95:-241.98</td>
+<td class="centered">89.89:-243.71</td>
+<td>1.73 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Staffin</td>
+<td class="centered">105.79:-178.03</td>
+<td class="centered">105.67:-179.31</td>
+<td>1.29 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Stantsiya</td>
+<td class="centered">-392.71:-23.04</td>
+<td class="centered">-392.41:-23.21</td>
+<td>0.34 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Stardawn</td>
+<td class="centered">-335.14:112.57</td>
+<td class="centered">-334.89:113.37</td>
+<td>0.84 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Starshine</td>
+<td class="centered">-373.71:-37.18</td>
+<td class="centered">-373.43:-37.45</td>
+<td>0.39 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Stein's Folly</td>
+<td class="centered">159.73:-200.35</td>
+<td class="centered">159.62:-201.78</td>
+<td>1.43 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Stellaris</td>
+<td class="centered">-300.27:105.71</td>
+<td class="centered">-300.04:106.46</td>
+<td>0.78 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Stettin</td>
+<td class="centered">-153.19:-370.68</td>
+<td class="centered">-341.71:-297.04</td>
+<td>202.39 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Stettin (HL)</td>
+<td class="centered">-826.38:950.98</td>
+<td class="centered">-798.71:945.23</td>
+<td>28.26 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Stewart</td>
+<td class="centered">-119.18:-51.93</td>
+<td class="centered">-119.07:-52.34</td>
+<td>0.42 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Stonarboi</td>
+<td class="centered">-99.11:309.72</td>
+<td class="centered">-99.03:311.91</td>
+<td>2.19 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Storfors</td>
+<td class="centered">-312.32:201.06</td>
+<td class="centered">-312.09:202.5</td>
+<td>1.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Stotzing</td>
+<td class="centered">-348.5:-201.44</td>
+<td class="centered">-348.24:-202.88</td>
+<td>1.46 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Stralsund</td>
+<td class="centered">-651.11:735.31</td>
+<td class="centered">-643.64:729.83</td>
+<td>9.26 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Strandfontein</td>
+<td class="centered">-335.02:302.91</td>
+<td class="centered">-334.77:305.08</td>
+<td>2.18 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Styk</td>
+<td class="centered">42.12:-97.49</td>
+<td class="centered">42.1:-98.19</td>
+<td>0.70 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Suda Bay</td>
+<td class="centered">244.83:946.49</td>
+<td class="centered">242.29:941.22</td>
+<td>5.85 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sudeten</td>
+<td class="centered">-83.47:292.08</td>
+<td class="centered">-83.4:294.23</td>
+<td>2.15 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Suk II</td>
+<td class="centered">-29.21:256.11</td>
+<td class="centered">-29.2:256.12</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Summer</td>
+<td class="centered">-44.46:26.05</td>
+<td class="centered">-44.43:26.25</td>
+<td>0.20 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Summit</td>
+<td class="centered">-116.86:209.59</td>
+<td class="centered">-116.78:211.09</td>
+<td>1.50 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sumy</td>
+<td class="centered">101.11:-364.2</td>
+<td class="centered">37.93:-291.29</td>
+<td>96.48 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Sunnywood</td>
+<td class="centered">61.12:-400.76</td>
+<td class="centered">61.12:-401.77</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Surcin</td>
+<td class="centered">-91.15:197.37</td>
+<td class="centered">-91.19:198.79</td>
+<td>1.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Suzano</td>
+<td class="centered">15.76:-113.99</td>
+<td class="centered">15.75:-114.34</td>
+<td>0.35 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Svarstaad</td>
+<td class="centered">-62.05:338.58</td>
+<td class="centered">-61.99:341</td>
+<td>2.42 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Svinngarn</td>
+<td class="centered">-131.82:110.64</td>
+<td class="centered">-131.73:111.64</td>
+<td>1.00 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Swartklip</td>
+<td class="centered">-359.8:329.01</td>
+<td class="centered">-359.53:331.37</td>
+<td>2.38 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Sweet Water</td>
+<td class="centered">-373.83:312.72</td>
+<td class="centered">-373.54:314.96</td>
+<td>2.26 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Symington</td>
+<td class="centered">-38.52:147.81</td>
+<td class="centered">-38.49:148.87</td>
+<td>1.06 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Syrma</td>
+<td class="centered">-57.92:39.14</td>
+<td class="centered">-57.88:40.66</td>
+<td>1.52 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Szepes</td>
+<td class="centered">-232.29:-63.07</td>
+<td class="centered">-232.11:-63.52</td>
+<td>0.48 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Szombathely</td>
+<td class="centered">-182.3:-84.02</td>
+<td class="centered">-182.16:-84.62</td>
+<td>0.62 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Taga</td>
+<td class="centered">88.91:-207.39</td>
+<td class="centered">88.85:-208.87</td>
+<td>1.48 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tainjin</td>
+<td class="centered">-365.04:273.44</td>
+<td class="centered">-364.77:275.4</td>
+<td>1.98 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Talisker</td>
+<td class="centered">29.06:130.19</td>
+<td class="centered">29.06:131.15</td>
+<td>0.96 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Talitha</td>
+<td class="centered">-34.13:-34.68</td>
+<td class="centered">-34.11:-34.93</td>
+<td>0.25 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tall Trees</td>
+<td class="centered">0.77:-66.74</td>
+<td class="centered">0.77:-67.22</td>
+<td>0.48 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tallin</td>
+<td class="centered">119.67:-267.06</td>
+<td class="centered">119.58:-268.97</td>
+<td>1.91 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tamarind</td>
+<td class="centered">-268.94:-83.29</td>
+<td class="centered">-271.23:-83.98</td>
+<td>2.39 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tangua</td>
+<td class="centered">-374.86:157.89</td>
+<td class="centered">-307.13:273.84</td>
+<td>134.28 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Tania Australis</td>
+<td class="centered">-140.65:-64.66</td>
+<td class="centered">-140.55:-65.13</td>
+<td>0.48 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tania Borealis</td>
+<td class="centered">-106.75:-52.21</td>
+<td class="centered">-106.67:-52.88</td>
+<td>0.67 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tantara</td>
+<td class="centered">101.31:-252.88</td>
+<td class="centered">101.24:-254.69</td>
+<td>1.81 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tapachula</td>
+<td class="centered">-260.57:-212.54</td>
+<td class="centered">-260.57:-212.55</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tapihue</td>
+<td class="centered">-293.69:186.33</td>
+<td class="centered">-293.47:187.66</td>
+<td>1.35 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tchamba</td>
+<td class="centered">-300.92:-147.62</td>
+<td class="centered">-300.7:-148.68</td>
+<td>1.08 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tecumseh</td>
+<td class="centered">139.32:-105.01</td>
+<td class="centered">139.22:-105.75</td>
+<td>0.75 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tellman's Mistake</td>
+<td class="centered">-243.53:-310.77</td>
+<td class="centered">-243.35:-312.99</td>
+<td>2.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tematagi</td>
+<td class="centered">-270.89:-266.56</td>
+<td class="centered">-270.69:-268.47</td>
+<td>1.92 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Teng</td>
+<td class="centered">127.69:-272.02</td>
+<td class="centered">127.6:-314.12</td>
+<td>42.10 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Tengil</td>
+<td class="centered">-65.3:-311.89</td>
+<td class="centered">-65.25:314.12</td>
+<td>626.01 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Terra Firma</td>
+<td class="centered">22.49:-33.62</td>
+<td class="centered">22.47:-33.88</td>
+<td>0.26 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tetersen</td>
+<td class="centered">-203.19:144.71</td>
+<td class="centered">-203.04:145.75</td>
+<td>1.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tetschner</td>
+<td class="centered">96.58:-292.24</td>
+<td class="centered">96.47:-294.33</td>
+<td>2.09 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Texlos</td>
+<td class="centered">110.62:-272.51</td>
+<td class="centered">110.55:-274.45</td>
+<td>1.94 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Teyvareb</td>
+<td class="centered">-413.62:-13.99</td>
+<td class="centered">-413.3:-14.09</td>
+<td>0.34 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>TF4</td>
+<td class="centered">293.09:668.48</td>
+<td class="centered">290.13:665.45</td>
+<td>4.24 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Thannhausen</td>
+<td class="centered">-8.54:292.04</td>
+<td class="centered">-8.55:292.05</td>
+<td>0.01 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tharkad</td>
+<td class="centered">-212.99:151.77</td>
+<td class="centered">-212.84:152.86</td>
+<td>1.10 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Thermopolis</td>
+<td class="centered">-215.38:-58.2</td>
+<td class="centered">-215.23:-58.61</td>
+<td>0.44 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Thirty Weight</td>
+<td class="centered">-246.43:-152.84</td>
+<td class="centered">-246.24:-153.91</td>
+<td>1.09 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Thorin</td>
+<td class="centered">-23.52:7.96</td>
+<td class="centered">-23.51:8.02</td>
+<td>0.06 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Thorn (HL)</td>
+<td class="centered">-773.84:665.93</td>
+<td class="centered">-766.21:660.54</td>
+<td>9.34 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Thuban</td>
+<td class="centered">-196.26:117.82</td>
+<td class="centered">-196.11:458.42</td>
+<td>340.60 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Tianamon</td>
+<td class="centered">98.67:-83.78</td>
+<td class="centered">98.55:-84.39</td>
+<td>0.62 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tiber (FWL)</td>
+<td class="centered">-123.8:-147.43</td>
+<td class="centered">-123.71:-148.48</td>
+<td>1.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tikonov</td>
+<td class="centered">102.83:-42.21</td>
+<td class="centered">102.86:-42.15</td>
+<td>0.07 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Timbiqui</td>
+<td class="centered">-333.73:-59.23</td>
+<td class="centered">-333.48:-59.66</td>
+<td>0.50 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Timehri</td>
+<td class="centered">-261.07:297.21</td>
+<td class="centered">-260.88:299.34</td>
+<td>2.14 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Timkovichi</td>
+<td class="centered">-198.24:246.04</td>
+<td class="centered">-198.09:247.8</td>
+<td>1.77 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tintavel</td>
+<td class="centered">-98.38:-243.79</td>
+<td class="centered">-98.28:-245.51</td>
+<td>1.72 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tirabad</td>
+<td class="centered">339.01:-389.93</td>
+<td class="centered">338.77:-392.7</td>
+<td>2.78 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tiruppur</td>
+<td class="centered">-306.07:162.79</td>
+<td class="centered">-305.84:163.96</td>
+<td>1.19 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>TJ239H2</td>
+<td class="centered">-168.87:611.72</td>
+<td class="centered">-167.42:609.18</td>
+<td>2.92 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Togwotee</td>
+<td class="centered">-196.45:-48.9</td>
+<td class="centered">-196.31:-49.25</td>
+<td>0.38 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tohelet</td>
+<td class="centered">-292.89:-263.99</td>
+<td class="centered">-292.67:-265.88</td>
+<td>1.90 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tomalov</td>
+<td class="centered">-664.12:779.65</td>
+<td class="centered">-656.63:774.11</td>
+<td>9.32 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tomans</td>
+<td class="centered">-50.93:222.25</td>
+<td class="centered">-50.89:223.85</td>
+<td>1.60 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tongatapu</td>
+<td class="centered">-171.24:-141.35</td>
+<td class="centered">-171.12:-142.35</td>
+<td>1.01 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tormentine</td>
+<td class="centered">-380.51:-158.52</td>
+<td class="centered">-380.22:-159.67</td>
+<td>1.19 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Trell</td>
+<td class="centered">-113.97:386.94</td>
+<td class="centered">-113.9:389.68</td>
+<td>2.74 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Trelleborg</td>
+<td class="centered">109.17:919.84</td>
+<td class="centered">107.88:914.38</td>
+<td>5.61 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Trellisane</td>
+<td class="centered">-251.26:-55.1</td>
+<td class="centered">-251.08:-55.49</td>
+<td>0.43 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Trent</td>
+<td class="centered">-131.82:58.11</td>
+<td class="centered">-131.73:58.54</td>
+<td>0.44 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Triesting</td>
+<td class="centered">-350.48:189.43</td>
+<td class="centered">-350.22:190.8</td>
+<td>1.39 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Trinidad</td>
+<td class="centered">-226.98:-172.21</td>
+<td class="centered">-226.81:-173.43</td>
+<td>1.23 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Trinity (system)</td>
+<td class="centered">-248.56:760.8</td>
+<td class="centered">-246.36:756.85</td>
+<td>4.52 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Truth</td>
+<td class="centered">78.31:-159.32</td>
+<td class="centered">78.26:-160.45</td>
+<td>1.13 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tsarahavana</td>
+<td class="centered">-353.15:301.61</td>
+<td class="centered">-352.9:303.77</td>
+<td>2.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tsinan</td>
+<td class="centered">-243.35:206.48</td>
+<td class="centered">-243.05:207.97</td>
+<td>1.52 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tsinghai</td>
+<td class="centered">-2.85:-152.28</td>
+<td class="centered">-2.85:-153.37</td>
+<td>1.09 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tsingtao</td>
+<td class="centered">93.13:-155.16</td>
+<td class="centered">93.24:-156.26</td>
+<td>1.11 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tsitsang</td>
+<td class="centered">51.95:-108.57</td>
+<td class="centered">51.91:-109.35</td>
+<td>0.78 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tuamotu</td>
+<td class="centered">-235.21:-185.68</td>
+<td class="centered">-235.03:-187</td>
+<td>1.33 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tunlmar</td>
+<td class="centered">51.24:-233.76</td>
+<td class="centered">51.2:-235.42</td>
+<td>1.66 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Turin</td>
+<td class="centered">21.18:-367.85</td>
+<td class="centered">21.18:-370.48</td>
+<td>2.63 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Turinge</td>
+<td class="centered">-160.57:96.88</td>
+<td class="centered">-160.45:97.59</td>
+<td>0.72 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Turov</td>
+<td class="centered">-317.21:-221.73</td>
+<td class="centered">-316.97:-223.28</td>
+<td>1.57 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Twycross</td>
+<td class="centered">-108.34:365.24</td>
+<td class="centered">-108.26:367.86</td>
+<td>2.62 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Tylarzka</td>
+<td class="centered">-294.39:-16.81</td>
+<td class="centered">-294.16:-16.93</td>
+<td>0.26 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tyrfing</td>
+<td class="centered">-33.11:-28.32</td>
+<td class="centered">-33.07:-28.5</td>
+<td>0.18 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Tyrlon</td>
+<td class="centered">115.75:-446.46</td>
+<td class="centered">115.64:-449.63</td>
+<td>3.17 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Uhuru</td>
+<td class="centered">-139.06:-12.45</td>
+<td class="centered">-138.96:-12.54</td>
+<td>0.13 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ukunela</td>
+<td class="centered">-282.64:85.27</td>
+<td class="centered">-282.42:85.88</td>
+<td>0.65 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ulan Bator</td>
+<td class="centered">35.92:-139.4</td>
+<td class="centered">35.9:-140.39</td>
+<td>0.99 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ullieri</td>
+<td class="centered">-31.4:-306.17</td>
+<td class="centered">-31.39:308.36</td>
+<td>614.53 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Umgard</td>
+<td class="centered">124.33:-419.08</td>
+<td class="centered">124.18:-422.07</td>
+<td>2.99 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Undra</td>
+<td class="centered">113.55:-116.1</td>
+<td class="centered">113.45:-116.92</td>
+<td>0.83 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Unukalhai</td>
+<td class="centered">-46.27:69.75</td>
+<td class="centered">-46.24:70.25</td>
+<td>0.50 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Upano</td>
+<td class="centered">-219.44:192.27</td>
+<td class="centered">-219.28:193.66</td>
+<td>1.40 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Uravan</td>
+<td class="centered">75.82:-263.87</td>
+<td class="centered">75.77:-265.75</td>
+<td>1.88 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Uzhgorod</td>
+<td class="centered">-213.99:56.82</td>
+<td class="centered">-213.84:57.24</td>
+<td>0.45 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Valdives</td>
+<td class="centered">98.85:-371.58</td>
+<td class="centered">98.82:-374.24</td>
+<td>2.66 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Valencia</td>
+<td class="centered">-707.78:1122.88</td>
+<td class="centered">-700.49:1115.62</td>
+<td>10.29 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Valexa</td>
+<td class="centered">113.8:-86.8</td>
+<td class="centered">113.71:-87.42</td>
+<td>0.63 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Valil'yevskiy</td>
+<td class="centered">-329.57:-178.15</td>
+<td class="centered">-329.31:-179.43</td>
+<td>1.31 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Valloire</td>
+<td class="centered">-384.09:39.9</td>
+<td class="centered">-383.81:40.2</td>
+<td>0.41 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Van Diemen IV</td>
+<td class="centered">-32.83:-41.66</td>
+<td class="centered">-32.81:-41.96</td>
+<td>0.30 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Vanra</td>
+<td class="centered">-48.34:-163.19</td>
+<td class="centered">-48.3:-164.35</td>
+<td>1.16 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Vantaa</td>
+<td class="centered">72.63:351.5</td>
+<td class="centered">-72.59:354.01</td>
+<td>145.24 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Vard</td>
+<td class="centered">74.17:-354.97</td>
+<td class="centered">74.12:-357.51</td>
+<td>2.54 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Veckholm</td>
+<td class="centered">-116.07:124.02</td>
+<td class="centered">-115.99:124.91</td>
+<td>0.89 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Ventabren</td>
+<td class="centered">3.35:-123</td>
+<td class="centered">3.35:-98.45</td>
+<td>24.55 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Victoria (FS)</td>
+<td class="centered">372.22:-316.23</td>
+<td class="centered">225.49:-178.12</td>
+<td>201.50 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Westerstede</td>
+<td class="centered">73.94:-417.24</td>
+<td class="centered">-208:173.94</td>
+<td>654.97 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Wolf 82</td>
+<td class="centered">-102.54:680.03</td>
+<td class="centered">-102.94:680.03</td>
+<td>0.40 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Wonju</td>
+<td class="centered">266.75:414</td>
+<td class="centered">266.7:414</td>
+<td>0.05 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>Wyeth's Glory</td>
+<td class="centered">24.52:-415.04</td>
+<td class="centered">24.45:-418.09</td>
+<td>3.05 LY</td>
+<td class="attention">investigate, then update google sheet coordinates</td>
+</tr>
+<tr><td>Yance I</td>
+<td class="centered">75.47:-43.92</td>
+<td class="centered">75.47:43.92</td>
+<td>87.84 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Yangtze</td>
+<td class="centered">75.47:-43.92</td>
+<td class="centered">75.41:-43.78</td>
+<td>0.15 LY</td>
+<td class="attention">update google sheet coordinates</td>
+</tr>
+<tr><td>York (Clan)</td>
+<td class="centered">No record</td>
+<td class="centered">-86.83:1788.07</td>
+<td>Infinity</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Zdice</td>
+<td class="centered">-311.95:-24.36</td>
+<td class="centered">-311.95:24.36</td>
+<td>48.72 LY</td>
+<td class="warning">investigate</td>
+</tr>
+</table>
+<h2>Systems whose affiliation on Sarna is different to that listed in the google sheet:</h2>
+<table><tr><th>System name</th><th>Sarna affiliation</th><th>Google sheet affiliation</th><th>Script's recommendation</th></tr>
+<tr><td>Aea</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Alfirk</td>
+<td class="centered">Independent world</td>
+<td class="centered">Hidden system</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Anglia</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Argondale</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Artru</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Aurigae</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Belgae</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Beta Salandor</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Bringdam</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Brundams</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Chaffee (DP)</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Coromodir</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Dania</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Doggerbank</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Drachenfeld</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Enkra</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Fasa (system)</td>
+<td class="centered">Clans</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Fjaldr</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Gangtok</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Guldra</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Gurgaldar</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Haddings</td>
+<td class="centered">No record</td>
+<td class="centered">Hidden system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Halkidik</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Heidrunn</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Heliat</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Helvetia</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Hibernia</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Horgens</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Hyalite</td>
+<td class="centered">Federated Suns</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Ichlangis</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 14</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 22</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 6</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Itrom</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Jardine</td>
+<td class="centered">No record</td>
+<td class="centered">Hidden system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Karpathos</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Katinka</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Kazlam</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Knechee</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Landrum</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Lemnos</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Leviathans Rest</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Lothair</td>
+<td class="centered">Federated Suns</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Mangzhangdian</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Mechdur</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Menkalinan</td>
+<td class="centered">Capellan Confederation & Free Worlds League</td>
+<td class="centered">Disputed World</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Mizdargh</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>New Delphi</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Panzyr</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Pharos</td>
+<td class="centered">No record</td>
+<td class="centered">Alexandrian Covenant</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Qalzi</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Refuel Base Gamma</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>St. Andreas</td>
+<td class="centered">No record</td>
+<td class="centered">Society of St. Andreas</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Regis Roost</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 4</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 11</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 7</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rollis</td>
+<td class="centered">Capellan Confederation</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Rukbat</td>
+<td class="centered">Draconis Combine</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Ryans Fate</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Sarna</td>
+<td class="centered">No record</td>
+<td class="centered">Capellan Confederation</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Shitara</td>
+<td class="centered">Draconis Combine</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Smithon</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Spica</td>
+<td class="centered">Disputed World (Capellan Confederation/Federated Suns)</td>
+<td class="centered">Disputed World</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Steelton</td>
+<td class="centered">Lyran Commonwealt</td>
+<td class="centered">Lyran Commonwealth</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Tansalir</td>
+<td class="centered">No record</td>
+<td class="centered">Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Thasos</td>
+<td class="centered">No record</td>
+<td class="centered">New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Tyrlon</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Umgard</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Volders</td>
+<td class="centered">Lyran Commonwealth</td>
+<td class="centered">Draconis Combine</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Wapakoneta</td>
+<td class="centered">Draconis Combine</td>
+<td class="centered">Federated Suns</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Wiltshire</td>
+<td class="centered">Lyran Commonwealth</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Zangul</td>
+<td class="centered">No record</td>
+<td class="centered">Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Zhongshan</td>
+<td class="centered">Lyran Commonwealth</td>
+<td class="centered">No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+</table>
+
+</div>
+</body>
+
+</html>

@@ -749,11 +749,21 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 					}
 					html += '<div class="planet-info '+affiliationClass+'">';
 					html += '<h3>'+d.name+'</h3>';
+					if(d.aliases.length > 0) {
+						html += '<p class="aliases">(aliases: ';
+						for(var i = 0, len = d.aliases.length; i < len; i++) {
+							html += d.aliases[i];
+							if(i < len - 1) {
+								html += ', ';
+							}
+						}
+						html += ')</p>';
+					}
+					html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
 					html += '<button class="remove" title="remove from selection"><span class="fa fa-remove"></span></button>';
 					html += '<button class="center" title="center map on this system"><span class="fa fa-dot-circle-o"></span></button>';
-					html += '<button class="start-route" title="start a new route from this system"><span class="fa fa-level-down fa-rotate-270"></span></button>';
+					//html += '<button class="start-route" title="start a new route from this system"><span class="fa fa-level-down fa-rotate-270"></span></button>';
 					html += '<button class="append-route" title="add this system to the current route"><span class="fa fa-plus"></span></button>';
-					html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
 					html += '<p class="coordinates"><span>Coord.: '+d.x+', '+d.y+'</span></p>';
 					html += '<p>Political affiliation: '+d.affiliation+'</p>';
 					html += '<p>Known systems within jump range:<br>' + neighborsHtml + '</p>';

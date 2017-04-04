@@ -27,14 +27,21 @@ reader.on('systemsRead', function (reader, systems) {
     var path;
     logger.log(systems.length + ' systems read');
 
-    var tsv = 'SARNA.NET PATH\tSYSTEM NAME\tCOORDINATES\t3025 AFFILIATION\n';
+    var tsv = 'SARNA.NET PATH\tSYSTEM NAME\tCOORDINATES\t3025 AFFILIATION\tALIASES\n';
     for(var i = 0, len = systems.length; i < len; i++) {
         curSys = systems[i];
         path = curSys.link.replace('http://www.sarna.net', '');
         tsv += path + '\t';
         tsv += curSys.name + '\t';
         tsv += curSys.x + ':' + curSys.y + '\t';
-        tsv += curSys.affiliation + '\n';
+        tsv += curSys.affiliation + '\t';
+        for(var j = 0, jlen = curSys.aliases.length; j < jlen; j++) {
+            tsv += curSys.aliases[j];
+            if(j < jlen - 1) {
+                tsv += ',';
+            }
+        }
+        tsv += '\n';
     }
 
     // write tsv file

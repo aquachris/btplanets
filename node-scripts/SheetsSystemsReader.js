@@ -50,6 +50,7 @@ module.exports = (function () {
             var sarnaLink;
             var row;
             var coords;
+            var aliases;
             var xCoord, yCoord;
 
             if(err) {
@@ -65,6 +66,7 @@ module.exports = (function () {
             for(var i = 0, len = range.values.length; i < len; i++) {
                 row = range.values[i];
                 coords = row[2].trim().split(':');
+                aliases = (row[4] || '').split(',');
 
                 if(row[0].trim().length === 0) {
                     console.warn(row[1] + ' does not list a sarna page');
@@ -80,12 +82,20 @@ module.exports = (function () {
                     continue;
                 }
 
+                for(var j = 0, jlen = aliases.length; j < jlen; j++) {
+                    aliases[j] = aliases[j].trim();
+                }
+                if(aliases.length === 1 && aliases[0] === '') {
+                    aliases = []
+                }
+
                 this.systems.push({
                     link : sarnaLink,
                     name : row[1],
                     x : xCoord,
                     y : yCoord,
-                    affiliation : row[3]
+                    affiliation : row[3],
+                    aliases : aliases
                 });
             }
 
