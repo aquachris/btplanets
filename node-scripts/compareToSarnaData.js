@@ -17,7 +17,9 @@ var reader = new SheetsSystemsReader(logger);
 logger.log('script started');
 
 reader.on('systemsRead', function (reader, systems) {
-    var sarnaTsv, sarnaArr, sarnaKeys, curSystemArr, coords;
+    var sarnaTsv, sarnaArr, sarnaKeys, curSystemArr;
+    var coordArr, coordStr, coordStr2, coordDiff;
+    var recomCls, recomMsg;
     var sarnaMap = {};
     var googleSheetMap = {};
     var addedInGoogleSheet = [];
@@ -41,11 +43,19 @@ reader.on('systemsRead', function (reader, systems) {
         curSystemArr = sarnaArr[i].split('\t');
         //logger.log(curSystemArr);
         // map systems using their sarna path as key
+        coordArr = (curSystemArr[2] + '').split(':');
+        if(coordArr.length < 2) {
+            coordArr = [NaN, NaN];
+        } else {
+            coordArr[0] = Number.parseFloat(coordArr[0]);
+            coordArr[1] = Number.parseFloat(coordArr[1]);
+        }
         sarnaMap['http://www.sarna.net'+curSystemArr[0]] = {
             link : curSystemArr[0],
             name : curSystemArr[1],
-            coordinates : curSystemArr[2],
-            affiliation : curSystemArr[3]
+            x : coordArr[0],
+            y : coordArr[1],
+            affiliation : (curSystemArr[3] + '').trim()
         };
     }
     logger.log(Object.keys(sarnaMap).length + ' systems read from sarna.');
@@ -58,7 +68,7 @@ reader.on('systemsRead', function (reader, systems) {
         // check if this system exists in sarna data
         if(!sarnaMap.hasOwnProperty(curGoogleSheetObj.link)) {
             logger.warn(curGoogleSheetObj.name + ' does not exist in sarna data.');
-            addedInGoogleSheet.push(curGoogleSheetObj.name);
+            addedInGoogleSheet.push(curGoogleSheetObj);
         }
     }
 
@@ -71,15 +81,16 @@ reader.on('systemsRead', function (reader, systems) {
         curGoogleSheetObj = googleSheetMap[sarnaKeys[i]] || {};
         if(!googleSheetMap.hasOwnProperty(sarnaKeys[i])) {
             logger.warn(curSarnaObj.name + ' does not exist in google sheet.');
-            missingInGoogleSheet.push(curSarnaObj.name);
+            missingInGoogleSheet.push(curSarnaObj);
             continue;
         }
 
         // compare coordinates
-        coords = Number(curGoogleSheetObj.x).toFixed(2) + ':' + Number(curGoogleSheetObj.y).toFixed(2);
-        if(coords !== curSarnaObj.coordinates) {
-            logger.warn('different coordinates for ' + curSarnaObj.name + ': ' + curSarnaObj.coordinates  + ' (sarna) vs. ' + coords + ' (google sheet)');
-            differentCoordinates.push([curSarnaObj.name, curSarnaObj.coordinates, coords]);
+        if(curGoogleSheetObj.x !== curSarnaObj.x || curGoogleSheetObj.y !== curSarnaObj.y) {
+            logger.warn('different coordinates for ' + curSarnaObj.name + ': '
+                            + curSarnaObj.x + ':' + curSarnaObj.y + ' (sarna) vs. '
+                            + curGoogleSheetObj.x + ':' + curGoogleSheetObj.y + ' (google sheet)');
+            differentCoordinates.push([curSarnaObj.name, [curSarnaObj.x, curSarnaObj.y], [curGoogleSheetObj.x, curGoogleSheetObj.y]]);
         }
 
         // compare affiliation
@@ -92,40 +103,109 @@ reader.on('systemsRead', function (reader, systems) {
     // assemble and render out html
     if(missingInGoogleSheet.length > 0) {
         html += '<h2>Systems that exist on Sarna, but are not in the google sheet:</h2>\n';
-        html += '<table><tr><th>System name</th></tr>\n';
+        html += '<table><tr><th>System name</th><th>Coordinates parsed from Sarna</th><th>Affiliation parsed from Sarna</th><th>Script\'s recommendation</th></tr>\n';
         for(var i = 0, len = missingInGoogleSheet.length; i < len; i++) {
-            html += '<tr><td>' + missingInGoogleSheet[i] + '</td></tr>\n';
+            if(isNaN(missingInGoogleSheet[i].x) || isNaN(missingInGoogleSheet[i].y)) {
+                coordStr = 'No record';
+            } else {
+                coordStr = missingInGoogleSheet[i].x + ':' + missingInGoogleSheet[i].y;
+            }
+            if(coordStr !== 'No record' || missingInGoogleSheet[i].affiliation !== 'No record') {
+                recomCls = 'warning';
+                recomMsg = 'investigate';
+            } else {
+                recomCls = 'ok';
+                recomMsg = 'leave this system out';
+            }
+
+            html += '<tr>\n';
+            html += '<td>' + missingInGoogleSheet[i].name + '</td>\n';
+            html += '<td>' + coordStr + '</td>\n';
+            html += '<td>' + missingInGoogleSheet[i].affiliation + '</td>\n';
+            html += '<td class="'+recomCls+'">' + recomMsg + '</td>';
+            html += '</tr>\n';
         }
         html += '</table>\n';
     }
 
     if(addedInGoogleSheet.length > 0) {
         html += '<h2>Systems that exist in the google sheet, but not on Sarna:</h2>\n';
-        html += '<table><tr><th>System name</th></tr>\n';
+        html += '<table><tr><th>System name</th><th>Google Sheet Coordinates</th><th>Google Sheet Affiliation</th><th>Script\'s recommendation</th></tr>\n';
         for(var i = 0, len = addedInGoogleSheet.length; i < len; i++) {
-            html += '<tr><td>' + addedInGoogleSheet[i] + '</td></tr>\n';
+            html += '<tr>\n';
+            html += '<td>' + addedInGoogleSheet[i].name + '</td>\n';
+            html += '<td>' + addedInGoogleSheet[i].x + ':' + addedInGoogleSheet[i].y + '</td>\n';
+            html += '<td>' + addedInGoogleSheet[i].affiliation + '</td>\n';
+            html += '<td class="warning">investigate</td>\n';
+            html += '</tr>\n';
         }
         html += '</table>\n';
     }
 
     if(differentCoordinates.length > 0) {
         html += '<h2>Systems whose coordinates on Sarna are different to those listed in the google sheet:</h2>\n';
-        html += '<table><tr><th>System name</th><th>Sarna coordinates</th><th>Google sheet coordinates</th></tr>\n';
+        html += '<table><tr><th>System name</th><th>Sarna coordinates</th><th>Google sheet coordinates</th><th>Distance between coordinates</th><th>Script\'s recommendation</th></tr>\n';
+
         for(var i = 0, len = differentCoordinates.length; i < len; i++) {
+            if(isNaN(differentCoordinates[i][1][0]) || isNaN(differentCoordinates[i][1][1])) {
+                coordStr = 'No record';
+            } else {
+                coordStr = differentCoordinates[i][1][0] + ':' + differentCoordinates[i][1][1];
+            }
+            if(isNaN(differentCoordinates[i][2][0]) || isNaN(differentCoordinates[i][2][1])) {
+                coordStr2 = 'No record';
+            } else {
+                coordStr2 = differentCoordinates[i][2][0] + ':' + differentCoordinates[i][2][1];
+            }
+            if(coordStr === 'No record' || coordStr2 === 'No record') {
+                diff = Infinity;
+            } else {
+                diff = Math.sqrt(Math.pow(differentCoordinates[i][1][0] - differentCoordinates[i][2][0], 2) + Math.pow(differentCoordinates[i][1][1] - differentCoordinates[i][2][1], 2));
+            }
+            if(diff <= 1) {
+                recomCls = 'attention';
+                recomMsg = 'update google sheet coordinates';
+            } else if(diff <= 10) {
+                recomCls = 'attention';
+                recomMsg = 'investigate, then update google sheet coordinates';
+            } else {
+                recomCls = 'warning';
+                recomMsg = 'investigate';
+            }
+
             html += '<tr><td>' + differentCoordinates[i][0] + '</td>\n';
-            html += '<td class="centered">' + differentCoordinates[i][1] + '</td>\n';
-            html += '<td class="centered">' + differentCoordinates[i][2] + '</td></tr>\n';
+            html += '<td class="centered">' + coordStr + '</td>\n';
+            html += '<td class="centered">' + coordStr2 + '</td>\n';
+            html += '<td>' + diff.toFixed(2);
+            if(diff !== Infinity) {
+                html += ' LY';
+            }
+            html += '</td>\n';
+            html += '<td class="'+recomCls+'">'+recomMsg+'</td>\n';
+            html += '</tr>\n';
         }
         html += '</table>\n';
     }
 
     if(differentAffiliations.length > 0) {
         html += '<h2>Systems whose affiliation on Sarna is different to that listed in the google sheet:</h2>\n';
-        html += '<table><tr><th>System name</th><th>Sarna affiliation</th><th>Google sheet affiliation</th></tr>\n';
+        html += '<table><tr><th>System name</th><th>Sarna affiliation</th><th>Google sheet affiliation</th><th>Script\'s recommendation</th></tr>\n';
         for(var i = 0, len = differentAffiliations.length; i < len; i++) {
+            if(differentAffiliations[i][1] === 'No record' || differentAffiliations[i][2] === 'Disputed World') {
+                recomCls = 'ok';
+                recomMsg = 'leave as it is';
+            } else if(differentAffiliations[i][2] === 'No record') {
+                recomCls = 'attention';
+                recomMsg = 'update google sheet affiliation';
+            } else {
+                recomCls = 'warning';
+                recomMsg = 'investigate';
+            }
             html += '<tr><td>' + differentAffiliations[i][0] + '</td>\n';
             html += '<td class="centered">' + differentAffiliations[i][1] + '</td>\n';
-            html += '<td class="centered">' + differentAffiliations[i][2] + '</td></tr>\n';
+            html += '<td class="centered">' + differentAffiliations[i][2] + '</td>\n';
+            html += '<td class="'+recomCls+'">' + recomMsg + '</td>\n';
+            html += '</tr>\n';
         }
         html += '</table>\n';
     }

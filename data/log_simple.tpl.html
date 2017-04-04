@@ -30,9 +30,23 @@
 			border: 1px solid #aaa;
 			text-align: left;
 			padding: .3em .5em;
+			transition: background-color .3s, color .3s;
+		}
+		tr:hover > th, tr:hover > td {
+			background-color: #999;
+			color: #fff;
 		}
 		td.centered {
 			text-align: center;
+		}
+		td.warning {
+			background-color: #fc0;
+		}
+		td.attention {
+			background-color: #cf6;
+		}
+		td.ok {
+			background-color: #6c6;
 		}
 		div.logs {
             background-color: #fff;
@@ -42,92 +56,6 @@
             z-index: 1;
         }
 
-        /* Tabstrip */
-        div.tabs-header {
-            position: relative;
-            z-index: 2;
-        }
-        div.tabs-header > span {
-            background-color: #e0e0e0;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 1.2rem;
-            /*font-weight: bold;*/
-            height: 2.2rem;
-            line-height: 2.2rem;
-            padding: 0 1em 0 1em;
-            text-align: center;
-            transition: background-color .4s;
-            user-select: none;
-            white-space: nowrap;
-        }
-        div.tabs-header > span:hover {
-            background-color: #ccc;
-        }
-        div.tabs-header > span.active {
-            background-color: #fff;
-            box-shadow: 1px 1px 3px #333;
-            cursor: default;
-            height: 2.4rem;
-            transition: background-color .2s;
-        }
-        div.tabs-header::after {
-            background-color: #fff;
-            bottom: -5px;
-            content: "";
-            display: block;
-            height: 5px;
-            position: absolute;
-            width: 100%;
-        }
-        div.tabs-body {
-            background-color: #fff;
-            box-shadow: 1px 1px 3px #333;
-            padding: .5em;
-            position: relative;
-            z-index: 1;
-        }
-        div.tabs-body p {
-            background-color: transparent;
-            margin: .1em 0;
-            padding-left: 1.2em;
-            position: relative;
-            transition: background-color .4s;
-        }
-        div.tabs-body p:hover {
-            background-color: rgba(50, 50, 50, 0.2);
-        }
-        div.tabs-body p::before {
-            background-color: transparent;
-            border-radius: 3px;
-            content: "";
-            display: inline-block;
-            height: 6px;
-            left: .2em;
-            position: absolute;
-            top: .4em;
-            width: 6px;
-        }
-        div.tabs-body .msg {
-            color: #aaa;
-        }
-        div.tabs-body .warn {
-            color: #ca0;
-        }
-        div.tabs-body .err {
-            color: #a00;
-        }
-        div.tabs-body p.warn::before {
-            background-color: #ca0;
-        }
-        div.tabs-body p.err::before {
-            background-color: #a00;
-        }
-        div.tabs-body.hide-errors .err,
-        div.tabs-body.hide-warnings .warn,
-        div.tabs-body.hide-messages .msg {
-            display: none;
-        }
 
     </style>
 </head>
