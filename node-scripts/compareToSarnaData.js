@@ -162,12 +162,12 @@ reader.on('systemsRead', function (reader, systems) {
             } else {
                 diff = Math.sqrt(Math.pow(differentCoordinates[i][1][0] - differentCoordinates[i][2][0], 2) + Math.pow(differentCoordinates[i][1][1] - differentCoordinates[i][2][1], 2));
             }
-            if(diff <= 1) {
+            if(diff <= 5) {
                 recomCls = 'attention';
                 recomMsg = 'update google sheet coordinates';
-            } else if(diff <= 10) {
-                recomCls = 'attention';
-                recomMsg = 'investigate, then update google sheet coordinates';
+            //} else if(diff <= 10) {
+            //    recomCls = 'attention';
+            //    recomMsg = 'investigate, then update google sheet coordinates';
             } else {
                 recomCls = 'warning';
                 recomMsg = 'investigate';

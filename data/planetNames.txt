@@ -3048,6 +3048,7 @@
 /wiki/Weitinger	Weitinger
 /wiki/Weiz	Weiz
 /wiki/Weldon	Weldon
+/wiki/Weldry	Weldry
 /wiki/Werfer	Werfer
 /wiki/Wernke	Wernke
 /wiki/Westerhand	Westerhand
