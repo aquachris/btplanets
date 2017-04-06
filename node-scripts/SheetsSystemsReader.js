@@ -15,6 +15,7 @@ module.exports = (function () {
         this.parent.call(this);
         this.logger = logger || console;
         this.skipNeighborSearch = false;
+        this.includeEmptySystems = false;
         this.systems = [];
         this.sheetsAuth = new SheetsAuthInstance('inner-sphere-map-sheet-reader',
             ['https://www.googleapis.com/auth/spreadsheets.readonly']);
@@ -31,8 +32,9 @@ module.exports = (function () {
     /**
      * Initiates the data loading
      */
-    SheetsSystemsReader.prototype.readSystems = function (skipNeighborSearch) {
-        this.skipNeighborSearch = skipNeighborSearch || false;
+    SheetsSystemsReader.prototype.readSystems = function (skipNeighborSearch, includeEmptySystems) {
+        this.skipNeighborSearch = !!skipNeighborSearch;
+        this.includeEmptySystems = !!includeEmptySystems;
         this.sheetsAuth.loadCredentialsAndAuthorize();
     };
 
@@ -75,9 +77,14 @@ module.exports = (function () {
                     sarnaLink = 'http://www.sarna.net' + row[0];
                 }
 
-                xCoord = Number(coords[0]);
-                yCoord = Number(coords[1]);
-                if(isNaN(xCoord) || isNaN(yCoord)) {
+                if(coords.length < 2) {
+                    xCoord = NaN;
+                    yCoord = NaN;
+                } else {
+                    xCoord = Number(coords[0]);
+                    yCoord = Number(coords[1]);
+                }
+                if( (isNaN(xCoord) || isNaN(yCoord)) && !this.includeEmptySystems ) {
                     this.logger.error(row[1] + ' has corrupt coordinates: ' + xCoord + ', ' + yCoord + '. System will be ignored.');
                     continue;
                 }
@@ -86,7 +93,7 @@ module.exports = (function () {
                     aliases[j] = aliases[j].trim();
                 }
                 if(aliases.length === 1 && aliases[0] === '') {
-                    aliases = []
+                    aliases = [];
                 }
 
                 this.systems.push({

@@ -86,7 +86,9 @@ reader.on('systemsRead', function (reader, systems) {
         }
 
         // compare coordinates
-        if(curGoogleSheetObj.x !== curSarnaObj.x || curGoogleSheetObj.y !== curSarnaObj.y) {
+        if( (curGoogleSheetObj.x !== curSarnaObj.x || curGoogleSheetObj.y !== curSarnaObj.y)
+            && !( isNaN(curGoogleSheetObj.x) && isNaN(curGoogleSheetObj.y) && isNaN(curSarnaObj.x) && isNaN(curSarnaObj.y) )
+        ) {
             logger.warn('different coordinates for ' + curSarnaObj.name + ': '
                             + curSarnaObj.x + ':' + curSarnaObj.y + ' (sarna) vs. '
                             + curGoogleSheetObj.x + ':' + curGoogleSheetObj.y + ' (google sheet)');
@@ -191,7 +193,7 @@ reader.on('systemsRead', function (reader, systems) {
         html += '<h2>Systems whose affiliation on Sarna is different to that listed in the google sheet:</h2>\n';
         html += '<table><tr><th>System name</th><th>Sarna affiliation</th><th>Google sheet affiliation</th><th>Script\'s recommendation</th></tr>\n';
         for(var i = 0, len = differentAffiliations.length; i < len; i++) {
-            if(differentAffiliations[i][1] === 'No record' || differentAffiliations[i][2] === 'Disputed World') {
+            if(differentAffiliations[i][1] === 'No record' || differentAffiliations[i][2] === 'Disputed World' || differentAffiliations[i][2] === 'Hidden system') {
                 recomCls = 'ok';
                 recomMsg = 'leave as it is';
             } else if(differentAffiliations[i][2] === 'No record') {
@@ -223,4 +225,4 @@ reader.on('systemsRead', function (reader, systems) {
     logRenderer.render();
 });
 
-reader.readSystems(true);
+reader.readSystems(true, true);
