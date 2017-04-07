@@ -85,7 +85,7 @@ module.exports = (function () {
                     yCoord = Number(coords[1]);
                 }
                 if( (isNaN(xCoord) || isNaN(yCoord)) && !this.includeEmptySystems ) {
-                    this.logger.error(row[1] + ' has corrupt coordinates: ' + xCoord + ', ' + yCoord + '. System will be ignored.');
+                    this.logger.warn('Missing or corrupt coordinates for '+row[1]+': ' + xCoord + ', ' + yCoord + '. System will be ignored.');
                     continue;
                 }
 
