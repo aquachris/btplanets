@@ -7,6 +7,14 @@ require(['js/btplanets', 'js/btplanets_keys', 'js/btplanets_routes', 'js/btplane
 
 	var initialized = false;
 
+	var loadCss = function (url) {
+		var link = document.createElement("link");
+	    link.type = "text/css";
+	    link.rel = "stylesheet";
+	    link.href = url;
+	    document.getElementsByTagName("head")[0].appendChild(link);
+	};
+
 	var init = function () {
 		main.init();
 		keys.init();

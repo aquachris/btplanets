@@ -689,10 +689,11 @@ div.controls input[type="radio"]:checked + label:before {
 
 
 div.controls p.error {
-	color: #c00;
+	color: #e00;
 	display: none;
 	/*font-size: 1.2em;*/
 	font-weight: bold;
+	text-shadow: 0 0 2px #000;
 }
 div.controls p.error.visible {
 	display: block;

@@ -8,7 +8,7 @@ var timestamp = now.getUTCFullYear();
 timestamp += now.getUTCMonth() < 9 ? '0' + (now.getUTCMonth() + 1) : (now.getUTCMonth() + 1);
 timestamp += now.getUTCDate() < 10 ? '0' + now.getUTCDate() : now.getUTCDate();
 timestamp += now.getUTCHours() < 10 ? '0' + now.getUTCHours() : now.getUTCHours();
-timestamp += now.getUTCMinutes();
+timestamp += now.getUTCMinutes() < 10 ? '0' + now.getUTCMinutes() : now.getUTCMinutes();
 
 var TSV_PATH = '../data/systems_' + timestamp + '.tsv';
 var JSON_PATH = '../data/systems_' + timestamp + '.json';
@@ -65,6 +65,8 @@ reader.on('systemsRead', function (reader, systems) {
         var indexHtml = fs.readFileSync(INDEX_HTML_PATH, {
             encoding: 'utf8'
         });
+        indexHtml = indexHtml.replace(/\.css\?version=\d+/,
+            '.css?version=' + timestamp);
         indexHtml = indexHtml.replace(/window\.BTPLANETS_VERSION(\s*)\=(\s*)(\d+)\;/gi,
             'window.BTPLANETS_VERSION = ' + timestamp + ';');
         fs.writeFileSync(INDEX_HTML_PATH, indexHtml);
