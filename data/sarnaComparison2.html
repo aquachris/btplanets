@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Logger output</title>
+    <style>
+        html, body {
+            background-color: #f0f0f0;
+            font-family: monospace;
+            font-size: 11pt;
+        }
+        blockquote, code, div, p, pre, span, h1, h2, h3, h4, h5 {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: .5em 0;
+            padding-left: .4em;
+        }
+		h2 {
+			margin: .5em 0;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		tr:nth-child(2n) {
+			background-color: #eee;
+		}
+		th, td {
+			border: 1px solid #aaa;
+			text-align: left;
+			padding: .3em .5em;
+			transition: background-color .3s, color .3s;
+		}
+		tr:hover > th, tr:hover > td {
+			background-color: #999;
+			color: #fff;
+		}
+		td.centered {
+			text-align: center;
+		}
+		td.warning {
+			background-color: #fc0;
+		}
+		td.attention {
+			background-color: #cf6;
+		}
+		td.ok {
+			background-color: #6c6;
+		}
+		div.logs {
+            background-color: #fff;
+            box-shadow: 1px 1px 3px #333;
+            padding: .5em;
+            position: relative;
+            z-index: 1;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<h1>&gt; script logs</h1>
+<div class="logs">
+	<h2>Systems that exist on Sarna, but are not in the google sheet:</h2>
+<table><tr><th>System name</th><th>Coordinates parsed from Sarna</th><th>Affiliation parsed from Sarna</th><th>Script's recommendation</th></tr>
+<tr>
+<td>Kalindam</td>
+<td>52.18:-382.02</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+<tr>
+<td>Luckla</td>
+<td>-53.58:-227.17</td>
+<td>No record</td>
+<td class="warning">investigate</td></tr>
+</table>
+<h2>Systems whose coordinates on Sarna are different to those listed in the google sheet:</h2>
+<table><tr><th>System name</th><th>Sarna coordinates</th><th>Google sheet coordinates</th><th>Distance between coordinates</th><th>Script's recommendation</th></tr>
+<tr><td>Dumassas</td>
+<td class="centered">421.69:-354.2</td>
+<td class="centered">428.87:-321.74</td>
+<td>33.24 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Flannagan's Nebulea</td>
+<td class="centered">222.82:-385.18</td>
+<td class="centered">192.19:-392.3</td>
+<td>31.45 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Helvetia</td>
+<td class="centered">993.695:204.758</td>
+<td class="centered">975.96:187.48</td>
+<td>24.76 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Homer (Clan)</td>
+<td class="centered">No record</td>
+<td class="centered">-90.83:1785.07</td>
+<td>Infinity</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>Victoria (FS)</td>
+<td class="centered">372.22:-316.23</td>
+<td class="centered">225.49:-178.12</td>
+<td>201.50 LY</td>
+<td class="warning">investigate</td>
+</tr>
+<tr><td>York (Clan)</td>
+<td class="centered">No record</td>
+<td class="centered">-70.86:1805.59</td>
+<td>Infinity</td>
+<td class="warning">investigate</td>
+</tr>
+</table>
+<h2>Systems whose affiliation on Sarna is different to that listed in the google sheet:</h2>
+<table><tr><th>System name</th><th>Sarna affiliation</th><th>Google sheet affiliation</th><th>Script's recommendation</th></tr>
+<tr><td>Aea</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Alfirk</td>
+<td>Independent world</td>
+<td>Hidden system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Anglia</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Argondale</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Artru</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Aurigae</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Belgae</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Beta Salandor</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Bringdam</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Brundams</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Chaffee (DP)</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Charlie 425 A</td>
+<td>Clans</td>
+<td>No record</td>
+<td class="attention">update google sheet affiliation</td>
+</tr>
+<tr><td>Coromodir</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Dania</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Doggerbank</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Drachenfeld</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Enkra</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Fjaldr</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Gangtok</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Guldra</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Gurgaldar</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Haddings</td>
+<td>No record</td>
+<td>Hidden system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Halkidik</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Heidrunn</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Heliat</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Helvetia</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Hibernia</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Horgens</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Ichlangis</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 14</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 22</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Interstellar Expeditions Base 6</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Itrom</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Jardine</td>
+<td>No record</td>
+<td>Hidden system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Karpathos</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Katinka</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Kazlam</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Knechee</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Landrum</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Lemnos</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Leviathans Rest</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Mangzhangdian</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Mechdur</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Menkalinan</td>
+<td>Capellan Confederation & Free Worlds League</td>
+<td>Disputed World</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Mizdargh</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>New Delphi</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Panzyr</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Pharos</td>
+<td>No record</td>
+<td>Alexandrian Covenant</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Qalzi</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Refuel Base Gamma</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>St. Andreas</td>
+<td>No record</td>
+<td>Society of St. Andreas</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Regis Roost</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 4</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 11</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Rim Worlds Republic Outpost 7</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Ryans Fate</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Sarna</td>
+<td>No record</td>
+<td>Capellan Confederation</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Smithon</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Spica</td>
+<td>Disputed World (Capellan Confederation/Federated Suns)</td>
+<td>Disputed World</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Tansalir</td>
+<td>No record</td>
+<td>Inhabited system</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Thasos</td>
+<td>No record</td>
+<td>New Delphi Compact</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Tyrlon</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Umgard</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Weldry</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+<tr><td>Zangul</td>
+<td>No record</td>
+<td>Aurigan Coalition</td>
+<td class="ok">leave as it is</td>
+</tr>
+</table>
+
+</div>
+</body>
+
+</html>

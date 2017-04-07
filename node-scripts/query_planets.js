@@ -13,7 +13,10 @@ var startingPlanet = 'A Place';
 var i = 0;
 var requestNextPlanetBatch = function () {
 	var host = 'http://www.sarna.net',
-		path = '/wiki/index.php?title=Category:Planets&pagefrom='+encodeURIComponent(startingPlanet);
+		path;
+
+	startingPlanet = startingPlanet.replace(/\([^\)]+\)/g, '');
+	path = '/wiki/index.php?title=Category:Planets&pagefrom='+encodeURIComponent(startingPlanet);
 
 	console.log(host + path);
 	http.get(host + path, function (res) {
@@ -238,10 +241,10 @@ var writePlanetData = function () {
 var main = function () {
 	console.log('query_planets script started');
 	// gather all planet pages on sarna wiki
-	//requestNextPlanetBatch();
+	requestNextPlanetBatch();
 
 	// use assembled list to request all planet details
-	requestPlanetDetails();
+	//requestPlanetDetails();
 };
 
 main();
