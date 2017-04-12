@@ -27,7 +27,7 @@ reader.on('systemsRead', function (reader, systems) {
     var path;
     logger.log(systems.length + ' systems read');
 
-    var tsv = 'SARNA.NET PATH\tSYSTEM NAME\tCOORDINATES\t3025 AFFILIATION\tALIASES\n';
+    var tsv = 'SARNA.NET PATH\tSYSTEM NAME\tCOORDINATES\t3025 AFFILIATION\tALIASES\tOBJECTS\n';
     for(var i = 0, len = systems.length; i < len; i++) {
         curSys = systems[i];
         path = curSys.link.replace('http://www.sarna.net', '');
@@ -37,6 +37,12 @@ reader.on('systemsRead', function (reader, systems) {
         tsv += curSys.affiliation + '\t';
         for(var j = 0, jlen = curSys.aliases.length; j < jlen; j++) {
             tsv += curSys.aliases[j];
+            if(j < jlen - 1) {
+                tsv += ',';
+            }
+        }
+        for(var j = 0, jlen = curSys.objects.length; j < jlen; j++) {
+            tsv += curSys.objects[j];
             if(j < jlen - 1) {
                 tsv += ',';
             }
