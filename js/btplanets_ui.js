@@ -748,11 +748,23 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						html += '<hr/>';
 					}
 					html += '<div class="planet-info '+affiliationClass+'">';
-					html += '<h3>'+d.name+'</h3>';
-					if(d.aliases.length > 0) {
-						html += '<p class="aliases">(aliases: ';
-						for(var i = 0, len = d.aliases.length; i < len; i++) {
-							html += d.aliases[i];
+					html += '<h3>'+d.name;
+					for(var i = 0, len = d.aliases.length; i < len; i++) {
+						if(i === 0) {
+							html += ' (';
+						}
+						html += d.aliases[i];
+						if(i === len - 1) {
+							html += ')';
+						} else {
+							html += ', ';
+						}
+					}
+					html += '</h3>';
+					if(d.objects.length > 0) {
+						html += '<p class="aliases">(in-system objects: ';
+						for(var i = 0, len = d.objects.length; i < len; i++) {
+							html += d.objects[i];
 							if(i < len - 1) {
 								html += ', ';
 							}

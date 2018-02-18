@@ -47,12 +47,13 @@ module.exports = (function () {
         sheets.spreadsheets.values.get({
             auth: oAuth2Client,
             spreadsheetId: '1XuAjWs9jUKuieb8qNyQLTu4Y6bZBLoxaAy-yWpohLuQ',
-            range: 'planets_corrected!A2:E'
+            range: 'planets_corrected!A2:F'
         }, function (err, range) {
             var sarnaLink;
             var row;
             var coords;
             var aliases;
+            var objects;
             var xCoord, yCoord;
 
             if(err) {
@@ -69,6 +70,7 @@ module.exports = (function () {
                 row = range.values[i];
                 coords = row[2].trim().split(':');
                 aliases = (row[4] || '').split(',');
+                objects = (row[5] || '').split(',');
 
                 if(row[0].trim().length === 0) {
                     console.warn(row[1] + ' does not list a sarna page');
@@ -89,11 +91,26 @@ module.exports = (function () {
                     continue;
                 }
 
-                for(var j = 0, jlen = aliases.length; j < jlen; j++) {
+                for(var j = 0; j < aliases.length; j++) {
                     aliases[j] = aliases[j].trim();
+                    if(aliases[j] === '') {
+                        aliases.splice(j, 1);
+                        j--;
+                    }
                 }
                 if(aliases.length === 1 && aliases[0] === '') {
                     aliases = [];
+                }
+
+                for(var j = 0; j < objects.length; j++) {
+                    objects[j] = objects[j].trim();
+                    if(objects[j] === '') {
+                        objects.splice(j, 1);
+                        j--;
+                    }
+                }
+                if(objects.length === 1 && objects[0] === '') {
+                    objects = [];
                 }
 
                 this.systems.push({
@@ -102,7 +119,8 @@ module.exports = (function () {
                     x : xCoord,
                     y : yCoord,
                     affiliation : row[3],
-                    aliases : aliases
+                    aliases : aliases,
+                    objects : objects
                 });
             }
 

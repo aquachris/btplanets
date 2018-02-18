@@ -468,7 +468,7 @@ define(['js/lib/d3.min'], function(d3) {
 			var planetName, circle, text;
 
 			if(typeof planet === 'string') {
-				planetName = planet;
+				planetName = planet.split('(')[0].trim();
 				planet = null;
 				for(var i = 0, len = this.planets.length; i< len; i++) {
 					if(this.planets[i].name.toLowerCase() === planetName.toLowerCase()) {
@@ -547,13 +547,18 @@ define(['js/lib/d3.min'], function(d3) {
 			if(!name) {
 				throw 'No planet name given';
 			}
-			// Pass 1: look for exact matches (system name and aliases)
+			// Pass 1: look for exact matches (system name, aliases and objects)
 			for(var i = 0, len = this.planets.length; i < len; i++) {
 				if(this.planets[i].name.toLowerCase() === name) {
 					return i;
 				}
 				for(var j = 0, jlen = this.planets[i].aliases.length; j < jlen; j++) {
 					if(this.planets[i].aliases[j].toLowerCase() === name) {
+						return i;
+					}
+				}
+				for(var j = 0, jlen = this.planets[i].objects.length; j < jlen; j++) {
+					if(this.planets[i].objects[j].toLowerCase() === name) {
 						return i;
 					}
 				}
@@ -568,6 +573,11 @@ define(['js/lib/d3.min'], function(d3) {
 						return i;
 					}
 				}
+				for(var j = 0, jlen = this.planets[i].objects.length; j < jlen; j++) {
+					if(this.planets[i].objects[j].toLowerCase().indexOf(name) === 0) {
+						return i;
+					}
+				}
 			}
 			// Pass 3: look for substring matches
 			for(var i = 0, len = this.planets.length; i < len; i++) {
@@ -576,6 +586,11 @@ define(['js/lib/d3.min'], function(d3) {
 				}
 				for(var j = 0, jlen = this.planets[i].aliases.length; j < jlen; j++) {
 					if(this.planets[i].aliases[j].toLowerCase().indexOf(name) !== -1) {
+						return i;
+					}
+				}
+				for(var j = 0, jlen = this.planets[i].objects.length; j < jlen; j++) {
+					if(this.planets[i].objects[j].toLowerCase().indexOf(name) !== -1) {
 						return i;
 					}
 				}
