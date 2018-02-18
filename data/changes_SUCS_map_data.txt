@@ -1,0 +1,177 @@
+- Nueva Castile reg
+arded as "No record"
+- Chainelane Isles regarded as "No record"
+- Hanseatic League regarded as "No record"
+- Axumite Providence regarded as "No record"
+- Jarnfolk regarded as "No record"
+- Systems belonging to a specific Clan are regarded as "Clans"
+
+???
+Joradian Cluster / Jordian Cluster?
+Pharos aka Eros aka Phaeton
+
+
+Needs to be changed in our data:
+- Alekseyvka --> Alekseyevka
+- Bornal --> Agmond (display)
+- Brank --> Edirne (display)
+- Camlann (DC) --> Camlann (LC)
+- Chirac --> Quimper (display)
+- Cluff's Stand --> Zhaomaon (display)
+- Dieudonne --> Dieudonné
+- Ferreusvirgo --> Lywick (display)
+- Garotte --> Seven Lands (display)
+- Grants Station --> Grant's Station
+- Gulf Breeze --> Commonwealth Mining Outpost 26
+
+- Jardine --> Herakleion aka Jardine
+- Liao aka Cynthiana
+- Jia Tian --> Arn aka Jia Tian
+- Jibbet --> Lushun aka Jibbet
+- Kaznejoy aka Kaznejov
+- Kerensky's Vision --> Qualip aka Kerensky's Vision
+- Kesai aka Kasai aka Kesai IV / Kasai IV
+- Kimball aka Kimball II
+- Klathan aka Klathandu IV
+- Liberty --> Carver (display) aka Liberty
+- Liu's Memory --> Shaobuon (display)
+- Mesartim aka Conway
+- Mica I, V, VII --> Micanos
+- Murris --> Kalindam aka Murris
+- Neukirchen aka Jodipur
+- New Earth aka Tau Ceti
+- New Hati --> New Haiti aka New Hati
+- New Start --> Takata (display)
+- New Vandenberg --> New Vandenburg
+- Niops aka Niops V, VI, VIII
+- Nyserta aka Blackbone
+- Oberon aka Oberon VI
+- Silence --> Ouagadougou (display) aka Silence
+- Sharpe --> Obeedah aka Sharpe
+- Shaun --> Burl aka Shaun
+- P3 --> Transfer Station P3
+- P9 --> Transfer Station P9
+- Pain --> Dijonne (display) aka Pain
+- Pillory --> Anatolia (display) aka Pillory 
+- Pirates' Haven --> Pirates Haven aka Badlands Cluster aka Pirates' Haven
+- Randis IV --> Randis aka Hope aka Randis IV aka Hope IV
+- Runrig aka Rhodos
+- Santander aka Santander V aka Santander's World
+- Sartu aka Bastille
+- Scauld --> Austerlitz aka Scauld
+- Shaula aka Perrot
+- St. Jean aka St-Jean
+- Star's End aka Novo Cressidas
+- Sterope aka New Taurus
+- Valladolid --> Mudd's Hut aka Valladolid
+- Veil --> Oporto (display) aka Veil
+- Versailles --> Taussen aka Versailles
+- Mayadi aka Tangerz
+- TF4 --> Transfer Station 4
+- The Rack --> Port Vail (display) aka The Rack
+- Tincalunas --> Huanghuadian (display) aka Tincalunas
+- TJ239H2 --> Transfer Station J239H2
+- Toch Zu aka Kirkvåg
+- Tovetin aka Tovetine
+- Trip --> Adhara (display) aka Trip
+- Tsinghai --> New Sarna aka Tsinghai
+- Tunlmar aka Lamu
+- Tyrfing aka Tabit V
+- Victoria (FS) aka Meglan
+- Von Strang's World aka Erin
+- Waypoint 531 --> Waystation 531?
+- Wernke aka Talon
+- Winfield (LC) aka Treeline
+- Wolf 82 --> Wolf Orbital 82?
+- Wyeth's Glory --> Thamel (display) aka Wyeth's Glory
+- Yance I --> Agador aka Yance aka Yance I
+- Zathras aka Zatharas
+- Fasa (system) --> Fasa (display)
+- Xi Ursae Majoris --> Alula Australis aka Xi Ursae Majoris
+
+New systems?
++ Death's Gaze Cluster
++ Farhome
++ Illizi
++ Juniper
++ Kapoeta
++ Kebili
++ Kefya
++ Ksabi
++ Micanos
++ Monument to Man
++ Mostaganem
++ Nebula D77
++ Nyamlell
++ Quimper (Crucis March)
++ RWR Outpost #27 / Coreward Confederacy
++ Radulov (Tanis 2600+)
++ Richmond's World (Murrain 3025+)
++ Saggina
++ Saidia
++ Shahhat
++ Star Cluster 1108 (RW)
++ Star Cluster 1108 (SW)
++ Star Cluster 643
++ Star Cluster 65
++ Star Cluster 752
++ Star Cluster 889
++ Star Cluster A51
++ Star Cluster Briceno 1
++ Star Cluster P12
++ Star Cluster P24
++ T Cephei (The Devil's Eye)
++ Tadjoura
++ The Swan's Eye
++ Theta Carinae Cluster
++ Tizga
++ Union of Samoyedic Colonies
+
+No coordinates:
+- Etienne's Sanctuary
+- Herat (KE)
+- Long Baseline Facility-3
+- Luyten 68-28
+- Marv
+- Mundo Nublar
+- Nishapur
+- Paraiso
+- Pioche
+- Ross 248 (Terrelibre)
+- Roxborough
+- Siroc
+- Urgenj
+
+Needs to be changed in big sheet
+- Alnasi --> Alnasl
+- Angell II --> Angell
+- Baltazar III --> Baltazar
+- Benet III --> Benet
+- Callisto V --> Callisto
+- Calloway VI --> Calloway
+- Cambridge Perimeter Defense Station --> Cambridge
+- Canopus IV --> Canopus
+- Capricorn III --> Capricorn
+- Chukchi III --> Chukchi
+- Clayborne II --> Clayborne
+- Corridan IV --> Corridan
+- Crevedia --> Vaj
+- Dahar IV --> Dahar
+- Declan II --> Declan
+- Delos IV --> Delos
+- Doneval II --> Doneval
+- Dromini VI --> Dromini
+- Elidere IV --> Elidere
+- Fallon II --> Fallon
+- Fellanin II --> Fellanin
+- Galedon V --> Galedon
+- Hesperus II --> Hesperus
+- Kentares IV --> Kentares
+- Kesai IV --> Kesai
+- Kimball II --> Kimball
+- Oberon VI --> Oberon
+- Hope IV / Randis IV --> Hope / Randis
+- Pirates Haven --> Pirates' Haven
+- Ryans Fate --> Ryan's Fate
+- Tancredi IV --> Tancredi
+- Alexandrian Covenant --> Pharos
