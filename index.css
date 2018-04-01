@@ -319,6 +319,9 @@ div.controls div.stop-info span.route-stop-info {
 	position: absolute;
 	top: -2.4em;
 }
+div.controls div.stop-info span.route-stop-info.unknown {
+	color: #fb0;
+}
 div.controls div.planet-info.liao,
 div.controls div.stop-info.capellan-confederation {
 	background-image: url("./img/liao_64.png");
@@ -1261,6 +1264,10 @@ svg g.jump-routes path {
 	stroke: rgba(255, 255, 255, .7);/*#eee;*/
 	stroke-width: 2px;
 	transition: opacity .5s;
+}
+svg g.jump-routes path.unknown {
+	stroke: rgba(255, 210, 0, .7);
+	stroke-dasharray: 8, 8;
 }
 svg.route-hidden g.jump-routes path {
 	opacity: 0;

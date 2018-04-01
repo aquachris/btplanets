@@ -125,6 +125,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 			// Track the iterations made
 			var iterations = 0;
+			var systemsSearched = 0;
 
 			// Loop variables
 			var curListObj, curIdx;
@@ -134,51 +135,58 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 
 			// Main search loop: check the open lists for the planets that are closest
 			// to the target / start planet. Alternate between the two searches.
-			while(Object.keys(openListStartTarget).length > 0 && Object.keys(openListTargetStart).length > 0) {
+			while(Object.keys(openListStartTarget).length > 0 || Object.keys(openListTargetStart).length > 0) {
 				iterations++;
 
 				// START -> TARGET direction
 				// find planet in open list that is closest to the target
-				curListObj = this.processNextPlanet(
-					openListStartTarget,
-					closedListStartTarget,
-					targetPlanet,
-					options,
-					iterations * 2 - 1
-				);
-				// check if termination condition is reached
-				if(curListObj.planet === targetPlanet || closedListTargetStart.hasOwnProperty(curListObj.idx)) {
-					mergeIdxStartTarget = curListObj.idx;
+				if(Object.keys(openListStartTarget).length > 0) {
+					systemsSearched++;
+					curListObj = this.processNextPlanet(
+						openListStartTarget,
+						closedListStartTarget,
+						targetPlanet,
+						options,
+						systemsSearched
+					);
+					// check if termination condition is reached
+					if(curListObj.planet === targetPlanet || closedListTargetStart.hasOwnProperty(curListObj.idx)) {
+						mergeIdxStartTarget = curListObj.idx;
+					}
 				}
 
 				// TARGET -> START direction
 				// find planet in open list that is closest to the start
-				curListObj = this.processNextPlanet(
-					openListTargetStart,
-					closedListTargetStart,
-					startPlanet,
-					options,
-					iterations * 2
-				);
-				// check if termination condition is reached
-				if(curListObj.planet === startPlanet || closedListStartTarget.hasOwnProperty(curListObj.idx)) {
-					mergeIdxTargetStart = curListObj.idx;
+				if(Object.keys(openListTargetStart).length > 0) {
+					systemsSearched++;
+					curListObj = this.processNextPlanet(
+						openListTargetStart,
+						closedListTargetStart,
+						startPlanet,
+						options,
+						systemsSearched
+					);
+					// check if termination condition is reached
+					if(curListObj.planet === startPlanet || closedListStartTarget.hasOwnProperty(curListObj.idx)) {
+						mergeIdxTargetStart = curListObj.idx;
+					}
 				}
 
 				// pick the merge point
 				if(mergeIdxStartTarget > 0 || mergeIdxTargetStart > 0) {
+					// only the forward search has found a merge point
+					// OR both searches have found the same merge point
+					// OR the forward search has arrived at the target planet
 					if(mergeIdxStartTarget === mergeIdxTargetStart ||
 							mergeIdxTargetStart < 0 ||
 							closedListStartTarget.hasOwnProperty(options.toIdx)) {
-						// only the forward search has found a merge point
-						// OR both searches have found the same merge point
-						// OR the forward search has arrived at the target planet
 						mergeIdx = mergeIdxStartTarget;
+					// there is only a merge point for the reverse search
 					} else if(mergeIdxStartTarget < 0) {
-						// there is only a merge point for the reverse search
 						mergeIdx = mergeIdxTargetStart;
+					// two different merge points have been found:
+					// pick the alphabetically first planet from both options to remain consistent
 					} else {
-						// pick the alphabetically first planet from both options
 						if(btplanets.planets[mergeIdxStartTarget].name < btplanets.planets[mergeIdxTargetStart].name) {
 							mergeIdx = mergeIdxStartTarget;
 						} else {
@@ -194,7 +202,29 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			}
 
 			if(mergeIdx < 0) {
-				throw 'Target cannot be reached';// ('+iterations*2+' systems searched)';
+				closedListStartTarget[options.fromIdx] = {
+					cameFrom : true,
+					jumps : 0,
+					heuristicDistance : 0
+				};
+				closedListStartTarget[options.toIdx] = {
+					cameFrom: options.fromIdx,
+					jumps : Infinity,
+					heuristicDistance : this.findDistance(startPlanet, targetPlanet)
+				};
+				closedListTargetStart[options.fromIdx] = {
+					cameFrom : options.toIdx,
+					jumps : Infinity,
+					heuristicDistance : this.findDistance(startPlanet, targetPlanet)
+				};
+				closedListTargetStart[options.toIdx] = {
+					cameFrom: true,
+					jumps : 0,
+					heuristicDistance : 0
+				};
+				mergeIdx = options.toIdx;
+				//throw 'Target cannot be reached';// ('+iterations*2+' systems searched)';
+
 			}
 
 			// Assemble final route for forward direction:
@@ -303,7 +333,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 			}
 			// no more valid entries in openList
 			if(!retObj.planet) {
-				throw 'No more valid neighbor systems found (' + systemsSearched + ' systems searched)';
+				//console.warn('No more valid neighbor systems found (' + systemsSearched + ' systems searched)');
+				return retObj;
 			}
 			// planet is target planet
 			if(retObj.planet === target) {
@@ -383,7 +414,12 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				stopNameMap[this.stops[i].name] = true;
 				stopNameMap[this.stops[i+1].name] = true;
 				curStretch = this.findRoute(options);
-				this.stops[i+1].numJumps = curStretch.length - 1;
+				this.stops[i+1].distance = this.findDistance(this.stops[i], this.stops[i+1]);
+				if(curStretch.length === 2 && this.stops[i+1].distance > 30) {
+					this.stops[i+1].numJumps = Infinity;
+				} else {
+					this.stops[i+1].numJumps = curStretch.length - 1;
+				}
 				if(route.length > 0 && curStretch.length > 0) {
 					curStretch.shift();
 				}
@@ -402,7 +438,8 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 					x1 : planet1.x,
 					y1 : planet1.y,
 					x2 : planet2.x,
-					y2 : planet2.y
+					y2 : planet2.y,
+					distance : this.findDistance(planet1, planet2)
 				});
 				d3.selectAll('circle[name="'+planet1.name+'"], text.planet-name[name="'+planet1.name+'"]')
 					.classed('route', true)
@@ -420,7 +457,7 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 					.data(routeComponents)
 				.enter()
 					.append('path')
-					.attr('class', 'jump-path')
+					.attr('class', this.transformers.jumpPathClass.bind(this))
 					.attr('stroke', '#f00')
 					.attr('d', this.transformers.jumpPath.bind(this));
 		},
@@ -443,6 +480,17 @@ define(['js/lib/d3.min', 'js/btplanets'], function (d3, btplanets) {
 				var x = btplanets.xScale,
 					y = btplanets.yScale;
 				return 'M'+x(d.x1)+','+y(d.y1) + 'L'+x(d.x2)+','+y(d.y2)+'Z';
+			},
+
+			/**
+			 * The transformer for jump path element classes.
+			 */
+			jumpPathClass : function (d, i) {
+				if(d.distance > 30) {
+					return 'jump-path unknown';
+				} else {
+					return 'jump-path';
+				}
 			}
 		}
 	};

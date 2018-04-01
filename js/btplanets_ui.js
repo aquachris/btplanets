@@ -197,10 +197,15 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 							.classed('center', true)
 							.attr('title', 'center map on this system')
 							.html('<span class="fa fa-dot-circle-o"></span>');
-						if(i > 0) {
+						if(i > 0 && d.numJumps < Infinity) {
 							stopCt.append('span')
 								.classed('route-stop-info', true)
 								.text(d.numJumps + ' jumps');
+						} else if(i > 0) {
+							stopCt.append('span')
+								.classed('route-stop-info', true)
+								.classed('unknown', true)
+								.text('unknown # of jumps ('+d.distance.toFixed(2)+' LY distance)');
 						}
 						/*stopCt.append('p')
 							.classed('affilitation', true)
