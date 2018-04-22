@@ -40,39 +40,75 @@ define(['js/lib/d3.min'], function(d3) {
 		 * Initialize the object and its components
 		 */
 		init : function () {
+			this.displayLoadingScreen();
 			this.isEdge = window.navigator.userAgent.indexOf("Edge") > -1;
 			d3.json('./data/borders.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
 				if(error) {
 					return console.warn(error);
 				}
 				this.borders = json;
-				//d3.csv();
-				d3.json('./data/systems.json'+'?v'+window.BTPLANETS_VERSION, function (error, json) {
-					var cur, nb;
-					if(error) {
-						return console.warn(error);
-					}
-					this.planets = json;
-					this.capitals = [];
-					for(var i = 0, len = this.planets.length; i < len; i++) {
-						this.planets[i].index = i;
-						cur = this.planets[i].name.toLowerCase();
-						if(	cur === 'sian' || cur === 'luthien'
-							|| cur === 'new avalon' || cur === 'atreus'
-							|| cur === 'tharkad' || cur === 'terra') {
-							this.planets[i].isCapital = true;
-							this.capitals.push(this.planets[i]);
+				d3.tsv('./data/systems_modified.tsv')
+					.row(function (d) {
+						var link = d.SARNA_PATH;
+						if(link) {
+							link = 'http://www.sarna.net' + link;
 						}
-						this.planets[i].userData = localStorage.getItem(this.planets[i].name);
-					}
-					this.selectedPlanets = [];
-					this.instantiateComponents();
-					this.onResize();
-					window.addEventListener('resize', function () {
+						var coords = d.COORDINATES && d.COORDINATES.split(':');
+						if(!coords || coords.length < 2) {
+							coords = [undefined, undefined];
+						}
+						var aliases = d.ALIASES && d.ALIASES.split(',');
+						if(!aliases) {
+							aliases = [];
+						}
+						var objects = d.OBJECTS && d.OBJECTS.split(',');
+						if(!objects) {
+							objects = [];
+						}
+						return {
+							link : link,
+							name : d.SYSTEM_NAME,
+							x : coords[0],
+							y : coords[1],
+							affiliation : d.AFFILIATION,
+							aliases : aliases,
+							objects : objects
+						};
+					})
+					.get(function (error, rows) {
+						if(error) {
+							console.error(error);
+							return;
+						}
+						var cur, nb;
+						if(error) {
+							return console.warn(error);
+						}
+						this.planets = rows;
+						// find system neighbors
+						this.findNeighbors();
+						this.capitals = [];
+						for(var i = 0, len = this.planets.length; i < len; i++) {
+							this.planets[i].index = i;
+							cur = this.planets[i].name.toLowerCase();
+							if(	cur === 'sian' || cur === 'luthien'
+								|| cur === 'new avalon' || cur === 'atreus'
+								|| cur === 'tharkad' || cur === 'terra') {
+								this.planets[i].isCapital = true;
+								this.capitals.push(this.planets[i]);
+							}
+							this.planets[i].userData = localStorage.getItem(this.planets[i].name);
+						}
+						this.selectedPlanets = [];
+						this.instantiateComponents();
 						this.onResize();
+						window.addEventListener('resize', function () {
+							this.onResize();
+						}.bind(this));
+						this.fireEvent('initialized');
+						setTimeout(this.hideLoadingScreen.bind(this), 1000);
+
 					}.bind(this));
-					this.fireEvent('initialized');
-				}.bind(this));
 			}.bind(this));
 			d3.selectAll('#disclaimer button.close, #about button.close').on('click', function () {
 				d3.select(this.parentNode).classed('visible', false);
@@ -100,6 +136,54 @@ define(['js/lib/d3.min'], function(d3) {
 				d3.event.preventDefault();
 			});
 		},
+
+		displayLoadingScreen : function () {
+			d3.select('#loading-screen')
+				.classed('active', true);
+		},
+
+		hideLoadingScreen : function () {
+			d3.select('#loading-screen')
+				.classed('active', false);
+		},
+
+		/**
+	     * Calculate the distance between two planetary systems (euclidean distance in LY)
+	     * @private
+	     */
+	    calcDistance : function(p1, p2) {
+	    	return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+	    },
+
+	    /**
+	     * Find all planetary systems' neighbor systems.
+	     * @private
+	     */
+	    findNeighbors : function () {
+	        var p;
+	    	var neighbors;
+	        var dist;
+
+	        for(var idx = 0, len = this.planets.length; idx < len; idx++) {
+	            p = this.planets[idx];
+	            neighbors = [];
+	        	for(var nIdx = 0, nLen = this.planets.length; nIdx < nLen; nIdx++) {
+	        		if(nIdx === idx) {
+	        			continue;
+	        		}
+	                dist = this.calcDistance(p, this.planets[nIdx]);
+	                if(dist === 0 && p.name < this.planets[nIdx].name) {
+	                    console.warn('Identical coordinates for '+p.name+' and '+this.planets[nIdx].name+'.');
+	                } else if(dist <= 1 && p.name < this.planets[nIdx].name) {
+	                    console.warn('Very similar coordinates for ' + p.name + ' and ' + this.planets[nIdx].name + ': Distance is ' + dist +' LY.');
+	                }
+	        		if(dist <= 30) {
+	        			neighbors.push(nIdx);
+	        		}
+	        	}
+	            p.neighbors = neighbors;
+	        }
+	    },
 
 		/**
 		 * Create all necessary components.

@@ -776,7 +776,11 @@ define(['js/lib/d3.min', 'js/lib/tinymce/tinymce.min.js', 'js/btplanets', 'js/bt
 						}
 						html += ')</p>';
 					}
-					html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
+					if(d.link) {
+						html += '<p class="wiki-link"><a href="'+d.link+'" target="_blank">BattleTechWiki page</a></p>';
+					} else {
+						html += '<p class="no-wiki-link">no sarna page available</p>';
+					}
 					html += '<button class="remove" title="remove from selection"><span class="fa fa-remove"></span></button>';
 					html += '<button class="center" title="center map on this system"><span class="fa fa-dot-circle-o"></span></button>';
 					//html += '<button class="start-route" title="start a new route from this system"><span class="fa fa-level-down fa-rotate-270"></span></button>';
